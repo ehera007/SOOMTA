@@ -158,6 +158,29 @@ ul {
 	font-weight: bolder;
 }
 /*중앙*/
+.mypage{
+
+padding-top: 80px;
+	padding-bottom: 80px;
+}
+.item{
+display:flex;
+justify-content: space-evenly;
+margin: 10px;
+table-layout: fixed;
+
+
+}
+.main-item {
+   border: 1px solid black;
+   width: 300px;
+   height: 300px;
+   margin-left: 250px;
+   table-layout: fixed;
+  
+    
+}
+
 .mypageTitle {
 	background-color: #0F4C81;
 	color: white;
@@ -167,42 +190,52 @@ ul {
 }
 
 .dropMenu {
-	margin: 50px 0px;
-	display: flex;
-	justify-content: space-evenly;
+   align-items: center;
+   display:flex;
+  
+   justify-content: space-evenly;
+   margin-right :100px;
 }
+
 
 .imgBox {
-	align-content:center;
-	border: 1px solid black;
-	width: 200px;
-	height: 150px;
-	background-color: #0F4C81;
+   width: 200px;
+   height: 200px;
+   background-color: #0F4C81;
+   margin: 50px 20px;
+   color: white;
+   text-align:center;
+   
 }
 
 
+.imgTitle {
+	border: 1px solid black;
+	width: 200px;
+	height: 200px;
+}
+
 .dropList li {
-	background-color: #0F4C81;
-	text-align: center;
-	margin: 10px 0px;
-	font-size: 15px;
+   text-align: center;
+   margin: 10px 0px;
+   font-size: 18px;
+   list-style:none;
 }
 
 .dropList a:link {
-	color: white;
-	background-color: #0F4C81;
+   color: white;
 }
 
 .dropList a:visited {
-	color: white;
-	background-color: #0F4C81;
+   color: white;
 }
 
-.dropList a {
-	color: white;
+.dropList a:hover {
+   color: white;
 }
 
 .dropMenu ul {
+	
 	display: none;
 }
 
@@ -210,7 +243,6 @@ ul {
 	display: block;
 }
 </style>
-
 <meta charset="UTF-8">
 <title>Member Mypage</title>
 
@@ -236,10 +268,10 @@ ul {
 		</div>
 		<div class="mypageMenu">
 			<div class="dropMenu">
-				<div class="imgBox">
-					
+				<div class="imgBox">	
 					<div class="dropList">
 						<ul>
+			                <h1>내 정보</h1>
 							<li><a href="<c:url value='/member/perData'/>">개인 정보</a></li>
 							<li><a href="<c:url value='/member/memPwCon'/>">PW 변경</a></li>
 							<li><a href="<c:url value='/member/memOutCon'/>">탈퇴하기</a></li>
@@ -250,6 +282,7 @@ ul {
 				<div class="imgBox">
 					<div class="dropList">
 						<ul>
+							<h1>CLASS</h1>
 							<li><a href="<c:url value='/member/myClassList'/>">내 강의 목록</a></li>
 							<li><a href="<c:url value='/member/wishClass'/>">찜한 강의</a></li>
 						</ul>
@@ -259,6 +292,7 @@ ul {
 				<div class="imgBox">
 					<div class="dropList">
 						<ul>
+							<h1>STUDY</h1>
 							<li><a href="<c:url value='/member/bandList'/>">내 모임 목록</a></li>
 							<li><a href="<c:url value='/member/wishBand'/>">찜한 모임</a></li>
 							<li><a href="<c:url value='/member/bandOpen'/>">모임 개설</a></li>
