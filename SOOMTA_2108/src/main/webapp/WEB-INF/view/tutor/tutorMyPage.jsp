@@ -291,8 +291,8 @@ table-layout: fixed;
 					<div class="dropList">
 						<ul>
 							<h1>강의 정보</h1>
-							<li><a href="#">내 강의 목록</a></li>
-							<li><a href="#">찜한 강의</a></li>
+							<li><a href="MylectureList">내 강의 목록</a></li>
+							<li><a href="newClassOpened">찜한 강의</a></li>
 						</ul>
 					</div>
 				</div>
