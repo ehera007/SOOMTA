@@ -31,9 +31,9 @@ public class BandCtgrController {
 	public String employeement() {
 		return "band/employeementCtgr";
 	}
-	@RequestMapping("etc")
+	@RequestMapping("bandList")
 	public String ect() {
-		return "band/etcCtgr";
+		return "band/bandList";
 	}
 	@RequestMapping("bandDetailPage")
 	public String bandsDetailPage() {

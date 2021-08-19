@@ -10,7 +10,7 @@ public class ArtCtgrController {
 
 	@RequestMapping("art")
 	public String art() {
-		return "band/test";
+		return "band/bandList";
 	}
 	@RequestMapping("cook")
 	public String cook() {
@@ -26,5 +26,9 @@ public class ArtCtgrController {
 	public String sports() {
 		return "band/bandList";
 	}
-
+	
+	@RequestMapping("etc")
+	public String etc() {
+		return "band/bandList";
+	}
 }

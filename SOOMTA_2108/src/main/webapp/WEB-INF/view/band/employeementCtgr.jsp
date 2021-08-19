@@ -103,7 +103,7 @@ height:100%;
 			
 			<div class="main-item">
 			
-			<a href="education/ect">
+			<a href="education/etc">
 				<img src="../images/categories/ect.png" class="ctgr" alt="기타" /></a>
 			</div>
 		</div>

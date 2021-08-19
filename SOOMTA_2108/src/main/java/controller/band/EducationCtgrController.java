@@ -22,7 +22,7 @@ public class EducationCtgrController {
 		public String employeement(){
 			return "band/bandList";
 		}
-		@RequestMapping("ect")
+		@RequestMapping("etc")
 		public String ect(){
 			return "band/bandList";
 		}

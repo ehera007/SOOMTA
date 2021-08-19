@@ -23,4 +23,9 @@ public class EmployementCtgrController {
 	public String resume() {
 		return "band/bandList";
 	}
+	
+	@RequestMapping("etc")
+	public String etc() {
+		return "band/bandList";
+	}
 }

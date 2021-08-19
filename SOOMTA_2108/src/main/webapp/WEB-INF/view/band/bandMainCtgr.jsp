@@ -279,7 +279,7 @@ height:100%;
 			</div>
 			<div class="main-item">
 			
-			<a href="ect">
+			<a href="bandList">
 				<img src="../images/categories/ect.png" class="ctgr" alt="기타" /></a>
 			</div>
 		</div>
