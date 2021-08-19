@@ -392,3 +392,7 @@ td{
 
 </body>
 </html>
+
+
+
+<a href="<c:url value='/member/joinOk'/>">튜터 가입 완료 후 확인페이지</a>
