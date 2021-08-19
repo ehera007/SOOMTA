@@ -15,6 +15,7 @@ public class CtificateCtgrConroller {
 				return "band/bandList";
 			}
 			@RequestMapping("taxation")
+	
 			public String taxation(){
 				return "band/bandList";
 			}

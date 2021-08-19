@@ -264,6 +264,7 @@ height:100%;
 			</div>
 			<div class="main-item">
 			
+			
 			<a href="art/music">
 				<img src="../images/categories/art_detail/music.png" 
 					alt="음악" /></a>

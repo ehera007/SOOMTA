@@ -15,6 +15,7 @@ public class BandDetailController {
 	public String bandDetail() {
 		return "band/bandDetail";
 	}
+	
 
 	@RequestMapping("bandDetailmem")
 	public String bandDetailmem() {

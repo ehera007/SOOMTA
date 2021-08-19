@@ -31,4 +31,5 @@ public class ArtCtgrController {
 	public String etc() {
 		return "band/bandList";
 	}
+	
 }

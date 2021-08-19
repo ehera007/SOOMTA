@@ -101,13 +101,15 @@ height:100%;
 					alt="인적성" /></a>
 			</div>
 			
-			<div class="main-item">
+			<div class="main-item"> 
+			
 			
 			<a href="education/etc">
 				<img src="../images/categories/ect.png" class="ctgr" alt="기타" /></a>
 			</div>
 		</div>
 	</div>
+	
 	
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"

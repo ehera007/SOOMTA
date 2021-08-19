@@ -19,6 +19,7 @@ public class EmployementCtgrController {
 		return "band/bandList";
 	}
 
+	
 	@RequestMapping("resume")
 	public String resume() {
 		return "band/bandList";

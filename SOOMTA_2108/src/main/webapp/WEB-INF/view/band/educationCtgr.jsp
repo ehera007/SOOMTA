@@ -264,6 +264,7 @@ height:100%;
 				<img src="../images/categories/education_detail/medium.png" 
 					alt="중등" /></a>
 			</div>
+			
 			<div class="main-item">
 			<a href="education/employeement">
 				<img src="../images/categories/education_detail/college.png" 
