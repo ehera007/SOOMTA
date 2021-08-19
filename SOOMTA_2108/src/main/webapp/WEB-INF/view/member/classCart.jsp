@@ -102,6 +102,9 @@ a:hover {
 	width: 800px;
 	margin: 0 auto;
 	z-index: 2;
+	text-align: center;
+	padding-top: 60px;
+	padding-bottom: 60px;
 }
 
 .classCartForm{
@@ -109,16 +112,19 @@ a:hover {
 	padding:20px;
 	width: 500px;
 	height: 300px;
+	display: inline-block;
 }
 .className{
 	font-size:25px;
 	width:400px;
 	height:25px;
+	text-align:left;
 }
 .classPayment{
 	font-size:17px;
 	width:100px;
 	height:25px;
+	text-align:right;
 }
 .classPeriod{
 	width:140px;
@@ -140,7 +146,9 @@ a:hover {
 .paymentMethodCk{
 	padding-top:30px;
 }
-
+.tagClassCart{
+	padding-top: 130px;
+}
 /*하단 구역 분할*/
 .footer {
 	width: 800px;
@@ -269,13 +277,13 @@ a:hover {
 		<p align="center" style="font-size:20px;">강의명</p>
 	</div>
 	<div class="main">
+		<form action="classCartCk" method="get">
 		<div class="classCartForm">
 			<table>
 				<tr>
-					<td colspan="2" class="className">강의명</td>
+					<th colspan="2" class="className">강의명</th>
 					<td class="classPayment">얼마 원</td>
 				</tr>
-				<form name="Cartform" action="클래스구매목록">
 				<tr>
 					<td class="classPeriod">학습 기간 : 21.08.09~21.08.10 | </td>
 					<td class="Personnel">인원 : 5 명 | </td>
@@ -283,7 +291,7 @@ a:hover {
 				</tr>
 				<tr>
 					<td colspan="2" class="paymentMethod">결제 수단</td>
-					<td class="paymentMethodCk"><!-- 이건 리스트 -->
+					<td class="paymentMethodCk"><!-- 결제수단선택 옵션 -->
 						<select name="paymentMethodCkSort">
 							<option value="">선택</option>
 							<option value="a">신용카드</option>
@@ -292,9 +300,14 @@ a:hover {
 						</select>
 					</td>
 				</tr>
-				</form>
+				<tr>
+					<td colspan="3" class="tagClassCart">
+						<input type="submit" value="결제하기">&nbsp;&nbsp;&nbsp;<a href="javascript:history.back();">취소하기</a>
+					</td>
+				</tr>
 			</table>
 		</div>
+		</form>
 	</div>
    <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">

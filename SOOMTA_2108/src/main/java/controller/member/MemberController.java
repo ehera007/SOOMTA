@@ -76,4 +76,9 @@ public class MemberController {
 		return "member/classCart";
 	}
 	
+	@RequestMapping("classCartCk")//강의결제확인페이지
+	public String classCartCk() {
+		return "member/classCartCk";
+	}
+	
 }

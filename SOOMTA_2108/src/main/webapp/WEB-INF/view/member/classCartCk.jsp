@@ -1,11 +1,10 @@
+<!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ include file="../include/tags.jsp"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
-
 /*전체 글씨꼴 설정*/
 body {
 	font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
@@ -86,7 +85,79 @@ a:hover {
 
 .nav-item {
 	margin: 15px;
-	font-size: 15px;
+	font-size: 12px;
+}
+
+
+/*중앙 구역 분할 */
+.MylectureListTitle {
+	background-color: #0F4C81;
+	color: white;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+
+.main {
+	width: 800px;
+	margin: 0 auto;
+	z-index: 2;
+}
+.classCartTitle {
+	background-color: #0F4C81;
+	color: white;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+
+.main {
+	width: 800px;
+	margin: 0 auto;
+	z-index: 2;
+	text-align: center;
+	padding-top: 60px;
+	padding-bottom: 60px;
+}
+
+.classCartForm{
+	border: 2px solid #0F4C81;
+	padding:20px;
+	width: 500px;
+	height: 300px;
+	display: inline-block;
+}
+.className{
+	font-size:25px;
+	width:400px;
+	height:25px;
+	text-align:left;
+}
+.classPayment{
+	font-size:17px;
+	width:100px;
+	height:25px;
+	text-align:right;
+}
+.classPeriod{
+	width:140px;
+	height:25px;
+}
+.Personnel{
+	width:65px;
+	height:25px;
+}
+.classMethod{
+	width:200px;
+	height:25px;
+}
+.paymentEnd{
+	padding-top:30px;
+	width:250px;
+	height:25px;
+}
+.tagClassCart{
+	padding-top: 130px;
 }
 
 /*하단 구역 분할*/
@@ -136,173 +207,111 @@ a:hover {
 /* 하단고정 글자 색상, 사이즈 등 */
 .footer-callNum p {
 	color: #0F4C81;
-	font-size: 18px;
-	font-weight: bolder;
+	font-size: 20px;
+	font-weight: 900;
 }
 
-.footer-callTime p {
+.footer-callTime ul {
+	list-style: none;
+	padding-left: 0px;
 	font-size: 14px;
 	font-weight: bold;
 }
 
-ul {
+.footer-rightmenu ul {
 	list-style: none;
 	padding-left: 0px;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: bold;
+}
+
+.footer-callTime li {
+	margin-bottom: 3px;
+}
+
+.footer-rightmenu li {
+	margin-bottom: 5px;
 }
 
 .footer-menu p {
 	color: #0F4C81;
-	font-size: 15px;
-	font-weight: bolder;
-	
-}
-/*중앙*/
-.mypage{
-
-padding-top: 80px;
-	padding-bottom: 80px;
-}
-.item{
-display:flex;
-justify-content: space-evenly;
-margin: 10px;
-table-layout: fixed;
-
-
-}
-.main-item {
-   border: 1px solid black;
-   width: 300px;
-   height: 300px;
-   margin-left: 250px;
-   table-layout: fixed;
-  
-    
+	font-size: 16px;
+	font-weight: 900;
 }
 
-.mypageTitle {
-	background-color: #0F4C81;
-	color: white;
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 15px;
+a:link {
+	color: #0F4C81;
+	text-decoration: none;
 }
 
-.dropMenu {
-   align-items: center;
-   display:flex;
-  
-   justify-content: space-evenly;
-   margin-right :100px;
+a:visited {
+	color: #0F4C81;
+	text-decoration: none;
 }
 
-
-.imgBox {
-   width: 200px;
-   height: 200px;
-   background-color: #0F4C81;
-   margin: 50px 20px;
-   color: white;
-   text-align:center;
-   
+a:active {
+	color: #0F4C81;
+	text-decoration: none;
 }
 
-
-.imgTitle {
-	border: 1px solid black;
-	width: 200px;
-	height: 200px;
-}
-
-.dropList li {
-   text-align: center;
-   margin: 10px 0px;
-   font-size: 18px;
-   list-style:none;
-}
-
-.dropList a:link {
-   color: white;
-}
-
-.dropList a:visited {
-   color: white;
-}
-
-.dropList a:hover {
-   color: white;
-}
-
-.dropMenu ul {
-	
-	display: none;
-}
-
-.imgBox ul {
-	display: block;
+a:hover {
+	color: #0F4C81;
+	text-decoration: none;
 }
 </style>
-
 <meta charset="UTF-8">
-<title>tutorMypage</title>
+<title>결제확인</title>
 
 </head>
 <body>
-	
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
+			onclick="location.href='/SOOMTA_2108/main'" />
+		<!-- 로그인 안된 경우 -->
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/soomta/login'/>">로그인</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+			</div>
+			<div class="nav-item">
+				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
 			</div>
 		</div>
+	</div>
+	<!-- 메인 -->
+	<div class="MylectureListTitle">
+		<h1 align="center" style="font-size:200%;">결제확인</h1>
+		<p align="center" style="font-size:20px;">숨타와 함께 숨은 시간을 찾아보세요</p>
 	</div>
 	<div class="main">
-		<div class="mypageTitle">
-			<h1>안녕하세요, '${ID}'님!</h1>
-			<p>숨타와 함께 즐거운 하루 되세요 :)</p>
+				<form action="classCartCk" method="get">
+		<div class="classCartForm">
+			<table>
+				<tr>
+					<th colspan="2" class="className">강의명</th>
+					<td class="classPayment">얼마 원</td>
+				</tr>
+				<tr>
+					<td class="classPeriod">학습 기간 : 21.08.09~21.08.10 | </td>
+					<td class="Personnel">인원 : 5 명 | </td>
+					<td class="classMethod">수업 방식 : 비대면</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="paymentEnd">결제가 완료되었습니다 !</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="tagClassCart">
+						<a href="#">확인하기</a>
+					</td>
+				</tr>
+			</table>
 		</div>
-	 <div class=mypage>
-      <div class="item">
-      <div class="main-item">그래프</div>
-      
-		
-			<div class="dropMenu">
-				<div class="imgBox">
-					<div class="dropList">
-						<ul>
-							<h1>내정보</h1>
-							<li><a href="tutorPerData">개인 정보</a></li>
-							<li><a href="tutorPromanage">프로필 관리</a></li>
-							<li><a href="tutorPwCon">PW 변경</a></li>
-							<li><a href="tutorOut">탈퇴하기</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="dropMenu">
-					<div class="imgBox" >
-					<div class="dropList">
-						<ul>
-							<h1>강의 정보</h1>
-							<li><a href="MylectureList">내 강의 목록</a></li>
-							<li><a href="newClassOpened">강의 등록</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+		</form>
 	</div>
-	</div>
-	
-	
-	   <!-- 하단 고정 -->
+   <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
    <div class="footer">
