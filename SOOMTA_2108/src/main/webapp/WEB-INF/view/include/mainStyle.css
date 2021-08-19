@@ -1,0 +1,166 @@
+@charset "UTF-8";
+/*전체 글씨꼴 설정*/
+body {
+	font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
+}
+
+/*a태그 라인 삭제*/
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/*상단 고정 a 태그 색상 변경*/
+.nav-item a:visited {
+	color: #0F4C81;
+}
+
+.nav-item a:link {
+	color: #0F4C81;
+}
+
+.nav-item a:hover {
+	color: #0F4C81;
+}
+
+/*하단 고정 a 태그 색상 등 변경*/
+.footer-menu a:link {
+	color: black;
+	font-weight: bold;
+}
+
+.footer-menu a:visited {
+	color: black;
+}
+
+.footer-menu a:hover {
+	color: black;
+}
+
+.footer-bottom a:link {
+	color: #BEBEBE;
+	font-weight: bold;
+}
+
+.footer-bottom a:visited {
+	color: #BEBEBE;
+}
+
+.footer-bottom a:hover {
+	color: #BEBEBE;
+}
+
+.footer-submenu a {
+	margin-right: 10px;
+}
+
+/*상단 구역 분할, 색상 변경*/
+.header {
+	color: #0F4C81;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+}
+
+.nav {
+	color: #0F4C81;
+	display: flex;
+	margin-left: auto;
+}
+
+.nav-item {
+	margin: 15px;
+	font-size: 15px;
+}
+
+/*하단 구역 분할*/
+.footer {
+	width: 800px;
+	height: 70px;
+	margin: 0 auto;
+}
+
+.footer-top {
+	display: flex;
+	align-items: center;
+}
+
+.footer-bottom {
+	font-size: 12px;
+	color: #BEBEBE;
+}
+
+.footer-bottommenu {
+	display: flex;
+	align-items: center;
+	margin: 5px;
+}
+
+.footer-app {
+	display: flex;
+	margin-left: auto;
+}
+
+.footer-leftmenu {
+	width: 800px;
+	display: flex;
+	align-items: center;
+	display: flex;
+}
+
+.footer-rightmenu {
+	width: 400px;
+	display: flex;
+	margin-left: auto;
+}
+
+.footer-menu {
+	margin-left: 40px;
+}
+/* 하단고정 글자 색상, 사이즈 등 */
+.footer-callNum p {
+	color: #0F4C81;
+	font-size: 20px;
+	font-weight: 900;
+}
+
+.footer-callTime ul {
+	list-style: none;
+	padding-left: 0px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.footer-rightmenu ul {
+	list-style: none;
+	padding-left: 0px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.footer-callTime li {
+	margin-bottom: 3px;
+}
+
+.footer-rightmenu li {
+	margin-bottom: 5px;
+}
+
+.footer-menu p {
+	color: #0F4C81;
+	font-size: 16px;
+	font-weight: 900;
+}
+/*로고 이미지*/
+.logo {
+	height: 40px;
+	width: auto;
+}

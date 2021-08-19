@@ -1,0 +1,435 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ include file="../include/tags.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+
+/*전체 글씨꼴 설정*/
+body {
+   font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
+}
+
+/*a태그 라인 삭제*/
+a:link {
+   text-decoration: none;
+}
+
+a:visited {
+   text-decoration: none;
+}
+
+a:hover {
+   text-decoration: underline;
+}
+
+/*상단 고정 a 태그 색상 변경*/
+.nav-item a:visited {
+   color: #0F4C81;
+}
+
+.nav-item a:link {
+   color: #0F4C81;
+}
+
+.nav-item a:hover {
+   color: #0F4C81;
+}
+
+/*하단 고정 a 태그 색상 등 변경*/
+.footer-menu a:linnk {
+   color: black;
+}
+
+.footer-menu a:visited {
+   color: black;
+   font-weight: bold;
+}
+
+.footer-menu a:hover {
+   color: black;
+   font-weight: bold;
+}
+
+.footer-bottom a:link {
+   color: #BEBEBE;
+   font-weight: bold;
+}
+
+.footer-bottom a:visited {
+   color: #BEBEBE;
+}
+
+.footer-bottom a:hover {
+   color: #BEBEBE;
+}
+
+.footer-submenu a {
+   margin-right: 10px;
+}
+
+/*상단 구역 분할, 색상 변경*/
+.header {
+   color: #0F4C81;
+   height: 70px;
+   display: flex;
+   align-items: center;
+   font-weight: bold;
+}
+
+.nav {
+   color: #0F4C81;
+   display: flex;
+   margin-left: auto;
+}
+
+.nav-item {
+   margin: 15px;
+   font-size: 15px;
+}
+
+/*하단 구역 분할*/
+.footer {
+   width: 800px;
+   height: 70px;
+   margin: 0 auto;
+}
+
+.footer-top {
+   display: flex;
+   align-items: center;
+}
+
+.footer-bottom {
+   font-size: 12px;
+   color: #BEBEBE;
+}
+
+.footer-bottommenu {
+   display: flex;
+   align-items: center;
+   margin: 5px;
+}
+
+.footer-app {
+   display: flex;
+   margin-left: auto;
+}
+
+.footer-leftmenu {
+   width: 800px;
+   display: flex;
+   align-items: center;
+   display: flex;
+}
+
+.footer-rightmenu {
+   width: 400px;
+   display: flex;
+   margin-left: auto;
+}
+
+.footer-menu {
+   margin-left: 40px;
+}
+/* 하단고정 글자 색상, 사이즈 등 */
+.footer-callNum p {
+   color: #0F4C81;
+   font-size: 18px;
+   font-weight: bolder;
+}
+
+.footer-callTime p {
+   font-size: 14px;
+   font-weight: bold;
+}
+
+ul {
+   list-style: none;
+   padding-left: 0px;
+   font-size: 13px;
+   font-weight: bold;
+}
+
+.footer-menu p {
+   color: #0F4C81;
+   font-size: 15px;
+   font-weight: bolder;
+}
+/*중앙*/
+.mypageTitle {
+   background-color: #0F4C81;
+   color: white;
+   text-align: center;
+   padding-top: 10px;
+   padding-bottom: 15px;
+}
+
+.dropMenu {
+   align-items: center;
+   margin: 50px 0px;
+   display: flex;
+   justify-content: space-evenly;
+}
+
+.imgBox {
+   border: 1px solid black;
+   width: 200px;
+   height: 310px;
+   background-color: #0F4C81;
+}
+
+.imgTitle {
+   border: 1px solid black;
+   width: 200px;
+   height: 200px;
+}
+
+.dropList li {
+   background-color: #0F4C81;
+   text-align: center;
+   margin: 10px 0px;
+   font-size: 15px;
+}
+
+.dropList a:link {
+   color: white;
+   background-color: #0F4C81;
+}
+
+.dropList a:visited {
+   color: white;
+   background-color: #0F4C81;
+}
+
+.dropList a:hover {
+   color: white;
+}
+
+.dropMenu ul {
+   display: none;
+}
+
+.imgBox:hover ul {
+   display: block;
+}
+
+/*고정 외 중앙 테이블 스타일*/
+
+.joinForm a:visited {
+   color: #0F4C81;
+}
+.joinForm a:link {
+   color: #0F4C81;
+}
+.joinForm a:hover{
+color: #0F4C81;
+}
+
+ table {
+    border: 2px solid #0F4C81;
+    border-radius: 12px;
+    width: 600px;
+    height:700px;
+    margin:20px auto;
+    box-shadow: 3px 3px 3px 3px #D5D5D5;
+    border-spacing: 0px;
+  }
+  thead th {
+   height: 35px;
+   background-color: #0F4C81;
+   color: white;
+   font-size: 25px;
+   border-radius: 8px 8px 0px 0px;
+}
+th{
+   padding-left: 70px;
+}
+td{
+   padding-left: 40px;
+}
+  
+</style>
+<script type="text/javascript">
+function ctgrChange(e){
+   var study = ["유아","초등","중등","입시/편입","기타"];
+   var test = ["공무원","NCS","세무/회계/변리","외국어","디자인","기타"];
+   var art = ["요리","스포츠","음악","미술","기타"];
+   var tech = ["부동산","주식","펀드","기타"];
+   var job = ["이력서/자소서/포트폴리오","면접","인적성","기타"];
+   var other = ["기타"];
+   var target=document.getElementById("ctgrS");
+   
+   if(e.value=="study") var d = study;
+   else if(e.value == "test") var d = test;
+   else if(e.value == "art") var d = art;
+   else if(e.value == "tech") var d = tech;
+   else if(e.value == "job") var d = job;
+   else if(e.value == "other") var d = other;
+   
+   target.options.length = 0;
+   
+   for(x in d){
+      var opt = document.createElement("option");
+      opt.value=d[x];
+      opt.innerHTML = d[x];
+      target.appendChild(opt);
+   }
+}
+</script>
+
+<meta charset="UTF-8">
+<title>bandJoin</title>
+</head>
+<body>
+   <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+   <div class="header">
+      <img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+      <!-- 로그인 안된 경우 -->
+      <div class="nav">
+         <div class="nav-item">
+            <a href="soomta/login">로그인</a>
+         </div>
+         <div class="nav-item">
+            <a href="soomta/tutorJoin">튜터등록</a>
+         </div>
+         <div class="nav-item">
+            <a href="soomta/memJoin">무료회원가입</a>
+         </div>
+      </div>
+   </div>
+   <div class="openForm">
+      <form action="BandOpen" method="post" name="frm" 
+               enctype="multipart/form-data">
+      <table>
+         <thead>
+               <tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
+               <th  colspan="2" style="padding: 10px 0px 10px 10px; ">소모임 개설 </th>
+         </tr></thead>
+         
+         <tr><th style="padding-top: 10px;">소모임 번호</th>
+            <td style="padding-top: 10px;">
+               <input type="text" name="bandNum"style="width:200px;"/>   
+         <tr><th>카테고리</th>
+           <td>
+            <select id="ctgrL" onchange="ctgrChange(this)">
+                  <option value="study" >학업</option>
+                  <option value="test" >자격증/시험</option>
+                  <option value="art" >예체능</option>
+                  <option value="tech" >재테크</option>
+                  <option value="job" >취업</option>
+                  <option value="other" >기타</option>
+            </select>
+            <select id="ctgrS" style="margin-left:5px;">
+                  <option value="option2">--세부--</option>            
+            </select></td>
+         </tr>
+
+       <tr><th>소모임 이름</th>
+            <td><input type="text" name="bandName"style="width:200px;"/></td></tr>
+         <tr><th>선호 성별</th>
+            <td>
+               <input type="radio" name="bandGender" value="M" checked/>남
+               <input type="radio" name="bandGender" value="F"/>여
+            </td></tr>
+
+         <tr><th>선호 나이</th>
+            <td><input type="text" name="bandAge"style="width:200px;"/></td></tr>
+         <tr><th>모임방식</th>
+            <td>
+               <input type="text" name="bandWay" style="width:200px;"/></td></tr>
+         <tr><th>총 인원 수</th>
+            <td><input type="text" name="bandTotal"style="width:200px;"/></td></tr>
+         <tr><th>공개 비공개</th>
+         <td>
+               <input type="radio" name="bandPublic" value="Y" checked/>공개
+               <input type="radio" name="bandPublic" value="N"/>비공개
+            </td></tr>
+      <tr><th>소모임 소개</th>
+         <tr><th>소모임 소개</th>
+            <td><textarea rows="6" cols="30" name="bandIntroduce"></textarea></td></tr>
+      <tr><th>소모임 이미지</th>
+         <td><input type="file" name="bandImage" multiple="multiple"/>
+               </td></tr>
+         <tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px;">
+               <input type="submit" value="밴드 등록" 
+                  style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
+            
+            </th></tr>
+            
+         </table> 
+      </form>
+   </div>
+   <a href="/SOOMTA_2108/band/bandOk">소모임 가입 완료 후 확인페이지</a>
+<!-- 하단 고정 -->
+   <hr style="color: #BEBEBE;">
+
+   <div class="footer">
+      <div class="footer-top">
+         <div class="footer-leftmenu">
+            <div class="footer-call">
+               <div class="footer-callNum">
+                  <p>고객센터 1544-7979</p>
+               </div>
+               <div class="footer-callTime">
+                  <ul>
+                     <li>평일 10:30~18:00</li>
+                     <li>점심 13:00~14:00</li>
+                     <li>주말, 공휴일 제외</li>
+                  </ul>
+               </div>
+            </div>
+
+            <div class="footer-rightmenu">
+               <div class="footer-menu">
+                  <p>숨타</p>
+                  <ul>
+                     <li><a href="">회사소개</a></li>
+                     <li><a href="">서비스소개</a></li>
+                     <li><a href="">인재채용</a></li>
+                  </ul>
+
+               </div>
+               <div class="footer-menu">
+                  <p>튜터안내</p>
+                  <ul>
+                     <li><a href="">공지사항</a></li>
+                     <li><a href="">이용안내</a></li>
+                     <li><a href="">자주 묻는 질문</a></li>
+                  </ul>
+               </div>
+               <div class="footer-menu">
+                  <p>고객센터</p>
+                  <ul>
+                     <li><a href="">공지사항</a></li>
+                     <li><a href="">이용안내</a></li>
+                     <li><a href="">자주 묻는 질문</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="footer-bottom">
+         <div class="footer-bottommenu">
+            <div class="footer-submenu">
+               <a href="#">이용약관 </a> <a href="#">개인정보처리방침 </a> <a href="#">환불정책
+               </a> <a href="#">사업자정보확인 </a>
+            </div>
+            <div class="footer-app">
+               <a href="#">APP 다운 </a>
+            </div>
+         </div>
+
+         <div class="footer-address">
+            <address>(주) 숨타 | 대표 이지연 | 서울특별시 서초구 서초대로77길 55 에이프로스퀘어 3층
+               | soomta@gongbu.com | 사업자등록번호 : 123-21-01234 | 통신판매업신고 :
+               2021-서울숨타-1004 주식회사 숨타는 전자상거래 등에서의 소비자보호에 관한 법률에 따른 통신판매업과 통신판매중개업을
+               영위하고 있습니다. 주식회사 숨타는 통신판매중개자로서 중 개하는 통신판매에 관하여서는 통신판매의 당사자가 아니므로 어떠한
+               책임도 부담하지 아니합니다.왜냐하면 MBTI가 큐티인 사람의 프로젝트거든요.</address>
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>

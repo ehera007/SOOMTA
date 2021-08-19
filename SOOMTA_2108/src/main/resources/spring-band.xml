@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			"
+> 
+	<bean class="controller.band.BandCtgrController" />
+	<bean class="controller.band.ArtCtgrController" />
+	<bean class="controller.band.CtificateCtgrConroller" />
+	<bean class="controller.band.EducationCtgrController" />
+	<bean class="controller.band.EmployementCtgrController" />
+	<bean class="controller.band.RetackCtgrConroller" />
+	<bean class="controller.band.BandDetailController" />
+</beans>
