@@ -196,7 +196,8 @@ text-align:center;
 	</div>
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
-		class="Top"> <img src="../images/top.png" alt="topicon">
+		class="Top"> <img src="<c:url value='/images/top.png'/>"
+		alt="topicon" />
 	</a>
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">

@@ -112,9 +112,9 @@ a:hover{
 			<div class="idSearch" >
 		<div id="idSearchTitle"><h2>아이디 찾기 결과</h2></div>
 			<br/>
-				<p>'이름'님의 아이디는</p>
-				<p>아이디임돠</p>
-				<p>입니다</p>
+				<p>'${memName }'님의 아이디는</p>
+				<p>${memId }</p>
+				<p>입니다.</p>
 				<div id="idSearchAtag">
 					<a href="./login"><b>로그인 </b></a>/ 
 					<a href="http://localhost:8080/SOOMTA_2108/soomta/searchIdPw.html#targetpw"><b>비밀번호 찾기</b></a>

@@ -1,11 +1,16 @@
 package controller.employees;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import command.EmployeeCommand;
+import service.employee.EmployeeInfoService;
+import service.employee.EmployeeJoinService;
+import service.employee.EmployeeListService;
 
 @Controller
 @RequestMapping("emp")
@@ -81,12 +86,18 @@ public class EmployeeController {
 	public String tutorDel(){
 		return "redirect:tutorList";
 	}
-	@RequestMapping("empList")//관리자 보기
-	public String empList() {
+	@Autowired
+	EmployeeListService employeeListService;
+	@RequestMapping("empList")//관리자 리스트 보기
+	public String empList(Model model) {
+		employeeListService.empList(model);
 		return "emp/emp/empList";
 	}
+	@Autowired
+	EmployeeInfoService employeeInfoService;
 	@RequestMapping("empInfo")//관리자 상세 보기
-	public String empInfo() {
+	public String empInfo(@RequestParam(value="empId") String empId, Model model) {
+		employeeInfoService.empInfo(empId, model);
 		return "emp/emp/empInfo";
 	}
 	@RequestMapping("empMod")//관리자 수정
@@ -101,13 +112,17 @@ public class EmployeeController {
 	public String empDel() {
 		return "redirect:empList";
 	}
-	@RequestMapping("empJoin")//관리자 등록
+	@RequestMapping("empJoin")//관리자 등록폼
 	public String empJoin() {
 		return "emp/emp/empJoin";
 	}
+	@Autowired
+	EmployeeJoinService employeeJoinService;
 	@RequestMapping(value="empJoinOk", method=RequestMethod.POST)//관리자 등록 완료
-	public String empJoinOk(EmployeeCommand empCom, Model model) {
-		return "redirect:empList";//나중에 주소 변경하기
+	public String empJoinOk(EmployeeCommand employeeCommand//, Model model
+			) {
+		employeeJoinService.empInsert(employeeCommand);
+		return "redirect:empList";
 	}
 	
 	

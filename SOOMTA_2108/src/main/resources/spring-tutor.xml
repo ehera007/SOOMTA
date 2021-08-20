@@ -7,4 +7,6 @@
 			"
 >
 	<bean class="controller.tutor.TutorController"/>
+	<bean id="tutorJoinService" class="service.tutor.TutorJoinService"/>
+	<bean id="tutorRepository" class="repository.TutorRepository"/>
 </beans>

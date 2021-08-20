@@ -11,4 +11,7 @@
 	<bean class="controller.main.FaqController"/>
 	<bean class="controller.main.PolicyController"/>
 	<bean class="controller.main.SoomtaController"/>
+	<bean id="logInService" class="service.logIn.LogInService"/>
+	<bean id="logInRepository" class="repository.LogInRepository"/>
+	<bean id="cookieService" class="service.logIn.CookieService"/>
 </beans>

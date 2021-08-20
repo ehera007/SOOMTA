@@ -46,10 +46,6 @@ public class TutorController {
 	public String sujungOk() {
 		return "tutor/sujungOk";
 	}
-	@RequestMapping("joinOk")//튜터 등록 완료 후 환영 페이지
-	public String joinOk() {
-		return "tutor/joinOk";
-	}
 	@RequestMapping("joinForm")//튜터 등록 페이지
 	public String joinForm() {
 		return "tutor/joinForm";

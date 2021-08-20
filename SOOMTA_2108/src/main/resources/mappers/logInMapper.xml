@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.LogInMapper">
+<mapper namespace="mappers.logInMapper">
 
-
-<!-- <select id="logIn" parameterType="string" resultType="Model.AuthInfoDTO">
-	select MEM_ID userId, MEM_PW userPw , MEM_EMAIL userEmail, 1 grade
-	from member
-	where MEM_ID = #{userId}
+<select id="logIn" parameterType="string" resultType="Model.LogInDTO">
+	select mem_id userId, mem_pw userPw, mem_email userEmail, 'mem' grade 
+	from member where mem_id = #{userId}
 	union
-	select EMP_USERID, EMP_PW, EMAIL, EMPLOYEE_ID
-	from employees
-	where EMP_USERID = #{userId}	
+	select tutor_id, tutor_pw, tutor_email, 'tutor' 
+	from tutor where tutor_id = #{userId} 
+	union
+	select emp_id, emp_pw, emp_email, 'emp' 
+	from employees where emp_id = #{userId}
 </select>
- -->
+
 
 </mapper> 

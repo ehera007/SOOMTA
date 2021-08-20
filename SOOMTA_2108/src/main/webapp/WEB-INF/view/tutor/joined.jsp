@@ -4,39 +4,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="include/mainStyle.css" media="all"
-	type="text/css" />
+<link rel="stylesheet" href="<c:url value='/include/mainStyle.css'/>"
+	media="all" type="text/css" />
 <style type="text/css">
-@charset "UTF-8";
-
-/*중앙 구역 분할 */
+/*중앙*/
 .main {
 	width: 800px;
 	margin: 0 auto;
 }
-
-.search {
-	border: 1px solid black;
+.main h1{
+text-align:center; 
+color:#0F4C81;
+margin:50px auto 15px auto;
+}
+table {
+    border: 2px solid #0F4C81;
+    border-radius: 12px;
+    box-shadow: 3px 3px 3px 3px #D5D5D5;
+    border-spacing: 0px;
+    margin: 0 auto 70px auto;
+    width: 600px;
+  }
+thead th {
 	height: 40px;
-	margin: 30px;
+   background-color: #0F4C81;
+   color: white;
+   font-size: 20px;
+   border-radius: 8px 8px 0px 0px;
 }
-
-.item {
-	display: flex;
-	margin: auto;
+tbody{
+	height: 140px;
+	font-size: 18px;
+	vertical-align: center;
 }
-
-.main-item {
-	width: 300px;
-	height: 300px;
-	margin: 50px;
+tfoot{
+	height: 40px;
 }
-  /*이미지 사이즈 관련 스타일*/
-img{
-width:auto;
-height:100%;
+tfoot a{
+	color: #0F4C81;
+	font-weight: bold;
+	padding-left: 490px;
 }
+tfoot a:hover{
+	color: #0F4C81;
+	font-weight: bold;
+	padding-left: 490px;
+}
+tfoot a:link{
+	color: #0F4C81;
+	font-weight: bold;
+	padding-left: 490px;
+}
+tfoot a:visited{
+	color: #0F4C81;
+	font-weight: bold;
+	padding-left: 490px;
+}
+  
 </style>
+
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -48,16 +74,15 @@ height:100%;
     });
     
     </script>
+
 <meta charset="UTF-8">
-<title>SOOMTA</title>
+<title>환영합니다</title>
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
+			<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
 			alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
-		<!-- 로그인 안된 경우 -->
-		<c:if test="${empty dto }">
 		<div class="nav">
 			<div class="nav-item">
 				<a href="<c:url value='/soomta/login'/>">로그인</a>
@@ -69,50 +94,30 @@ height:100%;
 				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
 			</div>
 		</div>
-	</c:if>
-	
-	<!-- 로그인 된 경우 -->
-	<c:if test="${!empty dto }">
-	<div class="nav">
-	<!-- 관리자 -->
-	<c:if test="${dto.grade == 'emp' }">
-	<div class="nav-item">
-		<a href="<c:url value='/emp/main'/>">마이페이지</a></div></c:if>
-	<!-- 튜터 -->
-	<c:if test="${dto.grade == 'tutor' }">
-	<div class="nav-item">
-	<a href="<c:url value='/tutor/myPage'/>">마이페이지</a></div></c:if>
-	<!-- 멤버 -->
-	<c:if test="${dto.grade == 'mem' }">
-	<div class="nav-item">
-	<a href="<c:url value='/member/myPage'/>">마이페이지</a></div></c:if>
-	<!-- 로그아웃 -->
-	<div class="nav-item">
-		<a href="<c:url value='/soomta/logOut'/>">로그아웃</a></div>	
 	</div>
-	</c:if>
-	
-	</div>
-	<!-- 중앙 : 검색바, 선택(마우스오버 시 이미지 변경) -->
-	<div class="main">
-		<div class="search">검색바</div>
-		<div class="item">
-			<div class="main-item">
-			<a href="class/mainCtgr">
-			<img src="./images/main_class.png" alt="CLASS" onmouseover="this.src='./images/main_class_hover.png'" 
-			onmouseout="this.src='./images/main_class.png'"/></a></div>
-			<div class="main-item">
-			<a href="band/mainCtgr">
-			<img src="./images/main_band.png" alt="BAND" onmouseover="this.src='./images/main_band_hover.png'" 
-			onmouseout="this.src='./images/main_band.png'"/></a>
+	<!-- 중앙 : 회원가입 확인 -->
+		<div class="main">
+			<h1>숨타와 함께 튜터 활동을 해보세요!</h1>
+			<table>
+			<thead><tr>
+               <th>튜터등록 완료</th>
+         	</tr></thead>
+         	<tbody><tr>
+				<th rowspan="2">
+			<!-- <span class="id">"${dto.tutorId }"</span>님  환영합니다</td></tr> -->
+				튜터 등록이 완료되었습니다! <br/> 강의 등록은 이메일 인증 후 할 수 있어요 :) </th></tr>
+				<tr></tr>
+    			</tbody>
+    		<tfoot><tr>
+    			<td>
+				<a href="<c:url value='/soomta/login'/>">로그인 하기</a></td>
+			</tr></tfoot>
+			</table>
 			</div>
-		</div>
-	</div>
-	
+  	
 	<!-- TOP이동 -->
-	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
-		class="Top"> <img src="<c:url value='/images/top.png'/>"
-		alt="topicon" />
+	<a style="position: fixed; bottom: 20px; right: 50px;" href="#" class="Top">
+		<img src="<c:url value='/images/top.png'/>" alt="topicon"/>
 	</a>
 
 	<!-- 하단 고정 -->
@@ -186,4 +191,5 @@ height:100%;
 	</div>
 
 </body>
+
 </html>

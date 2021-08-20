@@ -34,6 +34,22 @@ h2{
 	left:23px;
 }
 
+table.idfindTable {
+	width: 400px;
+	height: 150px;
+	margin: 0 auto;
+}
+
+table.pwfindTable {
+	width: 400px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+th{
+	text-align:center;
+}
+
 .idFind{
 	border: 2px solid #0F4C81;
 	width: 600px;
@@ -47,7 +63,7 @@ h2{
 .pwFind{
 	border: 2px solid #0F4C81;
 	width: 600px;
-	height: 270px;
+	height: 300px;
 	margin: 0 auto;
 	text-align:center;
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
@@ -59,8 +75,9 @@ h2{
 	font-size:15px;
 	background-color:#0F4C81;
 	position:relative;
-	width:601px;
+	width:602px;
 	top:-1px;
+	left:-1px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
@@ -82,14 +99,14 @@ h2{
 }
 
 #findIdsubmit{
-	margin-top:16px;
+	margin-top:30px;
 	border:none;
 	background:none;
 	color:#0F4C81;
 }
 
 #findPwsubmit{
-	margin-top:16px;
+	margin-top:23px;
 	border:none;
 	background:none;
 	color:#0F4C81;
@@ -147,10 +164,20 @@ a:hover{
 		
 		<div id="idFindForm">
 			<form action="findId" method="post">
-			<br/>
-				<p>이름 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="memName" id="idpwFindInputValue"></p><br/>
-				<p>생년월일&nbsp; &nbsp;<input type="text" name="memBirth" id="idpwFindInputValue"></p><br/>
-				<p>핸드폰&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input type="text" name="memPhone" id="idpwFindInputValue"/></p><br/>
+				<table class="idfindTable">
+					<tr>
+						<th>이름</th>
+						<td><input type="text" name="memName" id="idpwFindInputValue"></td>
+					</tr>
+					<tr>
+						<th>생년월일</th>
+						<td><input type="date" name="memBirth" id="idpwFindInputValue"></td>
+					</tr>
+					<tr>
+						<th>핸드폰</th>
+						<td><input type="text" name="memPhone" id="idpwFindInputValue"/></td>
+					</tr>
+				</table>
 				<input id="findIdsubmit" type="submit" value="ID 찾기"/>
 			</form>
 			</div>
@@ -161,8 +188,16 @@ a:hover{
 		<div id="idpwFindTitle"><h2>비밀번호 찾기</h2></div>
 		<div id="pwFindForm">
 			<form action="findPw" method="post">
-				<p>아이디&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input type="text" name="memPhone" id="idpwFindInputValue"/></p><br/>
-				<p>핸드폰&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input type="text" name="memPhone" id="idpwFindInputValue"/></p><br/>
+				<table class="pwfindTable">
+					<tr>
+						<th>아이디</th>
+						<td><input type="text" name="memPhone" id="idpwFindInputValue"/></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="email" name="mememail" id="idpwFindInputValue"/></td>
+					</tr>
+				</table>
 				<input id="findPwsubmit" type="submit" value="PW 찾기"/>
 			</form>
 			</div>

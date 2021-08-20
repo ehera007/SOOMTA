@@ -20,7 +20,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width: 600px;
+	width:550px;
 }
 
 thead th {
@@ -32,12 +32,12 @@ thead th {
 }
 tbody th {
 	padding-top: 30px;
-	width: 30%;
+	width: 40%;
 }
 
 tbody td {
 	padding-top: 30px;
-	width: 70%;
+	width: 60%;
 }
 
 .btn {
@@ -87,7 +87,7 @@ tbody td {
 				<a href="<c:url value='/emp/main'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
@@ -99,37 +99,37 @@ tbody td {
 			<thead>
 				<tr
 					style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-					<th colspan="2">관리자 '${ID }'의 정보</th>
+					<th colspan="2">관리자 '${emp.empId }'의 정보</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<th>아이디</th>
-					<td></td>
+					<td>${emp.empId }</td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td></td>
+					<td>${emp.empName }</td>
 				</tr>
 				<tr>
 					<th>담당 파트</th>
-					<td></td>
+					<td>${emp.empJob }</td>
 				</tr>
 				<tr>
 					<th>입사일</th>
-					<td></td>
+					<td><fmt:formatDate value="${emp.hireDate }" type="date" pattern="yyyy-MM-dd"/></td>
 				</tr>
 				<tr>
 					<th>전화번호</th>
-					<td></td>
+					<td>${emp.empPhone }</td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td></td>
+					<td>${emp.empEmail }</td>
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td></td>
+					<td>${emp.empAddr }</td>
 				</tr>
 			</tbody>
 			<tfoot>

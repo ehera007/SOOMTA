@@ -155,7 +155,7 @@ input {
     function check_pw(){
     if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
         if(document.getElementById('pw').value==document.getElementById('pw2').value){
-            document.getElementById('check').innerHTML='PW 일치'
+            document.getElementById('check').innerHTML='PW 일치';
             document.getElementById('check').style.color='blue';
             document.getElementById('check').style.fontSize='15px';
             document.getElementById('check').style.fontWeight='900';
@@ -191,7 +191,7 @@ function funcCon(){
 				<a href="<c:url value='/emp/main'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
@@ -223,7 +223,7 @@ function funcCon(){
 						</tr>
 						<tr>
 							<th>비밀번호 확인</th>
-							<td><input type="password" name="empPwCon" required
+							<td><input type="password" name="empPwCon" value="${empPwCon }" required
 								size="30"
 								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
 								class="pw" id="pw2" onchange="check_pw()"/>
@@ -231,36 +231,36 @@ function funcCon(){
 
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="empName" minlength="2" required
+							<td><input type="text" name="empName" value="${empName }" minlength="2" required
 								size="30" />
 								<div class="detail">* 성 포함 입력</div></td>
 						</tr>
 						<tr>
 							<th>담당 파트</th>
-							<td><input type="text" name="empJob" minlength="2" maxlength="15" required
+							<td><input type="text" name="empJob" value="${empJob }" minlength="2" maxlength="15" required
 								size="30" />
 								<div class="detail">* 담당하는 일을 입력</div></td>
 						</tr>
 						<tr>
 							<th>입사일</th>
-							<td><input type="date" name="hireDate" size="55" required
+							<td><input type="date" name="hireDate" value="${hireDate }" size="55" required
 								size="30" /></td>
 						</tr>
 						<tr>
 							<th>전화번호</th>
-							<td><input type="text" name="empPhone" minlength="11"
+							<td><input type="text" name="empPhone" value="${empPhone }" minlength="11"
 								required size="30" maxlength="11" />
 								<div class="detail">* ex) 01012341234</div></td>
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td><input type="text" id="email1" name="empEmail" value="${Email }"
-								required size="30">
+							<td><input type="email" name="empEmail" value="${empEmail }"
+								required size="30"/>
 								<div class="detail">* ex) email@email.com</div></td>
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td><input type="text" name="empAddr" required size="30"
+							<td><input type="text" name="empAddr" value="${empAddr }" required size="30"
 								id="sample4_roadAddress" /> <a
 								href="javascript:sample4_execDaumPostcode();">주소 검색</a></td>
 						</tr>

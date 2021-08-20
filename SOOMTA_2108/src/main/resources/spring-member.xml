@@ -7,4 +7,6 @@
 			"
 >
 	<bean class="controller.member.MemberController"/>
+	<bean id="memberJoinService" class="service.member.MemberJoinService"/>
+	<bean id="memberRepository" class="repository.MemberRepository"/>
 </beans>

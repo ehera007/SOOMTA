@@ -80,13 +80,13 @@ function funcCon(){
 	<div class="header">
 
 		<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
-			alt="SOOMTA" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
+			alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="nav">
 			<div class="nav-item">
 				<a href="<c:url value='/emp/main'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.memberMapper">
+
+<insert id="memInsert" parameterType="Model.MemberDTO">
+	insert into member (mem_Id, mem_Pw, mem_Name , mem_Phone , mem_Gender , 
+	mem_Dob , mem_Email , mem_Email_Ck , memr_Area , mem_Since) 
+	values(#{memId}, #{memPw}, #{memName}, #{memPhone}, #{memGender}, 
+	#{memDob}, #{memEmail}, #{memEmailCk}, #{memArea}, sysdate)
+</insert>
+
+</mapper>

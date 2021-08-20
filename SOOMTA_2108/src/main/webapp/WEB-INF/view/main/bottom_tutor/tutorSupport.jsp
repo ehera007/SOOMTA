@@ -106,8 +106,8 @@ td a {
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="top">
-		<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
-			alt="SOOMTA" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
+		<img class="logo" src="<c:url value='/images/soomta_logo.png'/>" alt="SOOMTA" 
+		onclick="location.href='/SOOMTA_2108/main'" />
 	</div>
 
 	<!-- 중앙 -->

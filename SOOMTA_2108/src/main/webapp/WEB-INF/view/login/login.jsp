@@ -77,24 +77,26 @@ height:100%;
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-			<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+			<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
+			alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<!-- 로그인 안된 경우 -->
 		<div class="nav">
 			<div class="nav-item">
 				<a href="<c:url value='/soomta/login'/>">로그인</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">튜터등록</a>
+				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">무료회원가입</a>
+				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
 			</div>
 		</div>
 	</div>
+
 	<!-- 중앙 : 로그인폼 -->
 	<div class="login">
 	<h1>로그인</h1>
-	<form:form action="#" method="get" name="frm">
+	<form:form action="login" method="post" name="frm" modelAttribute="logInCommand">
 		<table>
 		<colgroup>
 		<col style="width:20%">
@@ -103,23 +105,37 @@ height:100%;
 		<col style="width:30%">
 		</colgroup>
 		<tr>
-			<td colspan="3" class="id"><p>ID</p><input type="text" value="usrId"/></td>
-			<td rowspan="2"><input type="image" src="../images/login.png"alt="login" style="margin-right:10px;"/></td></tr>
-		<tr class="pw"><td colspan="3"><p>PW</p><input type="password" value="userPw"/></td></tr>
-		<tr style="font-size:14px;"><th style="text-align:right;"><input type="checkbox"/>ID저장</th>
-		<th><input type="checkbox"/>자동로그인</th>
-		<th style="text-align:right;"><a href="join">계정이 없으신가요?</a></th>
-		<th><a href="searchIdPw">ID/PW 찾기</a></th>
+			<td colspan="3" class="id"><p>ID</p>
+			<form:input path="userId" value="${isId }"/>
+			<form:errors path="userId"/></td>
+			<td rowspan="2">
+			<input type="image" src="../images/login.png" alt="login" style="margin-right:10px;"/></td>
+		</tr>
+		<tr class="pw">
+			<td colspan="3"><p>PW</p>
+			<form:password path="userPw"/>
+			<form:errors path="userPw"/></td>
+		</tr>
+		<tr style="font-size:14px;">
+			<th style="text-align:right;">
+			<input type="checkbox" name="idStore" <c:if test="${!empty isId }">checked</c:if>/>ID저장</th>
+			<th><input type="checkbox" name="autoLogin"/>자동로그인</th>
+			<th style="text-align:right;">
+			<a href="<c:url value='/soomta/memJoin'/>">계정이 없으신가요?</a></th>
+			<th><a href="searchIdPw">ID/PW 찾기</a></th>
 		</tr>
 		</table>
 		</form:form>
 	</div>
-	<!-- 하단 고정 -->
-		<!-- TOP이동 -->
-	<a style="position: fixed; bottom: 20px; right: 50px;"
-		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
+		class="Top"> <img src="<c:url value='/images/top.png'/>"
+		alt="topicon" />
 	</a>
+	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">
+
 	<div class="footer">
 		<div class="footer-top">
 			<div class="footer-leftmenu">
@@ -128,9 +144,11 @@ height:100%;
 						<p>고객센터 1544-7979</p>
 					</div>
 					<div class="footer-callTime">
-						<p>
-							평일 10:30~18:00<br />점심 13:00~14:00<br />주말, 공휴일 제외
-						</p>
+						<ul>
+							<li>평일 10:30~18:00</li>
+							<li>점심 13:00~14:00</li>
+							<li>주말, 공휴일 제외</li>
+						</ul>
 					</div>
 				</div>
 
@@ -138,25 +156,25 @@ height:100%;
 					<div class="footer-menu">
 						<p>숨타</p>
 						<ul>
-							<li><a href="">회사소개</a></li>
-							<li><a href="">서비스소개</a></li>
-							<li><a href="">인재채용</a></li>
+							<li><a href="<c:url value='/about/soomta'/>" target="_blank">회사소개</a></li>
+							<li><a href="<c:url value='/about/service'/>" target="_blank">서비스소개</a></li>
+							<li><a href="<c:url value='/about/hire'/>" target="_blank">인재채용</a></li>
 						</ul>
 					</div>
 					<div class="footer-menu">
 						<p>튜터안내</p>
 						<ul>
-							<li><a href="">공지사항</a></li>
-							<li><a href="">이용안내</a></li>
-							<li><a href="">자주 묻는 질문</a></li>
+							<li><a href="<c:url value='/help/tutorNotice'/>" target="_blank">공지사항</a></li>
+							<li><a href="<c:url value='/help/tutor'/>" target="_blank">이용안내</a></li>
+							<li><a href="<c:url value='/help/tutorQ'/>" target="_blank">자주 묻는 질문</a></li>
 						</ul>
 					</div>
 					<div class="footer-menu">
 						<p>고객센터</p>
 						<ul>
-							<li><a href="">공지사항</a></li>
-							<li><a href="">이용안내</a></li>
-							<li><a href="">자주 묻는 질문</a></li>
+							<li><a href="<c:url value='/help/memNotice'/>" target="_blank">공지사항</a></li>
+							<li><a href="<c:url value='/help/member'/>" target="_blank">이용안내</a></li>
+							<li><a href="<c:url value='/help/memQ'/>" target="_blank">자주 묻는 질문</a></li>
 						</ul>
 					</div>
 				</div>
@@ -165,8 +183,10 @@ height:100%;
 		<div class="footer-bottom">
 			<div class="footer-bottommenu">
 				<div class="footer-submenu">
-					<a href="#">이용약관 </a> <a href="#">개인정보처리방침 </a> <a href="#">환불정책
-					</a> <a href="#">사업자정보확인 </a>
+					<a href="<c:url value='/policy/service'/>" target="_blank">이용약관 </a> 
+					<a href="<c:url value='/policy/privacy'/>" target="_blank">개인정보처리방침 </a> 
+					 <a href="<c:url value='/policy/refund'/>" target="_blank">환불정책
+					</a> <a href="<c:url value='/policy/info'/>" target="_blank">사업자정보확인 </a>
 				</div>
 				<div class="footer-app">
 					<a href="#">APP 다운 </a>

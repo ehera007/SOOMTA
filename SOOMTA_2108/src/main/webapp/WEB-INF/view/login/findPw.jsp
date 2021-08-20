@@ -112,7 +112,7 @@ a:hover{
 			<div class="pwSearch" >
 		<div id="pwSearchTitle"><h2>아이디 찾기 결과</h2></div>
 			<br/>
-				<p>'이름'님의 비밀번호는</p>
+				<p>'${memName }'님의 비밀번호는</p>
 				<p>입력하신 이메일을</p>
 				<p>확인해주세요.</p>
 				<div id="pwSearchAtag">

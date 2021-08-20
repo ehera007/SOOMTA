@@ -123,7 +123,7 @@ $(document)
 				<a href="<c:url value='/emp/main'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
@@ -132,6 +132,7 @@ $(document)
 	<!-- 중앙 -->
 	<div class="main">
 	<div class="table">
+	<c:if test="${!empty empList }">
 	<table><thead>
 	<tr style="font-size: 25px; padding: 10px; height:80px;">
 				<th colspan="5">등록 된 관리자 리스트</th></tr>
@@ -142,33 +143,19 @@ $(document)
 			<th width="20%">담당 파트</th>
 			<th width="20%">입사일</th>
 		</tr></thead><tbody>
-		<tr>
-			<td>No.</td>
-			<td><a href="empInfo" class="empInfo">Id</a></td>
-			<td>이름</td>
-			<td>담당 파트</td>
-			<td>입사일</td>
-		</tr>
-		<tr>
-			<td>No.</td>
-			<td><a href="empInfo" class="empInfo">Id</a></td>
-			<td>이름</td>
-			<td>담당 파트</td>
-			<td>입사일</td>
-		</tr>
-		
-
-		<c:forEach items="${lists }" var="dto">
+		<c:forEach items="${empList }" var="dto">
 		<c:set var="i" value="${i+1 }"/>
 			<tr>
 				<td>${i}</td>
-				<td><a href="empInfo" class="empInfo">${ID }관리자 정보 확인 페이지</a></td>
-				<td>${Name }</td>
-				<td>${part}</td>
-				<td>${hire }</td>
+				<td><a href="empInfo?empId=${dto.empId }" class="empInfo">${dto.empId }</a></td>
+				<td>${dto.empName }</td>
+				<td>${dto.empJob}</td>
+				<td><fmt:formatDate value="${dto.hireDate }" type="date" pattern="yyyy-MM-dd"/></td>
 			</tr>
 		</c:forEach></tbody>
-	</table>
+	</table></c:if>
+	<c:if test="${empty empList }">
+	등록된 직원 없습니다.</c:if>
 	<input class="btn" type="button" value="관리자 등록"
 					onclick="location.href='empJoin'" />
 					</div>

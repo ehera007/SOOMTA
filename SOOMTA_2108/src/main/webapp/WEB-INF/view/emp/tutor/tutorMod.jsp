@@ -204,12 +204,12 @@ function funcCon(){
 			<tr><th>성별</th>
 			<td><input type="radio" name="gender" value="M" checked/><span style="margin-right:25px;">남자</span>
 				<input type="radio" name="gender" value="F"/>여자</td></tr>
+			<tr><th>전화번호</th><td><input type="text"size="45"/></td></tr>
 			<tr><th>이메일</th><td><input type="email"size="45"/></td></tr>
 			<tr><th>메일수신</th><td><input type="radio" name="emailCk" value="Y" checked/><span style="margin-right:32px;">Yes</span>
 			<input type="radio" name="emailCk" value="N"/>No</td></tr>
 			<tr><th>인증상태</th><td><input type="radio" name="emailCon" value="Y" checked/><span style="margin-right:25px;">완료</span>
 			<input type="radio" name="emailCon" value="N"/>미정</td></tr>
-			<tr><th>전화번호</th><td><input type="text"size="45"/></td></tr>
 			<tr><th>주소</th><td>
 <input type="text" path="addr"
 						id="sample4_roadAddress" size="45"
@@ -226,7 +226,8 @@ function funcCon(){
 
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
-		class="Top"> <img src="../images/top.png" alt="topicon">
+		class="Top"> <img src="<c:url value='/images/top.png'/>"
+		alt="topicon" />
 	</a>
 
 	<!-- 하단 고정 -->
