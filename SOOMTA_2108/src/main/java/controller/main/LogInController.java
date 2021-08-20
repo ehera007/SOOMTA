@@ -38,7 +38,7 @@ public class LogInController {
 	
 	@RequestMapping("tutorJoin")//튜터등록
 	public String tutorJoin() {
-		return "tutor/tutorJoinForm";
+		return "tutor/joinForm";
 	}
 	@RequestMapping("memJoin")//회원가입
 	public String memJoin() {
