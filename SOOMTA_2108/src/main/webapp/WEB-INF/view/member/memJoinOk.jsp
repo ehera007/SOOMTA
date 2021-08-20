@@ -234,25 +234,41 @@ ul {
 
   
 </style>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 <meta charset="UTF-8">
 <title>환영합니다</title>
 </head>
 <body>
 
 
-<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+<!-- 상단 고정 : 로고 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		
+	<!-- 로그인 안된 경우 -->
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/soomta/login'/>">로그인</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+			</div>
+			<div class="nav-item">
+				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
 			</div>
 		</div>
 	</div>
-
 	<!-- 중앙 : 회원가입 확인 -->
 		<tr align ="center" >
 			<h1 align ="center" style="color:#0F4C81">숨타에 오신것을 환영합니다</h1>
@@ -273,6 +289,10 @@ ul {
 					style="text-decoration:none; color:#0F4C81;
 					 font-size: 16px;font-weight: bold;; ">로그인 하기</a></td></tr>
 			</table>
+			<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

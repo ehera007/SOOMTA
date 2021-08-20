@@ -267,6 +267,26 @@ td{
 
 </style>
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+<script type="text/javascript">
+	function cancel(){
+		if(confirm("정말로 취소하시겠습니까? ")){
+			document.frm.submit();
+		}else{
+			return false;
+		}
+	}
+</script>
+
 <meta charset="UTF-8">
 <title>Class Info</title>
 </head>
@@ -276,7 +296,7 @@ td{
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -287,7 +307,7 @@ td{
 	<!-- 중앙 : 강의정보 폼 -->
 	
 	<div class="ClassInfoForm">
-		<form action="classCancel"name="frm">
+		<form action="classCancel" onsubmit="return cancel()" name="frm">
 			<table>
 			<thead>
 		         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
@@ -299,31 +319,31 @@ td{
 		        </tr>
 		        <tr>
 		             <th>강의명</th>
-		             <td>${NAME}</td>
+		             <td>${className}</td>
 		        </tr>
 		        <tr>
 		             <th>기간</th>
-		             <td>${Start } - ${End}</td>
+		             <td>${classStart} - ${classEnd }</td>
 		        </tr>
 		        <tr>
 		             <th>정원</th>
-		             <td>${Total }</td>
+		             <td>${classTotal }</td>
 		        </tr>
 		        <tr>
 		             <th>금액</th>
-		             <td>${Price }</td>
+		             <td>${classPrice }</td>
 		        </tr>
 		        <tr>
 		             <th>수업방식</th>
-		             <td> ${Way }</td>
+		             <td> ${classWay }</td>
 		        </tr>
 		        <tr>
 		             <th>수강생 성별</th>
-		             <td>${Gender }</td>
+		             <td>${classGender }</td>
 		        </tr>
 		        <tr>
 		             <th>강의설명</th>
-		             <td>${Introduce}</td>
+		             <td>${classIntroduce}</td>
 		        </tr>
 		        <tr>
                    <th colspan="2"><div class="allbtn" style="padding-right: 65px;">
@@ -335,7 +355,10 @@ td{
 		</form>
 	</div>
 		
-	
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

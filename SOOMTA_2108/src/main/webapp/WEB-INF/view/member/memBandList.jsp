@@ -269,16 +269,26 @@ td a:active {
 }
 
 </style>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
 <meta charset="UTF-8">
 <title>Band List</title>
 </head>
 <body>
-<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+<!-- 상단 고정 : 로고 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -287,7 +297,7 @@ td a:active {
 	</div>
 	<div class="myBandList">
 			<h1>'${ID}'님의 소모임 목록</h1>
-			<p>숨타의 강의와 함께 숨은 시간을 채워봐요!</p>
+			<p>숨타와 함께 숨은 시간을 채워봐요!</p>
 		</div>
 		<!-- 타이틀 -->
 	<table><thead>
@@ -323,6 +333,10 @@ td a:active {
          <td>선호나이</td>
          <td>개설일</td>
       </tr></table>
+      <!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

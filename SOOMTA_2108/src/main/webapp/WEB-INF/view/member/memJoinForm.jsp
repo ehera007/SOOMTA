@@ -249,11 +249,27 @@ th{
 td{
 	padding-left: 40px;
 }
-  
+.detail {
+	color: grey;
+	font-size: 12px;
+	font-style: italic;
+	text-align: left;
+}
 </style>
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+</script>
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
@@ -273,7 +289,7 @@ td{
 		</div>
 	</div>
 	<div class="joinForm">
-		<form action="joinOk" method="get" name="frm" 
+		<form action="memJoinOk" method="get" name="frm" 
 					enctype="multipart/form-data">
 		<table>
 			<thead>
@@ -281,27 +297,43 @@ td{
             	<th  colspan="2" style="padding: 10px 0px 10px 10px; ">무료 회원가입 </th>
          </tr></thead>
 			
-			<tr><th style="padding-top: 10px;">ID</th>
-				<td style="padding-top: 10px;">
-					<input type="text" name="memId"style="width:200px;"/>
-					<input type="button" value="중복확인" ></td></tr>		
-			<tr><th>PW</th>
-				<td><input type="text" name="memPw"style="width:200px;" /></td></tr>
+			<tr><th>ID</th>
+				<td style="padding-top: 12px;">
+					<input type="text" name="memId"style="width:200px;"
+					pattern="^([a-z0-9]){4,15}$" size="30"/>
+					<input type="button" value="중복확인">
+					<div class="detail">* 4~15자 영문/숫자 사용</div>
+					</td></tr>
+						
+			<tr><th style="padding-bottom: 15px;">PW</th>
+				<td><input type="password" name="memPw"style="width:200px;"
+				pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&^*]).[A-Za-z\d!@#$%&^*]{8,15}$" />
+				<div class="detail">* 8~15자 영어/숫자/특수문자 1자씩 사용</div></td></tr>
+			
 			<tr><th>PW확인</th>
-				<td><input type="text" name="memPwCon"style="width:200px;"/></td></tr>
-			<tr><th>이름</th>
-				<td><input type="text" name="memName"style="width:200px;"/></td></tr>
+				<td><input type="password" name="memPwCon"style="width:200px;"/>
+				</td></tr>
+			
+			<tr><th style="padding-bottom: 15px;">이름</th>
+				<td><input type="text" name="memName"style="width:200px;"/>
+				<div class="detail">* 성 포함 입력</div></td></tr>
+			
 			<tr><th>생년월일</th>
 				<td><input type="date" name="memDob"style="width:200px;"/></td></tr>
+			
 			<tr><th>성별</th>
 				<td>
 					<input type="radio" name="memGender" value="M" checked/>남
 					<input type="radio" name="memGender" value="F"/>여
 				</td></tr>
-			<tr><th>핸드폰</th>
-				<td><input type="text" name="memPhone"style="width:200px;"/></td></tr>
-			<tr><th>이메일</th>
-				<td><input type="text" name="memEmail"style="width:200px;"/></td></tr>
+			
+			<tr><th style="padding-bottom: 15px;">핸드폰</th>
+				<td><input type="text" name="memPhone"style="width:200px;"/>
+				<div class="detail">* ex) 01012341234</div></td></tr>
+			
+			<tr><th style="padding-bottom: 15px;">이메일</th>
+				<td><input type="text" name="memEmail"style="width:200px;"/>
+				<div class="detail">* ex) soomta@email.com</div></td></tr>
 			
 			<tr><th>약관 동의</th>
 				<td><input type="checkbox" name="agree1" >서비스 이용약관에 동의합니다.(필수)<br />
@@ -320,74 +352,79 @@ td{
 		</form>
 	</div>
 	<a href="<c:url value='/member/joinOk'/>">회원 가입 완료 후 확인페이지</a>
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">
 
-	<div class="footer">
-		<div class="footer-top">
-			<div class="footer-leftmenu">
-				<div class="footer-call">
-					<div class="footer-callNum">
-						<p>고객센터 1544-7979</p>
-					</div>
-					<div class="footer-callTime">
-						<ul>
-							<li>평일 10:30~18:00</li>
-							<li>점심 13:00~14:00</li>
-							<li>주말, 공휴일 제외</li>
-						</ul>
-					</div>
-				</div>
+   <div class="footer">
+      <div class="footer-top">
+         <div class="footer-leftmenu">
+            <div class="footer-call">
+               <div class="footer-callNum">
+                  <p>고객센터 1544-7979</p>
+               </div>
+               <div class="footer-callTime">
+                  <ul>
+                     <li>평일 10:30~18:00</li>
+                     <li>점심 13:00~14:00</li>
+                     <li>주말, 공휴일 제외</li>
+                  </ul>
+               </div>
+            </div>
 
-				<div class="footer-rightmenu">
-					<div class="footer-menu">
-						<p>숨타</p>
-						<ul>
-							<li><a href="">회사소개</a></li>
-							<li><a href="">서비스소개</a></li>
-							<li><a href="">인재채용</a></li>
-						</ul>
+            <div class="footer-rightmenu">
+               <div class="footer-menu">
+                  <p>숨타</p>
+                  <ul>
+                     <li><a href="<c:url value='/about/soomta'/>" target="_blank">회사소개</a></li>
+                     <li><a href="<c:url value='/about/service'/>" target="_blank">서비스소개</a></li>
+                     <li><a href="<c:url value='/about/hire'/>" target="_blank">인재채용</a></li>
+                  </ul>
+               </div>
+               <div class="footer-menu">
+                  <p>튜터안내</p>
+                  <ul>
+                     <li><a href="<c:url value='/help/tutorNotice'/>" target="_blank">공지사항</a></li>
+                     <li><a href="<c:url value='/help/tutor'/>" target="_blank">이용안내</a></li>
+                     <li><a href="<c:url value='/help/tutorQ'/>" target="_blank">자주 묻는 질문</a></li>
+                  </ul>
+               </div>
+               <div class="footer-menu">
+                  <p>고객센터</p>
+                  <ul>
+                     <li><a href="<c:url value='/help/memNotice'/>" target="_blank">공지사항</a></li>
+                     <li><a href="<c:url value='/help/member'/>" target="_blank">이용안내</a></li>
+                     <li><a href="<c:url value='/help/memQ'/>" target="_blank">자주 묻는 질문</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="footer-bottom">
+         <div class="footer-bottommenu">
+            <div class="footer-submenu">
+               <a href="<c:url value='/policy/service'/>" target="_blank">이용약관 </a> 
+               <a href="<c:url value='/policy/privacy'/>" target="_blank">개인정보처리방침 </a> 
+                <a href="<c:url value='/policy/refund'/>" target="_blank">환불정책
+               </a> <a href="<c:url value='/policy/info'/>" target="_blank">사업자정보확인 </a>
+            </div>
+            <div class="footer-app">
+               <a href="#">APP 다운 </a>
+            </div>
+         </div>
 
-					</div>
-					<div class="footer-menu">
-						<p>튜터안내</p>
-						<ul>
-							<li><a href="">공지사항</a></li>
-							<li><a href="">이용안내</a></li>
-							<li><a href="">자주 묻는 질문</a></li>
-						</ul>
-					</div>
-					<div class="footer-menu">
-						<p>고객센터</p>
-						<ul>
-							<li><a href="">공지사항</a></li>
-							<li><a href="">이용안내</a></li>
-							<li><a href="">자주 묻는 질문</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="footer-bottommenu">
-				<div class="footer-submenu">
-					<a href="#">이용약관 </a> <a href="#">개인정보처리방침 </a> <a href="#">환불정책
-					</a> <a href="#">사업자정보확인 </a>
-				</div>
-				<div class="footer-app">
-					<a href="#">APP 다운 </a>
-				</div>
-			</div>
-
-			<div class="footer-address">
-				<address>(주) 숨타 | 대표 이지연 | 서울특별시 서초구 서초대로77길 55 에이프로스퀘어 3층
-					| soomta@gongbu.com | 사업자등록번호 : 123-21-01234 | 통신판매업신고 :
-					2021-서울숨타-1004 주식회사 숨타는 전자상거래 등에서의 소비자보호에 관한 법률에 따른 통신판매업과 통신판매중개업을
-					영위하고 있습니다. 주식회사 숨타는 통신판매중개자로서 중 개하는 통신판매에 관하여서는 통신판매의 당사자가 아니므로 어떠한
-					책임도 부담하지 아니합니다.왜냐하면 MBTI가 큐티인 사람의 프로젝트거든요.</address>
-			</div>
-		</div>
-	</div>
+         <div class="footer-address">
+            <address>(주) 숨타 | 대표 이지연 | 서울특별시 서초구 서초대로77길 55 에이프로스퀘어 3층
+               | soomta@gongbu.com | 사업자등록번호 : 123-21-01234 | 통신판매업신고 :
+               2021-서울숨타-1004 주식회사 숨타는 전자상거래 등에서의 소비자보호에 관한 법률에 따른 통신판매업과 통신판매중개업을
+               영위하고 있습니다. 주식회사 숨타는 통신판매중개자로서 중 개하는 통신판매에 관하여서는 통신판매의 당사자가 아니므로 어떠한
+               책임도 부담하지 아니합니다.왜냐하면 MBTI가 큐티인 사람의 프로젝트거든요.</address>
+         </div>
+      </div>
+   </div>
 
 </body>
 </html>

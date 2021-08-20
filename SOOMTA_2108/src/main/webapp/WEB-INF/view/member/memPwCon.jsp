@@ -238,6 +238,19 @@ ul {
 </style>
 
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
+
 <meta charset="UTF-8">
 <title>비밀번호확인</title>
 </head>
@@ -248,7 +261,7 @@ ul {
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -257,7 +270,7 @@ ul {
 	</div>
 	
 	<!-- 중앙 : 비밀번호 확인 폼 -->
-		<form action="memPwChagne" method="post" name="frm"> 
+		<form action="myPage" method="post" name="frm"> 
 			<table align="center">
 				<h1 align ="center" style="color:#0F4C81">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
 				<thead>
@@ -270,8 +283,12 @@ ul {
 					font-size: 16px; padding-bottom: 20px "/>
 						</td></tr>
 			</table>
-			<a href="<c:url value='/member/memPwChange'/>">PW 변경</a>
+			<a href="<c:url value='/member/pwChange'/>">PW 변경</a>
 		</form>		
+		<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

@@ -247,6 +247,17 @@ td{
 	padding-left:25px;
 }
 </style>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 <meta charset="UTF-8">
 <title>정보수정</title>
 </head>
@@ -257,7 +268,7 @@ td{
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -273,10 +284,10 @@ td{
             <th colspan="2" style="padding: 10px 0px 10px 10px; ">강의 후기 작성 </th>
          </tr></thead>
     			<tr><th >강의명</th>
-					<td> ${Name } </td></tr>
+					<td> ${className } </td></tr>
 			
 				<tr><th>기간</th>
-					<td> ${Start } - ${End} </td></tr>
+					<td> ${classStart } - ${classEnd} </td></tr>
 				
 				<tr><th>강의 만족도</th>
 	    			<td><input type="number" name="classSatisfy" 
@@ -299,6 +310,10 @@ td{
 			</table>
 		</form>		
 	
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

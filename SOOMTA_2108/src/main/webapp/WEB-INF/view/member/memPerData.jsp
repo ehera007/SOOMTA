@@ -266,6 +266,18 @@ td{
 
 </style>
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
 <meta charset="UTF-8">
 <title>PerData</title>
 </head>
@@ -275,7 +287,7 @@ td{
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -294,28 +306,28 @@ td{
 		<form action="perForm"name="frm" >
 			  <table cellspacing="30">
 		         <tr>
-		             <th>이름</th>
-		             <td>${NAME}</td>
+		             <th>아이디</th>
+		             <td>${memId}</td>
 		         </tr>
 		         <tr>
 		             <th>가입일</th>
-		             <td>${SINCE} </td>
+		             <td>${memSince} </td>
 		         </tr>
 		         <tr>    
 		             <th>생년월일</th>
-		             <td>${DOB} </td>
+		             <td>${memDob} </td>
 		         </tr>
 		         <tr>    
 		             <th>성별</th>
-		             <td>${GENDER} </td>
+		             <td>${memGender} </td>
 		         </tr>
 		         <tr>    
 		             <th>핸드폰</th>
-		             <td>${PH} </td>
+		             <td>${memPhone} </td>
 		         </tr>
 		         <tr>    
 		             <th>이메일</th>
-		             <td>${EMAIL} </td>
+		             <td>${memEmail} </td>
 		         </tr>
 		         
 		         <tr>
@@ -323,7 +335,7 @@ td{
                    		<div class="allbtn">
 							<a href="<c:url value='/member/myPage'/>" 
 							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
-		                   <a href="<c:url value='/member/memSuJung'/>" 
+		                   <a href="<c:url value='/member/suJung'/>" 
 							style="text-decoration:none;">수정하기</a>
 						</div>
 					</th>
@@ -333,7 +345,10 @@ td{
 		</form>
 	</div>
 
-	
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

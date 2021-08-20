@@ -246,17 +246,30 @@ ul {
 	}
 </script>
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
+
 <meta charset="UTF-8">
 <title>DON'T GO..</title>
 </head>
 <body>
 
-<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+<!-- 상단 고정  -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -265,7 +278,7 @@ ul {
 	</div>
 
 	<!-- 중앙 : 탈퇴확인 폼 -->
-		<form action="memOutOk" method="post" 
+		<form action="main" method="post" 
 				onsubmit="return outConfirm()" name="frm">
 			<table align="center">
 				<h1 align ="center" style="color:#0F4C81">탈퇴 전 비밀번호를 다시 입력해 주세요.</h1>
@@ -280,7 +293,10 @@ ul {
 				</td></tr>
 			</table>
 		</form>	
-			
+			<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 	
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">

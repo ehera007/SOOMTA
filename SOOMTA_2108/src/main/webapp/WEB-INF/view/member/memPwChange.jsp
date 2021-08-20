@@ -264,6 +264,19 @@ $(function(){
 });
 </script>
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
+
 <meta charset="UTF-8">
 <title>비밀번호 변경</title>
 </head>
@@ -274,7 +287,7 @@ $(function(){
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -283,8 +296,7 @@ $(function(){
 	</div>
 	
 	<!-- 중앙 : 비밀번호 변경 폼 -->
-	<!-- 비밀 비밀번호 확인 라인이 이상함 -->
-		<form action="PwChagne" method="post" name="frm"> 
+		<form action="pwChagne" method="post" name="frm"> 
 			<table align="center" style="margin-bottom: 35px;">
 				 <h1 align ="center" style="color:#0F4C81; padding-bottom: 15px;">변경 비밀번호를 입력해 주세요!</h1>
 				
@@ -303,6 +315,10 @@ $(function(){
 				
 			</table>
 		</form>		
+		<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

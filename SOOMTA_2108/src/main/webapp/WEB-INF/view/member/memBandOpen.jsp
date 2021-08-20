@@ -245,11 +245,19 @@ color: #0F4C81;
 }
 th{
    padding-left: 70px;
+   padding-top: 15px;
 }
 td{
    padding-left: 40px;
+   padding-top: 15px;
 }
-  
+ .detail {
+	color: grey;
+	font-size: 12px;
+	font-style: italic;
+	text-align: left;
+}
+ 
 </style>
 <script type="text/javascript">
 function ctgrChange(e){
@@ -278,29 +286,34 @@ function ctgrChange(e){
    }
 }
 </script>
-
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
 <meta charset="UTF-8">
 <title>bandJoin</title>
 </head>
 <body>
-   <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+   <!-- 상단 고정 -->
    <div class="header">
-      <img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
-      <!-- 로그인 안된 경우 -->
-      <div class="nav">
-         <div class="nav-item">
-            <a href="soomta/login">로그인</a>
-         </div>
-         <div class="nav-item">
-            <a href="soomta/tutorJoin">튜터등록</a>
-         </div>
-         <div class="nav-item">
-            <a href="soomta/memJoin">무료회원가입</a>
-         </div>
-      </div>
-   </div>
+		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		<div class="nav">
+			<div class="nav-item">
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
+			</div>
+			<div class="nav-item">
+				<a href="#">로그아웃</a>
+			</div>
+		</div>
+	</div>
    <div class="openForm">
-      <form action="BandOpen" method="post" name="frm" 
+      <form action="bandList" method="post" name="frm" 
                enctype="multipart/form-data">
       <table>
          <thead>
@@ -309,8 +322,7 @@ function ctgrChange(e){
          </tr></thead>
          
          <tr><th style="padding-top: 10px;">소모임 번호</th>
-            <td style="padding-top: 10px;">
-               <input type="text" name="bandNum"style="width:200px;"/>   
+            <td>${bandNum}</td>   
          <tr><th>카테고리</th>
            <td>
             <select id="ctgrL" onchange="ctgrChange(this)">
@@ -327,7 +339,8 @@ function ctgrChange(e){
          </tr>
 
        <tr><th>소모임 이름</th>
-            <td><input type="text" name="bandName"style="width:200px;"/></td></tr>
+            <td><input type="text" name="bandName"style="width:200px;" required
+            	minlength="2" maxlength="35"/></td></tr>
          <tr><th>선호 성별</th>
             <td>
                <input type="radio" name="bandGender" value="M" checked/>남
@@ -335,20 +348,25 @@ function ctgrChange(e){
             </td></tr>
 
          <tr><th>선호 나이</th>
-            <td><input type="text" name="bandAge"style="width:200px;"/></td></tr>
+            <td><input type="text" name="bandAge"style="width:200px;"required/></td></tr>
          <tr><th>모임방식</th>
             <td>
-               <input type="text" name="bandWay" style="width:200px;"/></td></tr>
+                <input type="radio" name="bandWay" value="C" checked/>대면
+               <input type="radio" name="bandWay" value="N"/>비대면
+             </td></tr>
          <tr><th>총 인원 수</th>
-            <td><input type="text" name="bandTotal"style="width:200px;"/></td></tr>
+            <td><input type="text" name="bandTotal"style="width:200px;"required/></td></tr>
          <tr><th>공개 비공개</th>
-         <td>
-               <input type="radio" name="bandPublic" value="Y" checked/>공개
+         <td >
+               <input type="radio" name="bandPublic" value="O" checked/>공개
                <input type="radio" name="bandPublic" value="N"/>비공개
             </td></tr>
-      <tr><th>소모임 소개</th>
-         <tr><th>소모임 소개</th>
-            <td><textarea rows="6" cols="30" name="bandIntroduce"></textarea></td></tr>
+      
+         <tr><th style="padding-bottom: 100px;">소모임 소개</th>
+            <td><textarea rows="6" cols="30" name="bandIntroduce" 
+            	required minlength="10"></textarea>
+            	<div class="detail">* 10자 이상 입력하세요</div>
+            </td></tr>
       <tr><th>소모임 이미지</th>
          <td><input type="file" name="bandImage" multiple="multiple"/>
                </td></tr>
@@ -362,6 +380,10 @@ function ctgrChange(e){
       </form>
    </div>
    <a href="/SOOMTA_2108/band/bandOk">소모임 가입 완료 후 확인페이지</a>
+   <!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
@@ -385,26 +407,25 @@ function ctgrChange(e){
                <div class="footer-menu">
                   <p>숨타</p>
                   <ul>
-                     <li><a href="">회사소개</a></li>
-                     <li><a href="">서비스소개</a></li>
-                     <li><a href="">인재채용</a></li>
+                     <li><a href="<c:url value='/about/soomta'/>" target="_blank">회사소개</a></li>
+                     <li><a href="<c:url value='/about/service'/>" target="_blank">서비스소개</a></li>
+                     <li><a href="<c:url value='/about/hire'/>" target="_blank">인재채용</a></li>
                   </ul>
-
                </div>
                <div class="footer-menu">
                   <p>튜터안내</p>
                   <ul>
-                     <li><a href="">공지사항</a></li>
-                     <li><a href="">이용안내</a></li>
-                     <li><a href="">자주 묻는 질문</a></li>
+                     <li><a href="<c:url value='/help/tutorNotice'/>" target="_blank">공지사항</a></li>
+                     <li><a href="<c:url value='/help/tutor'/>" target="_blank">이용안내</a></li>
+                     <li><a href="<c:url value='/help/tutorQ'/>" target="_blank">자주 묻는 질문</a></li>
                   </ul>
                </div>
                <div class="footer-menu">
                   <p>고객센터</p>
                   <ul>
-                     <li><a href="">공지사항</a></li>
-                     <li><a href="">이용안내</a></li>
-                     <li><a href="">자주 묻는 질문</a></li>
+                     <li><a href="<c:url value='/help/memNotice'/>" target="_blank">공지사항</a></li>
+                     <li><a href="<c:url value='/help/member'/>" target="_blank">이용안내</a></li>
+                     <li><a href="<c:url value='/help/memQ'/>" target="_blank">자주 묻는 질문</a></li>
                   </ul>
                </div>
             </div>
@@ -413,8 +434,10 @@ function ctgrChange(e){
       <div class="footer-bottom">
          <div class="footer-bottommenu">
             <div class="footer-submenu">
-               <a href="#">이용약관 </a> <a href="#">개인정보처리방침 </a> <a href="#">환불정책
-               </a> <a href="#">사업자정보확인 </a>
+               <a href="<c:url value='/policy/service'/>" target="_blank">이용약관 </a> 
+               <a href="<c:url value='/policy/privacy'/>" target="_blank">개인정보처리방침 </a> 
+                <a href="<c:url value='/policy/refund'/>" target="_blank">환불정책
+               </a> <a href="<c:url value='/policy/info'/>" target="_blank">사업자정보확인 </a>
             </div>
             <div class="footer-app">
                <a href="#">APP 다운 </a>

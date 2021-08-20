@@ -21,21 +21,21 @@ public class MemberController {
 	public String perData() {
 		return "member/memPerData";
 	}
-	@RequestMapping("memSuJung")//개인정보 수정
+	@RequestMapping("suJung")//개인정보 수정
 	public String memSuJung() {
 		return "member/memSuJung";
 	}
 	
-	@RequestMapping("memPwCon")//비번 변경전 현비번 확인
+	@RequestMapping("pwCon")//비번 변경전 현비번 확인
 	public String memPwCon() {
 		return "member/memPwCon";
 	}
-	@RequestMapping("memPwChange")//비번 변경
+	@RequestMapping("pwChange")//비번 변경
 	public String pwChange() {
 		return "member/memPwChange";
 	}
 	
-	@RequestMapping("memOutCon")//탈퇴전 비번확인
+	@RequestMapping("outCon")//탈퇴전 비번확인
 	public String memOutCon() {
 		return "member/memOutCon";
 	}
