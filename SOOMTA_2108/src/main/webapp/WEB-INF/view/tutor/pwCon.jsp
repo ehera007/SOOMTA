@@ -216,61 +216,47 @@ ul {
 }
 
 /*고정 외 중앙 테이블 스타일*/
-
-.ClassInfoForm a:visited {
-	color: #0F4C81;
+.memPwChange{
+	padding-top:70px;
+	padding-bottom:70px;
 }
-.ClassInfoForm a:link {
-	color: #0F4C81;
-}
-.ClassInfoForm a:hover{
-color: #0F4C81;}
  table {
     border: 2px solid #0F4C81;
+    width: 470px;
+    height:170px;
+    margin:40px auto;
     border-radius: 12px;
-    width: 350px;
-    height:500px;
-    margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
-    margin-bottom: 40px;
+    align-content: center;
   }
-  thead th {
-   height: 50px;
-   background-color: #0F4C81;
-   color: white;
-   font-size: 25px;
-   border-radius: 8px 8px 0px 0px;
+ thead tr,td {
+ 	margin: 50px 0px 0px 0px;
+ 	padding-top: 50px;
+ 	padding-right:20px;
+  	align-content: center;
+  	vertical-align: middle;
 }
-
-.allbtn {
-   height: 35px;
-   width: 350px;
-   margin: 0 auto;
-}
-  .btn {
-   height: 30px;
-   background-color: white;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 5px 5px;
-   border: none;
-   /*border:1px solid #0F4C81;
-   border-radius:4px;*/
-}
-th{
-	padding-left: 80px;
-}
-td{
-	padding-left: 30px;
-}
-
+  
 </style>
 
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 <meta charset="UTF-8">
-<title>Class Info</title>
+<title>tutorPwCon</title>
 </head>
 <body>
+
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
@@ -284,61 +270,30 @@ td{
 		</div>
 	</div>
 	
-	<!-- 중앙 : 강의정보 폼 -->
-	
-	<div class="ClassInfoForm">
-		<form action="classCancel"name="frm">
-			<table>
-			<thead>
-		         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
-		            <th colspan="2" style="padding-right: 60px;">강의정보 </th>
-		         </tr></thead>
-				<tr>
-		             <th style="padding-top: 20px;">분류</th>
-		             <td style="padding-top: 20px;">${Category_L }/${Category_S}</td>
-		        </tr>
-		        <tr>
-		             <th>강의명</th>
-		             <td>${NAME}</td>
-		        </tr>
-		        <tr>
-		             <th>기간</th>
-		             <td>${Start } - ${End}</td>
-		        </tr>
-		        <tr>
-		             <th>정원</th>
-		             <td>${Total }</td>
-		        </tr>
-		        <tr>
-		             <th>금액</th>
-		             <td>${Price }</td>
-		        </tr>
-		        <tr>
-		             <th>수업방식</th>
-		             <td> ${Way }</td>
-		        </tr>
-		        <tr>
-		             <th>수강생 성별</th>
-		             <td>${Gender }</td>
-		        </tr>
-		        <tr>
-		             <th>강의설명</th>
-		             <td>${Introduce}</td>
-		        </tr>
-		        <tr>
-                   <th colspan="2"><div class="allbtn" style="padding-right: 65px;">
-                   	<input type="submit" value="강의 취소" style="font-weight: bold;
-                   		font-size: 16px;padding-bottom : 25px;"
-                    class="btn" /></div></th>
-         		 </tr>
+	<!-- 중앙 : 비밀번호 확인 폼 -->
+		<div class=tutorPwChange>
+		<form action="pwChange" method="post" name="frm"> 
+			<table align="center">
+				<h1 align ="center" style="color:#0F4C81">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
+				<thead>
+				<tr><td style="padding-left: 40px;">비밀번호</td>
+					<td><input type="password" name="memPw" style="width:250px;"/>
+						</td></tr></thead>
+				<tr><td colspan="2" align="center">
+					<input type="submit" value="확인" 
+					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
+					font-size: 16px; padding-bottom: 20px "/>
+						</td></tr>
 			</table>
-		</form>
-	</div>
-		
-	
+			
+		</form>	
+		</div>
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>		
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
-
    <div class="footer">
       <div class="footer-top">
          <div class="footer-leftmenu">

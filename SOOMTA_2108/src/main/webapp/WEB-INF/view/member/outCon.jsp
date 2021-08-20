@@ -236,42 +236,68 @@ ul {
 }
   
 </style>
+<script type="text/javascript">
+	function outConfirm(){
+		if(confirm("정말로 탈퇴하시겠습니까? ")){
+			document.frm.submit();
+		}else{
+			return false;
+		}
+	}
+</script>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 
 
 <meta charset="UTF-8">
-<title>비밀번호확인</title>
+<title>DON'T GO..</title>
 </head>
 <body>
 
-<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+<!-- 상단 고정  -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
-	
-	<!-- 중앙 : 비밀번호 확인 폼 -->
-		<form action="memPwChagne" method="post" name="frm"> 
+
+	<!-- 중앙 : 탈퇴확인 폼 -->
+		<form action="main" method="post" 
+				onsubmit="return outConfirm()" name="frm">
 			<table align="center">
-				<h1 align ="center" style="color:#0F4C81">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
-				<thead>
+				<h1 align ="center" style="color:#0F4C81">탈퇴 전 비밀번호를 다시 입력해 주세요.</h1>
+			<thead>
 				<tr><td style="padding-left: 40px;">비밀번호</td>
 					<td><input type="password" name="memPw" style="width:250px;"/>
 						</td></tr></thead>
 				<tr><td colspan="2" align="center">
-					<input type="submit" value="확인" 
+					<input type="submit" value="탈퇴" 
 					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
-					font-size: 16px; padding-bottom: 20px "/>
-						</td></tr>
+					font-size: 16px; padding-bottom: 20px"/>
+				</td></tr>
 			</table>
-			<a href="<c:url value='/member/memPwChange'/>">PW 변경</a>
-		</form>		
+		</form>	
+			<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
+	
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

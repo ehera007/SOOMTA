@@ -214,6 +214,13 @@ ul {
 .imgBox:hover ul {
 	display: block;
 }
+.allbtn {
+   height: 30px;
+   width: 300px;
+   margin: 0 auto;
+   padding-bottom: 0px;
+   padding-right: 35px;
+}
 
 /*고정 외 중앙 테이블 스타일*/
 
@@ -241,12 +248,28 @@ thead th {
 th{
 	padding-left:45px; 
 }
+.perForm{
+
+	padding-top: 50px;
+	padding-bottom: 50px;
+
+}
 </style>
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
 <meta charset="UTF-8">
-<title>정보수정</title>
+<title>tutorPromanage</title>
 </head>
 <body>
-
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
@@ -259,50 +282,59 @@ th{
 			</div>
 		</div>
 	</div>
+	<div class="main">
+		<div class="mypageTitle">
+			<h1>'${ID}'님의 프로필</h1>
+			<p>학생들에게 자신을 뽐내주세요!</p>
+		</div>
+	</div>
+
 	
-	<!-- 중앙 : 개인정보 수정 폼 -->
-		<form action="memSuJungOk" method="post" name="frm"> 
+	<!-- 중앙 : 개인정보 폼 -->
+	<div class="perForm">
+		<form action="perForm"name="frm">
 			<table>
-				<thead>
-         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
-            <th colspan="2" style="padding-right: 45px;">개인 정보 수정 </th>
-         </tr></thead>
-    			<tr><th style="padding-top: 15px;">아이디</th>
-					<td style="padding-top: 15px;"> ${Id } </td></tr>
-			
-				<tr><th>이름</th>
-					<td><input type="text" name="name" placeholder="이름을 입력해주세요."
-					style="width:200px;" value="${name}"></td></tr>
-			
-				<tr><th>가입일</th>
-					<td> ${since } </td></tr>
-			
-				<tr><th>생년월일</th>
-					<td><input type="text" name="dob" placeholder="생년월일을 입력해주세요.(2021-08-06)"
-						style="width:200px;" value="${dob }"></td></tr>
-			
-				<tr><th>성별</th>
-				<td><input type="radio" name="Gender"  value="M" checked>남자
-					<input type="radio" name="Gender" value="F">여자</td></tr>
-			
-				<tr><th>핸드폰</th>
-					<td><input type="text" name="ph" placeholder="번호를 입력해주세요.(010-0000-0000)"
-						style="width:200px;" value="${ph }"></td></tr>
-			
-				<tr><th>이메일</th>
-					<td><input type="text" name="email" placeholder="이메일을 입력해주세요."
-						style="width:200px;" value="${email }"></td></tr>
-			
-					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 15px; ">
-						<input type="submit" value="수정 완료" 
-							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
-					 	background: transparent; color: #0F4C81;"
-						onclick="javascript:history.back();" />
-				</th></tr>
+			<tr>
+				 <th>회원구분 </th><td>${CTGR}</td>
+			</tr>
+			<tr>	 
+				 <th>지역 </th><td>${AREA} </td>
+			</tr>
+			<tr>	 
+				 <th>연락 가능 시간 </th><td>${RESPOND} </td>
+			</tr>
+			<tr>	 
+				 <th> 경력사항 </th><td>${CAREER} </td>
+			</tr>
+			<tr>	 
+				 <th> 자격증 </th><td>${CERTIFICATION} </td>
+			</tr>
+			<tr>	
+				 <th> 학력(전공)</th><td>${FINALEDU} </td>
+			</tr>
+			<tr>	 
+				 <th> 소개 </th><td> ${INTRODUCE} </td>
+			</tr>
+			<tr>		
+					
+				
+					<tr>
+                   <th colspan="2" style="padding-right: 20px;">
+                   		<div class="allbtn">
+							<a href="<c:url value='/tutor/myPage'/>"
+							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
+		                   <a href="<c:url value='/tutor/promanageSujung'/>" 
+							style="text-decoration:none;">수정하기</a>
+						</div>
+					</th>
+         		 </tr>
 			</table>
-		</form>		
-	
+		</form>
+	</div>
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>	
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

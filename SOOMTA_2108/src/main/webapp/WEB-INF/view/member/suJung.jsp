@@ -221,7 +221,7 @@ ul {
  table {
     border: 2px solid #0F4C81;
     width: 500px;
-    height:500px;
+    height:550px;
     margin:20px auto;
     border-spacing: 0px;
     border-radius: 12px;
@@ -231,7 +231,7 @@ ul {
 
 
 thead th {
-   height: 35px;
+   height: 50px;
    background-color: #0F4C81;
    color: white;
    font-size: 25px;
@@ -239,14 +239,26 @@ thead th {
 }
 
 th{
-	padding-top:15px;
 	padding-left:45px; 
 }
-td{
-	padding-top: 15px;
-	padding-left:25px;
+.detail {
+	color: grey;
+	font-size: 12px;
+	font-style: italic;
+	text-align: left;
 }
 </style>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 <meta charset="UTF-8">
 <title>정보수정</title>
 </head>
@@ -257,7 +269,7 @@ td{
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -265,40 +277,53 @@ td{
 		</div>
 	</div>
 	
-	<!-- 중앙 : 강의후기 작성 폼 -->
-		<form action="review" method="post" name="frm"> 
+	<!-- 중앙 : 개인정보 수정 폼 -->
+		<form action="suJungOk" method="post" name="frm"> 
 			<table>
 				<thead>
-         <tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
-            <th colspan="2" style="padding: 10px 0px 10px 10px; ">강의 후기 작성 </th>
+         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
+            <th colspan="2" style="padding-right: 45px;">개인 정보 수정 </th>
          </tr></thead>
-    			<tr><th >강의명</th>
-					<td> ${Name } </td></tr>
+    			<tr><th style="padding-top: 15px;">아이디</th>
+					<td style="padding-top: 15px;"> ${memId } </td></tr>
 			
-				<tr><th>기간</th>
-					<td> ${Start } - ${End} </td></tr>
-				
-				<tr><th>강의 만족도</th>
-	    			<td><input type="number" name="classSatisfy" 
-	    			min="0.5" max="5" step="0.5" style="width:230px;" /></td></tr>
-	    			
-				<tr><th>강사 만족도</th>
-	    			<td><input type="number" name="tutorSatisfy" 
-	    			min="0.5" max="5" step="0.5" style="width:230px;"/></td></tr>
-				
-				<tr><th>리뷰작성</th>
-	    			<td><textarea rows="5" cols="30" name="reviewContent" ></textarea></td></tr>
+				<tr><th>이름</th>
+					<td><input type="text" name="name" minlength="2" required
+					style="width:200px;" value="${memName}"></td></tr>
 			
-					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 20px; ">
-						<input type="button"  value="등록 안함" style="border: none;font-size: 16px;font-weight: bold;
+				<tr><th>가입일</th>
+					<td> ${memSince } </td></tr>
+			
+				<tr><th>생년월일</th>
+					<td> ${memDob } </td></tr>
+			
+				<tr><th>성별</th>
+				<td><input type="radio" name="Gender"  value="M" checked>남자
+					<input type="radio" name="Gender" value="F">여자</td></tr>
+			
+				<tr><th style="padding-bottom: 12px;">핸드폰</th>
+					<td><input type="text" name="ph" required
+						style="width:200px;" value="${memPhone }">
+						<div class="detail">* ex) 01012341234</div></td></tr>
+			
+				<tr><th style="padding-bottom: 12px;">이메일</th>
+					<td><input type="text" name="email"
+						style="width:200px;" value="${memEmail }">
+						<div class="detail">* ex) soomta@email.com</div></td></tr>
+			
+					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 15px; ">
+						<input type="submit" value="수정 완료" 
+							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
+						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
 					 	background: transparent; color: #0F4C81;"
 						onclick="javascript:history.back();" />
-						<input type="submit" value="리뷰등록" 
-							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
 				</th></tr>
 			</table>
 		</form>		
-	
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
@@ -371,4 +396,3 @@ td{
 
 </body>
 </html>
-

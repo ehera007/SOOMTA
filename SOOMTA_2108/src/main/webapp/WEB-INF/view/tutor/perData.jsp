@@ -219,8 +219,8 @@ ul {
 /*고정 외 중앙 테이블 스타일*/
 .perForm{
 
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 
 }
 .perForm a:visited {
@@ -239,12 +239,12 @@ color: #0F4C81;
  table {
     border: 2px solid #0F4C81;
     border-radius: 12px;
-    width: 380px;
-    height:470px;
+    width: 500px;
+    height:550px;
     margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     text-align: center;
-    margin-top: 35px;
+    margin-top: 45px;
     margin-bottom: 35px;
   }
   
@@ -273,9 +273,20 @@ td{
 
 
 </style>
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
 
 <meta charset="UTF-8">
-<title>PerData</title>
+<title>tutorPerData</title>
 </head>
 <body>
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
@@ -300,7 +311,7 @@ td{
 	<!-- 중앙 : 개인정보 폼 -->
 	<div class="perForm">
 		<form action="perForm"name="frm" >
-			  <table cellspacing="30">
+			  <table>
 		         <tr>
 		             <th>이름</th>
 		             <td>${NAME}</td>
@@ -329,9 +340,9 @@ td{
 		         <tr>
                    <th colspan="2" style="padding-right: 45px;">
                    		<div class="allbtn">
-							<a href="<c:url value='/tutor/tutorMyPage'/>" 
+							<a href="<c:url value='/tutor/myPage'/>"
 							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
-		                   <a href="<c:url value='/tutor/tutorSujung'/>" 
+		                   <a href="<c:url value='/tutor/sujung'/>" 
 							style="text-decoration:none;">수정하기</a>
 						</div>
 					</th>
@@ -341,7 +352,10 @@ td{
 		</form>
 	</div>
 
-	
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>	
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

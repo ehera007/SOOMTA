@@ -158,7 +158,7 @@ ul {
 	font-weight: bolder;
 }
 /*중앙*/
-.myBandWish {
+.myClassWish {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
@@ -268,8 +268,21 @@ td a:active {
    border-radius:4px;*/
 }
 </style>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
+
 <meta charset="UTF-8">
-<title>Wish Band</title>
+<title>Wish Class</title>
 </head>
 <body>
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
@@ -277,15 +290,15 @@ td a:active {
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
-	<div class="myBandWish">
-			<h1>'${ID}'님의 소모임 찜 목록</h1>
+	<div class="myClassWish">
+			<h1>'${ID}'님의 클래스 찜 목록</h1>
 			<p>숨타의 강의와 함께 숨은 시간을 채워봐요!</p>
 		</div>
 	<!-- 타이틀 -->
@@ -293,36 +306,41 @@ td a:active {
       <tr style="padding-bottom:20px; height:40px;">
          <th width="10%">No.</th>
          <th width="15%">대분류/소분류</th>
-         <th width="20%">모임명</th>
-         <th width="15%">인원수</th>
-         <th width="10%">모임방식</th>
-         <th width="10%">공개여부</th>
-         <th width="10%">선호나이</th>
-         <th width="10%">개설일</th>
+         <th width="20%">강의명</th>
+         <th width="15%">기간</th>
+         <th width="10%">수강생</th>
+         <th width="10%">상태</th>
+         <th width="10%">만족도</th>
+         <th width="10%">후기</th>
         
       </tr></thead>
       <tbody>
       <tr>
          <td>No.</td>
          <td>대분류/소분류</td>
-         <td><a href="boardInfo" class="boardInfo">모임명</a></td>
-         <td>인원수</td>
-         <td>모임방식</td>
-         <td>공개여부</td>
-         <td>선호나이</td>
-         <td>개설일</td>
+         <td><a href="boardInfo" class="boardInfo">강의명</a></td>
+         <td>기간</td>
+         <td>수강생</td>
+         <td>상태</td>
+         <td>만족도</td>
+         <td>후기</td>
       </tr>
       <tr>
          <td>No.</td>
          <td>대분류/소분류</td>
-         <td>모임명</td>
-         <td>인원수</td>
-         <td>모임방식</td>
-         <td>공개여부</td>
-         <td>선호나이</td>
-         <td>개설일</td>
+         <td>강의명</td>
+         <td>기간</td>
+         <td>수강생</td>
+         <td>상태</td>
+         <td>만족도</td>
+         <td>후기</td>
       </tr></table>
+   
 
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

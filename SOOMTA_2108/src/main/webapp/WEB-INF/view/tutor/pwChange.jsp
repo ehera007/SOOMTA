@@ -216,34 +216,78 @@ ul {
 }
 
 /*고정 외 중앙 테이블 스타일*/
+.pwChange{
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
 
  table {
     border: 2px solid #0F4C81;
-    width: 470px;
-    height:170px;
-    margin:40px auto;
+    width: 500px;
+    height:200px;
+    margin:20px auto;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
-    align-content: center;
   }
- thead tr,td {
- 	margin: 50px 0px 0px 0px;
- 	padding-top: 50px;
- 	padding-right:20px;
-  	align-content: center;
-  	vertical-align: middle;
+   thead th {
+   height: 35px;
+   background-color: #0F4C81;
+   color: white;
+   font-size: 25px;
+   border-radius: 8px 8px 0px 0px;
 }
-.memout{
-padding-top: 30px;
-	padding-bottom: 30px;
+th{
+	padding-left: 24px;
+}
+td{
+	padding-left: 40px;
 }
   
-</style>
+  
 
+  
+</style>
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#btn").click(function(){
+		if($("#newPw").val()==""){
+			alert("변경 비밀번호를 입력하세요");
+			$("#newPw").focus();
+			return false;
+		}
+		if($("#newPwCon").val()==""){
+			alert("변경비밀번호확인을 입력하세요");
+			$("#newPwCon").focus();
+			return false;
+		}else{
+			if($("#newPw").val() != $("#newPwCon").val()){
+				alert("비밀번호확인의 값이 다릅니다.");
+				$("#newPw").val("");
+				$("#newPwCon").val("");
+				$("#newPw").focus();
+				return false;
+			}
+		}
+		$("#frm").submit();
+	});
+});
+</script>
 
 <meta charset="UTF-8">
-<title>PwCon</title>
+<title>tutorPwChange</title>
 </head>
 <body>
 
@@ -259,25 +303,40 @@ padding-top: 30px;
 			</div>
 		</div>
 	</div>
-	
-	<!-- 중앙 : 비밀번호 확인 폼 -->
-		<div class = "memout">
-		<form action="memPwChagne" method="post" name="frm"> 
-			<table align="center">
-				<h1 align ="center" style="color:#0F4C81">탈퇴를 원하시면 비밀번호를 입력해주세요!</h1>
-				<thead>
-				<tr><td style="padding-left: 40px;">비밀번호</td>
-					<td><input type="password" name="memPw" style="width:250px;"/>
-						</td></tr></thead>
-				<tr><td colspan="2" align="center">
-					<input type="submit" value="확인" 
-					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
-					font-size: 16px; padding-bottom: 20px "/>
-						</td></tr>
-			</table>
+	<div class="main">
+		<div class="mypageTitle">
+			<h1>비밀번호 변경 페이지입니다.</h1>
+		</div>
+	</div>
+	<!-- 중앙 : 비밀번호 변경 폼 -->
+		<div class="pwChange">
+		<form action="PwChange" method="post" name="frm"> 
+			<table>
+					<thead>
+         		<tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
+            	<th  colspan="2" style="padding: 8px 8px 0px 0px;">비밀번호 변경</th>
+         </tr></thead>
+         
+				<tr><th>변경 비밀번호</th>
+					<th><input type="password" name="newPw" id="newPw"/><br /></th>
+				
+				<tr><th>변경 비밀번호 확인</th>
+					<th><input type="password" name="newPwCon" id="newPwCon"/><br /></th>
+					
+				<tr><th colspan="2">
+					<input type="button" value="비밀변호 변경" id="btn"
+					style="border: none; background: transparent; color: #0F4C81;
+					font-weight: bold; font-size: 16px; padding-right:30px;"/>
+						</th></tr>
+					
 			
-		</form>	
-		</div>	
+			</table>
+		</form>
+		</div>
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>				
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

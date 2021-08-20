@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -158,7 +158,7 @@ ul {
 	font-weight: bolder;
 }
 /*중앙*/
-.mypageTitle {
+.myBandWish {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
@@ -214,114 +214,133 @@ ul {
 .imgBox:hover ul {
 	display: block;
 }
-
-/*고정 외 중앙 테이블 스타일*/
-
-
- table {
-    border: 2px solid #0F4C81;
-    width: 500px;
-    height:550px;
-    margin:20px auto;
-    border-spacing: 0px;
-    border-radius: 12px;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 35px;
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-top: 2px solid #0F4C81;
+    border-collapse: collapse;
+  }
+  
+thead{
+ background-color: #0F4C81; 
+ color: white; 
+}
+tbody  th, td {
+    border-bottom: 1px solid #0F4C81;
+    padding: 5px;
+    text-align: center;
   }
 
-
-  thead th {
-   height: 35px;
-   background-color: #0F4C81;
-   color: white;
-   font-size: 25px;
-   border-radius: 8px 8px 0px 0px;
+  tbody tr:nth-child(2n) {
+    background-color:#F4F7F8; 
+    
+  }
+td a {
+   font-weight:bold;
+   color:black;
 }
-
-
-th{
-   padding-left: 70px;
+td a:hover {
+   font-weight:bold;
+   color:black;
 }
-td{
-   padding-left: 40px;
+td a:link {
+   font-weight:bold;
+   color:black;
 }
-
-.perForm{
-
-	padding-top: 30px;
-	padding-bottom: 30px;
-
+td a:visited {
+   font-weight:bold;
+   color:black;
 }
-
-
+td a:active {
+   font-weight:bold;
+   color:black;
+}
+/*버튼 스타일*/
+.btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 10px 10px;
+   border: none;
+   float:right;
+   /*border:1px solid #0F4C81;
+   border-radius:4px;*/
+}
 </style>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
+
+
 <meta charset="UTF-8">
-<title>perDataSujung</title>
+<title>Wish Band</title>
 </head>
 <body>
-
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
-	
-	<!-- 중앙 : 개인정보 수정 폼 -->
-	<div class="perForm">
-		<form action="promanageSujungOk" method="post" name="frm"> 
-			<table>
-			
-				 <thead>
-               <tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
-               <th  colspan="2" style="padding: 10px 0px 10px 10px; ">프로필정보 수정</th>
-         </tr></thead>
-
-    			<tr><td align="center"><b>회원구분</b></td>
-					<td> ${CTGR} </td></tr>
-			
-				<tr><td align="center"><b>지역</b></td>
-					<td><input type="text" name="local" placeholder="지역을 입력해주세요."
-					style="width:200px;" value="${AREA}"></td></tr>
-			
-				<tr><td align="center"><b>응답 가능 시간</b></td>
-				<td><input type="text" name="respond" placeholder="응답가능시간 입력해주세요."
-						style="width:200px;" value="${RESPOND}"></td></tr>
-			
-				<tr><td align="center"><b>경력</b></td>
-					<td><input type="text" name="career" placeholder="경력을 입력해주세요."
-						style="width:200px;" value="${CAREER}"></td></tr>
-					<tr><td align="center"><b>자격증</b></td>
-				<td><input type="text" name="certification" placeholder="자격증 입력해주세요."
-						style="width:200px;" value="${CERTIFICATION}"></td></tr>
-					
-			
-				<tr><td align="center"><b>학력(전공)</b></td>
-					<td><input type="text" name="finaledu" placeholder="최종학력을 입력해주세요."
-						style="width:200px;" value="${FINALEDU}"></td></tr>
-			
-				<tr><td align="center"><b>소개</b></td>
-					<td><input type="text" name="introduce" placeholder="소개를 입력해주세요."
-						style="width:200px;" value="${EMAIL}"></td></tr>
-			
-					<tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px; ">
-						<input type="submit" value="수정 완료" 
-							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
-					 	background: transparent; color: #0F4C81;"
-						onclick="javascript:history.back();" />
-				</th></tr>
-			</table>
-		</form>		
-			
+	<div class="myBandWish">
+			<h1>'${ID}'님의 소모임 찜 목록</h1>
+			<p>숨타와 함께 숨은 시간을 채워봐요!</p>
 		</div>
-	
+	<!-- 타이틀 -->
+	<table><thead>
+      <tr style="padding-bottom:20px; height:40px;">
+         <th width="10%">No.</th>
+         <th width="15%">대분류/소분류</th>
+         <th width="20%">모임명</th>
+         <th width="15%">인원수</th>
+         <th width="10%">모임방식</th>
+         <th width="10%">공개여부</th>
+         <th width="10%">선호나이</th>
+         <th width="10%">개설일</th>
+        
+      </tr></thead>
+      <tbody>
+      <tr>
+         <td>No.</td>
+         <td>대분류/소분류</td>
+         <td><a href="boardInfo" class="boardInfo">모임명</a></td>
+         <td>인원수</td>
+         <td>모임방식</td>
+         <td>공개여부</td>
+         <td>선호나이</td>
+         <td>개설일</td>
+      </tr>
+      <tr>
+         <td>No.</td>
+         <td>대분류/소분류</td>
+         <td>모임명</td>
+         <td>인원수</td>
+         <td>모임방식</td>
+         <td>공개여부</td>
+         <td>선호나이</td>
+         <td>개설일</td>
+      </tr></table>
+
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

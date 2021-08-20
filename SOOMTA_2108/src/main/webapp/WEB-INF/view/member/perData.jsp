@@ -217,99 +217,138 @@ ul {
 
 /*고정 외 중앙 테이블 스타일*/
 
+.perForm a:visited {
+	color: #0F4C81;
+}
+.perForm a:link {
+	color: #0F4C81;
+}
+.perForm a:hover{
+color: #0F4C81;
+}
 
  table {
     border: 2px solid #0F4C81;
-    width: 500px;
-    height:550px;
-    margin:20px auto;
-    border-spacing: 0px;
     border-radius: 12px;
+    width: 380px;
+    height:470px;
+    margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
+    text-align: center;
+    margin-top: 35px;
     margin-bottom: 35px;
-    	
-
   }
-
-
-thead th {
-   height: 35px;
-   background-color: #0F4C81;
-   color: white;
-   font-size: 25px;
-   border-radius: 8px 8px 0px 0px;
-   
+  
+.btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 10px 10px;
+   border: none;
+   /*border:1px solid #0F4C81;
+   border-radius:4px;*/
+}
+.allbtn {
+   height: 30px;
+   width: 250px;
+   margin: 0 auto;
+   padding-bottom: 0px;
+   padding-right: 35px;
 }
 th{
-	padding-left: 70px;
+	padding-left:85px;
 }
 td{
-	padding-left: 40px;
+	padding-right:90px;
 }
-  
+
 
 </style>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
 <meta charset="UTF-8">
-<title>perDataSujung</title>
+<title>PerData</title>
 </head>
 <body>
-
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
+	<div class="main">
+		<div class="mypageTitle">
+			<h1>'${ID}'님의 개인 정보</h1>
+			<p>변동사항이 있을 경우, 숨타가 알 수 있게 수정해주세요.</p>
+		</div>
+	</div>
 	
-	<!-- 중앙 : 개인정보 수정 폼 -->
-		<form action="memSuJungOk" method="post" name="frm"> 
-			<table>
-				<thead>
-         		<tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
-            	<th  colspan="2" style="padding: 10px 0px 10px 10px; ">개인정보수정 </th>
-         </tr></thead>
-    			<tr><th style="padding-top: 15px;">아이디</th>
-					<td style="padding-top: 15px;"> ${Id } </td></tr>
-			
-				<tr><th>이름</th>
-					<td><input type="text" name="name" placeholder="이름을 입력해주세요."
-					style="width:200px;" value="${name}"></td></tr>
-			
-				<tr><th>가입일</th>
-					<td> ${since } </td></tr>
-			
-				<tr><th>생년월일</th>
-					<td><input type="text" name="dob" placeholder="생년월일을 입력해주세요.(2021-08-06)"
-						style="width:200px;" value="${dob }"></td></tr>
-			
-				<tr><th>성별</th>
-				<td><input type="radio" name="Gender"  value="M" checked>남자
-					<input type="radio" name="Gender" value="F">여자</td></tr>
-			
-				<tr><th>핸드폰</th>
-					<td><input type="text" name="ph" placeholder="번호를 입력해주세요.(010-0000-0000)"
-						style="width:200px;" value="${ph }"></td></tr>
-			
-				<tr><th>이메일</th>
-					<td><input type="text" name="email" placeholder="이메일을 입력해주세요."
-						style="width:200px;" value="${email }"></td></tr>
-			
-					<tr><th colspan="3"align="center" style="padding-right: 90px; padding-bottom: 15px; ">
-						<input type="submit" value="수정 완료" onclick="location.href='/main/main'" 
-							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
-					 	background: transparent; color: #0F4C81;"
-						onclick="javascript:history.back();" />
-				</th></tr>
-			</table>
-		</form>		
-	
+	<!-- 중앙 : 개인정보 폼 -->
+	<div class="perForm">
+		<form action="perForm"name="frm" >
+			  <table cellspacing="30">
+		         <tr>
+		             <th>아이디</th>
+		             <td>${memId}</td>
+		         </tr>
+		         <tr>
+		             <th>가입일</th>
+		             <td>${memSince} </td>
+		         </tr>
+		         <tr>    
+		             <th>생년월일</th>
+		             <td>${memDob} </td>
+		         </tr>
+		         <tr>    
+		             <th>성별</th>
+		             <td>${memGender} </td>
+		         </tr>
+		         <tr>    
+		             <th>핸드폰</th>
+		             <td>${memPhone} </td>
+		         </tr>
+		         <tr>    
+		             <th>이메일</th>
+		             <td>${memEmail} </td>
+		         </tr>
+		         
+		         <tr>
+                   <th colspan="2" style="padding-right: 45px;">
+                   		<div class="allbtn">
+							<a href="<c:url value='/member/myPage'/>" 
+							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
+		                   <a href="<c:url value='/member/suJung'/>" 
+							style="text-decoration:none;">수정하기</a>
+						</div>
+					</th>
+         		 </tr>
+
+	         </table>
+		</form>
+	</div>
+
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

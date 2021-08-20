@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -158,12 +158,12 @@ ul {
 	font-weight: bolder;
 }
 /*중앙*/
-.mypageTitle {
+.myClassTitle {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
 	padding-top: 10px;
-	padding-bottom: 15px;
+	padding-bottom: 10px;
 }
 
 .dropMenu {
@@ -215,64 +215,136 @@ ul {
 	display: block;
 }
 
-/*고정 외 중앙 테이블 스타일*/
-
- table {
-    border: 2px solid #0F4C81;
-    width: 600px;
-    height:300px;
-    margin:20px auto;
-    border-radius: 12px;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    border-spacing: 0px;
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-top: 2px solid #0F4C81;
+    border-collapse: collapse;
   }
-  thead th {
-  font-size: 25px;
-  padding: 10px 0px 10px 40px;
-  border-radius: 8px 8px 0px 0px;
-  }
-
   
+thead{
+ background-color: #0F4C81; 
+ color: white; 
+}
+tbody  th, td {
+    border-bottom: 1px solid #0F4C81;
+    padding: 5px;
+    text-align: center;
+  }
+
+  tbody tr:nth-child(2n) {
+    background-color:#F4F7F8; 
+    
+  }
+td a {
+   font-weight:bold;
+   color:black;
+}
+td a:hover {
+   font-weight:bold;
+   color:black;
+}
+td a:link {
+   font-weight:bold;
+   color:black;
+}
+td a:visited {
+   font-weight:bold;
+   color:black;
+}
+td a:active {
+   font-weight:bold;
+   color:black;
+}
+/*버튼 스타일*/
+.btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 10px 10px;
+   border: none;
+   float:right;
+   /*border:1px solid #0F4C81;
+   border-radius:4px;*/
+}
 </style>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
+
 <meta charset="UTF-8">
-<title>환영합니다</title>
+<title>My Class List</title>
 </head>
 <body>
-
-
-<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+<!-- 상단 고정  -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
+	
+	<div class="myClassTitle">
+			<h1>'${ID}'님의 강의목록</h1>
+			<p>숨타와 함께 총 'n'개의 강의를 들었습니다.</p>
+		</div>
+		<!-- 타이틀 -->
+	<table><thead>
+      <tr style="padding-bottom:20px; height:40px;">
+         <th width="10%">No.</th>
+         <th width="15%">대분류/소분류</th>
+         <th width="20%">강의명</th>
+         <th width="15%">기간</th>
+         <th width="10%">수강생</th>
+         <th width="10%">상태</th>
+         <th width="10%">만족도</th>
+         <th width="10%">후기</th>
+        
+      </tr></thead>
+      <tbody>
+      <tr>
+         <td>No.</td>
+         <td>대분류/소분류</td>
+         <td><a href="boardInfo" class="boardInfo">강의명</a></td>
+         <td>기간</td>
+         <td>수강생</td>
+         <td>상태</td>
+         <td>만족도</td>
+         <td>후기</td>
+      </tr>
+      <tr>
+         <td>No.</td>
+         <td>대분류/소분류</td>
+         <td>강의명</td>
+         <td>기간</td>
+         <td>수강생</td>
+         <td>상태</td>
+         <td>만족도</td>
+         <td>후기</td>
+      </tr></table>
 
-	<!-- 중앙 : 회원가입 확인 -->
-		<tr align ="center" >
-			<h1 align ="center" style="color:#0F4C81">숨타에 오신것을 환영합니다</h1>
-		</tr>
-			<table align="center">
-				 <thead>
-         			<tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
-            		<th colspan="2" style="padding-right: 45px;">숨타 회원가입 완료 </th>
-         		</tr></thead>
-				<tr align ="center">
-					<p><td style="color:#0F4C81; font-size: 20px;"><strong>""님  환영합니다</strong></td></p>
-    			</tr>
-    			<tr align ="center">
-					<p><td style="color:#0F4C81; font-size: 20px;"><strong>로그인  후  숨타를  이용해  주세요!</strong></td></p>
-    			</tr>		
-				<tr><td colspan="2" align="center">
-					<a href="<c:url value='/main'/>" 
-					style="text-decoration:none; color:#0F4C81;
-					 font-size: 16px;font-weight: bold;; ">로그인 하기</a></td></tr>
-			</table>
+<a href="<c:url value='/member/classCon'/>">강의확인</a>
+<a href="<c:url value='/member/classReview'/>">후기작성</a>
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

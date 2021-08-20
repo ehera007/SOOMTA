@@ -217,46 +217,31 @@ ul {
 
 /*고정 외 중앙 테이블 스타일*/
 
-.joinForm a:visited {
-	color: #0F4C81;
-}
-.joinForm a:link {
-	color: #0F4C81;
-}
-.joinForm a:hover{
-color: #0F4C81;
-}
-
  table {
     border: 2px solid #0F4C81;
+    width: 470px;
+    height:170px;
+    margin:40px auto;
     border-radius: 12px;
-    width: 600px;
-    height:700px;
-    margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
+    align-content: center;
   }
-  thead th {
-   height: 35px;
-   background-color: #0F4C81;
-   color: white;
-   font-size: 25px;
-   border-radius: 8px 8px 0px 0px;
+ thead tr,td {
+ 	margin: 50px 0px 0px 0px;
+ 	padding-top: 50px;
+ 	padding-right:20px;
+  	align-content: center;
+  	vertical-align: middle;
 }
-th{
-	padding-left: 70px;
+.tutorOut{
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
-td{
-	padding-left: 40px;
-}
-.detail {
-	color: grey;
-	font-size: 12px;
-	font-style: italic;
-	text-align: left;
-}
+  
 </style>
 
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
     $(document).ready(function(){
@@ -266,98 +251,71 @@ td{
         } );
     });
     
+    </script>
+
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+<script type="text/javascript">
+	function outConfirm(){
+		if(confirm("정말로 탈퇴하시겠습니까? ")){
+			document.frm.submit();
+		}else{
+			return false;
+		}
+	}
 </script>
 
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>PwCon</title>
 </head>
 <body>
-	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+
+<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
-		<!-- 로그인 안된 경우 -->
+		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="soomta/login">로그인</a>
+				<a href="#">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="soomta/tutorJoin">튜터등록</a>
-			</div>
-			<div class="nav-item">
-				<a href="soomta/memJoin">무료회원가입</a>
+				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
-	<div class="joinForm">
-		<form action="memJoinOk" method="get" name="frm" 
-					enctype="multipart/form-data">
-		<table>
+	
+	<!-- 중앙 : 탈퇴확인 폼 -->
+		<div class="tutorOut">
+		<form action="outOk" method="post" 
+				onsubmit="return outConfirm()" name="frm">
+			<table align="center">
+				<h1 align ="center" style="color:#0F4C81">탈퇴를 원하시면 비밀번호를 입력해주세요!</h1>
 			<thead>
-         		<tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
-            	<th  colspan="2" style="padding: 10px 0px 10px 10px; ">무료 회원가입 </th>
-         </tr></thead>
-			
-			<tr><th>ID</th>
-				<td style="padding-top: 12px;">
-					<input type="text" name="memId"style="width:200px;"
-					pattern="^([a-z0-9]){4,15}$" size="30"/>
-					<input type="button" value="중복확인">
-					<div class="detail">* 4~15자 영문/숫자 사용</div>
-					</td></tr>
-						
-			<tr><th style="padding-bottom: 15px;">PW</th>
-				<td><input type="password" name="memPw"style="width:200px;"
-				pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&^*]).[A-Za-z\d!@#$%&^*]{8,15}$" />
-				<div class="detail">* 8~15자 영어/숫자/특수문자 1자씩 사용</div></td></tr>
-			
-			<tr><th>PW확인</th>
-				<td><input type="password" name="memPwCon"style="width:200px;"/>
+				<tr><td style="padding-left: 40px;">비밀번호</td>
+					<td><input type="password" name="tutorPw" style="width:250px;"/>
+						</td></tr></thead>
+				<tr><td colspan="2" align="center">
+					<input type="submit" value="탈퇴" 
+					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
+					font-size: 16px; padding-bottom: 20px"/>
 				</td></tr>
+			</table>
+		</form>	
 			
-			<tr><th style="padding-bottom: 15px;">이름</th>
-				<td><input type="text" name="memName"style="width:200px;"/>
-				<div class="detail">* 성 포함 입력</div></td></tr>
-			
-			<tr><th>생년월일</th>
-				<td><input type="date" name="memDob"style="width:200px;"/></td></tr>
-			
-			<tr><th>성별</th>
-				<td>
-					<input type="radio" name="memGender" value="M" checked/>남
-					<input type="radio" name="memGender" value="F"/>여
-				</td></tr>
-			
-			<tr><th style="padding-bottom: 15px;">핸드폰</th>
-				<td><input type="text" name="memPhone"style="width:200px;"/>
-				<div class="detail">* ex) 01012341234</div></td></tr>
-			
-			<tr><th style="padding-bottom: 15px;">이메일</th>
-				<td><input type="text" name="memEmail"style="width:200px;"/>
-				<div class="detail">* ex) soomta@email.com</div></td></tr>
-			
-			<tr><th>약관 동의</th>
-				<td><input type="checkbox" name="agree1" >서비스 이용약관에 동의합니다.(필수)<br />
-					<input type="checkbox" name="agree2" >이벤트, 할인 등 이메일 수신에 동의(선택)<br />
-				</td></tr>
-			
-			<tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px;">
-					<input type="submit" value="회원가입" 
-						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-					<input type="button"  value="취소" style="border: none;font-size: 16px;font-weight: bold;
-					 	background: transparent; color: #0F4C81;"
-						onclick="javascript:history.back();" />
-				</th></tr>
-				
-			</table> 
-		</form>
-	</div>
-	<a href="<c:url value='/member/joinOk'/>">회원 가입 완료 후 확인페이지</a>
+		
+		</div>
 <!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"
 		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
-	</a>
+	</a>	
 <!-- 하단 고정 -->
-	<hr style="color: #BEBEBE;">
+   <hr style="color: #BEBEBE;">
 
    <div class="footer">
       <div class="footer-top">

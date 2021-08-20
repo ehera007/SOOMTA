@@ -156,33 +156,9 @@ ul {
 	color: #0F4C81;
 	font-size: 15px;
 	font-weight: bolder;
-	
 }
 /*중앙*/
-.mypage{
-
-padding-top: 80px;
-	padding-bottom: 80px;
-}
-.item{
-display:flex;
-justify-content: space-evenly;
-margin: 10px;
-table-layout: fixed;
-
-
-}
-.main-item {
-   border: 1px solid black;
-   width: 300px;
-   height: 300px;
-   margin-left: 250px;
-   table-layout: fixed;
-  
-    
-}
-
-.mypageTitle {
+.myBandList {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
@@ -191,24 +167,18 @@ table-layout: fixed;
 }
 
 .dropMenu {
-   align-items: center;
-   display:flex;
-  
-   justify-content: space-evenly;
-   margin-right :100px;
+	align-items: center;
+	margin: 50px 0px;
+	display: flex;
+	justify-content: space-evenly;
 }
-
 
 .imgBox {
-   width: 200px;
-   height: 200px;
-   background-color: #0F4C81;
-   margin: 50px 20px;
-   color: white;
-   text-align:center;
-   
+	border: 1px solid black;
+	width: 200px;
+	height: 310px;
+	background-color: #0F4C81;
 }
-
 
 .imgTitle {
 	border: 1px solid black;
@@ -217,92 +187,157 @@ table-layout: fixed;
 }
 
 .dropList li {
-   text-align: center;
-   margin: 10px 0px;
-   font-size: 18px;
-   list-style:none;
+	background-color: #0F4C81;
+	text-align: center;
+	margin: 10px 0px;
+	font-size: 15px;
 }
 
 .dropList a:link {
-   color: white;
+	color: white;
+	background-color: #0F4C81;
 }
 
 .dropList a:visited {
-   color: white;
+	color: white;
+	background-color: #0F4C81;
 }
 
 .dropList a:hover {
-   color: white;
+	color: white;
 }
 
 .dropMenu ul {
-	
 	display: none;
 }
 
-.imgBox ul {
+.imgBox:hover ul {
 	display: block;
 }
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-top: 2px solid #0F4C81;
+    border-collapse: collapse;
+  }
+  
+thead{
+ background-color: #0F4C81; 
+ color: white; 
+}
+tbody  th, td {
+    border-bottom: 1px solid #0F4C81;
+    padding: 5px;
+    text-align: center;
+  }
+
+  tbody tr:nth-child(2n) {
+    background-color:#F4F7F8; 
+    
+  }
+td a {
+   font-weight:bold;
+   color:black;
+}
+td a:hover {
+   font-weight:bold;
+   color:black;
+}
+td a:link {
+   font-weight:bold;
+   color:black;
+}
+td a:visited {
+   font-weight:bold;
+   color:black;
+}
+td a:active {
+   font-weight:bold;
+   color:black;
+}
+/*버튼 스타일*/
+.btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 10px 10px;
+   border: none;
+   float:right;
+   /*border:1px solid #0F4C81;
+   border-radius:4px;*/
+}
+
 </style>
-
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
 <meta charset="UTF-8">
-<title>tutorMypage</title>
-
+<title>Band List</title>
 </head>
 <body>
-	
-	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+<!-- 상단 고정 : 로고 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
-	<div class="main">
-		<div class="mypageTitle">
-			<h1>안녕하세요, '${ID}'님!</h1>
-			<p>숨타와 함께 즐거운 하루 되세요 :)</p>
+	<div class="myBandList">
+			<h1>'${ID}'님의 소모임 목록</h1>
+			<p>숨타와 함께 숨은 시간을 채워봐요!</p>
 		</div>
-	 <div class=mypage>
-      <div class="item">
-      <div class="main-item">그래프</div>
-      
-		
-			<div class="dropMenu">
-				<div class="imgBox">
-					<div class="dropList">
-						<ul>
-							<h1>내정보</h1>
-							<li><a href="tutorPerData">개인 정보</a></li>
-							<li><a href="tutorPromanage">프로필 관리</a></li>
-							<li><a href="tutorPwCon">PW 변경</a></li>
-							<li><a href="tutorOut">탈퇴하기</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="dropMenu">
-					<div class="imgBox" >
-					<div class="dropList">
-						<ul>
-							<h1>강의 정보</h1>
-							<li><a href="MylectureList">내 강의 목록</a></li>
-							<li><a href="newClassOpened">강의 등록</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	
-	
-	   <!-- 하단 고정 -->
+		<!-- 타이틀 -->
+	<table><thead>
+      <tr style="padding-bottom:20px; height:40px;">
+         <th width="10%">No.</th>
+         <th width="15%">대분류/소분류</th>
+         <th width="20%">모임명</th>
+         <th width="15%">인원수</th>
+         <th width="10%">모임방식</th>
+         <th width="10%">공개여부</th>
+         <th width="10%">선호나이</th>
+         <th width="10%">개설일</th>
+        
+      </tr></thead>
+      <tbody>
+      <tr>
+         <td>No.</td>
+         <td>대분류/소분류</td>
+         <td><a href="boardInfo" class="boardInfo">모임명</a></td>
+         <td>인원수</td>
+         <td>모임방식</td>
+         <td>공개여부</td>
+         <td>선호나이</td>
+         <td>개설일</td>
+      </tr>
+      <tr>
+         <td>No.</td>
+         <td>대분류/소분류</td>
+         <td>모임명</td>
+         <td>인원수</td>
+         <td>모임방식</td>
+         <td>공개여부</td>
+         <td>선호나이</td>
+         <td>개설일</td>
+      </tr></table>
+      <!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
+<!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
    <div class="footer">

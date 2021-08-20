@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -158,6 +158,29 @@ ul {
 	font-weight: bolder;
 }
 /*중앙*/
+.mypage{
+
+padding-top: 80px;
+	padding-bottom: 80px;
+}
+.item{
+display:flex;
+justify-content: space-evenly;
+margin: 10px;
+table-layout: fixed;
+
+
+}
+.main-item {
+   border: 1px solid black;
+   width: 300px;
+   height: 300px;
+   margin-left: 250px;
+   table-layout: fixed;
+  
+    
+}
+
 .mypageTitle {
 	background-color: #0F4C81;
 	color: white;
@@ -167,18 +190,24 @@ ul {
 }
 
 .dropMenu {
-	align-items: center;
-	margin: 50px 0px;
-	display: flex;
-	justify-content: space-evenly;
+   align-items: center;
+   display:flex;
+  
+   justify-content: space-evenly;
+   margin-right :100px;
 }
 
+
 .imgBox {
-	border: 1px solid black;
-	width: 200px;
-	height: 310px;
-	background-color: #0F4C81;
+   width: 200px;
+   height: 200px;
+   background-color: #0F4C81;
+   margin: 50px 20px;
+   color: white;
+   text-align:center;
+   
 }
+
 
 .imgTitle {
 	border: 1px solid black;
@@ -187,85 +216,59 @@ ul {
 }
 
 .dropList li {
-	background-color: #0F4C81;
-	text-align: center;
-	margin: 10px 0px;
-	font-size: 15px;
+   text-align: center;
+   margin: 10px 0px;
+   font-size: 18px;
+   list-style:none;
 }
 
 .dropList a:link {
-	color: white;
-	background-color: #0F4C81;
+   color: white;
 }
 
 .dropList a:visited {
-	color: white;
-	background-color: #0F4C81;
+   color: white;
 }
 
 .dropList a:hover {
-	color: white;
+   color: white;
 }
 
 .dropMenu ul {
+	
 	display: none;
 }
 
-.imgBox:hover ul {
+.imgBox ul {
 	display: block;
-}
-.allbtn {
-   height: 30px;
-   width: 300px;
-   margin: 0 auto;
-   padding-bottom: 0px;
-   padding-right: 35px;
-}
-
-/*고정 외 중앙 테이블 스타일*/
-
-
- table {
-    border: 2px solid #0F4C81;
-    width: 500px;
-    height:550px;
-    margin:20px auto;
-    border-spacing: 0px;
-    border-radius: 12px;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 35px;
-  }
-
-
-thead th {
-   height: 50px;
-   background-color: #0F4C81;
-   color: white;
-   font-size: 25px;
-   border-radius: 8px 8px 0px 0px;
-}
-
-th{
-	padding-left:45px; 
-}
-.perForm{
-
-	padding-top: 30px;
-	padding-bottom: 30px;
-
 }
 </style>
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
+
 <meta charset="UTF-8">
-<title>promanage</title>
+<title>Member Mypage</title>
+
 </head>
 <body>
-<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+	
+	<!-- 상단 고정 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -274,55 +277,50 @@ th{
 	</div>
 	<div class="main">
 		<div class="mypageTitle">
-			<h1>'${ID}'님의 프로필</h1>
-			<p>학생들에게 자신을 뽐내주세요!</p>
+			<h1>안녕하세요, '${ID}'님!</h1>
+			<p>숨타와 함께 즐거운 하루 되세요 :)</p>
+		</div>
+		<div class="mypageMenu">
+			<div class="dropMenu">
+				<div class="imgBox">	
+					<div class="dropList">
+						<ul>
+			                <h1>내 정보</h1>
+							<li><a href="<c:url value='/member/perData'/>">개인 정보</a></li>
+							<li><a href="<c:url value='/member/pwCon'/>">PW 변경</a></li>
+							<li><a href="<c:url value='/member/outCon'/>">탈퇴하기</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="imgBox">
+					<div class="dropList">
+						<ul>
+							<h1>CLASS</h1>
+							<li><a href="<c:url value='/member/myClassList'/>">내 강의 목록</a></li>
+							<li><a href="<c:url value='/member/wishClass'/>">찜한 강의</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="imgBox">
+					<div class="dropList">
+						<ul>
+							<h1>STUDY</h1>
+							<li><a href="<c:url value='/member/bandList'/>">내 모임 목록</a></li>
+							<li><a href="<c:url value='/member/wishBand'/>">찜한 모임</a></li>
+							<li><a href="<c:url value='/member/bandOpen'/>">모임 개설</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-
-	
-	<!-- 중앙 : 개인정보 폼 -->
-	<div class="perForm">
-		<form action="perForm"name="frm">
-			<table>
-			<tr>
-				 <th>회원구분 </th><td>${CTGR}</td>
-			</tr>
-			<tr>	 
-				 <th>지역 </th><td>${AREA} </td>
-			</tr>
-			<tr>	 
-				 <th>연락 가능 시간 </th><td>${RESPOND} </td>
-			</tr>
-			<tr>	 
-				 <th> 경력사항 </th><td>${CAREER} </td>
-			</tr>
-			<tr>	 
-				 <th> 자격증 </th><td>${CERTIFICATION} </td>
-			</tr>
-			<tr>	
-				 <th> 학력(전공)</th><td>${FINALEDU} </td>
-			</tr>
-			<tr>	 
-				 <th> 소개 </th><td> ${INTRODUCE} </td>
-			</tr>
-			<tr>		
-					
-					<tr>
-                   <th colspan="2" style="padding-right: 20px;">
-                   		<div class="allbtn">
-							<a href="<c:url value='/tutor/tutorMyPage'/>" 
-							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
-		                   <a href="<c:url value='/tutor/tutorPromanageSujung'/>" 
-							style="text-decoration:none;">수정하기</a>
-						</div>
-					</th>
-         		 </tr>
-			</tr>
-			</table>
-		</form>
-	</div>
-	
-<!-- 하단 고정 -->
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
+	<!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
    <div class="footer">

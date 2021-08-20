@@ -217,104 +217,148 @@ ul {
 
 /*고정 외 중앙 테이블 스타일*/
 
+.ClassInfoForm a:visited {
+	color: #0F4C81;
+}
+.ClassInfoForm a:link {
+	color: #0F4C81;
+}
+.ClassInfoForm a:hover{
+color: #0F4C81;}
  table {
     border: 2px solid #0F4C81;
-    width: 500px;
-    height:200px;
-    margin:20px auto;
     border-radius: 12px;
+    width: 350px;
+    height:500px;
+    margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
+    margin-bottom: 40px;
   }
-   thead th {
-   height: 35px;
+  thead th {
+   height: 50px;
    background-color: #0F4C81;
    color: white;
    font-size: 25px;
    border-radius: 8px 8px 0px 0px;
 }
+
+.allbtn {
+   height: 35px;
+   width: 350px;
+   margin: 0 auto;
+}
+  .btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 5px 5px;
+   border: none;
+   /*border:1px solid #0F4C81;
+   border-radius:4px;*/
+}
 th{
-	padding-left: 24px;
+	padding-left: 80px;
 }
 td{
-	padding-left: 40px;
+	padding-left: 30px;
 }
-  
-  
 
-  
 </style>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
 <script type="text/javascript">
-$(function(){
-	$("#btn").click(function(){
-		if($("#newPw").val()==""){
-			alert("변경 비밀번호를 입력하세요");
-			$("#newPw").focus();
-			return false;
-		}
-		if($("#newPwCon").val()==""){
-			alert("변경비밀번호확인을 입력하세요");
-			$("#newPwCon").focus();
-			return false;
+	function cancel(){
+		if(confirm("정말로 취소하시겠습니까? ")){
+			document.frm.submit();
 		}else{
-			if($("#newPw").val() != $("#newPwCon").val()){
-				alert("비밀번호확인의 값이 다릅니다.");
-				$("#newPw").val("");
-				$("#newPwCon").val("");
-				$("#newPw").focus();
-				return false;
-			}
+			return false;
 		}
-		$("#frm").submit();
-	});
-});
+	}
 </script>
 
 <meta charset="UTF-8">
-<title>pwChange</title>
+<title>Class Info</title>
 </head>
 <body>
-
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
-	<div class="main">
-		<div class="mypageTitle">
-			<h1>비밀번호 변경 페이지입니다.</h1>
-		</div>
-	</div>
-	<!-- 중앙 : 비밀번호 변경 폼 -->
-		<form action="PwChagne" method="post" name="frm"> 
+	
+	<!-- 중앙 : 강의정보 폼 -->
+	
+	<div class="ClassInfoForm">
+		<form action="classCancel" onsubmit="return cancel()" name="frm">
 			<table>
-					<thead>
-         		<tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
-            	<th  colspan="2" style="padding: 12px 5px 12px 10px;">비밀번호 변경</th>
-         </tr></thead>
-         
-				<tr><th>변경 비밀번호</th>
-					<th><input type="password" name="newPw" id="newPw"/><br /></th>
-				
-				<tr><th>변경 비밀번호 확인</th>
-					<th><input type="password" name="newPwCon" id="newPwCon"/><br /></th>
-					
-				<tr><td colspan="2" align="center">
-					<input type="button" value="비밀변호 변경" id="btn"
-					style="border: none; background: transparent; color: #0F4C81;"/>
-						</td></tr>
-					
-				
+			<thead>
+		         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
+		            <th colspan="2" style="padding-right: 60px;">강의정보 </th>
+		         </tr></thead>
+				<tr>
+		             <th style="padding-top: 20px;">분류</th>
+		             <td style="padding-top: 20px;">${Category_L }/${Category_S}</td>
+		        </tr>
+		        <tr>
+		             <th>강의명</th>
+		             <td>${className}</td>
+		        </tr>
+		        <tr>
+		             <th>기간</th>
+		             <td>${classStart} - ${classEnd }</td>
+		        </tr>
+		        <tr>
+		             <th>정원</th>
+		             <td>${classTotal }</td>
+		        </tr>
+		        <tr>
+		             <th>금액</th>
+		             <td>${classPrice }</td>
+		        </tr>
+		        <tr>
+		             <th>수업방식</th>
+		             <td> ${classWay }</td>
+		        </tr>
+		        <tr>
+		             <th>수강생 성별</th>
+		             <td>${classGender }</td>
+		        </tr>
+		        <tr>
+		             <th>강의설명</th>
+		             <td>${classIntroduce}</td>
+		        </tr>
+		        <tr>
+                   <th colspan="2"><div class="allbtn" style="padding-right: 65px;">
+                   	<input type="submit" value="강의 취소" style="font-weight: bold;
+                   		font-size: 16px;padding-bottom : 25px;"
+                    class="btn" /></div></th>
+         		 </tr>
 			</table>
-		</form>		
+		</form>
+	</div>
+		
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

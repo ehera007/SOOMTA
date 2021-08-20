@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -158,7 +158,7 @@ ul {
 	font-weight: bolder;
 }
 /*중앙*/
-.myBandList {
+.mypageTitle {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
@@ -214,115 +214,111 @@ ul {
 .imgBox:hover ul {
 	display: block;
 }
-/* 테이블 스타일 */
-table {
-    width: 100%;
-    border-top: 2px solid #0F4C81;
-    border-collapse: collapse;
+
+/*고정 외 중앙 테이블 스타일*/
+
+ table {
+    border: 2px solid #0F4C81;
+    width: 500px;
+    height:200px;
+    margin:20px auto;
+    border-radius: 12px;
+    box-shadow: 3px 3px 3px 3px #D5D5D5;
+    border-spacing: 0px;
   }
+  thead th {
+   height: 50px;
+   background-color: #0F4C81;
+   color: white;
+   font-size: 25px;
+   border-radius: 8px 8px 0px 0px;
+}
   
-thead{
- background-color: #0F4C81; 
- color: white; 
-}
-tbody  th, td {
-    border-bottom: 1px solid #0F4C81;
-    padding: 5px;
-    text-align: center;
-  }
 
-  tbody tr:nth-child(2n) {
-    background-color:#F4F7F8; 
-    
-  }
-td a {
-   font-weight:bold;
-   color:black;
-}
-td a:hover {
-   font-weight:bold;
-   color:black;
-}
-td a:link {
-   font-weight:bold;
-   color:black;
-}
-td a:visited {
-   font-weight:bold;
-   color:black;
-}
-td a:active {
-   font-weight:bold;
-   color:black;
-}
-/*버튼 스타일*/
-.btn {
-   height: 30px;
-   background-color: white;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 10px 10px;
-   border: none;
-   float:right;
-   /*border:1px solid #0F4C81;
-   border-radius:4px;*/
-}
-
+  
 </style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#btn").click(function(){
+		if($("#newPw").val()==""){
+			alert("변경 비밀번호를 입력하세요");
+			$("#newPw").focus();
+			return false;
+		}
+		if($("#newPwCon").val()==""){
+			alert("변경비밀번호확인을 입력하세요");
+			$("#newPwCon").focus();
+			return false;
+		}else{
+			if($("#newPw").val() != $("#newPwCon").val()){
+				alert("비밀번호확인의 값이 다릅니다.");
+				$("#newPw").val("");
+				$("#newPwCon").val("");
+				$("#newPw").focus();
+				return false;
+			}
+		}
+		$("#frm").submit();
+	});
+});
+</script>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
+
 <meta charset="UTF-8">
-<title>Band List</title>
+<title>비밀번호 변경</title>
 </head>
 <body>
+
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
-	<div class="myBandList">
-			<h1>'${ID}'님의 소모임 목록</h1>
-			<p>숨타의 강의와 함께 숨은 시간을 채워봐요!</p>
-		</div>
-		<!-- 타이틀 -->
-	<table><thead>
-      <tr style="padding-bottom:20px; height:40px;">
-         <th width="10%">No.</th>
-         <th width="15%">대분류/소분류</th>
-         <th width="20%">모임명</th>
-         <th width="15%">인원수</th>
-         <th width="10%">모임방식</th>
-         <th width="10%">공개여부</th>
-         <th width="10%">선호나이</th>
-         <th width="10%">개설일</th>
-        
-      </tr></thead>
-      <tbody>
-      <tr>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td><a href="boardInfo" class="boardInfo">모임명</a></td>
-         <td>인원수</td>
-         <td>모임방식</td>
-         <td>공개여부</td>
-         <td>선호나이</td>
-         <td>개설일</td>
-      </tr>
-      <tr>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td>모임명</td>
-         <td>인원수</td>
-         <td>모임방식</td>
-         <td>공개여부</td>
-         <td>선호나이</td>
-         <td>개설일</td>
-      </tr></table>
+	
+	<!-- 중앙 : 비밀번호 변경 폼 -->
+		<form action="pwChagne" method="post" name="frm"> 
+			<table align="center" style="margin-bottom: 35px;">
+				 <h1 align ="center" style="color:#0F4C81; padding-bottom: 15px;">변경 비밀번호를 입력해 주세요!</h1>
+				
+				<tr><td align ="center" style="padding-top: 10px;">변경 비밀번호</td>
+					<td><input type="password" name="newPw" id="newPw"/><br />
+				
+				<tr><td align ="center">변경 비밀번호 확인</td>
+					<td><input type="password" name="newPwCon" id="newPwCon"/><br />
+					
+				<tr><td colspan="2" align="center" >
+					<input type="button" value="비밀변호 변경" id="btn"
+					style="border: none; background: transparent; color: #0F4C81;
+					font-weight: bold; font-size: 16px;"/>
+						</td></tr>
+					
+				
+			</table>
+		</form>		
+		<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

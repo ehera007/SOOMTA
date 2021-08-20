@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -158,12 +158,12 @@ ul {
 	font-weight: bolder;
 }
 /*중앙*/
-.myClassTitle {
+.mypageTitle {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
 	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 }
 
 .dropMenu {
@@ -215,70 +215,53 @@ ul {
 	display: block;
 }
 
-/* 테이블 스타일 */
-table {
-    width: 100%;
-    border-top: 2px solid #0F4C81;
-    border-collapse: collapse;
-  }
-  
-thead{
- background-color: #0F4C81; 
- color: white; 
-}
-tbody  th, td {
-    border-bottom: 1px solid #0F4C81;
-    padding: 5px;
-    text-align: center;
-  }
+/*고정 외 중앙 테이블 스타일*/
 
-  tbody tr:nth-child(2n) {
-    background-color:#F4F7F8; 
-    
+ table {
+    border: 2px solid #0F4C81;
+    width: 470px;
+    height:170px;
+    margin:40px auto;
+    border-radius: 12px;
+    box-shadow: 3px 3px 3px 3px #D5D5D5;
+    border-spacing: 0px;
+    align-content: center;
   }
-td a {
-   font-weight:bold;
-   color:black;
+ thead tr,td {
+ 	margin: 50px 0px 0px 0px;
+ 	padding-top: 50px;
+ 	padding-right:20px;
+  	align-content: center;
+  	vertical-align: middle;
 }
-td a:hover {
-   font-weight:bold;
-   color:black;
-}
-td a:link {
-   font-weight:bold;
-   color:black;
-}
-td a:visited {
-   font-weight:bold;
-   color:black;
-}
-td a:active {
-   font-weight:bold;
-   color:black;
-}
-/*버튼 스타일*/
-.btn {
-   height: 30px;
-   background-color: white;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 10px 10px;
-   border: none;
-   float:right;
-   /*border:1px solid #0F4C81;
-   border-radius:4px;*/
-}
+  
 </style>
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+
+
 <meta charset="UTF-8">
-<title>My Class List</title>
+<title>비밀번호확인</title>
 </head>
 <body>
+
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -286,48 +269,26 @@ td a:active {
 		</div>
 	</div>
 	
-	<div class="myClassTitle">
-			<h1>'${ID}'님의 강의목록</h1>
-			<p>숨타와 함께 총 'n'개의 강의를 들었습니다.</p>
-		</div>
-		<!-- 타이틀 -->
-	<table><thead>
-      <tr style="padding-bottom:20px; height:40px;">
-         <th width="10%">No.</th>
-         <th width="15%">대분류/소분류</th>
-         <th width="20%">강의명</th>
-         <th width="15%">기간</th>
-         <th width="10%">수강생</th>
-         <th width="10%">상태</th>
-         <th width="10%">만족도</th>
-         <th width="10%">후기</th>
-        
-      </tr></thead>
-      <tbody>
-      <tr>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td><a href="boardInfo" class="boardInfo">강의명</a></td>
-         <td>기간</td>
-         <td>수강생</td>
-         <td>상태</td>
-         <td>만족도</td>
-         <td>후기</td>
-      </tr>
-      <tr>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td>강의명</td>
-         <td>기간</td>
-         <td>수강생</td>
-         <td>상태</td>
-         <td>만족도</td>
-         <td>후기</td>
-      </tr></table>
-
-<a href="<c:url value='/member/classCon'/>">강의확인</a>
-<a href="<c:url value='/member/classReview'/>">후기작성</a>
-
+	<!-- 중앙 : 비밀번호 확인 폼 -->
+		<form action="myPage" method="post" name="frm"> 
+			<table align="center">
+				<h1 align ="center" style="color:#0F4C81">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
+				<thead>
+				<tr><td style="padding-left: 40px;">비밀번호</td>
+					<td><input type="password" name="memPw" style="width:250px;"/>
+						</td></tr></thead>
+				<tr><td colspan="2" align="center">
+					<input type="submit" value="확인" 
+					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
+					font-size: 16px; padding-bottom: 20px "/>
+						</td></tr>
+			</table>
+			<a href="<c:url value='/member/pwChange'/>">PW 변경</a>
+		</form>		
+		<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

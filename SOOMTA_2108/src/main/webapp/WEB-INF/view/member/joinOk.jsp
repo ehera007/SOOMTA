@@ -219,69 +219,80 @@ ul {
 
  table {
     border: 2px solid #0F4C81;
-    width: 470px;
-    height:170px;
-    margin:40px auto;
+    width: 600px;
+    height:300px;
+    margin:20px auto;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
-    align-content: center;
   }
- thead tr,td {
- 	margin: 50px 0px 0px 0px;
- 	padding-top: 50px;
- 	padding-right:20px;
-  	align-content: center;
-  	vertical-align: middle;
-}
+  thead th {
+  font-size: 25px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 8px 8px 0px 0px;
+  }
+
   
 </style>
-<script type="text/javascript">
-	function outConfirm(){
-		if(confirm("정말로 탈퇴하시겠습니까? ")){
-			document.frm.submit();
-		}else{
-			return false;
-		}
-	}
-</script>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
 
 <meta charset="UTF-8">
-<title>DON'T GO..</title>
+<title>환영합니다</title>
 </head>
 <body>
 
-<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+
+<!-- 상단 고정 : 로고 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		
+	<!-- 로그인 안된 경우 -->
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/soomta/login'/>">로그인</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+			</div>
+			<div class="nav-item">
+				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
 			</div>
 		</div>
 	</div>
-
-	<!-- 중앙 : 탈퇴확인 폼 -->
-		<form action="memOutOk" method="post" 
-				onsubmit="return outConfirm()" name="frm">
+	<!-- 중앙 : 회원가입 확인 -->
+		<tr align ="center" >
+			<h1 align ="center" style="color:#0F4C81">숨타에 오신것을 환영합니다</h1>
+		</tr>
 			<table align="center">
-				<h1 align ="center" style="color:#0F4C81">탈퇴 전 비밀번호를 다시 입력해 주세요.</h1>
-			<thead>
-				<tr><td style="padding-left: 40px;">비밀번호</td>
-					<td><input type="password" name="memPw" style="width:250px;"/>
-						</td></tr></thead>
+				 <thead>
+         			<tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
+            		<th colspan="2" style="padding-right: 45px;">숨타 회원가입 완료 </th>
+         		</tr></thead>
+				<tr align ="center">
+					<p><td style="color:#0F4C81; font-size: 20px;"><strong>""님  환영합니다</strong></td></p>
+    			</tr>
+    			<tr align ="center">
+					<p><td style="color:#0F4C81; font-size: 20px;"><strong>로그인  후  숨타를  이용해  주세요!</strong></td></p>
+    			</tr>		
 				<tr><td colspan="2" align="center">
-					<input type="submit" value="탈퇴" 
-					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
-					font-size: 16px; padding-bottom: 20px"/>
-				</td></tr>
+					<a href="<c:url value='/main'/>" 
+					style="text-decoration:none; color:#0F4C81;
+					 font-size: 16px;font-weight: bold;; ">로그인 하기</a></td></tr>
 			</table>
-		</form>	
-			
-	
+			<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

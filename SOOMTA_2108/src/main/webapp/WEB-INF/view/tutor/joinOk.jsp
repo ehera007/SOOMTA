@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -158,29 +158,6 @@ ul {
 	font-weight: bolder;
 }
 /*중앙*/
-.mypage{
-
-padding-top: 80px;
-	padding-bottom: 80px;
-}
-.item{
-display:flex;
-justify-content: space-evenly;
-margin: 10px;
-table-layout: fixed;
-
-
-}
-.main-item {
-   border: 1px solid black;
-   width: 300px;
-   height: 300px;
-   margin-left: 250px;
-   table-layout: fixed;
-  
-    
-}
-
 .mypageTitle {
 	background-color: #0F4C81;
 	color: white;
@@ -190,24 +167,18 @@ table-layout: fixed;
 }
 
 .dropMenu {
-   align-items: center;
-   display:flex;
-  
-   justify-content: space-evenly;
-   margin-right :100px;
+	align-items: center;
+	margin: 50px 0px;
+	display: flex;
+	justify-content: space-evenly;
 }
-
 
 .imgBox {
-   width: 200px;
-   height: 200px;
-   background-color: #0F4C81;
-   margin: 50px 20px;
-   color: white;
-   text-align:center;
-   
+	border: 1px solid black;
+	width: 200px;
+	height: 310px;
+	background-color: #0F4C81;
 }
-
 
 .imgTitle {
 	border: 1px solid black;
@@ -216,40 +187,77 @@ table-layout: fixed;
 }
 
 .dropList li {
-   text-align: center;
-   margin: 10px 0px;
-   font-size: 18px;
-   list-style:none;
+	background-color: #0F4C81;
+	text-align: center;
+	margin: 10px 0px;
+	font-size: 15px;
 }
 
 .dropList a:link {
-   color: white;
+	color: white;
+	background-color: #0F4C81;
 }
 
 .dropList a:visited {
-   color: white;
+	color: white;
+	background-color: #0F4C81;
 }
 
 .dropList a:hover {
-   color: white;
+	color: white;
 }
 
 .dropMenu ul {
-	
 	display: none;
 }
 
-.imgBox ul {
+.imgBox:hover ul {
 	display: block;
 }
-</style>
-<meta charset="UTF-8">
-<title>Member Mypage</title>
 
+/*고정 외 중앙 테이블 스타일*/
+
+ table {
+    border: 2px solid #0F4C81;
+    width: 600px;
+    height:300px;
+    margin:20px auto;
+    border-radius: 12px;
+    box-shadow: 3px 3px 3px 3px #D5D5D5;
+    border-spacing: 0px;
+  }
+  thead th {
+  font-size: 25px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 8px 8px 0px 0px;
+  }
+  .joinOk {
+  	padding-top: 30px;
+	padding-bottom: 50px;
+  }
+
+  
+</style>
+
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
+<meta charset="UTF-8">
+<title>환영합니다</title>
 </head>
 <body>
-	
-	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+
+
+<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
@@ -261,48 +269,35 @@ table-layout: fixed;
 			</div>
 		</div>
 	</div>
-	<div class="main">
-		<div class="mypageTitle">
-			<h1>안녕하세요, '${ID}'님!</h1>
-			<p>숨타와 함께 즐거운 하루 되세요 :)</p>
-		</div>
-		<div class="mypageMenu">
-			<div class="dropMenu">
-				<div class="imgBox">	
-					<div class="dropList">
-						<ul>
-			                <h1>내 정보</h1>
-							<li><a href="<c:url value='/member/perData'/>">개인 정보</a></li>
-							<li><a href="<c:url value='/member/memPwCon'/>">PW 변경</a></li>
-							<li><a href="<c:url value='/member/memOutCon'/>">탈퇴하기</a></li>
-						</ul>
-					</div>
-				</div>
 
-				<div class="imgBox">
-					<div class="dropList">
-						<ul>
-							<h1>CLASS</h1>
-							<li><a href="<c:url value='/member/myClassList'/>">내 강의 목록</a></li>
-							<li><a href="<c:url value='/member/wishClass'/>">찜한 강의</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="imgBox">
-					<div class="dropList">
-						<ul>
-							<h1>STUDY</h1>
-							<li><a href="<c:url value='/member/bandList'/>">내 모임 목록</a></li>
-							<li><a href="<c:url value='/member/wishBand'/>">찜한 모임</a></li>
-							<li><a href="<c:url value='/member/bandOpen'/>">모임 개설</a></li>
-						</ul>
-					</div>
-				</div>
+	<!-- 중앙 : 회원가입 확인 -->
+		<div class="joinOk">
+		<tr align ="center" >
+			<h1 align ="center" style="color:#0F4C81">숨타에 오신것을 환영합니다.</h1>
+		</tr>
+		
+			<table align="center">
+				 <thead>
+         			<tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
+            		<th colspan="2" style="padding-right: 45px;">숨타 회원가입 완료 </th>
+         		</tr></thead>
+				<tr align ="center">
+					<p><td style="color:#0F4C81; font-size: 20px;"><strong>""님  환영합니다</strong></td></p>
+    			</tr>
+    			<tr align ="center">
+					<p><td style="color:#0F4C81; font-size: 20px;"><strong>로그인  후  숨타를  이용해  주세요!</strong></td></p>
+    			</tr>		
+				<tr><td colspan="2" align="center">
+					<a href="<c:url value='/main'/>" 
+					style="text-decoration:none; color:#0F4C81;
+					 font-size: 16px;font-weight: bold;; ">로그인 하기</a></td></tr>
+			</table>
 			</div>
-		</div>
-	</div>
-	<!-- 하단 고정 -->
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+				href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>			
+<!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
    <div class="footer">

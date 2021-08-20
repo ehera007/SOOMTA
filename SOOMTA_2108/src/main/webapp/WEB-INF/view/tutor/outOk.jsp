@@ -217,59 +217,33 @@ ul {
 
 /*고정 외 중앙 테이블 스타일*/
 
-.perForm a:visited {
-	color: #0F4C81;
-}
-.perForm a:link {
-	color: #0F4C81;
-}
-.perForm a:hover{
-color: #0F4C81;
-}
 
- table {
-    border: 2px solid #0F4C81;
-    border-radius: 12px;
-    width: 380px;
-    height:470px;
-    margin:20px auto;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    text-align: center;
-    margin-top: 35px;
-    margin-bottom: 35px;
+  .tutorOutOk {
+  	padding-top: 80px;
+	padding-bottom: 80px;
   }
+
   
-.btn {
-   height: 30px;
-   background-color: white;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 10px 10px;
-   border: none;
-   /*border:1px solid #0F4C81;
-   border-radius:4px;*/
-}
-.allbtn {
-   height: 30px;
-   width: 250px;
-   margin: 0 auto;
-   padding-bottom: 0px;
-   padding-right: 35px;
-}
-th{
-	padding-left:85px;
-}
-td{
-	padding-right:90px;
-}
-
-
 </style>
 
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 <meta charset="UTF-8">
-<title>PerData</title>
+<title>tutorOutOk</title>
 </head>
 <body>
+
+
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
@@ -282,58 +256,18 @@ td{
 			</div>
 		</div>
 	</div>
-	<div class="main">
-		<div class="mypageTitle">
-			<h1>'${ID}'님의 개인 정보</h1>
-			<p>변동사항이 있을 경우, 숨타가 알 수 있게 수정해주세요.</p>
+
+	<!-- 중앙 : 탈퇴 확인 -->
+		<div class="tutorOutOk">
+		<tr align ="center" >
+			<h1 align ="center" style="color:#0F4C81">숨타를 이제까지 이용해주셔서 감사합니다.</h1>
+		</tr>
 		</div>
-	</div>
-	
-	<!-- 중앙 : 개인정보 폼 -->
-	<div class="perForm">
-		<form action="perForm"name="frm" >
-			  <table cellspacing="30">
-		         <tr>
-		             <th>이름</th>
-		             <td>${NAME}</td>
-		         </tr>
-		         <tr>
-		             <th>가입일</th>
-		             <td>${SINCE} </td>
-		         </tr>
-		         <tr>    
-		             <th>생년월일</th>
-		             <td>${DOB} </td>
-		         </tr>
-		         <tr>    
-		             <th>성별</th>
-		             <td>${GENDER} </td>
-		         </tr>
-		         <tr>    
-		             <th>핸드폰</th>
-		             <td>${PH} </td>
-		         </tr>
-		         <tr>    
-		             <th>이메일</th>
-		             <td>${EMAIL} </td>
-		         </tr>
-		         
-		         <tr>
-                   <th colspan="2" style="padding-right: 45px;">
-                   		<div class="allbtn">
-							<a href="<c:url value='/member/myPage'/>" 
-							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
-		                   <a href="<c:url value='/member/memSuJung'/>" 
-							style="text-decoration:none;">수정하기</a>
-						</div>
-					</th>
-         		 </tr>
-
-	         </table>
-		</form>
-	</div>
-
-	
+		
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+			href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>		
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

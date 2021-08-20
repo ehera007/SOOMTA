@@ -1,74 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
-
 /*전체 글씨꼴 설정*/
 body {
 	font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
 }
-
 /*a태그 라인 삭제*/
 a:link {
 	text-decoration: none;
 }
-
 a:visited {
 	text-decoration: none;
 }
-
 a:hover {
 	text-decoration: underline;
 }
-
 /*상단 고정 a 태그 색상 변경*/
 .nav-item a:visited {
 	color: #0F4C81;
 }
-
 .nav-item a:link {
 	color: #0F4C81;
 }
-
 .nav-item a:hover {
 	color: #0F4C81;
 }
-
 /*하단 고정 a 태그 색상 등 변경*/
 .footer-menu a:linnk {
 	color: black;
 }
-
 .footer-menu a:visited {
 	color: black;
 	font-weight: bold;
 }
-
 .footer-menu a:hover {
 	color: black;
 	font-weight: bold;
 }
-
 .footer-bottom a:link {
 	color: #BEBEBE;
 	font-weight: bold;
 }
-
 .footer-bottom a:visited {
 	color: #BEBEBE;
 }
-
 .footer-bottom a:hover {
 	color: #BEBEBE;
 }
-
 .footer-submenu a {
 	margin-right: 10px;
 }
-
 /*상단 구역 분할, 색상 변경*/
 .header {
 	color: #0F4C81;
@@ -77,59 +62,49 @@ a:hover {
 	align-items: center;
 	font-weight: bold;
 }
-
 .nav {
 	color: #0F4C81;
 	display: flex;
 	margin-left: auto;
 }
-
 .nav-item {
 	margin: 15px;
 	font-size: 15px;
 }
-
 /*하단 구역 분할*/
 .footer {
 	width: 800px;
 	height: 70px;
 	margin: 0 auto;
 }
-
 .footer-top {
 	display: flex;
 	align-items: center;
 }
-
 .footer-bottom {
 	font-size: 12px;
 	color: #BEBEBE;
 }
-
 .footer-bottommenu {
 	display: flex;
 	align-items: center;
 	margin: 5px;
 }
-
 .footer-app {
 	display: flex;
 	margin-left: auto;
 }
-
 .footer-leftmenu {
 	width: 800px;
 	display: flex;
 	align-items: center;
 	display: flex;
 }
-
 .footer-rightmenu {
 	width: 400px;
 	display: flex;
 	margin-left: auto;
 }
-
 .footer-menu {
 	margin-left: 40px;
 }
@@ -139,25 +114,42 @@ a:hover {
 	font-size: 18px;
 	font-weight: bolder;
 }
-
 .footer-callTime p {
 	font-size: 14px;
 	font-weight: bold;
 }
-
 ul {
 	list-style: none;
 	padding-left: 0px;
 	font-size: 13px;
 	font-weight: bold;
 }
-
 .footer-menu p {
 	color: #0F4C81;
 	font-size: 15px;
 	font-weight: bolder;
+	
 }
 /*중앙*/
+.mypage{
+padding-top: 80px;
+	padding-bottom: 80px;
+}
+.item{
+display:flex;
+justify-content: space-evenly;
+margin: 10px;
+table-layout: fixed;
+}
+.main-item {
+   border: 1px solid black;
+   width: 300px;
+   height: 300px;
+   margin-left: 250px;
+   table-layout: fixed;
+  
+    
+}
 .mypageTitle {
 	background-color: #0F4C81;
 	color: white;
@@ -165,85 +157,69 @@ ul {
 	padding-top: 10px;
 	padding-bottom: 15px;
 }
-
 .dropMenu {
-	align-items: center;
-	margin: 50px 0px;
-	display: flex;
-	justify-content: space-evenly;
+   align-items: center;
+   display:flex;
+  
+   justify-content: space-evenly;
+   margin-right :100px;
 }
-
 .imgBox {
-	border: 1px solid black;
-	width: 200px;
-	height: 310px;
-	background-color: #0F4C81;
+   width: 200px;
+   height: 200px;
+   background-color: #0F4C81;
+   margin: 50px 20px;
+   color: white;
+   text-align:center;
+   
 }
-
 .imgTitle {
 	border: 1px solid black;
 	width: 200px;
 	height: 200px;
 }
-
 .dropList li {
-	background-color: #0F4C81;
-	text-align: center;
-	margin: 10px 0px;
-	font-size: 15px;
+   text-align: center;
+   margin: 10px 0px;
+   font-size: 18px;
+   list-style:none;
 }
-
 .dropList a:link {
-	color: white;
-	background-color: #0F4C81;
+   color: white;
 }
-
 .dropList a:visited {
-	color: white;
-	background-color: #0F4C81;
+   color: white;
 }
-
 .dropList a:hover {
-	color: white;
+   color: white;
 }
-
 .dropMenu ul {
+	
 	display: none;
 }
-
-.imgBox:hover ul {
+.imgBox ul {
 	display: block;
 }
-
-/*고정 외 중앙 테이블 스타일*/
-
- table {
-    border: 2px solid #0F4C81;
-    width: 470px;
-    height:170px;
-    margin:40px auto;
-    border-radius: 12px;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    border-spacing: 0px;
-    align-content: center;
-  }
- thead tr,td {
- 	margin: 50px 0px 0px 0px;
- 	padding-top: 50px;
- 	padding-right:20px;
-  	align-content: center;
-  	vertical-align: middle;
-}
-  
 </style>
 
-
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
 <meta charset="UTF-8">
-<title>PwCon</title>
+<title>tutorMypage</title>
+
 </head>
 <body>
-
-<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+	
+	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
@@ -255,24 +231,49 @@ ul {
 			</div>
 		</div>
 	</div>
+	<div class="main">
+		<div class="mypageTitle">
+			<h1>안녕하세요, '${ID}'님!</h1>
+			<p>숨타와 함께 즐거운 하루 되세요 :)</p>
+		</div>
+	 <div class=mypage>
+      <div class="item">
+      <div class="main-item">그래프</div>
+      
+		
+			<div class="dropMenu">
+				<div class="imgBox">
+					<div class="dropList">
+						<ul>
+							<h1>내정보</h1>
+							<li><a href="perData">개인 정보</a></li>
+							<li><a href="promanage">프로필 관리</a></li>
+							<li><a href="pwCon">PW 변경</a></li>
+							<li><a href="out">탈퇴하기</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="dropMenu">
+					<div class="imgBox" >
+					<div class="dropList">
+						<ul>
+							<h1>강의 정보</h1>
+							<li><a href="MylectureList">내 강의 목록</a></li>
+							<li><a href="newClassOpened">강의 등록</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
 	
-	<!-- 중앙 : 비밀번호 확인 폼 -->
-		<form action="memPwChagne" method="post" name="frm"> 
-			<table align="center">
-				<h1 align ="center" style="color:#0F4C81">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
-				<thead>
-				<tr><td style="padding-left: 40px;">비밀번호</td>
-					<td><input type="password" name="memPw" style="width:250px;"/>
-						</td></tr></thead>
-				<tr><td colspan="2" align="center">
-					<input type="submit" value="확인" 
-					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
-					font-size: 16px; padding-bottom: 20px "/>
-						</td></tr>
-			</table>
-			<a href="<c:url value='/tutor/tutorPwChange'/>">PW 변경</a>
-		</form>		
-<!-- 하단 고정 -->
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
+	<!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
    <div class="footer">
