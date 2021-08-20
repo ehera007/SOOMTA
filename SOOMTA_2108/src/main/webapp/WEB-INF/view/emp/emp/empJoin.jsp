@@ -33,12 +33,12 @@ thead th {
 }
 
 tbody th {
-	padding: 10px;
+	padding-top: 30px;
 	width: 30%;
 }
 
 tbody td {
-	padding: 10px;
+	padding-top: 30px;
 	width: 70%;
 }
 
@@ -48,7 +48,6 @@ tbody td a {
 	font-weight: bold;
 	margin-left: 3px;
 }
-
 .btn {
 	height: 30px;
 	background-color: white;
@@ -63,7 +62,7 @@ tbody td a {
 .allbtn {
 	height: 50px;
 	width: 300px;
-	margin: 0 auto;
+	margin: 10px auto 0 auto;
 }
 
 .detail {
@@ -91,15 +90,6 @@ input {
 			return false;
 		});
 	});
-</script>
-<!-- 추가 완료 시 알림창 -->
-
-<script>
-	$(document).ready(function() {
-		$('#finish').submit(function() {
-				alert('                                  관리자 추가 완료\n                     잠시 후 관리자 확인페이지로 이동합니다.');
-				});
-			});
 </script>
 
 <!-- 다음 주소 -->
@@ -177,6 +167,17 @@ input {
             document.getElementById('check').style.fontWeight='900';
         }}}
 </script>
+<!-- 등록 완료 시 알림창 -->
+<script type="text/javascript">
+function funcCon(){
+	var cfm = confirm('정말 등록하시겠습니까?\n*기존 페이지로 돌아가시려면 취소를 눌러주세요.');
+	if(cfm){
+		document.getElementById('frm').submit();
+	}else{
+		return false;
+	}
+}
+</script>
 <meta charset="UTF-8">
 <title>관리자 등록</title>
 </head>
@@ -197,7 +198,7 @@ input {
 
 	<!-- 중앙 -->
 	<div class="main">
-		<form action="empJoinOk" method="post" name="frm">
+		<form action="empJoinOk" method="post" name="frm" onsubmit="return funcCon(this)">
 			<div class="table">
 				<table>
 					<thead>
@@ -216,18 +217,17 @@ input {
 							<th>비밀번호</th>
 							<td><input type="password" name="empPw" value="${empPw }"
 								size="30" required
-								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&^*]).[A-Za-z\d!@#$%&^*]{8,15}$"
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
 								class="pw" id="pw" onchange="check_pw()"/>
-								<div class="detail">* 8~15자 영어/숫자/특수문자 1자씩 사용</div></td>
+								<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td>
 						</tr>
 						<tr>
 							<th>비밀번호 확인</th>
 							<td><input type="password" name="empPwCon" required
 								size="30"
-								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&^*]).[A-Za-z\d!@#$%&^*]{8,15}$"
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
 								class="pw" id="pw2" onchange="check_pw()"/>
 	&nbsp;<span id="check"></span></td>
-						</tr>
 
 						<tr>
 							<th>이름</th>

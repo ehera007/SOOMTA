@@ -86,7 +86,17 @@ function ctgrChange(e){
 	}
 }
 </script>
-		
+<!-- 수정 확인 알림창 -->
+<script type="text/javascript">
+function funcCon(){
+	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
+	if(cfm){
+		document.getElementById('frm').submit();
+	}else{
+		return false;
+	}
+}
+</script>
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 </head>
@@ -110,7 +120,7 @@ function ctgrChange(e){
 
 	<!-- 중앙 -->
 	<div class="main">
-<form action="boardModOk" method="post" name="frm" enctype="multipart/form-data"> 
+<form action="boardModOk" method="post" name="frm" enctype="multipart/form-data" onsubmit="return funcCon()"> 
 <input type="hidden" name="empId" value="${empId }"/>
 <table align="center"><thead>
 			<tr>

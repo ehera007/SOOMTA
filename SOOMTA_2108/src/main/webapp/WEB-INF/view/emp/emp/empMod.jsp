@@ -33,12 +33,12 @@ thead th {
 }
 
 tbody th {
-	padding: 10px;
+	padding-top: 30px;
 	width: 30%;
 }
 
 tbody td {
-	padding: 10px;
+	padding-top: 30px;
 	width: 70%;
 }
 
@@ -91,11 +91,12 @@ input {
 		});
 	});
 </script>
-<!-- 삭제 확인 알림창 -->
+<!-- 수정 전 확인 알림창 -->
 <script type="text/javascript">
 function funcCon(){
-	if(confirm('정말 삭제하시겠습니까?\n*삭제 후 복구할 수 없습니다.')){
-		location.href='empDel';
+	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
+	if(cfm){
+		document.getElementById('frm').submit();
 	}else{
 		return false;
 	}
@@ -159,6 +160,23 @@ function funcCon(){
 				}).open();
 	}
 </script>
+<!-- 비밀번호 확인 -->
+<script>
+    function check_pw(){
+    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+        if(document.getElementById('pw').value==document.getElementById('pw2').value){
+            document.getElementById('check').innerHTML='PW 일치'
+            document.getElementById('check').style.color='blue';
+            document.getElementById('check').style.fontSize='15px';
+            document.getElementById('check').style.fontWeight='900';
+        }
+        else{
+            document.getElementById('check').innerHTML='PW 불일치';
+            document.getElementById('check').style.color='red';
+            document.getElementById('check').style.fontSize='15px';
+            document.getElementById('check').style.fontWeight='900';
+        }}}
+</script>
 <meta charset="UTF-8">
 <title>관리자 정보 수정</title>
 </head>
@@ -181,7 +199,7 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="empModOk" method="post" name="frm"> 
+	<form action="empModOk" method="post" name="frm" onsubmit="return funcCon()"> 
 <input type="hidden" name="empId" value="${empId }"/>
 		<table>
 		<thead>
@@ -201,15 +219,15 @@ function funcCon(){
 							<th>비밀번호</th>
 							<td><input type="password" name="empPw" value="${empPw }"
 								size="30" required
-								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&^*]).[A-Za-z\d!@#$%&^*]{8,15}$"
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
 								class="pw" id="pw" onchange="check_pw()"/>
-								<div class="detail">* 8~15자 영어/숫자/특수문자 1자씩 사용</div></td>
+								<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td>
 						</tr>
 						<tr>
 							<th>비밀번호 확인</th>
 							<td><input type="password" name="empPwCon" required
 								size="30"
-								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&^*]).[A-Za-z\d!@#$%&^*]{8,15}$"
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
 								class="pw" id="pw2" onchange="check_pw()"/>
 	&nbsp;<span id="check"></span></td>
 						</tr>

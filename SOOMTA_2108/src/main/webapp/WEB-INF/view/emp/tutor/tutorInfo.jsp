@@ -104,7 +104,10 @@ function funcCon(){
 			<tr><th>ID</th><td>${tutorId }</td></tr>
 			<tr><th>이름</th><td>${Name }</td></tr>
 			<tr><th>생년월일</th><td>${dob }</td></tr>
+			<tr><th>성별</th><td>${gender }</td></tr>
 			<tr><th>이메일</th><td>${email }</td></tr>
+			<tr><th>메일수신</th><td>${emailCk }</td></tr>
+			<tr><th>인증상태</th><td>${emailCon }</td></tr>
 			<tr><th>전화번호</th><td>${pN }</td></tr>
 			<tr><th>지역</th><td>${addr }</td></tr></tbody><tfoot>
 			<tr>
