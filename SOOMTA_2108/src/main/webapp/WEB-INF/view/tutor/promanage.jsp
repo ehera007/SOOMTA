@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -156,32 +156,8 @@ ul {
 	color: #0F4C81;
 	font-size: 15px;
 	font-weight: bolder;
-	
 }
 /*중앙*/
-.mypage{
-
-padding-top: 80px;
-	padding-bottom: 80px;
-}
-.item{
-display:flex;
-justify-content: space-evenly;
-margin: 10px;
-table-layout: fixed;
-
-
-}
-.main-item {
-   border: 1px solid black;
-   width: 300px;
-   height: 300px;
-   margin-left: 250px;
-   table-layout: fixed;
-  
-    
-}
-
 .mypageTitle {
 	background-color: #0F4C81;
 	color: white;
@@ -191,24 +167,18 @@ table-layout: fixed;
 }
 
 .dropMenu {
-   align-items: center;
-   display:flex;
-  
-   justify-content: space-evenly;
-   margin-right :100px;
+	align-items: center;
+	margin: 50px 0px;
+	display: flex;
+	justify-content: space-evenly;
 }
-
 
 .imgBox {
-   width: 200px;
-   height: 200px;
-   background-color: #0F4C81;
-   margin: 50px 20px;
-   color: white;
-   text-align:center;
-   
+	border: 1px solid black;
+	width: 200px;
+	height: 310px;
+	background-color: #0F4C81;
 }
-
 
 .imgTitle {
 	border: 1px solid black;
@@ -217,41 +187,90 @@ table-layout: fixed;
 }
 
 .dropList li {
-   text-align: center;
-   margin: 10px 0px;
-   font-size: 18px;
-   list-style:none;
+	background-color: #0F4C81;
+	text-align: center;
+	margin: 10px 0px;
+	font-size: 15px;
 }
 
 .dropList a:link {
-   color: white;
+	color: white;
+	background-color: #0F4C81;
 }
 
 .dropList a:visited {
-   color: white;
+	color: white;
+	background-color: #0F4C81;
 }
 
 .dropList a:hover {
-   color: white;
+	color: white;
 }
 
 .dropMenu ul {
-	
 	display: none;
 }
 
-.imgBox ul {
+.imgBox:hover ul {
 	display: block;
 }
+.allbtn {
+   height: 30px;
+   width: 300px;
+   margin: 0 auto;
+   padding-bottom: 0px;
+   padding-right: 35px;
+}
+
+/*고정 외 중앙 테이블 스타일*/
+
+
+ table {
+    border: 2px solid #0F4C81;
+    width: 500px;
+    height:550px;
+    margin:20px auto;
+    border-spacing: 0px;
+    border-radius: 12px;
+    box-shadow: 3px 3px 3px 3px #D5D5D5;
+    margin-bottom: 35px;
+  }
+
+
+thead th {
+   height: 50px;
+   background-color: #0F4C81;
+   color: white;
+   font-size: 25px;
+   border-radius: 8px 8px 0px 0px;
+}
+
+th{
+	padding-left:45px; 
+}
+.perForm{
+
+	padding-top: 50px;
+	padding-bottom: 50px;
+
+}
 </style>
-
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
 <meta charset="UTF-8">
-<title>tutorMypage</title>
-
+<title>tutorPromanage</title>
 </head>
 <body>
-	
-	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
@@ -265,44 +284,58 @@ table-layout: fixed;
 	</div>
 	<div class="main">
 		<div class="mypageTitle">
-			<h1>안녕하세요, '${ID}'님!</h1>
-			<p>숨타와 함께 즐거운 하루 되세요 :)</p>
+			<h1>'${ID}'님의 프로필</h1>
+			<p>학생들에게 자신을 뽐내주세요!</p>
 		</div>
-	 <div class=mypage>
-      <div class="item">
-      <div class="main-item">그래프</div>
-      
-		
-			<div class="dropMenu">
-				<div class="imgBox">
-					<div class="dropList">
-						<ul>
-							<h1>내정보</h1>
-							<li><a href="tutorPerData">개인 정보</a></li>
-							<li><a href="tutorPromanage">프로필 관리</a></li>
-							<li><a href="tutorPwCon">PW 변경</a></li>
-							<li><a href="tutorOut">탈퇴하기</a></li>
-						</ul>
-					</div>
-				</div>
+	</div>
 
-				<div class="dropMenu">
-					<div class="imgBox" >
-					<div class="dropList">
-						<ul>
-							<h1>강의 정보</h1>
-							<li><a href="MylectureList">내 강의 목록</a></li>
-							<li><a href="newClassOpened">강의 등록</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
 	
-	
-	   <!-- 하단 고정 -->
+	<!-- 중앙 : 개인정보 폼 -->
+	<div class="perForm">
+		<form action="perForm"name="frm">
+			<table>
+			<tr>
+				 <th>회원구분 </th><td>${CTGR}</td>
+			</tr>
+			<tr>	 
+				 <th>지역 </th><td>${AREA} </td>
+			</tr>
+			<tr>	 
+				 <th>연락 가능 시간 </th><td>${RESPOND} </td>
+			</tr>
+			<tr>	 
+				 <th> 경력사항 </th><td>${CAREER} </td>
+			</tr>
+			<tr>	 
+				 <th> 자격증 </th><td>${CERTIFICATION} </td>
+			</tr>
+			<tr>	
+				 <th> 학력(전공)</th><td>${FINALEDU} </td>
+			</tr>
+			<tr>	 
+				 <th> 소개 </th><td> ${INTRODUCE} </td>
+			</tr>
+			<tr>		
+					
+				
+					<tr>
+                   <th colspan="2" style="padding-right: 20px;">
+                   		<div class="allbtn">
+							<a href="<c:url value='/tutor/myPage'/>"
+							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
+		                   <a href="<c:url value='/tutor/promanageSujung'/>" 
+							style="text-decoration:none;">수정하기</a>
+						</div>
+					</th>
+         		 </tr>
+			</table>
+		</form>
+	</div>
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>	
+<!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
    <div class="footer">

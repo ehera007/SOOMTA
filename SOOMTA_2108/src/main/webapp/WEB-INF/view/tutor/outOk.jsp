@@ -218,47 +218,31 @@ ul {
 /*고정 외 중앙 테이블 스타일*/
 
 
- table {
-    border: 2px solid #0F4C81;
-    width: 500px;
-    height:550px;
-    margin:20px auto;
-    border-spacing: 0px;
-    border-radius: 12px;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 35px;
+  .tutorOutOk {
+  	padding-top: 80px;
+	padding-bottom: 80px;
   }
 
-
-  thead th {
-   height: 35px;
-   background-color: #0F4C81;
-   color: white;
-   font-size: 25px;
-   border-radius: 8px 8px 0px 0px;
-}
-
-
-th{
-   padding-left: 70px;
-}
-td{
-   padding-left: 40px;
-}
-
-.perForm{
-
-	padding-top: 30px;
-	padding-bottom: 30px;
-
-}
-
-
+  
 </style>
+
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 <meta charset="UTF-8">
-<title>perDataSujung</title>
+<title>tutorOutOk</title>
 </head>
 <body>
+
 
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
@@ -272,56 +256,18 @@ td{
 			</div>
 		</div>
 	</div>
-	
-	<!-- 중앙 : 개인정보 수정 폼 -->
-	<div class="perForm">
-		<form action="promanageSujungOk" method="post" name="frm"> 
-			<table>
-			
-				 <thead>
-               <tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
-               <th  colspan="2" style="padding: 10px 0px 10px 10px; ">프로필정보 수정</th>
-         </tr></thead>
 
-    			<tr><td align="center"><b>회원구분</b></td>
-					<td> ${CTGR} </td></tr>
-			
-				<tr><td align="center"><b>지역</b></td>
-					<td><input type="text" name="local" placeholder="지역을 입력해주세요."
-					style="width:200px;" value="${AREA}"></td></tr>
-			
-				<tr><td align="center"><b>응답 가능 시간</b></td>
-				<td><input type="text" name="respond" placeholder="응답가능시간 입력해주세요."
-						style="width:200px;" value="${RESPOND}"></td></tr>
-			
-				<tr><td align="center"><b>경력</b></td>
-					<td><input type="text" name="career" placeholder="경력을 입력해주세요."
-						style="width:200px;" value="${CAREER}"></td></tr>
-					<tr><td align="center"><b>자격증</b></td>
-				<td><input type="text" name="certification" placeholder="자격증 입력해주세요."
-						style="width:200px;" value="${CERTIFICATION}"></td></tr>
-					
-			
-				<tr><td align="center"><b>학력(전공)</b></td>
-					<td><input type="text" name="finaledu" placeholder="최종학력을 입력해주세요."
-						style="width:200px;" value="${FINALEDU}"></td></tr>
-			
-				<tr><td align="center"><b>소개</b></td>
-					<td><input type="text" name="introduce" placeholder="소개를 입력해주세요."
-						style="width:200px;" value="${EMAIL}"></td></tr>
-			
-					<tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px; ">
-						<input type="submit" value="수정 완료" 
-							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
-					 	background: transparent; color: #0F4C81;"
-						onclick="javascript:history.back();" />
-				</th></tr>
-			</table>
-		</form>		
-			
+	<!-- 중앙 : 탈퇴 확인 -->
+		<div class="tutorOutOk">
+		<tr align ="center" >
+			<h1 align ="center" style="color:#0F4C81">숨타를 이제까지 이용해주셔서 감사합니다.</h1>
+		</tr>
 		</div>
-	
+		
+<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+			href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>		
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

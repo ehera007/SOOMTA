@@ -217,62 +217,129 @@ ul {
 
 /*고정 외 중앙 테이블 스타일*/
 
+
  table {
     border: 2px solid #0F4C81;
     width: 600px;
-    height:300px;
+    height:550px;
     margin:20px auto;
+    border-spacing: 0px;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
-    border-spacing: 0px;
-  }
-  thead th {
-  font-size: 25px;
-  padding: 10px 0px 10px 40px;
-  border-radius: 8px 8px 0px 0px;
+    margin-bottom: 35px;
   }
 
-  
+
+thead th {
+   height: 50px;
+   background-color: #0F4C81;
+   color: white;
+   font-size: 25px;
+   border-radius: 8px 8px 0px 0px;
+}
+
+th{
+	padding-left:45px; 
+}
+.detail {
+	color: grey;
+	font-size: 12px;
+	font-style: italic;
+	text-align: left;
+}
+
+.perForm{
+
+	padding-top: 50px;
+	padding-bottom: 50px;
+
+}
+input {
+	display: inline-block;
+	
+	margin-right: 5px;
+}
+
+
 </style>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 <meta charset="UTF-8">
-<title>환영합니다</title>
+<title>tutorSujung</title>
 </head>
 <body>
-
 
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/tutor/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
 			</div>
 		</div>
 	</div>
-
-	<!-- 중앙 : 회원가입 확인 -->
-		<tr align ="center" >
-			<h1 align ="center" style="color:#0F4C81">숨타에 오신것을 환영합니다</h1>
-		</tr>
-			<table align="center">
-				 <thead>
-         			<tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
-            		<th colspan="2" style="padding-right: 45px;">숨타 회원가입 완료 </th>
-         		</tr></thead>
-				<tr align ="center">
-					<p><td style="color:#0F4C81; font-size: 20px;"><strong>""님  환영합니다</strong></td></p>
-    			</tr>
-    			<tr align ="center">
-					<p><td style="color:#0F4C81; font-size: 20px;"><strong>로그인  후  숨타를  이용해  주세요!</strong></td></p>
-    			</tr>		
-				<tr><td colspan="2" align="center">
-					<a href="<c:url value='/main'/>" 
-					style="text-decoration:none; color:#0F4C81;
-					 font-size: 16px;font-weight: bold;; ">로그인 하기</a></td></tr>
+	
+	<!-- 중앙 : 개인정보 수정 폼 -->
+	<div class="perForm">
+		<form action="sujungOk" method="post" name="frm"> 
+			<table>
+				<thead>
+         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
+            <th colspan="2" style="padding-right: 45px;">튜터 정보 수정 </th>
+         </tr></thead>
+    			<tr><th style="padding-top: 15px;">아이디</th>
+					<td style="padding-top: 15px;"> ${Id } </td></tr>
+			
+				<tr><th>이름</th>
+					<td><input type="text" name="name" minlength="2" required
+					style="width:200px;" value="${name}"></td></tr>
+			
+				<tr><th>가입일</th>
+					<td> ${since } </td></tr>
+			
+				<tr><th>생년월일</th>
+					<td> ${dob } </td></tr>
+			
+				<tr><th>성별</th>
+				<td><input type="radio" name="Gender"  value="M">남자
+					<input type="radio" name="Gender" value="F">여자</td></tr>
+			
+				<tr><th style="padding-bottom: 10px;">핸드폰</th>
+					<td><input type="text" name="ph" required
+						style="width:200px;" value="${ph }">
+						<div class="detail">* ex) 01012341234</div></td></tr>
+			
+				<tr><th style="padding-bottom: 10px;">이메일</th>
+					<td><input type="text" name="email"
+						style="width:200px;" value="${email }">
+						<div class="detail">* ex) soomta@email.com</div></td></tr>
+			
+					<tr><th colspan="3"align="center" style="padding-right: 10px; padding-bottom: 15px; ">
+						<input type="submit" value="수정 완료" 
+							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
+						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
+					 	background: transparent; color: #0F4C81;"
+						onclick="javascript:history.back();" />
+				</th></tr>
 			</table>
+		</form>
+		</div>		
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

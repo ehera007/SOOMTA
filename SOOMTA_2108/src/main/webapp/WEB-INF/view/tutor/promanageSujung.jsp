@@ -217,40 +217,64 @@ ul {
 
 /*고정 외 중앙 테이블 스타일*/
 
-
- table {
+table {
     border: 2px solid #0F4C81;
-    width: 500px;
+    width: 650px;
     height:550px;
     margin:20px auto;
     border-spacing: 0px;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     margin-bottom: 35px;
-    	
-
   }
 
-
 thead th {
-   height: 35px;
+   height: 50px;
    background-color: #0F4C81;
    color: white;
    font-size: 25px;
    border-radius: 8px 8px 0px 0px;
-   
 }
+
 th{
-	padding-left: 70px;
+	padding-left:45px; 
 }
-td{
-	padding-left: 40px;
+.detail {
+	color: grey;
+	font-size: 8px;
+	font-style: italic;
+	text-align: left;
 }
-  
+
+.perForm{
+	width: 800px;
+	margin: 0 auto;
+	padding-top: 50px;
+	padding-bottom: 50px;
+
+}
+input {
+	display: inline-block;
+	float: left;
+	margin-right: 5px;
+}
+
+
 
 </style>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 <meta charset="UTF-8">
-<title>perDataSujung</title>
+<title>정보수정</title>
 </head>
 <body>
 
@@ -259,7 +283,7 @@ td{
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -268,48 +292,58 @@ td{
 	</div>
 	
 	<!-- 중앙 : 개인정보 수정 폼 -->
-		<form action="memSuJungOk" method="post" name="frm"> 
+		<div class="perForm">
+		<form action="promanageSujungOk" method="post" name="frm"> 
 			<table>
 				<thead>
-         		<tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
-            	<th  colspan="2" style="padding: 10px 0px 10px 10px; ">개인정보수정 </th>
+         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
+            <th colspan="2" style="padding-right: 45px;">정보 수정 </th>
          </tr></thead>
-    			<tr><th style="padding-top: 15px;">아이디</th>
-					<td style="padding-top: 15px;"> ${Id } </td></tr>
+    			<tr><th style="padding-top: 15px;">회원구분</th>
+					<td style="padding-top: 15px;"> ${CTGR } </td></tr>
 			
-				<tr><th>이름</th>
-					<td><input type="text" name="name" placeholder="이름을 입력해주세요."
-					style="width:200px;" value="${name}"></td></tr>
+				<tr><th>지역</th>
+					<td><input type="text" name="AREA" minlength="2" required
+					style="width:200px;" value="${AREA}">
+					<div class="detail">* ex) 수도권</div></td></tr>
 			
-				<tr><th>가입일</th>
-					<td> ${since } </td></tr>
+				<tr><th>응답가능시간</th>
+					<td><input type="text" name="RESPOND" minlength="2" required
+					style="width:200px;" value="${RESPOND}">
+					<div class="detail">* ex) 평일 오후 12시~5시</div></td></tr>
 			
-				<tr><th>생년월일</th>
-					<td><input type="text" name="dob" placeholder="생년월일을 입력해주세요.(2021-08-06)"
-						style="width:200px;" value="${dob }"></td></tr>
+				<tr><th>경력</th>
+					<td><input type="text" name="CAREER" minlength="2" required
+					style="width:200px;" value="${CAREER}">
+					<div class="detail">* ex) 이젠아이티학원 3년차 강사</div></td></tr>
 			
-				<tr><th>성별</th>
-				<td><input type="radio" name="Gender"  value="M" checked>남자
-					<input type="radio" name="Gender" value="F">여자</td></tr>
+				<tr><th>자격증</th>
+				<td><input type="text" name="name" minlength="2" required
+					style="width:200px;" value="${CERTIFICATION}">
+					<div class="detail">* ex) 컴퓨터활용능력2급</div></td></tr>
+					
+				<tr><th>학력</th>
+				<td><input type="text" name="FINALEDU" minlength="2" required
+					style="width:200px;" value="${FINALEDU}">
+					<div class="detail">* ex) 한국대학교 경영학과</div></td></tr>	
+				<tr><th>소개</th>
+            	<td><textarea rows="2" cols="26" name="BANDINTRODUCE"></textarea></td></tr>
+				
 			
-				<tr><th>핸드폰</th>
-					<td><input type="text" name="ph" placeholder="번호를 입력해주세요.(010-0000-0000)"
-						style="width:200px;" value="${ph }"></td></tr>
-			
-				<tr><th>이메일</th>
-					<td><input type="text" name="email" placeholder="이메일을 입력해주세요."
-						style="width:200px;" value="${email }"></td></tr>
-			
-					<tr><th colspan="3"align="center" style="padding-right: 90px; padding-bottom: 15px; ">
-						<input type="submit" value="수정 완료" onclick="location.href='/main/main'" 
+					<tr><th colspan="3"align="center" style="padding-left: 250px; padding-bottom: 15px; ">
+						<input type="submit" value="수정 완료" 
 							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
 						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
 					 	background: transparent; color: #0F4C81;"
 						onclick="javascript:history.back();" />
 				</th></tr>
 			</table>
-		</form>		
-	
+		</form>	
+		</div>	
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

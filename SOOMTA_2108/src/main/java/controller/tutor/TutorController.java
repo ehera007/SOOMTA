@@ -6,54 +6,62 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller 
 @RequestMapping("tutor")
 public class TutorController {
+	
 	@RequestMapping("myPage")//튜터 마이페이지
-	public String tutorMyPage() {
-		return "tutor/tutorMyPage";
+	public String myPage() {
+		return "tutor/myPage";
 	}
 	
-	@RequestMapping("tutorOut")//튜터 탈퇴하기 페이지
-	public String tutorOut() {
-		return "tutor/tutorOut";
+	@RequestMapping("out")//튜터 탈퇴하기 페이지
+	public String out() {
+		return "tutor/out";
 	}
 	
-	@RequestMapping("tutorPerData")//튜터 개인정보 페이지
-	public String tutorPerData() {
-		return "tutor/tutorPerData";
+	@RequestMapping("perData")//튜터 개인정보 페이지
+	public String perData() {
+		return "tutor/perData";
 	}
-	@RequestMapping("tutorPromanage")//튜터 프로필 관리 페이지
-	public String tutorPromanage() {
-		return "tutor/tutorPromanage";
+	@RequestMapping("promanage")//튜터 프로필 관리 페이지
+	public String promanage() {
+		return "tutor/promanage";
 	}
-	@RequestMapping("tutorPwChange")//튜터 비번 변경 페이지
-	public String tutorPwChange() {
-		return "tutor/tutorPwChange";
+	@RequestMapping("pwChange")//튜터 비번 변경 페이지
+	public String pwChange() {
+		return "tutor/pwChange";
 	}
 	
-	@RequestMapping("tutorPwCon")//튜터 비번 확인 페이지
-	public String tutorPwCon() {
-		return "tutor/tutorPwCon";
+	@RequestMapping("pwCon")//튜터 비번 확인 페이지
+	public String pwCon() {
+		return "tutor/pwCon";
 	}
-	@RequestMapping("tutorPromanageSujung")//튜터 개인정보 수정 페이지
-	public String tutorPromanageSujung() {
-		return "tutor/tutorPromanageSujung";
+	@RequestMapping("promanageSujung")//튜터 개인정보 수정 페이지
+	public String promanageSujung() {
+		return "tutor/promanageSujung";
 	}
-	@RequestMapping("tutorSujung")//튜터 개인정보 수정 페이지
-	public String tutorSujung() {
-		return "tutor/tutorSujung";
+	@RequestMapping("sujung")//튜터 개인정보 수정 페이지
+	public String sujung() {
+		return "tutor/sujung";
 	}
-	@RequestMapping("tutorSujungOk")//튜터 개인정보 수정 페이지
-	public String tutorSujungOk() {
-		return "tutor/tutorSujungOk";
+	@RequestMapping("sujungOk")//튜터 개인정보 수정 페이지
+	public String sujungOk() {
+		return "tutor/sujungOk";
 	}
-	@RequestMapping("tutorJoinOk")//튜터 등록 완료 후 환영 페이지
-	public String tutorJoinOk() {
-		return "tutor/tutorJoinOk";
+	@RequestMapping("joinOk")//튜터 등록 완료 후 환영 페이지
+	public String joinOk() {
+		return "tutor/joinOk";
 	}
-	@RequestMapping("tutorPromanageSujungOk")//튜터 개인정보 수정 페이지(완료)
-	public String tutorPromanageSujungOk() {
-		return "tutor/tutorPromanageSujungOk";
+	@RequestMapping("joinForm")//튜터 등록 페이지
+	public String joinForm() {
+		return "tutor/joinForm";
 	}
-
+	@RequestMapping("promanageSujungOk")//튜터 개인정보 수정 페이지(완료)
+	public String promanageSujungOk() {
+		return "tutor/promanageSujungOk";
+	}
+	@RequestMapping("outOk")//튜터 개인정보 수정 페이지(완료)
+	public String outOk() {
+		return "tutor/outOk";
+	}
 	@RequestMapping("MylectureList")
 	public String MylectureList() {
 		return "tutor/MylectureList";

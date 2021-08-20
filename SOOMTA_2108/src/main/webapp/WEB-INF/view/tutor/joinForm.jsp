@@ -214,114 +214,164 @@ ul {
 .imgBox:hover ul {
 	display: block;
 }
-.allbtn {
-   height: 30px;
-   width: 300px;
-   margin: 0 auto;
-   padding-bottom: 0px;
-   padding-right: 35px;
-}
 
 /*고정 외 중앙 테이블 스타일*/
-
+.joinForm{
+	padding-top:70px;
+	padding-bottom:70px;
+}
+.joinForm a:visited {
+	color: #0F4C81;
+}
+.joinForm a:link {
+	color: #0F4C81;
+}
+.joinForm a:hover{
+color: #0F4C81;
+}
 
  table {
     border: 2px solid #0F4C81;
-    width: 500px;
-    height:550px;
-    margin:20px auto;
-    border-spacing: 0px;
     border-radius: 12px;
+    width: 600px;
+    height:700px;
+    margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 35px;
+    border-spacing: 0px;
   }
-
-
-thead th {
-   height: 50px;
+  thead th {
+   height: 35px;
    background-color: #0F4C81;
    color: white;
    font-size: 25px;
    border-radius: 8px 8px 0px 0px;
 }
-
 th{
-	padding-left:45px; 
+	padding-left: 70px;
 }
-.perForm{
-
-	padding-top: 30px;
-	padding-bottom: 30px;
-
+td{
+	padding-left: 40px;
 }
+.detail {
+	color: grey;
+	font-size: 8px;
+	font-style: italic;
+	text-align: left;
+}
+input {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+  
 </style>
 
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+    
+    </script>
+
 <meta charset="UTF-8">
-<title>promanage</title>
+<title>tutorJoin</title>
 </head>
 <body>
-<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		<!-- 로그인 안된 경우 -->
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="soomta/login">로그인</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="soomta/tutorJoin">튜터등록</a>
+			</div>
+			<div class="nav-item">
+				<a href="soomta/memJoin">무료회원가입</a>
 			</div>
 		</div>
 	</div>
-	<div class="main">
-		<div class="mypageTitle">
-			<h1>'${ID}'님의 프로필</h1>
-			<p>학생들에게 자신을 뽐내주세요!</p>
-		</div>
-	</div>
-
-	
-	<!-- 중앙 : 개인정보 폼 -->
-	<div class="perForm">
-		<form action="perForm"name="frm">
-			<table>
-			<tr>
-				 <th>회원구분 </th><td>${CTGR}</td>
-			</tr>
-			<tr>	 
-				 <th>지역 </th><td>${AREA} </td>
-			</tr>
-			<tr>	 
-				 <th>연락 가능 시간 </th><td>${RESPOND} </td>
-			</tr>
-			<tr>	 
-				 <th> 경력사항 </th><td>${CAREER} </td>
-			</tr>
-			<tr>	 
-				 <th> 자격증 </th><td>${CERTIFICATION} </td>
-			</tr>
-			<tr>	
-				 <th> 학력(전공)</th><td>${FINALEDU} </td>
-			</tr>
-			<tr>	 
-				 <th> 소개 </th><td> ${INTRODUCE} </td>
-			</tr>
-			<tr>		
-					
-					<tr>
-                   <th colspan="2" style="padding-right: 20px;">
-                   		<div class="allbtn">
-							<a href="<c:url value='/tutor/tutorMyPage'/>" 
-							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
-		                   <a href="<c:url value='/tutor/tutorPromanageSujung'/>" 
-							style="text-decoration:none;">수정하기</a>
-						</div>
-					</th>
-         		 </tr>
-			</tr>
-			</table>
+	<div class="tutorJoinForm">
+		<form action="tutorJoinOk" method="get" name="frm" 
+					enctype="multipart/form-data">
+		<table>
+			<thead>
+         		<tr style="background-color: #0F4C81; color: white; font-size: 25px; margin-bottom: 70px;" >
+            	<th  colspan="2" style="padding: 10px 0px 10px 10px; ">무료 회원가입 </th>
+         </tr></thead>
+			
+		<tr><th>ID</th>
+				<td style="padding-top: 12px;">
+					<input type="text" name="memId"style="width:200px;"
+					pattern="^([a-z0-9]){4,15}$" size="30"/>
+					<input type="button" value="중복확인">
+					<div class="detail">* 4~15자 영문/숫자 사용</div>
+					</td></tr>
+			
+			
+			
+			<tr><th>PW</th>
+				<td><input type="password" name="tutorPw"style="width:200px; 
+				value=""
+								size="30" required
+								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&^*]).[A-Za-z\d!@#$%&^*]{8,15}$"
+								class="pw" id="pw" onchange="check_pw()"/>
+								<div class="detail">* 8~15자 영어/숫자/특수문자 1자씩 사용</div></tr>
+			
+			
+			<tr><th>PW확인</th>
+				<td><input type="password" name="tutorPwCon"style="width:200px;"/></td></tr>
+			<tr><th>이름</th>
+				<td><input type="text" name="tutorName"style="width:200px; minlength="2" required
+								size="30" /></td>
+						</tr>
+			<tr><th>생년월일</th>
+				<td><input type="date" name="tutorDob"style="width:200px;"/></td></tr>
+			<tr><th>성별</th>
+				<td>
+					<input type="radio" name="tutorGender" value="M" checked/>남
+					<input type="radio" name="tutorGender" value="F"/>여
+				</td></tr>
+			<tr><th>핸드폰</th>
+				<td><input type="text" name="tutorPhone"style="width:200px; minlength="11"
+								required size="30" maxlength="11" />
+								<div class="detail">* ex) 01012341234</div></td>
+						</tr>
+			<tr><th>이메일</th>
+				<td><input type="text" name="tutorEmail"style="width:200px; value=""
+								required size="30">
+								<div class="detail">* ex) soomta@email.com</div></td>
+						</tr>
+			
+			<tr><th>약관 동의</th>
+				<td><input type="checkbox" name="agree1" >서비스 이용약관에 동의합니다.(필수)<br />
+					<input type="checkbox" name="agree2" >이벤트, 할인 등 이메일 수신에 동의(선택)<br />
+				</td></tr>
+			
+			<tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px;">
+					<input type="submit" value="회원가입" 
+						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
+					<input type="button"  value="취소" style="border: none;font-size: 16px;font-weight: bold;
+					 	background: transparent; color: #0F4C81;"
+						onclick="javascript:history.back();" />
+				</th></tr>
+				
+			</table> 
 		</form>
 	</div>
+	<a href="<c:url value='/tutor/joinOk'/>">회원 가입 완료 후 확인페이지</a>
 	
+	<!-- TOP이동 -->
+	<a style="position: fixed; bottom: 20px; right: 50px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>	
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
