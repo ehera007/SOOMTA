@@ -33,12 +33,12 @@ thead th {
 }
 
 tbody th {
-	padding-top: 20px;
+	padding-top: 30px;
 	width: 30%;
 }
 
 tbody td {
-	padding-top: 20px;
+	padding-top: 30px;
 	width: 70%;
 }
 
@@ -73,11 +73,10 @@ tbody td a {
 	text-align: left;
 }
 
-input {
-	display: inline-block;
-	float: left;
-	margin-right: 5px;
+input[type='radio']{
+margin-right:5px;
 }
+
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -91,24 +90,7 @@ input {
 		});
 	});
 </script>
-<!-- 수정 완료 알림창 -->
-<script>
-$(document).ready(function(){
-	$('#finish').submit(function(){
-		alert('                                  회원 수정 완료\n                     ');
-	});
-});
-</script>
-<!-- 삭제 확인 알림창 -->
-<script type="text/javascript">
-function funcCon(){
-	if(confirm('정말 삭제하시겠습니까?\n*삭제 후 복구할 수 없습니다.')){
-		location.href='memDel';
-	}else{
-		return false;
-	}
-}
-</script>
+
 <!-- 다음 주소 -->
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -167,6 +149,17 @@ function funcCon(){
 				}).open();
 	}
 </script>
+<!-- 수정 확인 알림창 -->
+<script type="text/javascript">
+function funcCon(){
+	var cfm = confirm('정말 수정하시겠습니까?\n*확인 : 수정 후 확인페이지 이동');
+	if(cfm){
+		document.getElementById('frm').submit();
+	}else{
+		return false;
+	}
+}
+</script>
 <meta charset="UTF-8">
 <title>회원 수정</title>
 </head>
@@ -190,7 +183,7 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="memModOk" method="post" name="frm"> 
+	<form action="memModOk" method="post" name="frm" onsubmit="return funcCon()"> 
 <input type="hidden" name="memId" value="${memId }"/>
 <table><thead>
 	<tr
@@ -201,11 +194,11 @@ function funcCon(){
 			<tr><th>PW</th><td><input type="password" size="45"/></td></tr>
 			<tr><th>이름</th><td><input type="text" size="45"/></td></tr>
 			<tr><th>생년월일</th><td><input type="date" size="45"/></td></tr>
-			<tr><th>성별</th><td><input type="radio" name="memGender" value="M" checked/>남
-			<input type="radio" name="memGender" value="F"/>여</td></tr>
+			<tr><th>성별</th><td><input type="radio" name="gender" value="M" checked/><span style="margin-right:25px;">남자</span>
+			<input type="radio" name="gender" value="F"/>여자</td></tr>
 			<tr><th>이메일</th><td><input type="email"size="45"/></td></tr>
-			<tr><th>이메일 수신 여부</th><td><input type="radio" name="memEmailCk" value="Y" checked/>Y
-			<input type="radio" name="memEmailCk" value="N"/>N</td></tr>
+			<tr><th>메일수신</th><td><input type="radio" name="emailCk" value="Y" checked/><span style="margin-right:32px;">Yes</span>
+			<input type="radio" name="emailCk" value="N"/>No</td></tr>
 						<tr><th>전화번호</th><td><input type="text"size="45"/></td></tr>
 			<tr><th>주소</th><td>
 <input type="text" path="addr"
@@ -214,7 +207,7 @@ function funcCon(){
 							검색</a>
 </td></tr></tbody><tfoot>
 			<tr>
-				<th colspan="2"><div class="allbtn"><input class="btn" id="finish" type="submit" value="수정완료"/> 
+				<th colspan="2"><div class="allbtn"><input class="btn" type="submit" value="수정완료"/> 
 				<input class="btn" type="button" class="btn" value="수정취소"
 					onclick="javascript:history.back()"/></div></th>
 			</tr></tfoot>

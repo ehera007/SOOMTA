@@ -32,12 +32,12 @@ thead th {
 }
 
 tbody th {
-	padding: 10px;
+	padding-top: 30px;
 	width: 30%;
 }
 
 tbody td {
-	padding: 10px;
+	padding-top: 30px;
 	width: 70%;
 }
 
@@ -71,12 +71,10 @@ tbody td a {
 	font-style: italic;
 	text-align: left;
 }
-
-input {
-	display: inline-block;
-	float: left;
-	margin-right: 5px;
+input[type='radio']{
+margin-right:5px;
 }
+
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -90,15 +88,27 @@ input {
 		});
 	});
 </script>
+
 <!-- 수정 완료 알림창 -->
+<!-- 
 <script>
 $(document).ready(function(){
 	$('#finish').submit(function(){
 		alert('                                  튜터 수정 완료\n                     ');
 	});
 });
+</script> -->
+<!-- 수정 확인 알림창 -->
+<script type="text/javascript">
+function funcCon(){
+	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
+	if(cfm){
+		document.getElementById('frm').submit();
+	}else{
+		return false;
+	}
+}
 </script>
-
 <!-- 다음 주소 -->
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -180,7 +190,7 @@ $(document).ready(function(){
 
 	<!-- 중앙 -->
 	<div class="main">
-		<form action="tutorModOk" method="post" name="frm"> 
+		<form action="tutorModOk" method="post" name="frm" onsubmit="return funcCon()"> 
 <input type="hidden" name="memId" value="${memId }"/>
 <table><thead>
 	<tr
@@ -191,7 +201,14 @@ $(document).ready(function(){
 			<tr><th>PW</th><td><input type="password" size="45"/></td></tr>
 			<tr><th>이름</th><td><input type="text" size="45"/></td></tr>
 			<tr><th>생년월일</th><td><input type="date"/></td></tr>
+			<tr><th>성별</th>
+			<td><input type="radio" name="gender" value="M" checked/><span style="margin-right:25px;">남자</span>
+				<input type="radio" name="gender" value="F"/>여자</td></tr>
 			<tr><th>이메일</th><td><input type="email"size="45"/></td></tr>
+			<tr><th>메일수신</th><td><input type="radio" name="emailCk" value="Y" checked/><span style="margin-right:32px;">Yes</span>
+			<input type="radio" name="emailCk" value="N"/>No</td></tr>
+			<tr><th>인증상태</th><td><input type="radio" name="emailCon" value="Y" checked/><span style="margin-right:25px;">완료</span>
+			<input type="radio" name="emailCon" value="N"/>미정</td></tr>
 			<tr><th>전화번호</th><td><input type="text"size="45"/></td></tr>
 			<tr><th>주소</th><td>
 <input type="text" path="addr"
