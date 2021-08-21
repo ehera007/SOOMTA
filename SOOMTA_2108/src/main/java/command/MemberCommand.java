@@ -10,9 +10,10 @@ public class MemberCommand {
 	String memPwCon;
 	String memName;
 	String memPhone;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memSince;
 	String memGender;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memDob;
 	String memEmail;
 	String memArea;

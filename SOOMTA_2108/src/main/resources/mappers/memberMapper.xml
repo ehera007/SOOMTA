@@ -5,7 +5,7 @@
 
 <insert id="memInsert" parameterType="Model.MemberDTO">
 	insert into member (mem_Id, mem_Pw, mem_Name , mem_Phone , mem_Gender , 
-	mem_Dob , mem_Email , mem_Email_Ck , memr_Area , mem_Since) 
+	mem_Dob , mem_Email , mem_Email_Ck , mem_Area , mem_Since) 
 	values(#{memId}, #{memPw}, #{memName}, #{memPhone}, #{memGender}, 
 	#{memDob}, #{memEmail}, #{memEmailCk}, #{memArea}, sysdate)
 </insert>

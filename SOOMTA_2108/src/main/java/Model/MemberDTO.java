@@ -2,14 +2,11 @@ package Model;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class MemberDTO {
 	String memId;
 	String memPw;
 	String memName;
 	String memPhone;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date memSince;
 	String memGender;
 	Date memDob;
