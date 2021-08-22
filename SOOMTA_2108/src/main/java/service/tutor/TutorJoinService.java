@@ -23,7 +23,8 @@ public class TutorJoinService {
 		dto.setTutorEmail(tutorCommand.getTutorEmail());
 		dto.setTutorArea(tutorCommand.getTutorArea());
 		dto.setTutorEmailCk(tutorCommand.getTutorEmailCk());
-		dto.setTutor_Since(tutorCommand.getTutor_Since());
+		dto.setTutorSince(tutorCommand.getTutorSince());
+		System.out.println("이메일체크"+dto.getTutorEmailCk());
 		tutorRepository.tutorInsert(dto);
 	}
 }

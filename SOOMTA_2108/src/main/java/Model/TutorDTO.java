@@ -11,7 +11,7 @@ public class TutorDTO {
 	String tutorGender; 
 	Date tutorDob;
 	String tutorEmail;
-	Date tutor_Since;
+	Date tutorSince;
 	String tutorCertification;
 	String tutorCareer;
 	String tutorFinalEdu;
@@ -22,6 +22,13 @@ public class TutorDTO {
 	String tutorLikearea;
 	String tutorEmailCk;
 	
+	
+	public Date getTutorSince() {
+		return tutorSince;
+	}
+	public void setTutorSince(Date tutorSince) {
+		this.tutorSince = tutorSince;
+	}
 	public String getTutorEmailCk() {
 		return tutorEmailCk;
 	}
@@ -48,9 +55,6 @@ public class TutorDTO {
 	}
 	public String getTutorEmail() {
 		return tutorEmail;
-	}
-	public Date getTutor_Since() {
-		return tutor_Since;
 	}
 	public String getTutorCertification() {
 		return tutorCertification;
@@ -96,9 +100,6 @@ public class TutorDTO {
 	}
 	public void setTutorEmail(String tutorEmail) {
 		this.tutorEmail = tutorEmail;
-	}
-	public void setTutor_Since(Date tutor_Since) {
-		this.tutor_Since = tutor_Since;
 	}
 	public void setTutorCertification(String tutorCertification) {
 		this.tutorCertification = tutorCertification;

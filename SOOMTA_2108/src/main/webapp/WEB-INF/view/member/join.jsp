@@ -204,7 +204,6 @@ if(document.getElementById("input_ck").checked) {
    <div class="main">
    <h1>숨타와 함께 숨은 시간을 찾아보세요 :)</h1>
       <form action="memJoined" method="post" name="frm">
-      <input type="hidden" name="memSince" value="${memSince }"/>
    	<input type="hidden" name="memEmailCk" value="N" id="input_ck_hidden" disabled/>
       <table>
   <thead>

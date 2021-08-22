@@ -17,7 +17,7 @@ public class TutorCommand {
 	String tutorEmailCon;
 	String tutorEmailCk;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	Date tutor_Since;
+	Date tutorSince;
 	String tutorCertification;
 	String tutorCareer;
 	String tutorFinalEdu;
@@ -28,6 +28,13 @@ public class TutorCommand {
 	String tutorLikearea;
 	
 	
+	
+	public Date getTutorSince() {
+		return tutorSince;
+	}
+	public void setTutorSince(Date tutorSince) {
+		this.tutorSince = tutorSince;
+	}
 	public String getTutorEmailCon() {
 		return tutorEmailCon;
 	}
@@ -66,9 +73,6 @@ public class TutorCommand {
 	}
 	public String getTutorEmail() {
 		return tutorEmail;
-	}
-	public Date getTutor_Since() {
-		return tutor_Since;
 	}
 	public String getTutorCertification() {
 		return tutorCertification;
@@ -114,9 +118,6 @@ public class TutorCommand {
 	}
 	public void setTutorEmail(String tutorEmail) {
 		this.tutorEmail = tutorEmail;
-	}
-	public void setTutor_Since(Date tutor_Since) {
-		this.tutor_Since = tutor_Since;
 	}
 	public void setTutorCertification(String tutorCertification) {
 		this.tutorCertification = tutorCertification;
