@@ -1,5 +1,7 @@
 package controller.employees;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.EmployeeCommand;
+import service.employee.EmployeeDelService;
 import service.employee.EmployeeInfoService;
 import service.employee.EmployeeJoinService;
 import service.employee.EmployeeListService;
+import service.employee.EmployeePwUpdateService;
+import service.employee.EmployeeUpdateService;
 
 @Controller
 @RequestMapping("emp")
@@ -101,15 +106,45 @@ public class EmployeeController {
 		return "emp/emp/empInfo";
 	}
 	@RequestMapping("empMod")//관리자 수정
-	public String empMod() {
+	public String empMod(@RequestParam(value="empId") String empId, Model model) {
+		employeeInfoService.empInfo(empId, model);
 		return "emp/emp/empMod";
 	}
-	@RequestMapping("empModOk")//관리자 수정 완료
-	public String empModOk() {
-		return "redirect:empInfo";
+	@RequestMapping("empPwCon")//pw수정 전 확인
+	public String empPwCon(@RequestParam(value="empId") String empId, Model model) {
+		employeeInfoService.empInfo(empId,model);
+		return "emp/emp/empPwCon";
 	}
+	//08.22
+	@Autowired
+	EmployeePwUpdateService employeePwUpdateService;
+	@RequestMapping(value="empPwChange", method=RequestMethod.POST)//pw 수정
+	public String empPwChange(@RequestParam(value="empPw") String empPw, Model model, HttpSession session) {
+		int i = employeePwUpdateService.empPwUpdate(empPw, model, session);
+		if(i == 1) {
+			return "emp/emp/empPwCon";
+		}else {
+			return "emp/emp/empPwChange";
+		}
+	}
+	//
+	
+	
+	@Autowired
+	EmployeeUpdateService employeeUpdateService;
+	@RequestMapping(value="empModOk", method=RequestMethod.POST)//관리자 수정 완료
+	public String empModOk(EmployeeCommand employeeCommand) {
+		employeeUpdateService.empUpdate(employeeCommand);
+		String empId = employeeCommand.getEmpId();
+		empId = empId.replace(",", "");
+		return "redirect:empInfo?empId="+empId;
+		//return "redirect:empInfo";
+	}
+	@Autowired
+	EmployeeDelService employeeDelService;
 	@RequestMapping("empDel")//관리자 삭제
-	public String empDel() {
+	public String empDel(@RequestParam(value="empId") String empId) {
+		employeeDelService.empDel(empId);
 		return "redirect:empList";
 	}
 	@RequestMapping("empJoin")//관리자 등록폼

@@ -22,9 +22,9 @@ public class CookieService {
 				}
 				if(cookie.getName().startsWith("auto")){
 					String userId = cookie.getValue();
-					LogInDTO dto = logInRepository.logIn(userId);
+					LogInDTO logIn = logInRepository.logIn(userId);
 					HttpSession session = request.getSession();
-					session.setAttribute("dto", dto);
+					session.setAttribute("logIn", logIn);
 				}
 			}
 		}

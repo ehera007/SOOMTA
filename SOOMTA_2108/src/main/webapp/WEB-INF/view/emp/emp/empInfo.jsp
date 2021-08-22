@@ -42,13 +42,11 @@ tbody td {
 
 .btn {
 	height: 30px;
-	background-color: white;
+	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 10px 10px;
+	margin: 30px 10px 10px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -67,7 +65,7 @@ tbody td {
 <script type="text/javascript">
 	function funcCon() {
 		if (confirm('정말 삭제하시겠습니까?\n*삭제 후 복구할 수 없습니다.')) {
-			location.href = 'empDel';
+			location.href = 'empDel?empId=${emp.empId}';
 		} else {
 			return false;
 		}
@@ -135,8 +133,11 @@ tbody td {
 			<tfoot>
 				<tr>
 					<th colspan="2"><input class="btn" type="button" value="리스트"
-						onclick="location.href='empList'" /> <input class="btn"
-						type="button" value="수정" onclick="location.href='empMod'" /> <input
+						onclick="location.href='empList'" /> 
+						<input class="btn" type="button" value="PW변경"
+						onclick="location.href='empPwCon?empId=${emp.empId}'" /> 
+						<input class="btn"
+						type="button" value="수정" onclick="location.href='empMod?empId=${emp.empId }'" /> <input
 						class="btn" type="button" class="btn" value="삭제"
 						onclick="funcCon()" /></th>
 				</tr>

@@ -11,5 +11,7 @@
 	<bean id="employeeRepository" class="repository.EmployeeRepository"/>
 	<bean id="employeeListService" class="service.employee.EmployeeListService"/>
 	<bean id="employeeInfoService" class="service.employee.EmployeeInfoService"/>
-	
+	<bean id="employeeDelService" class="service.employee.EmployeeDelService"/>
+	<bean id="employeeUpdateService" class="service.employee.EmployeeUpdateService"/>
+	<bean class="service.employee.EmployeePwUpdateService"/>
 </beans>

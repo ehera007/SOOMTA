@@ -60,7 +60,7 @@ td a:active {
 /*버튼 스타일*/
 .btn {
 	height: 30px;
-	background-color: white;
+	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
 	margin: 10px 10px;

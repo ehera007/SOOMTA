@@ -26,6 +26,16 @@ public List<EmployeeDTO> empList() {//관리자 리스트
 public void empInsert(EmployeeDTO dto) {//관리자 등록
 	statement = namespace + ".empInsert";
 	int i = sqlSession.insert(statement,dto);
-	System.out.println(i+"개의 관리자가 등록되었습니다.");
+	System.out.println(i+"명의 관리자가 등록되었습니다.");
+}
+public void empDel(String empId) {//관리자 삭제
+	statement = namespace + ".empDel";
+	int i = sqlSession.delete(statement,empId);
+	System.out.println(i+"명의 관리자가 삭제되었습니다.");
+}
+public void empUpdate(EmployeeDTO dto) {//관리자 수정
+	statement = namespace + ".empUpdate";
+	int i = sqlSession.update(statement, dto);
+	System.out.println(i+"개의 관리자 정보를 수정하였습니다.");
 }
 }

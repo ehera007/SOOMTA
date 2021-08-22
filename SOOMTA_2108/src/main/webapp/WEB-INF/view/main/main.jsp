@@ -57,7 +57,7 @@ height:100%;
 		<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
 			alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<!-- 로그인 안된 경우 -->
-		<c:if test="${empty dto }">
+		<c:if test="${empty logIn }">
 		<div class="nav">
 			<div class="nav-item">
 				<a href="<c:url value='/soomta/login'/>">로그인</a>
@@ -72,18 +72,18 @@ height:100%;
 	</c:if>
 	
 	<!-- 로그인 된 경우 -->
-	<c:if test="${!empty dto }">
+	<c:if test="${!empty logIn }">
 	<div class="nav">
 	<!-- 관리자 -->
-	<c:if test="${dto.grade == 'emp' }">
+	<c:if test="${logIn.grade == 'emp' }">
 	<div class="nav-item">
 		<a href="<c:url value='/emp/main'/>">마이페이지</a></div></c:if>
 	<!-- 튜터 -->
-	<c:if test="${dto.grade == 'tutor' }">
+	<c:if test="${logIn.grade == 'tutor' }">
 	<div class="nav-item">
 	<a href="<c:url value='/tutor/myPage'/>">마이페이지</a></div></c:if>
 	<!-- 멤버 -->
-	<c:if test="${dto.grade == 'mem' }">
+	<c:if test="${logIn.grade == 'mem' }">
 	<div class="nav-item">
 	<a href="<c:url value='/member/myPage'/>">마이페이지</a></div></c:if>
 	<!-- 로그아웃 -->

@@ -27,6 +27,17 @@
 
 </insert>
 
+<delete id="empDel" parameterType="String">
+	delete from employees where emp_id = #{empId}
+</delete>
+
+<update id="empUpdate" parameterType="Model.EmployeeDTO">
+	update employees
+	set emp_Addr = #{empAddr}, emp_Email = #{empEmail}, emp_Job = #{empJob}, emp_Name = #{empName},
+		emp_Phone = #{empPhone}
+	where emp_id = #{empId}	
+</update>
+
 </mapper>
 
 

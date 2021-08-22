@@ -51,13 +51,11 @@ tbody td a {
 
 .btn {
 	height: 30px;
-	background-color: white;
+	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 10px 10px;
+	margin: 30px 10px 10px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
 }
 
 .allbtn {
@@ -160,23 +158,6 @@ function funcCon(){
 				}).open();
 	}
 </script>
-<!-- 비밀번호 확인 -->
-<script>
-    function check_pw(){
-    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
-        if(document.getElementById('pw').value==document.getElementById('pw2').value){
-            document.getElementById('check').innerHTML='PW 일치'
-            document.getElementById('check').style.color='blue';
-            document.getElementById('check').style.fontSize='15px';
-            document.getElementById('check').style.fontWeight='900';
-        }
-        else{
-            document.getElementById('check').innerHTML='PW 불일치';
-            document.getElementById('check').style.color='red';
-            document.getElementById('check').style.fontSize='15px';
-            document.getElementById('check').style.fontWeight='900';
-        }}}
-</script>
 <meta charset="UTF-8">
 <title>관리자 정보 수정</title>
 </head>
@@ -199,71 +180,53 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="empModOk" method="post" name="frm" onsubmit="return funcCon()"> 
-<input type="hidden" name="empId" value="${empId }"/>
+	<form action="empModOk?empId=" method="post" name="frm" onsubmit="return funcCon()"> 
+<input type="hidden" name="empId" value="${emp.empId }"/>
 		<table>
 		<thead>
 			<tr
 				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">관리자 '${ID }'의 정보 수정
+				<th colspan="2">관리자 '${emp.empId }'의 정보 수정
 				</th>
 			</tr></thead>
 								<tbody>
 						<tr class="first_tr">
 							<th>아이디</th>
-							<td><input type="text" name="empId" value="${empId }"
-								autofocus required pattern="^([a-z0-9]){4,15}$" size="30" />
-								<div class="detail">* 4~15자 영문/숫자 사용</div></td>
-						</tr>
-						<tr>
-							<th>비밀번호</th>
-							<td><input type="password" name="empPw" value="${empPw }"
-								size="30" required
-								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
-								class="pw" id="pw" onchange="check_pw()"/>
-								<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td>
-						</tr>
-						<tr>
-							<th>비밀번호 확인</th>
-							<td><input type="password" name="empPwCon" required
-								size="30"
-								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
-								class="pw" id="pw2" onchange="check_pw()"/>
-	&nbsp;<span id="check"></span></td>
-						</tr>
-
+							<td>${emp.empId }</tr>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="empName" minlength="2" required
+							<td><input type="text" name="empName" minlength="2" required value="${emp.empName }"
 								size="30" />
 								<div class="detail">* 성 포함 입력</div></td>
 						</tr>
 						<tr>
 							<th>담당 파트</th>
 							<td><input type="text" name="empJob" minlength="2" maxlength="15" required
-								size="30" />
+								size="30" value="${emp.empJob }"/>
 								<div class="detail">* 담당하는 일을 입력</div></td>
 						</tr>
 						<tr>
 							<th>입사일</th>
-							<td><input type="date" name="hireDate" size="55" required
-								size="30" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${emp.hireDate }"/>
+						</td>
 						</tr>
 						<tr>
 							<th>전화번호</th>
 							<td><input type="text" name="empPhone" minlength="11"
-								required size="30" maxlength="11" />
+								required size="30" maxlength="11" value="${emp.empPhone }"/>
 								<div class="detail">* ex) 01012341234</div></td>
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td><input type="text" id="email1" name="empEmail" value="${Email }"
+							<td><input type="text" id="email1" name="empEmail" value="${emp.empEmail }"
 								required size="30">
 								<div class="detail">* ex) email@email.com</div></td>
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td><input type="text" name="empAddr" required size="30"
+							<td>
+							<input type="text" name="empAddr" 
+						value="${emp.empAddr }"required size="30"
 								id="sample4_roadAddress" /> <a
 								href="javascript:sample4_execDaumPostcode();">주소 검색</a></td>
 						</tr>
@@ -271,9 +234,10 @@ function funcCon(){
 			<tfoot>
 			<tr>
 					<tr><td colspan="2" align="center"><div class="allbtn">
-				<input type="submit" class="btn" value="수정 완료" />
 				<input type="button" class="btn" value="수정 취소" 
-					onclick="javascript:history.back();" /></div>
+					onclick="javascript:history.back();" />
+				<input type="submit" class="btn" value="수정 완료" />
+				</div>
 			</td></tr></tfoot>
 		</table>
 		</form>

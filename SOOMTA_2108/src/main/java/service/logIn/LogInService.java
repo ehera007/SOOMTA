@@ -20,14 +20,14 @@ public class LogInService {
 	BCryptPasswordEncoder bcryptPasswordEncoder;
 	public void logIn1(LogInCommand logInCommand, Errors errors, HttpSession session, HttpServletResponse response) {
 		String userId = logInCommand.getUserId();
-		LogInDTO dto = logInRepository.logIn(userId);
-		if(dto == null) {
+		LogInDTO logIn = logInRepository.logIn(userId);
+		if(logIn == null) {
 			errors.rejectValue("userId", "notId");
 		}else {
-			if(bcryptPasswordEncoder.matches(logInCommand.getUserPw(),dto.getUserPw())) {
-				session.setAttribute("dto", dto);
+			if(bcryptPasswordEncoder.matches(logInCommand.getUserPw(),logIn.getUserPw())) {
+				session.setAttribute("logIn", logIn);
 				if(logInCommand.getAutoLogin() != null) {
-					Cookie cookie = new Cookie("autoLogin", dto.getUserId());
+					Cookie cookie = new Cookie("autoLogin", logIn.getUserId());
 					cookie.setPath("/");
 					cookie.setMaxAge(60*60*24*30);//약 30일동안
 					response.addCookie(cookie);
@@ -38,7 +38,7 @@ public class LogInService {
 					response.addCookie(cookie);
 				}
 				if(logInCommand.getIdStore() != null) {
-					Cookie cookie = new Cookie("idStore", dto.getUserId());
+					Cookie cookie = new Cookie("idStore", logIn.getUserId());
 					cookie.setPath("/");
 					cookie.setMaxAge(60*60*24*30);
 					response.addCookie(cookie);

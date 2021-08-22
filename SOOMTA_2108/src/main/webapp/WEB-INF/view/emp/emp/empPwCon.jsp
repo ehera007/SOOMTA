@@ -8,9 +8,10 @@
 	media="all" type="text/css" />
 <style type="text/css">
 @charset "UTF-8";
-/*중앙 main*/
+/*중앙 구역 분할 */
 .main {
-	margin: 20px auto;
+	width: 800px;
+	margin: 0 auto;
 }
 
 /* 테이블 스타일 */
@@ -30,12 +31,22 @@ thead th {
 	font-size: 25px;
 	border-radius: 8px 8px 0px 0px;
 }
-.th{
-margin-left:50px;
-font-weight:bold;
+
+tbody th {
+	padding-top: 30px;
+	width: 30%;
 }
+
 tbody td {
 	padding-top: 30px;
+	width: 70%;
+}
+
+tbody td a {
+	font-size: 12px;
+	color: #0F4C81;
+	font-weight: bold;
+	margin-left: 3px;
 }
 
 .btn {
@@ -43,10 +54,29 @@ tbody td {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 10px 10px;
+	margin: 30px 10px 10px 10px;
 	border: none;
 	/*border:1px solid #0F4C81;
 	border-radius:4px;*/
+}
+
+.allbtn {
+	height: 50px;
+	width: 180px;
+	margin: 0 auto;
+}
+
+.detail {
+	color: grey;
+	font-size: 8px;
+	font-style: italic;
+	text-align: left;
+}
+
+input {
+	display: inline-block;
+	float: left;
+	margin-right: 5px;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -61,26 +91,84 @@ tbody td {
 		});
 	});
 </script>
-<!-- 삭제 확인 알림창 -->
+<!-- 수정 전 확인 알림창 -->
 <script type="text/javascript">
 function funcCon(){
-	if(confirm('정말 삭제하시겠습니까?\n*삭제 후 복구할 수 없습니다.')){
-		location.href='boardDel';
+	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
+	if(cfm){
+		document.getElementById('frm').submit();
 	}else{
 		return false;
 	}
 }
 </script>
+<!-- 다음 주소 -->
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+	function sample4_execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+						// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var roadAddr = data.roadAddress; // 도로명 주소 변수
+						var extraRoadAddr = ''; // 참고 항목 변수
+
+						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+							extraRoadAddr += data.bname;
+						}
+						// 건물명이 있고, 공동주택일 경우 추가한다.
+						if (data.buildingName !== '' && data.apartment === 'Y') {
+							extraRoadAddr += (extraRoadAddr !== '' ? ', '
+									+ data.buildingName : data.buildingName);
+						}
+						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+						if (extraRoadAddr !== '') {
+							extraRoadAddr = ' (' + extraRoadAddr + ')';
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById("sample4_roadAddress").value = roadAddr;
+
+						// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+						if (roadAddr !== '') {
+							document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+						} else {
+							document.getElementById("sample4_extraAddress").value = '';
+						}
+
+						var guideTextBox = document.getElementById("guide");
+						// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+						if (data.autoRoadAddress) {
+							var expRoadAddr = data.autoRoadAddress
+									+ extraRoadAddr;
+							guideTextBox.innerHTML = '(예상 도로명 주소 : '
+									+ expRoadAddr + ')';
+							guideTextBox.style.display = 'block';
+
+						} else {
+							guideTextBox.innerHTML = '';
+							guideTextBox.style.display = 'none';
+						}
+					}
+				}).open();
+	}
+</script>
 <meta charset="UTF-8">
-<title>게시글 정보</title>
+<title>비밀번호 확인</title>
 </head>
 <body>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-
 		<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
-			alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
+			alt="SOOMTA" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="nav">
 			<div class="nav-item">
 				<a href="<c:url value='/emp/main'/>">마이페이지</a>
@@ -94,25 +182,30 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-		<table><thead>
-			<tr
-				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="3">게시번호 '${ID }'의 정보</th>
-			</tr></thead><tbody>
-			<tr><td width="25%"><span class="th">분류 :</span> ${faqCategory }</td><td width="35%"><span class="th">작성일 :</span> ${faqDate }</td><td width="40%"><span class="th">작성자 :</span> ${empId }</td></tr>
-			<tr><td colspan="3"><span class="th">제목 :</span> ${faqTitle }</td></tr>
-			<tr><td colspan="3"><span class="th">내용 :</span> ${faqContents }</td></tr>
-			<tr><td colspan="3"><span class="th">첨부 이미지 :</span> ${faqImg }</td></tr></tbody><tfoot>
-					<tr>
-				<th colspan="3">
-				<input class="btn" type="button" value="리스트"
-					onclick="location.href='boardList'" />
-				<input class="btn" type="button" value="수정"
-					onclick="location.href='boardMod'" /> <input class="btn"
-					type="button" class="btn" value="삭제"
-					onclick="funcCon()" /></th>
-			</tr></tfoot>
+	<form action="empPwChange" method="post" name="frm"> 
+		<table>
+		<thead>
+			<tr>
+				<th colspan="2">'${emp.empId }' 비밀번호 변경
+				</th>
+			</tr></thead>
+		<tbody>
+			<tr>
+				<th>비밀번호</th>
+				<td><input type="password" name="empPw" size="30" required/>
+				<span class="detail">* pw를 한 번 더 입력해주세요.</span>		
+				<span style="color:red;">${errPw }</span></td></tr>
+					</tbody>
+			<tfoot>
+			<tr>
+					<tr><td colspan="2" align="center"><div class="allbtn">
+				<input type="button" class="btn" value="이전으로" 
+					onclick="javascript:history.back();" />
+				<input type="submit" class="btn" value="확인" />
+				</div>
+			</td></tr></tfoot>
 		</table>
+		</form>
 	</div>
 
 
