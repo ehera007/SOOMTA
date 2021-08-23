@@ -296,7 +296,7 @@ td{
 	</div>
 	<div class="main">
 		<div class="mypageTitle">
-			<h1>'${dto.memId}'님의 개인 정보</h1>
+			<h1>'${memPderData.memId }'님의 개인 정보</h1>
 			<p>변동사항이 있을 경우, 숨타가 알 수 있게 수정해주세요.</p>
 		</div>
 	</div>
@@ -306,11 +306,11 @@ td{
 			  <table cellspacing="30">
 		         <tr>
 		             <th>아이디</th>
-		             <td>${memberCommand.memId}</td>
+		             <td>${memPerData.memId}</td>
 		         </tr>
 		         <tr>
 		             <th>가입일</th>
-		             <td>${memberCommand.memSince} </td>
+		             <td>${memPerData.memSince} </td>
 		         </tr>
 		         <tr>    
 		             <th>생년월일</th>
@@ -318,15 +318,15 @@ td{
 		         </tr>
 		         <tr>    
 		             <th>성별</th>
-		             <td>${memberCommand.memGender} </td>
+		             <td>${memPerData.memGender} </td>
 		         </tr>
 		         <tr>    
 		             <th>핸드폰</th>
-		             <td>${memberCommand.memPhone} </td>
+		             <td>${memPerData.memPhone} </td>
 		         </tr>
 		         <tr>    
 		             <th>이메일</th>
-		             <td>${memberCommand.memEmail} </td>
+		             <td>${memPerData.memEmail} </td>
 		         </tr>
 		         
 		         <tr>

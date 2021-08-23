@@ -9,6 +9,6 @@
 	<bean class="controller.member.MemberController"/>
 	<bean id="memberJoinService" class="service.member.MemberJoinService"/>
 	<bean id="memberRepository" class="repository.MemberRepository"/>
-	<bean class="service.member.MemberPerDataService" />
+	<bean id="memberPerDataService" class="service.member.MemberPerDataService" />
 
 </beans>

@@ -11,9 +11,8 @@ public class MemberRepository {
 	String namespace="mappers.memberMapper";
 	String statement;
 	
-	public MemberDTO memPerInfo(String memId) {//회원 상세정보
-		System.out.println(memId);
-		statement = namespace = ".memInfo";
+	public MemberDTO perData(String memId) {//회원 상세정보
+		statement = namespace + ".perData";
 		return sqlSession.selectOne(statement, memId);
 	}
 	

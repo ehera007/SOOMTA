@@ -19,11 +19,6 @@ import service.member.MemberPerDataService;
 @RequestMapping("member")
 public class MemberController {
 	
-	@RequestMapping("joinOk")//회원등록 완료 후 확인 페이지
-	public String joinOk() {
-		return "member/joinOk";
-	}
-	
 	@RequestMapping("myPage")//회원 마이페이지
 	public String myPage() {
 		return "member/myPage";
@@ -32,8 +27,8 @@ public class MemberController {
 	@Autowired
 	MemberPerDataService memberPerDataService;
 	@RequestMapping("perData")//개인정보
-	public String memPerInfo(HttpSession session,Model model) {
-		memberPerDataService.memPerInfo(model, session);
+	public String perData(HttpSession session,Model model) {
+		memberPerDataService.perData(model, session);
 		return "member/perData";
 	}
 	
