@@ -1,7 +1,19 @@
 package controller.member;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import command.BandCommand;
+import service.band.BandListService;
+import service.band.BandNumberService;
+import service.band.BandWriteService;
+import service.member.MemberPerDataService;
+
 
 @Controller
 @RequestMapping("member")
@@ -17,10 +29,14 @@ public class MemberController {
 		return "member/myPage";
 	}
 	
+	@Autowired
+	MemberPerDataService memberPerDataService;
 	@RequestMapping("perData")//개인정보
-	public String perData() {
+	public String memPerInfo(HttpSession session,Model model) {
+		memberPerDataService.memPerInfo(model, session);
 		return "member/perData";
 	}
+	
 	@RequestMapping("suJung")//개인정보 수정
 	public String memSuJung() {
 		return "member/suJung";
@@ -35,9 +51,9 @@ public class MemberController {
 		return "member/pwChange";
 	}
 	
-	@RequestMapping("outCon")//탈퇴전 비번확인
+	@RequestMapping("outCon")//탈퇴
 	public String memOutCon() {
-		return "member/outCon";
+		return "member/outCon";//탈퇴전 비밀번호 확인 폼
 	}
 
 	@RequestMapping("myClassList")//내 강의목록
@@ -58,17 +74,35 @@ public class MemberController {
 	public String wishClass() {
 		return "member/wishClass";
 	}
-	@RequestMapping("bandList")//내 모임 목록
-	public String bandList() {
-		return "member/bandList";
-	}
+		
 	@RequestMapping("wishBand")//찜한 모임
 	public String wishBand() {
 		return "member/wishBand";
 	}
+	
+	@Autowired
+	BandListService bandListService;
+	@RequestMapping("bandList")//내 모임 목록
+	public String bandList(Model model) {
+		bandListService.bandList(model);
+		return "member/bandList";
+	}
+	
+	@Autowired
+	BandWriteService bandWriteService;
+	@RequestMapping(value="bandJoin", method = RequestMethod.POST)
+	public String bandJoin(BandCommand bandCommand,//밴드 생성
+			HttpSession session) {
+		bandWriteService.bandWrite(bandCommand,session);
+		return "redirect:bandList";
+	}
+	
+	@Autowired
+	BandNumberService bandNumberService;//밴드 시퀀스 
 	@RequestMapping("bandOpen")//모임 개설
-	public String bandOpen() {
-		return "member/bandOpen";
+	public String bandOpen(Model model) {
+		bandNumberService.bandNo(model);
+		return "member/bandJoin";
 	}
 
 	@RequestMapping("classCart")//강의결제페이지

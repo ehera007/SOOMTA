@@ -269,12 +269,12 @@ function ctgrChange(e){
    var other = ["기타"];
    var target=document.getElementById("ctgrS");
    
-   if(e.value=="study") var d = study;
-   else if(e.value == "test") var d = test;
-   else if(e.value == "art") var d = art;
-   else if(e.value == "tech") var d = tech;
-   else if(e.value == "job") var d = job;
-   else if(e.value == "other") var d = other;
+   if(e.value=="학업") var d = study;
+   else if(e.value == "자격증/시험") var d = test;
+   else if(e.value == "예체능") var d = art;
+   else if(e.value == "재테크") var d = tech;
+   else if(e.value == "취업") var d = job;
+   else if(e.value == "기타") var d = other;
    
    target.options.length = 0;
    
@@ -313,8 +313,10 @@ function ctgrChange(e){
 		</div>
 	</div>
    <div class="openForm">
-      <form action="bandList" method="post" name="frm" 
+      <form action="bandJoin" method="post" name="frm" 
                enctype="multipart/form-data">
+      <input type="hidden" name="bandRegiDay"/>
+      <input type="hidden" name="memId"/>
       <table>
          <thead>
                <tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
@@ -322,18 +324,18 @@ function ctgrChange(e){
          </tr></thead>
          
          <tr><th style="padding-top: 10px;">소모임 번호</th>
-            <td>${bandNum}</td>   
+            <td><input name="bandNo" value="${bandNo}" readonly="readonly"/></td>   
          <tr><th>카테고리</th>
            <td>
-            <select id="ctgrL" onchange="ctgrChange(this)">
-                  <option value="study" >학업</option>
-                  <option value="test" >자격증/시험</option>
-                  <option value="art" >예체능</option>
-                  <option value="tech" >재테크</option>
-                  <option value="job" >취업</option>
-                  <option value="other" >기타</option>
+            <select id="ctgrL" onchange="ctgrChange(this)" name="bandCategoryL">
+                  <option value="학업" >학업</option>
+                  <option value="자격증/시험" >자격증/시험</option>
+                  <option value="예체능" >예체능</option>
+                  <option value="재테크" >재테크</option>
+                  <option value="취업" >취업</option>
+                  <option value="기타" >기타</option>
             </select>
-            <select id="ctgrS" style="margin-left:5px;">
+            <select id="ctgrS" style="margin-left:5px;" name="bandCategoryS">
                   <option value="option2">--세부--</option>            
             </select></td>
          </tr>
@@ -368,7 +370,7 @@ function ctgrChange(e){
             	<div class="detail">* 10자 이상 입력하세요</div>
             </td></tr>
       <tr><th>소모임 이미지</th>
-         <td><input type="file" name="bandImage" multiple="multiple"/>
+         <td><input type="file" name="bandImg" multiple="multiple"/>
                </td></tr>
          <tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px;">
                <input type="submit" value="밴드 등록" 
@@ -379,7 +381,7 @@ function ctgrChange(e){
          </table> 
       </form>
    </div>
-   <a href="/SOOMTA_2108/band/bandOk">소모임 가입 완료 후 확인페이지</a>
+
    <!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"
 		href="#" class="Top"> <img src="../images/top.png" alt="topicon">

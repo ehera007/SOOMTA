@@ -278,7 +278,7 @@ th{
 	</div>
 	
 	<!-- 중앙 : 개인정보 수정 폼 -->
-		<form action="suJungOk" method="post" name="frm"> 
+		<form action="perData" method="post" name="frm"> 
 			<table>
 				<thead>
          <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
@@ -312,7 +312,7 @@ th{
 						<div class="detail">* ex) soomta@email.com</div></td></tr>
 			
 					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 15px; ">
-						<input type="submit" value="수정 완료" 
+						<input type="submit" value="수정 완료"
 							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
 						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
 					 	background: transparent; color: #0F4C81;"

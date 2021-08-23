@@ -332,7 +332,20 @@ td a:active {
          <td>공개여부</td>
          <td>선호나이</td>
          <td>개설일</td>
-      </tr></table>
+      </tr>
+     	 <c:forEach items="${lists }" var="dto">
+			<tr>
+				<td>${dto.bandNo}</td>
+				<td>${dto.bandCategoryL}/${dto.bandCategoryS}</td>
+				<td>${dto.bandName}</td>
+				<td>${dto.bandTotal}</td>
+				<td>${dto.bandWay}</td>
+				<td>${dto.bandPublic}</td>
+				<td>${dto.bandAge}</td>
+				<td>${dto.bandRegiDay}</td>
+			</tr>
+		</c:forEach></tbody>
+      </table>
       <!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"
 		href="#" class="Top"> <img src="../images/top.png" alt="topicon">

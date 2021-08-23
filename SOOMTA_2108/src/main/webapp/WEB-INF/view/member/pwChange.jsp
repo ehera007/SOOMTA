@@ -296,7 +296,7 @@ $(function(){
 	</div>
 	
 	<!-- 중앙 : 비밀번호 변경 폼 -->
-		<form action="pwChagne" method="post" name="frm"> 
+		<form action="myPage" method="post" name="frm"> 
 			<table align="center" style="margin-bottom: 35px;">
 				 <h1 align ="center" style="color:#0F4C81; padding-bottom: 15px;">변경 비밀번호를 입력해 주세요!</h1>
 				
@@ -307,7 +307,7 @@ $(function(){
 					<td><input type="password" name="newPwCon" id="newPwCon"/><br />
 					
 				<tr><td colspan="2" align="center" >
-					<input type="button" value="비밀변호 변경" id="btn"
+					<input type="button" value="비밀변호 변경" id="btn" onclick="location.href='myPage'"
 					style="border: none; background: transparent; color: #0F4C81;
 					font-weight: bold; font-size: 16px;"/>
 						</td></tr>

@@ -5,7 +5,7 @@
 			http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
 			"
-> 
+>
 	<bean class="controller.band.BandCtgrController" />
 	<bean class="controller.band.ArtCtgrController" />
 	<bean class="controller.band.CtificateCtgrConroller" />
@@ -13,4 +13,10 @@
 	<bean class="controller.band.EmployementCtgrController" />
 	<bean class="controller.band.RetackCtgrConroller" />
 	<bean class="controller.band.BandDetailController" />
+	<bean class="service.band.BandNumberService" />
+	<bean class="service.band.BandWriteService" />
+	<bean class="service.band.BandListService" />
+	<bean class="repository.BandRepository"/>
+
+
 </beans>

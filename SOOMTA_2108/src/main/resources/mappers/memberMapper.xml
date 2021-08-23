@@ -3,6 +3,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.memberMapper">
 
+<select id="memInfo" parameterType="string" resultType="Model.MemberDTO">
+	select mem_Id memId,mem_Since memSince,mem_Dob memDob,mem_Gender memGender,
+			mem_Phone memPhone,mem_Email memEmail
+	from member
+	where mem_Id = #{memId}
+</select>
+
 <insert id="memInsert" parameterType="Model.MemberDTO">
 	insert into member (mem_Id, mem_Pw, mem_Name , mem_Phone , mem_Gender , 
 	mem_Dob , mem_Email , mem_Email_Ck , mem_Area , mem_Since) 

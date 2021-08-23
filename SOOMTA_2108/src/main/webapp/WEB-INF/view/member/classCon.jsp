@@ -307,7 +307,7 @@ td{
 	<!-- 중앙 : 강의정보 폼 -->
 	
 	<div class="ClassInfoForm">
-		<form action="classCancel" onsubmit="return cancel()" name="frm">
+		<form action="myClassList" onsubmit="return cancel()" name="frm">
 			<table>
 			<thead>
 		         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >

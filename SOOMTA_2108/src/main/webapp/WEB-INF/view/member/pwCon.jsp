@@ -270,7 +270,7 @@ ul {
 	</div>
 	
 	<!-- 중앙 : 비밀번호 확인 폼 -->
-		<form action="myPage" method="post" name="frm"> 
+		<form action="pwChange" method="post" name="frm"> 
 			<table align="center">
 				<h1 align ="center" style="color:#0F4C81">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
 				<thead>

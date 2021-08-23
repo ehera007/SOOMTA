@@ -296,38 +296,37 @@ td{
 	</div>
 	<div class="main">
 		<div class="mypageTitle">
-			<h1>'${ID}'님의 개인 정보</h1>
+			<h1>'${dto.memId}'님의 개인 정보</h1>
 			<p>변동사항이 있을 경우, 숨타가 알 수 있게 수정해주세요.</p>
 		</div>
 	</div>
 	
 	<!-- 중앙 : 개인정보 폼 -->
 	<div class="perForm">
-		<form action="perForm"name="frm" >
 			  <table cellspacing="30">
 		         <tr>
 		             <th>아이디</th>
-		             <td>${memId}</td>
+		             <td>${memberCommand.memId}</td>
 		         </tr>
 		         <tr>
 		             <th>가입일</th>
-		             <td>${memSince} </td>
+		             <td>${memberCommand.memSince} </td>
 		         </tr>
 		         <tr>    
 		             <th>생년월일</th>
-		             <td>${memDob} </td>
+		             <td>${memberCommand.memDob} </td>
 		         </tr>
 		         <tr>    
 		             <th>성별</th>
-		             <td>${memGender} </td>
+		             <td>${memberCommand.memGender} </td>
 		         </tr>
 		         <tr>    
 		             <th>핸드폰</th>
-		             <td>${memPhone} </td>
+		             <td>${memberCommand.memPhone} </td>
 		         </tr>
 		         <tr>    
 		             <th>이메일</th>
-		             <td>${memEmail} </td>
+		             <td>${memberCommand.memEmail} </td>
 		         </tr>
 		         
 		         <tr>
@@ -342,7 +341,6 @@ td{
          		 </tr>
 
 	         </table>
-		</form>
 	</div>
 
 	<!-- TOP이동 -->

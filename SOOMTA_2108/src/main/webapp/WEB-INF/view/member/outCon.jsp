@@ -278,13 +278,13 @@ ul {
 	</div>
 
 	<!-- 중앙 : 탈퇴확인 폼 -->
-		<form action="main" method="post" 
+		<form action="<c:url value='/main'/>" method="post" 
 				onsubmit="return outConfirm()" name="frm">
 			<table align="center">
 				<h1 align ="center" style="color:#0F4C81">탈퇴 전 비밀번호를 다시 입력해 주세요.</h1>
 			<thead>
 				<tr><td style="padding-left: 40px;">비밀번호</td>
-					<td><input type="password" name="memPw" style="width:250px;"/>
+					<td><input type="password" name="memPw" style="width:250px;"required/>
 						</td></tr></thead>
 				<tr><td colspan="2" align="center">
 					<input type="submit" value="탈퇴" 

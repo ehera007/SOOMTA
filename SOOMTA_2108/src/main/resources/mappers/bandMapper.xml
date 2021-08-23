@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.bandMapper">
+
+<select id="bandNo" resultType="string">
+	select num_seq.nextval from dual
+</select>
+
+<select id="bandList" resultType="Model.BandDTO">
+	select band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
+			band_Category_S bandCategoryS,band_Img bandImg, band_RegiDay bandRegiDay,
+			band_Introduce bandIntroduce, band_Gender bandGender, band_Way bandWay,
+			band_Total bandTotal, band_Public bandPublic, band_Age bandAge, mem_Id memId
+	from band
+</select>
+
+<insert id="bandWrite" parameterType="Model.BandDTO">
+	insert into band(band_No, band_Name, band_Category_L, band_Category_S,
+			band_Img, band_RegiDay, band_Introduce, band_Gender, band_Way,
+			band_Total, band_Public, band_Age, mem_Id)
+	values(#{bandNo},#{bandName},#{bandCategoryL},#{bandCategoryS},
+		#{bandImg},sysdate,#{bandIntroduce},#{bandGender},#{bandWay},
+		#{bandTotal},#{bandPublic},#{bandAge},#{memId})
+</insert>
+</mapper>
