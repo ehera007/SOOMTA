@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,7 @@ import service.employee.EmployeeJoinService;
 import service.employee.EmployeeListService;
 import service.employee.EmployeePwUpdateService;
 import service.employee.EmployeeUpdateService;
+import validator.EmployeeUpdateValidator;
 
 @Controller
 @RequestMapping("emp")
@@ -115,21 +117,31 @@ public class EmployeeController {
 		employeeInfoService.empInfo(empId,model);
 		return "emp/emp/empPwCon";
 	}
-	//08.22
 	@Autowired
 	EmployeePwUpdateService employeePwUpdateService;
-	@RequestMapping(value="empPwChange", method=RequestMethod.POST)//pw 수정
-	public String empPwChange(@RequestParam(value="empPw") String empPw, Model model, HttpSession session) {
-		int i = employeePwUpdateService.empPwUpdate(empPw, model, session);
+	@RequestMapping(value="empPwChange", method=RequestMethod.POST)//관리자 pw 확인 및 수정
+	public String empPwChange(@RequestParam(value="empId") String empId, @RequestParam(value="empPw") String empPw, Model model, HttpSession session) {
+		employeeInfoService.empInfo(empId,model);
+		int i = employeePwUpdateService.empPwCon(empPw, model, session);
 		if(i == 1) {
-			return "emp/emp/empPwCon";
+			return "emp/pwConErr";
 		}else {
 			return "emp/emp/empPwChange";
 		}
 	}
+	//리턴될 때 에러메세지 안 뜸 & 리턴될때 정보 갖고오게 하기
+	@RequestMapping(value="empPwChangeOk", method=RequestMethod.POST)//관리자 pw수정 완료
+	public String empPwChangeOk(EmployeeCommand employeeCommand, Errors errors) {
+		new EmployeeUpdateValidator().validate(employeeCommand, errors);
+		employeePwUpdateService.empPwUpdate(employeeCommand, errors);
+		if(errors.hasErrors()) {
+			return "emp/emp/empPwChange";
+		}else {
+			String empId = employeeCommand.getEmpId();
+			return "redirect:empInfo?empId="+empId;
+		}
+	}
 	//
-	
-	
 	@Autowired
 	EmployeeUpdateService employeeUpdateService;
 	@RequestMapping(value="empModOk", method=RequestMethod.POST)//관리자 수정 완료
@@ -138,7 +150,6 @@ public class EmployeeController {
 		String empId = employeeCommand.getEmpId();
 		empId = empId.replace(",", "");
 		return "redirect:empInfo?empId="+empId;
-		//return "redirect:empInfo";
 	}
 	@Autowired
 	EmployeeDelService employeeDelService;
@@ -159,6 +170,37 @@ public class EmployeeController {
 		employeeJoinService.empInsert(employeeCommand);
 		return "redirect:empList";
 	}
+	@RequestMapping("myInfo")
+	public String myInfo(HttpSession session, Model model) {//내정보 보기
+		employeeInfoService.myInfo(session,model);
+		return "emp/myPage/myInfo";
+	}
+	@RequestMapping("myInfoMod")
+	public String myInfoMod(HttpSession session, Model model) {//내정보 수정
+		employeeInfoService.myInfo(session, model);
+		return "emp/myPage/myInfoMod";
+	}
+	@RequestMapping(value="myInfoModOk", method=RequestMethod.POST)
+	public String myInfoModOk(EmployeeCommand employeeCommand, Errors errors, HttpSession session) {//내정보 수정완료
+		employeeUpdateService.myInfoUpdate(employeeCommand,errors, session);
+		if(errors.hasErrors()) {
+			return "emp/myPage/myInfoMod";
+		}
+		return "redirect:myInfo";
+	}
+	@RequestMapping(value="myPwChange")
+	public String myPwChange() {//내 pw 변경
+		return "emp/myPage/myPwChange";
+	}
+	@RequestMapping(value="myPwChangeOk", method=RequestMethod.POST)
+	public String myPwChangeOk(EmployeeCommand employeeCommand, Errors errors, HttpSession session) {//내 pw 변경 완료
+		employeePwUpdateService.myPwUpdate(employeeCommand, errors, session);
+		if(errors.hasErrors()) {
+			return "emp/myPage/myPwChange";
+		}
+		return "redirect:main";
+	}
+	
 	
 	
 }

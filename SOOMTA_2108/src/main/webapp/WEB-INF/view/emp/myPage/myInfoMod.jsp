@@ -21,7 +21,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width: 600px;
+	width: 500px;
 }
 
 thead th {
@@ -56,13 +56,11 @@ tbody td a {
 	font-weight: bold;
 	margin: 30px 10px 10px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
 }
 
 .allbtn {
 	height: 50px;
-	width: 120px;
+	width: 180px;
 	margin: 0 auto;
 }
 
@@ -161,7 +159,7 @@ function funcCon(){
 	}
 </script>
 <meta charset="UTF-8">
-<title>비밀번호 확인</title>
+<title>내정보 수정</title>
 </head>
 <body>
 <body>
@@ -182,30 +180,67 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="empPwChange?empId=${emp.empId}" method="post" name="frm">
+	<form:form action="myInfoModOk" method="post" name="frm" onsubmit="return funcCon()" modelAttribute="employeeCommand"> 
+<input type="hidden" name="empId" value="${my.empId }"/>
 		<table>
 		<thead>
-			<tr>
-				<th colspan="2">'${emp.empId }' 비밀번호 변경
+			<tr
+				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
+				<th colspan="2">내 정보 수정
 				</th>
 			</tr></thead>
-		<tbody>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="empPw" size="30" required/>
-				<span class="detail"> * 보안을 위해 재입력해주세요.</span>		
-				</td></tr>
+								<tbody>
+						<tr class="first_tr">
+							<th>아이디</th>
+							<td>${my.empId }</tr>
+						<tr>
+							<th>이름</th>
+							<td>${my.empName }</td>
+						</tr>
+						<tr>
+							<th>담당 파트</th>
+							<td>${my.empJob }</td>
+						</tr>
+						<tr>
+							<th>입사일</th>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${my.hireDate }"/>
+						</td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td><input type="text" name="empPhone" minlength="11"
+								required size="25" maxlength="11" value="${my.empPhone }"/>
+								<div class="detail">* ex) 01012341234</div></td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td><input type="text" id="email1" name="empEmail" value="${my.empEmail }"
+								required size="25">
+								<div class="detail">* ex) email@email.com</div></td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td>
+							<input type="text" name="empAddr" 
+						value="${my.empAddr }"required size="25"
+								id="sample4_roadAddress" /> <a
+								href="javascript:sample4_execDaumPostcode();">주소 검색</a></td>
+						</tr>
+						<tr><th>비밀번호 확인</th><td><input type="password" name="empPw" size="25" required/>
+								<div class="detail">* 보안을 위해 한 번 더 입력</div>
+								<form:errors path="empPw"/><br/>
+								</td></tr>
 					</tbody>
 			<tfoot>
 			<tr>
 					<tr><td colspan="2" align="center"><div class="allbtn">
-				<input type="button" class="btn" value="취소" 
-					onclick="location.href='empInfo?empId=${emp.empId}'" />
-				<input type="submit" class="btn" value="확인" />
+				<input type="button" class="btn" value="수정 취소" 
+					onclick="location.href='myInfo'" />
+				<input type="submit" class="btn" value="수정 완료" />
 				</div>
 			</td></tr></tfoot>
 		</table>
-		</form>
+		</form:form>
 	</div>
 
 

@@ -14,7 +14,7 @@ SqlSession sqlSession;
 String namespace="mappers.employeeMapper";
 String statement;
 
-public EmployeeDTO empInfo(String empId) {//관리자 정보
+public EmployeeDTO empInfo(String empId) {//관리자 정보, 내정보
 	statement = namespace + ".empInfo";
 	return sqlSession.selectOne(statement,empId);
 }
@@ -37,5 +37,15 @@ public void empUpdate(EmployeeDTO dto) {//관리자 수정
 	statement = namespace + ".empUpdate";
 	int i = sqlSession.update(statement, dto);
 	System.out.println(i+"개의 관리자 정보를 수정하였습니다.");
+}
+public void empPwUpdate(EmployeeDTO dto){//관리자 pw변경
+	statement = namespace + ".empPwUpdate";
+	int i = sqlSession.update(statement,dto);
+	System.out.println(i+"개의 pw를 수정하였습니다.");
+}
+public void myInfoUpdate(EmployeeDTO dto) {//내 정보 수정
+	statement = namespace + ".myInfoUpdate";
+	int i = sqlSession.update(statement, dto);
+	System.out.println(i+"_내 정보를 수정하였습니다.");
 }
 }

@@ -62,7 +62,7 @@ tbody td a {
 
 .allbtn {
 	height: 50px;
-	width: 120px;
+	width: 180px;
 	margin: 0 auto;
 }
 
@@ -90,17 +90,6 @@ input {
 			return false;
 		});
 	});
-</script>
-<!-- 수정 전 확인 알림창 -->
-<script type="text/javascript">
-function funcCon(){
-	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
-	if(cfm){
-		document.getElementById('frm').submit();
-	}else{
-		return false;
-	}
-}
 </script>
 <!-- 다음 주소 -->
 <script
@@ -160,8 +149,36 @@ function funcCon(){
 				}).open();
 	}
 </script>
+<!-- 비밀번호 확인 -->
+<script>
+    function check_pw(){
+    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+        if(document.getElementById('pw').value==document.getElementById('pw2').value){
+            document.getElementById('check').innerHTML='PW 일치'
+            document.getElementById('check').style.color='#0F4C81';
+            document.getElementById('check').style.fontSize='15px';
+            document.getElementById('check').style.fontWeight='900';
+        }
+        else{
+            document.getElementById('check').innerHTML='PW 불일치';
+            document.getElementById('check').style.color='red';
+            document.getElementById('check').style.fontSize='15px';
+            document.getElementById('check').style.fontWeight='900';
+        }}}
+</script>
+<!-- 수정 전 확인 알림창 -->
+<script type="text/javascript">
+function funcCon(){
+	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
+	if(cfm){
+		document.getElementById('frm').submit();
+	}else{
+		return false;
+	}
+}
+</script>
 <meta charset="UTF-8">
-<title>비밀번호 확인</title>
+<title>내 PW 변경</title>
 </head>
 <body>
 <body>
@@ -182,27 +199,44 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="empPwChange?empId=${emp.empId}" method="post" name="frm">
+	<form action="myPwChangeOk" method="post" name="frm" onsubmit="return funcCon()"> 
 		<table>
 		<thead>
-			<tr>
-				<th colspan="2">'${emp.empId }' 비밀번호 변경
+			<tr
+				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
+				<th colspan="2">내 비밀번호 변경
 				</th>
 			</tr></thead>
-		<tbody>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="empPw" size="30" required/>
-				<span class="detail"> * 보안을 위해 재입력해주세요.</span>		
-				</td></tr>
+								<tbody>
+							<tr>
+							<th>현재 비밀번호</th>
+							<td><input type="password" name="oldPw"
+								size="30" required/>
+								<div class="detail">* 현재 비밀번호 입력</div></td>
+						</tr>
+						<tr>
+							<th>비밀번호 변경</th>
+							<td><input type="password" name="empPw"
+								size="30" required
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
+								class="pw" id="pw" onchange="check_pw()"/>
+								<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td>
+						</tr>
+						<tr>
+							<th>비밀번호 변경 확인</th>
+							<td><input type="password" name="empPwCon" required
+								size="30"
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
+								class="pw" id="pw2" onkeyup="check_pw()"/>
+	&nbsp;<span id="check"></span><form:errors path="empPwCon"/></td>
+						</tr>
 					</tbody>
 			<tfoot>
 			<tr>
 					<tr><td colspan="2" align="center"><div class="allbtn">
 				<input type="button" class="btn" value="취소" 
-					onclick="location.href='empInfo?empId=${emp.empId}'" />
-				<input type="submit" class="btn" value="확인" />
-				</div>
+					onclick="location.href='main'" />
+						<input type="submit" class="btn" value="변경" /></div>
 			</td></tr></tfoot>
 		</table>
 		</form>

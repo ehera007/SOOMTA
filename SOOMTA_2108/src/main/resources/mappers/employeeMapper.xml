@@ -38,6 +38,17 @@
 	where emp_id = #{empId}	
 </update>
 
+<update id="empPwUpdate" parameterType="Model.EmployeeDTO">
+	update employees
+	set emp_Pw = #{empPw}
+	where emp_id = #{empId}
+</update>
+
+<update id="myInfoUpdate" parameterType="Model.EmployeeDTO">
+	update employees
+	set emp_Addr = #{empAddr}, emp_Email = #{empEmail}, emp_Phone = #{empPhone}
+	where emp_id = #{empId}	
+</update>
 </mapper>
 
 

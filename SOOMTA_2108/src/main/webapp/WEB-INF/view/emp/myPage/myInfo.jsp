@@ -1,54 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ include file="../include/tags.jsp"%>
+<%@ include file="../../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="<c:url value='/include/mainStyle.css'/>" media="all"
-	type="text/css" />
+<link rel="stylesheet" href="<c:url value='/include/mainStyle.css'/>"
+	media="all" type="text/css" />
 <style type="text/css">
-/*중앙*/
-.dropMenu {
-	align-items: center;
-	display:flex;
-	justify-content: space-evenly;
+@charset "UTF-8";
+/*중앙 main*/
+.main {
+	margin: 20px auto;
 }
 
-.imgBox {
-	width: 230px;
-	height: 180px;
+/* 테이블 스타일 */
+table {
+	border: 2px solid #0F4C81;
+	border-radius: 12px;
+	box-shadow: 3px 3px 3px 3px #D5D5D5;
+	border-spacing: 0px;
+	margin: 50px auto 70px auto;
+	width:450px;
+}
+
+thead th {
+	height: 50px;
 	background-color: #0F4C81;
-	margin: 50px 20px;
 	color: white;
-	text-align:center;
+	font-size: 25px;
+	border-radius: 8px 8px 0px 0px;
+}
+tbody th {
+	padding-top: 30px;
+	width: 50%;
 }
 
-.dropList li {
-	text-align: center;
-	margin: 10px 0px;
-	font-size: 18px;
-	list-style:none;
+tbody td {
+	padding-top: 30px;
+	width: 50%;
 }
 
-.dropList a:link {
-	color: white;
-}
-
-.dropList a:visited {
-	color: white;
-}
-
-.dropList a:hover {
-	color: white;
-}
-/*이미지 사이즈 관련 스타일*/
-img {
-	width: auto;
-	height: 100%;
+.btn {
+	height: 30px;
+	background-color: transparent;
+	color: #0F4C81;
+	font-weight: bold;
+	margin: 30px 10px 10px 10px;
+	border: none;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$('.Top').click(function() {
@@ -59,12 +61,23 @@ img {
 		});
 	});
 </script>
+<!-- 탈퇴 확인 알림창 -->
+<script type="text/javascript">
+	function funcCon() {
+		if (confirm('정말 탈퇴하시겠습니까?\n*탈퇴 후 복구할 수 없습니다.')) {
+			location.href = 'empDel?empId=${empId}';
+		} else {
+			return false;
+		}
+	}
+</script>
 <meta charset="UTF-8">
-<title>관리자 페이지</title>
+<title>관리자 정보</title>
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
+
 		<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
 			alt="SOOMTA" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="nav">
@@ -76,56 +89,64 @@ img {
 			</div>
 		</div>
 	</div>
+
+
+	<!-- 중앙 -->
 	<div class="main">
-		<div class="mypageMenu">
-			<div class="dropMenu">
-				<div class="imgBox">
-					<div class="imgTitle">
-						<h1>게시글 관리</h1>
-					</div>
-					<div class="dropList">
-						<li><a href="boardList">게시글 보기</a></li>
-						<li><a href="boardWrite">게시글 작성</a></li>
-					</div></div>
+		<table>
+			<thead>
+				<tr
+					style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
+					<th colspan="2">내 정보 확인</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>아이디</th>
+					<td>${my.empId }</td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td>${my.empName }</td>
+				</tr>
+				<tr>
+					<th>담당 파트</th>
+					<td>${my.empJob }</td>
+				</tr>
+				<tr>
+					<th>입사일</th>
+					<td><fmt:formatDate value="${my.hireDate }" type="date" pattern="yyyy-MM-dd"/></td>
+				</tr>
+				<tr>
+					<th>전화번호</th>
+					<td>${my.empPhone }</td>
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td>${my.empEmail }</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td>${my.empAddr }</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th colspan="2">
+						<input class="btn" type="button" value="수정" onclick="location.href='myInfoMod'" /> 
+						<input class="btn" type="button" value="확인" onclick="location.href='main'" /> 
+						</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
 
-					<div class="imgBox">
-						<div class="imgTitle">
-							<h1>회원 관리</h1>
-						</div>
-						<div class="dropList">
-							<li><a href="memList">일반 회원</a></li>
-							<li><a href="tutorList">튜터 회원</a></li>
-						</div>
-					</div>
-
-					<div class="imgBox">
-						<div class="imgTitle">
-							<h1>관리자 관리</h1>
-						</div>
-						<div class="dropList">
-							<li><a href="empList">관리자 보기</a></li>
-							<li><a href="empJoin">관리자 등록</a></li>
-						</div>
-					</div>
-					
-					<div class="imgBox">
-						<div class="imgTitle">
-							<h1>내정보</h1>
-						</div>
-						<div class="dropList">
-							<li><a href="myInfo">내정보 확인</a></li>
-							<li><a href="myPwChange">pw 변경</a></li>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
-		class="Top"> <img src="<c:url value='/images/top.png'/>"
-		alt="topicon" />
+		class="Top"> <img src="../images/top.png" alt="topicon">
 	</a>
+
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">
 
@@ -150,24 +171,29 @@ img {
 						<p>숨타</p>
 						<ul>
 							<li><a href="<c:url value='/about/soomta'/>" target="_blank">회사소개</a></li>
-							<li><a href="<c:url value='/about/service'/>" target="_blank">서비스소개</a></li>
+							<li><a href="<c:url value='/about/service'/>"
+								target="_blank">서비스소개</a></li>
 							<li><a href="<c:url value='/about/hire'/>" target="_blank">인재채용</a></li>
 						</ul>
 					</div>
 					<div class="footer-menu">
 						<p>튜터안내</p>
 						<ul>
-							<li><a href="<c:url value='/help/tutorNotice'/>" target="_blank">공지사항</a></li>
+							<li><a href="<c:url value='/help/tutorNotice'/>"
+								target="_blank">공지사항</a></li>
 							<li><a href="<c:url value='/help/tutor'/>" target="_blank">이용안내</a></li>
-							<li><a href="<c:url value='/help/tutorQ'/>" target="_blank">자주 묻는 질문</a></li>
+							<li><a href="<c:url value='/help/tutorQ'/>" target="_blank">자주
+									묻는 질문</a></li>
 						</ul>
 					</div>
 					<div class="footer-menu">
 						<p>고객센터</p>
 						<ul>
-							<li><a href="<c:url value='/help/memNotice'/>" target="_blank">공지사항</a></li>
+							<li><a href="<c:url value='/help/memNotice'/>"
+								target="_blank">공지사항</a></li>
 							<li><a href="<c:url value='/help/member'/>" target="_blank">이용안내</a></li>
-							<li><a href="<c:url value='/help/memQ'/>" target="_blank">자주 묻는 질문</a></li>
+							<li><a href="<c:url value='/help/memQ'/>" target="_blank">자주
+									묻는 질문</a></li>
 						</ul>
 					</div>
 				</div>
@@ -176,10 +202,11 @@ img {
 		<div class="footer-bottom">
 			<div class="footer-bottommenu">
 				<div class="footer-submenu">
-					<a href="<c:url value='/policy/service'/>" target="_blank">이용약관 </a> 
-					<a href="<c:url value='/policy/privacy'/>" target="_blank">개인정보처리방침 </a> 
-					 <a href="<c:url value='/policy/refund'/>" target="_blank">환불정책
-					</a> <a href="<c:url value='/policy/info'/>" target="_blank">사업자정보확인 </a>
+					<a href="<c:url value='/policy/service'/>" target="_blank">이용약관
+					</a> <a href="<c:url value='/policy/privacy'/>" target="_blank">개인정보처리방침
+					</a> <a href="<c:url value='/policy/refund'/>" target="_blank">환불정책
+					</a> <a href="<c:url value='/policy/info'/>" target="_blank">사업자정보확인
+					</a>
 				</div>
 				<div class="footer-app">
 					<a href="#">APP 다운 </a>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ include file="../../include/tags.jsp"%>
+<%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,77 +8,75 @@
 	media="all" type="text/css" />
 <style type="text/css">
 @charset "UTF-8";
-/*중앙 main*/
+/*중앙 구역 분할 */
 .main {
-	margin: 50px auto 70px auto;
+	width: 800px;
+	margin: 0 auto;
 }
-.table{
-width:800px;
-margin:0 auto;
-}
+
 /* 테이블 스타일 */
 table {
-    width: 100%;
-    border-top: 2px solid #0F4C81;
-    border-collapse: collapse;
-  }
-  
-thead{
- background-color: #0F4C81; 
- color: white; 
+	border: 2px solid #0F4C81;
+	border-radius: 12px;
+	box-shadow: 3px 3px 3px 3px #D5D5D5;
+	border-spacing: 0px;
+	margin: 50px auto 70px auto;
+	width: 600px;
 }
-tbody  th, td {
-    border-bottom: 1px solid #0F4C81;
-    padding: 5px;
-    text-align: center;
-  }
 
-  tbody tr:nth-child(2n) {
-    background-color:#F4F7F8; 
-    
-  }
-td a {
-	font-weight:bold;
-	color:black;
+thead th {
+	height: 50px;
+	background-color: #0F4C81;
+	color: white;
+	font-size: 25px;
+	border-radius: 8px 8px 0px 0px;
 }
-td a:hover {
-	font-weight:bold;
-	color:black;
+
+tbody th {
+	padding-top: 30px;
+	width: 30%;
 }
-td a:link {
-	font-weight:bold;
-	color:black;
+
+tbody td {
+	padding-top: 30px;
+	width: 70%;
 }
-td a:visited {
-	font-weight:bold;
-	color:black;
+
+tbody td a {
+	font-size: 12px;
+	color: #0F4C81;
+	font-weight: bold;
+	margin-left: 3px;
 }
-td a:active {
-	font-weight:bold;
-	color:black;
-}
-/*검색 버튼 스타일*/
+
 .btn {
 	height: 30px;
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
+	margin: 30px 10px 10px 10px;
 	border: none;
+	/*border:1px solid #0F4C81;
+	border-radius:4px;*/
 }
-/*검색 부분*/
-.search{
-	margin: 30px auto;
-	text-align: center;
+
+.allbtn {
+	height: 50px;
+	width: 120px;
+	margin: 0 auto;
 }
-/*등록 버튼 스타일*/
-.joinbtn {
-	height: 30px;
-	background-color: transparent;
-	color: #0F4C81;
-	font-weight: bold;
-	border: none;
-	margin: 0 0 0 15px;
-	float: right;
+
+.err {
+	color: red;
+	font-size: 15px;
+	text-align: left;
+	font-weight:bold;
+}
+
+input {
+	display: inline-block;
+	float: left;
+	margin-right: 5px;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -93,38 +91,82 @@ td a:active {
 		});
 	});
 </script>
-<!-- 관리자 id 클릭 시 관리자 정보 페이지로 이동 알림창 -->
-<script>
-$(document)
-.ready(
-		function() {
-			$('.empInfo')
-					.click(
-							function() {
-								alert('잠시 후 관리자 정보 페이지로 이동합니다.');
-							});
-		});
+<!-- 수정 전 확인 알림창 -->
+<script type="text/javascript">
+function funcCon(){
+	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
+	if(cfm){
+		document.getElementById('frm').submit();
+	}else{
+		return false;
+	}
+}
 </script>
-<!-- 관리자 등록 클릭 시 관리자 등록 페이지로 이동 알림창 -->
+<!-- 다음 주소 -->
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-$(document)
-.ready(
-		function() {
-			$('.joinbtn')
-					.click(
-							function() {
-								alert('잠시 후 관리자 등록 페이지로 이동합니다.');
-							});
-		});
-</script>
+	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+	function sample4_execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+						// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var roadAddr = data.roadAddress; // 도로명 주소 변수
+						var extraRoadAddr = ''; // 참고 항목 변수
+
+						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+							extraRoadAddr += data.bname;
+						}
+						// 건물명이 있고, 공동주택일 경우 추가한다.
+						if (data.buildingName !== '' && data.apartment === 'Y') {
+							extraRoadAddr += (extraRoadAddr !== '' ? ', '
+									+ data.buildingName : data.buildingName);
+						}
+						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+						if (extraRoadAddr !== '') {
+							extraRoadAddr = ' (' + extraRoadAddr + ')';
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById("sample4_roadAddress").value = roadAddr;
+
+						// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+						if (roadAddr !== '') {
+							document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+						} else {
+							document.getElementById("sample4_extraAddress").value = '';
+						}
+
+						var guideTextBox = document.getElementById("guide");
+						// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+						if (data.autoRoadAddress) {
+							var expRoadAddr = data.autoRoadAddress
+									+ extraRoadAddr;
+							guideTextBox.innerHTML = '(예상 도로명 주소 : '
+									+ expRoadAddr + ')';
+							guideTextBox.style.display = 'block';
+
+						} else {
+							guideTextBox.innerHTML = '';
+							guideTextBox.style.display = 'none';
+						}
+					}
+				}).open();
+	}
+</script>
 <meta charset="UTF-8">
-<title>관리자 리스트</title>
+<title>비밀번호 확인</title>
 </head>
+<body>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-
 		<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
 			alt="SOOMTA" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="nav">
@@ -140,52 +182,32 @@ $(document)
 
 	<!-- 중앙 -->
 	<div class="main">
-	<div class="table">
-	<c:if test="${!empty empList }">
-	<table><thead>
-	<tr style="font-size: 25px; padding: 10px; height:80px;">
-				<th colspan="5">등록 된 관리자 리스트</th></tr>
-		<tr style="padding-bottom:20px; height:40px;">
-			<th width="10%">No.</th>
-			<th width="30%">아이디</th>
-			<th width="20%">이름</th>
-			<th width="20%">담당 파트</th>
-			<th width="20%">입사일</th>
-		</tr></thead><tbody>
-		<c:forEach items="${empList }" var="dto">
-		<c:set var="i" value="${i+1 }"/>
+	<form action="empPwChange?empId=${emp.empId}" method="post" name="frm">
+		<table>
+		<thead>
 			<tr>
-				<td>${i}</td>
-				<td><a href="empInfo?empId=${dto.empId }" class="empInfo">${dto.empId }</a></td>
-				<td>${dto.empName }</td>
-				<td>${dto.empJob}</td>
-				<td><fmt:formatDate value="${dto.hireDate }" type="date" pattern="yyyy-MM-dd"/></td>
-			</tr>
-		</c:forEach></tbody>
-	</table></c:if>
-	<c:if test="${empty empList }">
-	등록된 직원 없습니다.</c:if>
-	
-	<!-- https://jg-han.tistory.com/38 참고해보기
-				https://dotheright.tistory.com/218 참고해보기(페이징 포함)
-			 -->
-			<div class="search">
-				<form>
-				<select name="ctgr">
-				<option value="id">ID</option>
-				<option value="name">이름</option>
-				<option value="job">담당 파트</option>
-				</select>
-				<input type = "text" name="search" value=""/>
-				<input type="submit" class="btn" value="검색"/>
-				</form>
-			</div>
-				<input class="joinbtn" type="button" value="관리자 등록"
-					onclick="location.href='empJoin'" />
-			</div>
+				<th colspan="2">PW를 다시 확인해주세요!
+				</th>
+			</tr></thead>
+		<tbody>
+			<tr>
+				<th>비밀번호</th>
+				<td><input type="password" name="empPw" size="30" required/>
+				<span class="err">${errPw }</span></td></tr>
+					</tbody>
+			<tfoot>
+			<tr>
+					<tr><td colspan="2" align="center"><div class="allbtn">
+				<input type="button" class="btn" value="취소" 
+					onclick="javascript:history.go(-2);" />
+				<input type="submit" class="btn" value="확인" />
+				</div>
+			</td></tr></tfoot>
+		</table>
+		</form>
 	</div>
 
-	
+
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
 		class="Top"> <img src="../images/top.png" alt="topicon">
