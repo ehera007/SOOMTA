@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -120,7 +121,8 @@ public class EmployeeController {
 	@Autowired
 	EmployeePwUpdateService employeePwUpdateService;
 	@RequestMapping(value="empPwChange", method=RequestMethod.POST)//관리자 pw 확인 및 수정
-	public String empPwChange(@RequestParam(value="empId") String empId, @RequestParam(value="empPw") String empPw, Model model, HttpSession session) {
+	public String empPwChange(@RequestParam(value="empId") String empId, @RequestParam(value="empPw") String empPw, Model model, 
+			HttpSession session, @ModelAttribute(value = "employeeCommand") EmployeeCommand employeeCommand) {
 		employeeInfoService.empInfo(empId,model);
 		int i = employeePwUpdateService.empPwCon(empPw, model, session);
 		if(i == 1) {
@@ -133,22 +135,19 @@ public class EmployeeController {
 	@RequestMapping(value="empPwChangeOk", method=RequestMethod.POST)//관리자 pw수정 완료
 	public String empPwChangeOk(EmployeeCommand employeeCommand, Errors errors) {
 		new EmployeeUpdateValidator().validate(employeeCommand, errors);
-		employeePwUpdateService.empPwUpdate(employeeCommand, errors);
 		if(errors.hasErrors()) {
 			return "emp/emp/empPwChange";
-		}else {
-			String empId = employeeCommand.getEmpId();
-			return "redirect:empInfo?empId="+empId;
 		}
+		employeePwUpdateService.empPwUpdate(employeeCommand, errors);
+		String empId = employeeCommand.getEmpId();
+		return "redirect:empInfo?empId="+empId;
 	}
-	//
 	@Autowired
 	EmployeeUpdateService employeeUpdateService;
 	@RequestMapping(value="empModOk", method=RequestMethod.POST)//관리자 수정 완료
 	public String empModOk(EmployeeCommand employeeCommand) {
 		employeeUpdateService.empUpdate(employeeCommand);
 		String empId = employeeCommand.getEmpId();
-		empId = empId.replace(",", "");
 		return "redirect:empInfo?empId="+empId;
 	}
 	@Autowired
@@ -176,12 +175,13 @@ public class EmployeeController {
 		return "emp/myPage/myInfo";
 	}
 	@RequestMapping("myInfoMod")
-	public String myInfoMod(HttpSession session, Model model) {//내정보 수정
+	public String myInfoMod(HttpSession session, Model model, @ModelAttribute(value = "employeeCommand") EmployeeCommand employeeCommand) {//내정보 수정
 		employeeInfoService.myInfo(session, model);
 		return "emp/myPage/myInfoMod";
 	}
 	@RequestMapping(value="myInfoModOk", method=RequestMethod.POST)
 	public String myInfoModOk(EmployeeCommand employeeCommand, Errors errors, HttpSession session) {//내정보 수정완료
+		new EmployeeUpdateValidator().validate(employeeCommand, errors);
 		employeeUpdateService.myInfoUpdate(employeeCommand,errors, session);
 		if(errors.hasErrors()) {
 			return "emp/myPage/myInfoMod";

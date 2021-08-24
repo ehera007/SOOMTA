@@ -41,7 +41,7 @@ public void empUpdate(EmployeeDTO dto) {//관리자 수정
 public void empPwUpdate(EmployeeDTO dto){//관리자 pw변경
 	statement = namespace + ".empPwUpdate";
 	int i = sqlSession.update(statement,dto);
-	System.out.println(i+"개의 pw를 수정하였습니다.");
+	System.out.println(i+"개의 pw를 변경하였습니다.");
 }
 public void myInfoUpdate(EmployeeDTO dto) {//내 정보 수정
 	statement = namespace + ".myInfoUpdate";

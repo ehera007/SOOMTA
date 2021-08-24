@@ -192,7 +192,7 @@ function funcCon(){
 		<tbody>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="empPw" size="30" required/>
+				<td><input type="password" name="empPw" size="30" required autofocus/>
 				<span class="detail"> * 보안을 위해 재입력해주세요.</span>		
 				</td></tr>
 					</tbody>

@@ -91,17 +91,6 @@ input {
 		});
 	});
 </script>
-<!-- 수정 전 확인 알림창 -->
-<script type="text/javascript">
-function funcCon(){
-	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
-	if(cfm){
-		document.getElementById('frm').submit();
-	}else{
-		return false;
-	}
-}
-</script>
 <!-- 다음 주소 -->
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -199,7 +188,7 @@ function funcCon(){
 			<tr>
 					<tr><td colspan="2" align="center"><div class="allbtn">
 				<input type="button" class="btn" value="취소" 
-					onclick="javascript:history.go(-2);" />
+					onclick="location.href='empInfo?empId=${emp.empId}'" />
 				<input type="submit" class="btn" value="확인" />
 				</div>
 			</td></tr></tfoot>

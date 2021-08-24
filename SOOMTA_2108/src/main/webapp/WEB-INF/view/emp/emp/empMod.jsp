@@ -180,7 +180,7 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="empModOk?empId=" method="post" name="frm" onsubmit="return funcCon()"> 
+	<form action="empModOk" method="post" name="frm" onsubmit="return funcCon()"> 
 <input type="hidden" name="empId" value="${emp.empId }"/>
 		<table>
 		<thead>
@@ -207,7 +207,7 @@ function funcCon(){
 						</tr>
 						<tr>
 							<th>입사일</th>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${emp.hireDate }"/>
+							<td><input type="date" name="hireDate" value="<fmt:formatDate pattern='yyyy-MM-dd' value='${emp.hireDate }'/>" required/>
 						</td>
 						</tr>
 						<tr>

@@ -78,6 +78,16 @@ input {
 	float: left;
 	margin-right: 5px;
 }
+.id{
+ 	border : none;
+ 	background-color:transparent;
+ 	font-size: 18px;
+}
+.empPwConErr{
+	font-size:12px;
+	color:red;
+	font-weight:bold;
+}
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -199,21 +209,21 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form:form action="empPwChangeOk" method="post" name="frm" onsubmit="return funcCon()" modelAttribute="EmployeeCommand"> 
-	<input type="hidden" name="empId" value="${emp.empId }"/>
+	<form:form action="empPwChangeOk" method="post" name="frm" onsubmit="return funcCon()" modelAttribute="employeeCommand"> 
+	
 		<table>
 		<thead>
 			<tr
 				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">관리자 '${emp.empId }'비밀번호 변경
+				<th colspan="2">관리자 '${employeeCommand.empId }' 비밀번호 변경 
 				</th>
 			</tr></thead>
 								<tbody>
 						<tr class="first_tr">
 							<th>아이디</th>
-							<td>${emp.empId }</tr>
+							<td><form:input path="empId" readonly="true" class="id"/></td></tr>
 						<tr>
-							<th>비밀번호</th>
+							<th>변경 비밀번호</th>
 							<td><input type="password" name="empPw"
 								size="30" required
 								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
@@ -221,12 +231,12 @@ function funcCon(){
 								<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td>
 						</tr>
 						<tr>
-							<th>비밀번호 확인</th>
+							<th>변경 비밀번호 확인</th>
 							<td><input type="password" name="empPwCon" required
 								size="30"
 								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
 								class="pw" id="pw2" onkeyup="check_pw()"/>
-	&nbsp;<span id="check"></span><form:errors path="empPwCon"/></td>
+	&nbsp;<span id="check"></span><span class="empPwConErr"><form:errors path="empPwCon"/></span></td>
 						</tr>
 					</tbody>
 			<tfoot>

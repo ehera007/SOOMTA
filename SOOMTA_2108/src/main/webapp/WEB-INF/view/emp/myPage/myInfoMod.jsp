@@ -21,7 +21,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width: 500px;
+	width: 650px;
 }
 
 thead th {
@@ -34,12 +34,12 @@ thead th {
 
 tbody th {
 	padding-top: 30px;
-	width: 30%;
+	width: 35%;
 }
 
 tbody td {
 	padding-top: 30px;
-	width: 70%;
+	width: 65%;
 }
 
 tbody td a {
@@ -203,7 +203,7 @@ function funcCon(){
 						</tr>
 						<tr>
 							<th>입사일</th>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${my.hireDate }"/>
+							<td><form:input pattern="yyyy-MM-dd" path="hireDate" readonly="true" />
 						</td>
 						</tr>
 						<tr>

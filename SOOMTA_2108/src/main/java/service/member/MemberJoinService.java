@@ -23,7 +23,7 @@ public class MemberJoinService {
 		dto.setMemName(memberCommand.getMemName());
 		dto.setMemPhone(memberCommand.getMemPhone());
 		dto.setMemPw(bCryptPasswordEncoder.encode(memberCommand.getMemPw()));
-
+		System.out.println("이메일체크"+dto.getMemEmailCk());
 		memberRepository.memInsert(dto);
 		
 		

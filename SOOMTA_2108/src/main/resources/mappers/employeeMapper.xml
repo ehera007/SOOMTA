@@ -34,7 +34,7 @@
 <update id="empUpdate" parameterType="Model.EmployeeDTO">
 	update employees
 	set emp_Addr = #{empAddr}, emp_Email = #{empEmail}, emp_Job = #{empJob}, emp_Name = #{empName},
-		emp_Phone = #{empPhone}
+		emp_Phone = #{empPhone}, hire_Date = #{hireDate}
 	where emp_id = #{empId}	
 </update>
 

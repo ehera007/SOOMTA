@@ -97,8 +97,8 @@ tbody td a:visted{
         	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
         	return false;
         } );
+    	
     });
-    
 </script>
 <!-- 다음 주소 -->
 <script
@@ -160,7 +160,7 @@ tbody td a:visted{
 </script> 
 <!-- 비밀번호 확인 -->
 <script>
-    function check_pw(){
+function check_pw(){
     if(document.getElementById('pw1').value !='' && document.getElementById('pw2').value!=''){
         if(document.getElementById('pw1').value==document.getElementById('pw2').value){
             document.getElementById('pw_ck_msg').innerHTML='PW 일치';
@@ -173,15 +173,36 @@ tbody td a:visted{
             document.getElementById('pw_ck_msg').style.color='red';
             document.getElementById('pw_ck_msg').style.fontSize='15px';
             document.getElementById('pw_ck_msg').style.fontWeight='900';
-        }}}
+        }}};
 </script>
-<!-- emailCk null값 대신 N 보내기-->
- <script>
-if(document.getElementById("input_ck").checked) {
-    document.getElementById("input_ck_hidden").disabled = true;
-}else{
-	document.getElementById("input_ck_hidden").disabled = false;
-}
+<!-- 이메일 확인 -->
+<script>
+function check_mail(){
+    if(document.getElementById('mail1').value !='' && document.getElementById('mail2').value!=''){
+        if(document.getElementById('mail1').value==document.getElementById('mail2').value){
+            document.getElementById('mail_ck_msg').innerHTML='메일 일치';
+            document.getElementById('mail_ck_msg').style.color='#0F4C81';
+            document.getElementById('mail_ck_msg').style.fontSize='15px';
+            document.getElementById('mail_ck_msg').style.fontWeight='900';
+        }
+        else{
+            document.getElementById('mail_ck_msg').innerHTML='메일 불일치';
+            document.getElementById('mail_ck_msg').style.color='red';
+            document.getElementById('mail_ck_msg').style.fontSize='15px';
+            document.getElementById('mail_ck_msg').style.fontWeight='900';
+        }}};
+</script>
+<!-- 이메일ck -->
+<script>
+$(document).ready(function(){
+    	$("#input_ck").change(function(){
+    		if($("#input_ck").is(":checked")){
+    			document.getElementById("input_ck_hidden").value='Y';
+    		}else{
+    			document.getElementById("input_ck_hidden").value='N';
+    		}
+    	}
+    });
 </script>
 <meta charset="UTF-8">
 <title>튜터등록</title>
@@ -209,7 +230,7 @@ if(document.getElementById("input_ck").checked) {
    <h1>튜터 등록하고 숨타와 함께 하세요!</h1>
       <form action="tutorJoined" method="post" name="frm">
       <input type="hidden" name="tutorSince" value="${tutorSince }"/>
-   <input type="hidden" name="tutorEmailCk" value="N" id="input_ck_hidden" disabled/>
+   <input type="hidden" name="tutorEmailCk" value="Y" id="input_ck_hidden" />
       <table>
          <thead>
                <tr>
@@ -243,11 +264,11 @@ if(document.getElementById("input_ck").checked) {
             <td><input type="text" name="tutorPhone" value="${tutorPhone }" size="30" minlength="11" maxlength="11" required />
 				<div class="detail">* ex) 01012341234</div></td></tr>
          <tr><th>이메일</th>
-            <td><input type="email" name="tutorEmail" value="${tutorEmail }" size="30" class="email" id="email1" required/>
+            <td><input type="email" name="tutorEmail" value="${tutorEmail }" size="30" class="email" id="mail1" required/>
 				<div class="detail">* 이메일 인증에 필요하니 정확히 입력해주세요. ex) email@email.com</div></td></tr>
              <tr><th>이메일 확인</th>
-            <td><input type="email" name="tutorEmailCon" value="${tutorEmailCon }" size="30" class="email" id="email2" required/>
-
+            <td><input type="email" name="tutorEmailCon" value="${tutorEmailCon }" size="30" class="email" id="mail2" onkeyup="check_mail()" required/>
+				&nbsp;<span id="mail_ck_msg"></span>
             	</td></tr>
 
           <tr><th>주소</th><td>
@@ -259,7 +280,7 @@ if(document.getElementById("input_ck").checked) {
             <input type="checkbox" id="agree" value="Y" checked>
             	<span class="ck">서비스 <a href="<c:url value='/policy/service'/>" target="_blank">이용약관</a>에 동의합니다. 
            		<span class="required"> (필수)</span></span><br/>
-           <input type="checkbox" name="tutorEmailCk" value="Y" id="input_ck" checked><span class="ck">이벤트, 할인 등 이메일 수신에 동의  (선택)</span><br/>
+           <input type="checkbox" id="input_ck" checked><span class="ck">이벤트, 할인 등 이메일 수신에 동의  (선택)</span><br/>
             <span style="text-align:right; font-size:10px;"><a href="<c:url value='/soomta/memberJoin'/>">회원 가입</a>을 원하시나요?</span></td></tr>
             <tr><th></th></tr><tr><th></th></tr></tbody>
          <tfoot>

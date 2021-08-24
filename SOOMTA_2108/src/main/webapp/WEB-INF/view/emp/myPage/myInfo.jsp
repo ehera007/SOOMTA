@@ -20,7 +20,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width:450px;
+	width:550px;
 }
 
 thead th {
@@ -32,12 +32,12 @@ thead th {
 }
 tbody th {
 	padding-top: 30px;
-	width: 50%;
+	width: 40%;
 }
 
 tbody td {
 	padding-top: 30px;
-	width: 50%;
+	width: 60%;
 }
 
 .btn {

@@ -155,7 +155,7 @@ tbody td a:visted{
 </script> 
 <!-- 비밀번호 확인 -->
 <script>
-    function check_pw(){
+function check_pw(){
     if(document.getElementById('pw1').value !='' && document.getElementById('pw2').value!=''){
         if(document.getElementById('pw1').value==document.getElementById('pw2').value){
             document.getElementById('pw_ck_msg').innerHTML='PW 일치';
@@ -168,16 +168,20 @@ tbody td a:visted{
             document.getElementById('pw_ck_msg').style.color='red';
             document.getElementById('pw_ck_msg').style.fontSize='15px';
             document.getElementById('pw_ck_msg').style.fontWeight='900';
-        }}}
+        }}};
 </script>
 <!-- emailCk null값 대신 N 보내기-->
  <script>
-if(document.getElementById("input_ck").checked) {
-    document.getElementById("input_ck_hidden").disabled = true;
-}else{
-	document.getElementById("input_ck_hidden").disabled = false;
-}
-</script>
+ $(document).ready(function(){
+     	$("#input_ck").change(function(){
+     		if($("#input_ck").is(":checked")){
+     			document.getElementById("input_ck_hidden").value='Y';
+     		}else{
+     			document.getElementById("input_ck_hidden").value='N';
+     		}
+     	}
+     });
+ </script>
 
 <meta charset="UTF-8">
 <title>회원가입</title>
@@ -204,7 +208,7 @@ if(document.getElementById("input_ck").checked) {
    <div class="main">
    <h1>숨타와 함께 숨은 시간을 찾아보세요 :)</h1>
       <form action="memJoined" method="post" name="frm">
-   	<input type="hidden" name="memEmailCk" value="N" id="input_ck_hidden" disabled/>
+   	<input type="hidden" name="memEmailCk" value="Y" id="input_ck_hidden"/>
       <table>
   <thead>
                <tr>
@@ -248,7 +252,7 @@ if(document.getElementById("input_ck").checked) {
             <input type="checkbox" id="agree" value="Y" checked>
             	<span class="ck">서비스 <a href="<c:url value='/policy/service'/>" target="_blank">이용약관</a>에 동의합니다. 
            		<span class="required"> (필수)</span></span><br/>
-           <input type="checkbox" name="memEmailCk" value="Y" id="input_ck" checked><span class="ck">이벤트, 할인 등 이메일 수신에 동의  (선택)</span><br/>
+           <input type="checkbox" id="input_ck" checked><span class="ck">이벤트, 할인 등 이메일 수신에 동의  (선택)</span><br/>
             <span style="text-align:right; font-size:10px;"><a href="<c:url value='/soomta/tutorJoin'/>">튜터 등록</a>을 원하시나요?</span></td></tr>
             <tr><th></th></tr><tr><th></th></tr></tbody>
          <tfoot>
