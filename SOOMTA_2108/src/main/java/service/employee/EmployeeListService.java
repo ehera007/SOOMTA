@@ -14,7 +14,5 @@ public class EmployeeListService {
 	public void empList(Model model) {
 		List<EmployeeDTO> list = employeeRepository.empList();
 		model.addAttribute("empList",list);
-		
-		
 	}
 }

@@ -3,6 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.employeeMapper">
 
+<!-- 관리자/내정보 관리 -->
 <sql id="baseColumn">
 	emp_Id empId, emp_Pw empPw, emp_Name empName, emp_Job empJob, 
 	hire_Date hireDate, emp_Email empEmail, emp_Phone empPhone, emp_Addr empAddr 
@@ -49,6 +50,46 @@
 	set emp_Addr = #{empAddr}, emp_Email = #{empEmail}, emp_Phone = #{empPhone}
 	where emp_id = #{empId}	
 </update>
+
+
+<!-- 튜터 관리 -->
+<sql id="tutorBasic">
+	tutor_Id tutorId, tutor_Name tutorName, tutor_Dob tutorDob, tutor_Gender tutorGender, tutor_Phone tutorPhone, 
+	tutor_Email tutorEmail, tutor_Since tutorSince, tutor_Email_Ck tutorEmailCk, tutor_Email_Ok tutorEmailOk
+</sql>
+<sql id="tutorProfile">
+	tutor_Certification tutorCertification, tutor_Career tutorCareer, tutor_Image tutorImage, tutor_Introduce tutorIntroduce, 
+	tutor_Likearea tutorLikearea
+</sql>
+
+
+<select id="tutorList" resultType="Model.TutorDTO">
+	select tutor_Id tutorId, tutor_Name tutorName, tutor_Since tutorSince 
+	from tutor
+</select>
+
+<select id="tutorInfo" resultType="Model.TutorDTO" parameterType="string">
+	select  <include refid="tutorBasic"/>, substr(tutor_Area,0,6) tutorArea 
+	from tutor
+	where tutor_id = #{tutorId}
+</select>
+
+<!-- 회원 관리 -->
+<sql id="memCol">
+	mem_Id memId, mem_Name memName, mem_Phone memPhone, mem_Since memSince, mem_Gender memGender, mem_Dob memDob, 
+	mem_Email memEmail, mem_Email_Ck memEmailCk
+</sql>
+
+<select id="memList" resultType="Model.MemberDTO">
+	select mem_Id memId, mem_Name memName, mem_Since memSince
+	from member 
+</select>
+
+<select id="memInfo" parameterType="string" resultType="Model.MemberDTO">
+	select <include refid="memCol"/>, substr(mem_Area,0,6) memArea 
+	from member
+	where mem_id = #{memId}
+</select>
 </mapper>
 
 

@@ -105,10 +105,10 @@ text-align:center;
 	$(document)
 			.ready(
 					function() {
-						$('.memInfo')
+						$('.tutorInfo')
 								.click(
 										function() {
-											alert('          잠시 후 회원 정보 페이지로 이동합니다.          \n          (수정,삭제 가능)          ');
+											alert('          잠시 후 튜터 정보 페이지로 이동합니다.          \n          (수정,삭제 가능)          ');
 										});
 					});
 </script>
@@ -141,41 +141,25 @@ text-align:center;
 		<div class="list">
 			<span>등록된 튜터 리스트</span>
 			<div class="table">
+			<c:if test="${!empty tutorList }">
 				<table><thead>
 					<tr style="padding:10px; height:30px;">
 					<th width="10%">No.</th>
 						<th width="35%">ID</th>
 						<th width="25%">이름</th>
 						<th width="30%">가입일</th>
-					</tr></thead>
-									<tbody>
-					<tr>
-						<td>No.</td>
-						<td><a href="tutorInfo" class="tutorInfo">ID</a></td>
-						<td>이름</td>
-						<td>가입일</td>
-					</tr>
-					<tr>
-						<td>No.</td>
-						<td>ID</td>
-						<td>이름</td>
-						<td>가입일</td>
-					</tr>
-		<tr>
-						<td>No.</td>
-						<td>ID</td>
-						<td>이름</td>
-						<td>가입일</td>
-					</tr>
-					<c:forEach items="${lists }" var="dto">
+					</tr></thead><tbody>
+					<c:forEach items="${tutorList }" var="dto">
+					<c:set var="i" value="${i+1 }"/>
 						<tr>
-							<td>${1 }</td>
-							<td><a href="memInfo" class="memInfo">${tutorId }튜터 확인페이지</a></td>
-							<td>${Name }</td>
-							<td>${join}</td>
+							<td>${i }</td>
+							<td><a href="tutorInfo?tutorId=${dto.tutorId}" class="tutorInfo">${dto.tutorId }</a></td>
+							<td>${dto.tutorName }</td>
+							<td><fmt:formatDate value="${dto.tutorSince}" type="date" pattern="yyyy-MM-dd"/></td>
 						</tr>
 					</c:forEach></tbody>
-				</table>
+				</table></c:if>
+				<c:if test="${empty tutorList }">등록된 튜터가 없습니다.</c:if>
 			</div>
 			<!-- https://jg-han.tistory.com/38 참고해보기
 				https://dotheright.tistory.com/218 참고해보기(페이징 포함)

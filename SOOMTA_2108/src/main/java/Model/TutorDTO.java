@@ -21,8 +21,15 @@ public class TutorDTO {
 	String tutorIntroduce;
 	String tutorLikearea;
 	String tutorEmailCk;
+	String tutorEmailOk;
 	
 	
+	public String getTutorEmailOk() {
+		return tutorEmailOk;
+	}
+	public void setTutorEmailOk(String tutorEmailOk) {
+		this.tutorEmailOk = tutorEmailOk;
+	}
 	public Date getTutorSince() {
 		return tutorSince;
 	}

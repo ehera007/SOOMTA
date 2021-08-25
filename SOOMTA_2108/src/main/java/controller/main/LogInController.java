@@ -59,20 +59,15 @@ public class LogInController {
 		session.invalidate();
 		return "redirect:/main";
 	}
-	
-	@RequestMapping("join")
-	public String joinPage() {
-		return "redirect:/main";
-	}
 	@RequestMapping("searchIdPw") //비밀번호 아이디 찾기
 	public String searchIdPwPage() {
 		return "login/idpwFound";
 	}
-	@RequestMapping("findId")
+	@RequestMapping("findId") //id찾기
 	public String findId() {
 		return "login/findId";
 	}
-	@RequestMapping("findPw")
+	@RequestMapping("findPw") //pw찾기
 	public String findPw() {
 		return "login/findPw";
 	}

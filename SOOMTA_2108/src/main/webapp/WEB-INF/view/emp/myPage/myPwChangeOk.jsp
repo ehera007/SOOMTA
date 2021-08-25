@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ include file="../include/tags.jsp"%>
+<%@ include file="../../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,28 +56,15 @@ tbody td a {
 	font-weight: bold;
 	margin: 30px 10px 10px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
+	padding-bottom:10px;
 }
 
 .allbtn {
 	height: 50px;
-	width: 120px;
-	margin: 0 auto;
+	width: 240px;
+	margin: 0 auto 10px auto;
 }
 
-.err {
-	color: red;
-	font-size: 15px;
-	text-align: left;
-	font-weight:bold;
-}
-
-input {
-	display: inline-block;
-	float: left;
-	margin-right: 5px;
-}
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -150,7 +137,7 @@ input {
 	}
 </script>
 <meta charset="UTF-8">
-<title>비밀번호 확인</title>
+<title>PW 변경 완료</title>
 </head>
 <body>
 <body>
@@ -171,29 +158,28 @@ input {
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="empPwChange?empId=${emp.empId}" method="post" name="frm">
 		<table>
 		<thead>
 			<tr>
-				<th colspan="2">PW를 다시 확인해주세요!
+				<th colspan="2">내 PW 변경 완료!
 				</th>
 			</tr></thead>
 		<tbody>
 			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="empPw" size="30" required/>
-				<span class="err">${errPw }</span></td></tr>
+				<th colspan="2">비밀번호 변경이 완료되었습니다.</th>
+			</tr>
+			<tr>
+				<th colspan="2">확인을 누르면 마이페이지로 이동합니다.</th>
+			</tr>
 					</tbody>
 			<tfoot>
 			<tr>
-					<tr><td colspan="2" align="center"><div class="allbtn">
-				<input type="button" class="btn" value="취소" 
-					onclick="location.href='empInfo?empId=${emp.empId}'" />
-				<input type="submit" class="btn" value="확인" />
-				</div>
-			</td></tr></tfoot>
+				<td colspan="2" align="center"><div class="allbtn">
+				<input type="button" class="btn" value="내정보" onclick="location.href='myInfo'" />
+				<input type="button" class="btn" value="확인" onclick="location.href='main'" />
+				</div></td>
+			</tr></tfoot>
 		</table>
-		</form>
 	</div>
 
 

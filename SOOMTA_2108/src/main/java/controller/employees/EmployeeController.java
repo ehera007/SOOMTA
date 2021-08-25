@@ -18,7 +18,8 @@ import service.employee.EmployeeJoinService;
 import service.employee.EmployeeListService;
 import service.employee.EmployeePwUpdateService;
 import service.employee.EmployeeUpdateService;
-import validator.EmployeeUpdateValidator;
+import service.employee.InfoService;
+import service.employee.ListService;
 
 @Controller
 @RequestMapping("emp")
@@ -53,13 +54,15 @@ public class EmployeeController {
 	public String boardWrite() {
 		return "emp/board/boardWrite";
 	}
-	
+	//0825
 	@RequestMapping("memList")//일반 회원 보기
-	public String memList() {
+	public String memList(Model model) {
+		listService.memList(model);
 		return "emp/mem/memList";
 	}
 	@RequestMapping("memInfo")//일반 회원 상세 보기
-	public String memInfo() {
+	public String memInfo(@RequestParam(value="memId") String memId, Model model) {
+		infoService.memInfo(memId, model);
 		return "emp/mem/memInfo";
 	}
 	@RequestMapping("memMod")//회원 수정
@@ -74,12 +77,20 @@ public class EmployeeController {
 	public String memDel(){
 		return "redirect:memList";
 	}
+	
+	//0825
+	@Autowired
+	ListService listService;
 	@RequestMapping("tutorList")//튜터 회원보기
-	public String tutorList() {
+	public String tutorList(Model model) {
+		listService.tutorList(model);
 		return "emp/tutor/tutorList";
 	}
-	@RequestMapping("tutorInfo")//튜터 상세 보기
-	public String tutorInfo() {
+	@Autowired
+	InfoService infoService;
+	@RequestMapping("tutorInfo")//튜터 상세 보기(기본정보)
+	public String tutorInfo(@RequestParam(value="tutorId") String tutorId, Model model) {
+		infoService.tutorInfo(tutorId, model);
 		return "emp/tutor/tutorInfo";
 	}
 	@RequestMapping("tutorMod")//튜터 수정
@@ -94,6 +105,8 @@ public class EmployeeController {
 	public String tutorDel(){
 		return "redirect:tutorList";
 	}
+	
+	
 	@Autowired
 	EmployeeListService employeeListService;
 	@RequestMapping("empList")//관리자 리스트 보기
@@ -126,21 +139,18 @@ public class EmployeeController {
 		employeeInfoService.empInfo(empId,model);
 		int i = employeePwUpdateService.empPwCon(empPw, model, session);
 		if(i == 1) {
-			return "emp/pwConErr";
+			return "emp/emp/empPwConErr";
 		}else {
 			return "emp/emp/empPwChange";
 		}
 	}
-	//리턴될 때 에러메세지 안 뜸 & 리턴될때 정보 갖고오게 하기
 	@RequestMapping(value="empPwChangeOk", method=RequestMethod.POST)//관리자 pw수정 완료
 	public String empPwChangeOk(EmployeeCommand employeeCommand, Errors errors) {
-		new EmployeeUpdateValidator().validate(employeeCommand, errors);
+		employeePwUpdateService.empPwUpdate(employeeCommand, errors);
 		if(errors.hasErrors()) {
 			return "emp/emp/empPwChange";
 		}
-		employeePwUpdateService.empPwUpdate(employeeCommand, errors);
-		String empId = employeeCommand.getEmpId();
-		return "redirect:empInfo?empId="+empId;
+		return "emp/emp/empPwChangeOk"; 
 	}
 	@Autowired
 	EmployeeUpdateService employeeUpdateService;
@@ -164,8 +174,7 @@ public class EmployeeController {
 	@Autowired
 	EmployeeJoinService employeeJoinService;
 	@RequestMapping(value="empJoinOk", method=RequestMethod.POST)//관리자 등록 완료
-	public String empJoinOk(EmployeeCommand employeeCommand//, Model model
-			) {
+	public String empJoinOk(EmployeeCommand employeeCommand) {
 		employeeJoinService.empInsert(employeeCommand);
 		return "redirect:empList";
 	}
@@ -175,17 +184,13 @@ public class EmployeeController {
 		return "emp/myPage/myInfo";
 	}
 	@RequestMapping("myInfoMod")
-	public String myInfoMod(HttpSession session, Model model, @ModelAttribute(value = "employeeCommand") EmployeeCommand employeeCommand) {//내정보 수정
+	public String myInfoMod(HttpSession session, Model model) {//내정보 수정
 		employeeInfoService.myInfo(session, model);
 		return "emp/myPage/myInfoMod";
 	}
 	@RequestMapping(value="myInfoModOk", method=RequestMethod.POST)
-	public String myInfoModOk(EmployeeCommand employeeCommand, Errors errors, HttpSession session) {//내정보 수정완료
-		new EmployeeUpdateValidator().validate(employeeCommand, errors);
-		employeeUpdateService.myInfoUpdate(employeeCommand,errors, session);
-		if(errors.hasErrors()) {
-			return "emp/myPage/myInfoMod";
-		}
+	public String myInfoModOk(EmployeeCommand employeeCommand, HttpSession session) {//내정보 수정완료
+		employeeUpdateService.myInfoUpdate(employeeCommand, session);
 		return "redirect:myInfo";
 	}
 	@RequestMapping(value="myPwChange")
@@ -198,7 +203,7 @@ public class EmployeeController {
 		if(errors.hasErrors()) {
 			return "emp/myPage/myPwChange";
 		}
-		return "redirect:main";
+		return "emp/myPage/myPwChangeOk";
 	}
 	
 	

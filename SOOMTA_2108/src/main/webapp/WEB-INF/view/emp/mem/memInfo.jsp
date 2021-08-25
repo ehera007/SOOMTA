@@ -100,17 +100,23 @@ function funcCon(){
 		<thead>
 			<tr
 				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">회원 '${ID }'의 정보</th>
+				<th colspan="2">회원 '${mem.memId }'의 정보</th>
 			</tr></thead>
 			<tbody>
-			<tr><th>ID</th><td>${memId }</td></tr>
-			<tr><th>이름</th><td>${Name }</td></tr>
-			<tr><th>생년월일</th><td>${dob }</td></tr>
-			<tr><th>성별</th><td>${gender }</td></tr>
-			<tr><th>이메일</th><td>${email }</td></tr>
-			<tr><th>메일수신</th><td>${emailCk }</td></tr>
-			<tr><th>전화번호</th><td>${pN }</td></tr>
-			<tr><th>지역</th><td>${addr }</td></tr></tbody><tfoot>
+			<tr><th>ID</th><td>${mem.memId }</td></tr>
+			<tr><th>이름</th><td>${mem.memName }</td></tr>
+			<tr><th>생년월일</th><td><fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${mem.memDob }"/></td></tr>
+			<tr><th>성별</th><td>
+			<c:if test="${mem.memGender == 'M'}">남자</c:if>
+			<c:if test="${mem.memGender == 'F'}">여자</c:if>
+			</td></tr>
+			<tr><th>이메일</th><td>${mem.memEmail }</td></tr>
+			<tr><th>메일수신</th><td>
+			<c:if test="${mem.memEmailCk == 'Y'}">수신</c:if>
+			<c:if test="${mem.memEmailCk == 'N'}">거부</c:if>
+			</td></tr>
+			<tr><th>전화번호</th><td>${mem.memPhone }</td></tr>
+			<tr><th>지역</th><td>${mem.memArea }</td></tr></tbody><tfoot>
 					<tr>
 				<th colspan="2">
 				<input class="btn" type="button" value="리스트"

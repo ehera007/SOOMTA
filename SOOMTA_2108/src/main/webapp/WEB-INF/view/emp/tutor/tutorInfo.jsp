@@ -12,8 +12,6 @@
 .main {
 	margin: 20px auto;
 }
-
-
 /* 테이블 스타일 */
 table {
 	border: 2px solid #0F4C81;
@@ -99,28 +97,35 @@ function funcCon(){
 		<table><thead>
 			<tr
 				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">튜터 '${ID }'의 정보</th>
+				<th colspan="2">튜터 '${tutor.tutorId }'의 정보</th>
 			</tr></thead><tbody>
-			<tr><th>ID</th><td>${tutorId }</td></tr>
-			<tr><th>이름</th><td>${Name }</td></tr>
-			<tr><th>생년월일</th><td>${dob }</td></tr>
-			<tr><th>성별</th><td>${gender }</td></tr>
-			<tr><th>이메일</th><td>${email }</td></tr>
-			<tr><th>메일수신</th><td>${emailCk }</td></tr>
-			<tr><th>인증상태</th><td>${emailCon }</td></tr>
-			<tr><th>전화번호</th><td>${pN }</td></tr>
-			<tr><th>지역</th><td>${addr }</td></tr></tbody><tfoot>
+			<tr><th>ID</th><td>${tutor.tutorId }</td></tr>
+			<tr><th>이름</th><td>${tutor.tutorName }</td></tr>
+			<tr><th>생년월일</th><td><fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${tutor.tutorDob }"/></td></tr>
+			<tr><th>성별</th><td>
+			<c:if test="${tutor.tutorGender == 'M'}">남자</c:if>
+			<c:if test="${tutor.tutorGender == 'F'}">여자</c:if>
+			</td></tr>
+			<tr><th>이메일</th><td>${tutor.tutorEmail }</td></tr>
+			<tr><th>메일수신</th><td>
+			<c:if test="${tutor.tutorEmailCk == 'Y'}">수신</c:if>
+			<c:if test="${tutor.tutorEmailCk == 'N'}">거부</c:if>
+			</td></tr>
+			<tr><th>인증상태</th><td>
+			<c:if test="${tutor.tutorEmailOk == null}">미정</c:if>
+			<c:if test="${tutor.tutorEmailOk != null}">완료</c:if>
+			</td></tr>
+			<tr><th>전화번호</th><td>${tutor.tutorPhone }</td></tr>
+			<tr><th>지역</th><td>${tutor.tutorArea }</td></tr></tbody><tfoot>
 			<tr>
 				<th colspan="2">
-				<input class="btn" type="button" value="리스트"
-					onclick="location.href='tutorList'" />
-				<input class="btn" type="button" value="수정"
-					onclick="location.href='tutorMod'" /> <input class="btn"
-					type="button" class="btn" value="삭제"
-					onclick="funcCon()" /></th>
+				<input class="btn" type="button" value="리스트" onclick="location.href='tutorList'" />
+				<input class="btn" type="button" value="프로필" onclick="location.href='tutorProfile'" />
+				<input class="btn" type="button" value="수정" onclick="location.href='tutorMod'" /> 
+				<input class="btn" type="button" value="PW변경" onclick="location.href='tutorPwCon?empId=${emp.empId}'" /> 
+				<input class="btn" type="button" class="btn" value="탈퇴(삭제)" onclick="funcCon()" /></th>
 			</tr></tfoot>
-		</table>
-	</div>
+		</table></div>
 
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"

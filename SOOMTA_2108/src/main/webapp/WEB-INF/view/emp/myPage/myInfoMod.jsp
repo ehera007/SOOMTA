@@ -203,7 +203,7 @@ function funcCon(){
 						</tr>
 						<tr>
 							<th>입사일</th>
-							<td><form:input pattern="yyyy-MM-dd" path="hireDate" readonly="true" />
+							<td><fmt:formatDate value="${my.hireDate }" type="date" pattern="yyyy-MM-dd"/>
 						</td>
 						</tr>
 						<tr>
@@ -226,10 +226,6 @@ function funcCon(){
 								id="sample4_roadAddress" /> <a
 								href="javascript:sample4_execDaumPostcode();">주소 검색</a></td>
 						</tr>
-						<tr><th>비밀번호 확인</th><td><input type="password" name="empPw" size="25" required/>
-								<div class="detail">* 보안을 위해 한 번 더 입력</div>
-								<form:errors path="empPw"/><br/>
-								</td></tr>
 					</tbody>
 			<tfoot>
 			<tr>

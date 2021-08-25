@@ -6,7 +6,7 @@ import org.springframework.validation.Validator;
 
 import command.EmployeeCommand;
 
-public class EmployeeUpdateValidator implements Validator{
+public class EmployeeJoinValidator implements Validator{
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return false;
@@ -17,7 +17,12 @@ public class EmployeeUpdateValidator implements Validator{
 		if(!employeeCommand.isEmpPwConEq()) {
 			errors.rejectValue("empPwCon", "nomatch");
 		}
+		ValidationUtils.rejectIfEmpty(errors, "empId", "required");
+		ValidationUtils.rejectIfEmpty(errors, "empName", "required");
+		ValidationUtils.rejectIfEmpty(errors, "hireDate", "required");
+		ValidationUtils.rejectIfEmpty(errors, "empJob", "required");
 		ValidationUtils.rejectIfEmpty(errors, "empPw", "required");
+		ValidationUtils.rejectIfEmpty(errors, "empPwCon", "required");
 		ValidationUtils.rejectIfEmpty(errors, "empPhone", "required");
 		ValidationUtils.rejectIfEmpty(errors, "empEmail", "required");
 		ValidationUtils.rejectIfEmpty(errors, "empAddr", "required");

@@ -21,7 +21,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width: 600px;
+	width: 650px;
 }
 
 thead th {
@@ -34,12 +34,12 @@ thead th {
 
 tbody th {
 	padding-top: 30px;
-	width: 30%;
+	width: 32%;
 }
 
 tbody td {
 	padding-top: 30px;
-	width: 70%;
+	width: 68%;
 }
 
 tbody td a {
@@ -54,15 +54,13 @@ tbody td a {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 30px 10px 10px 10px;
+	margin: 20px 10px 5px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
 }
 
 .allbtn {
 	height: 50px;
-	width: 180px;
+	width: 120px;
 	margin: 0 auto;
 }
 
@@ -70,13 +68,23 @@ tbody td a {
 	color: grey;
 	font-size: 8px;
 	font-style: italic;
-	text-align: left;
+	padding-top: 3px;
 }
 
 input {
 	display: inline-block;
 	float: left;
 	margin-right: 5px;
+}
+.err {
+	color: red;
+	font-size: 13px;
+	text-align: left;
+	font-weight:bold;
+	padding-top: 1px;
+}
+.items{
+	display:flex;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -154,13 +162,13 @@ input {
     function check_pw(){
     if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
         if(document.getElementById('pw').value==document.getElementById('pw2').value){
-            document.getElementById('check').innerHTML='PW 일치'
+            document.getElementById('check').innerHTML=' PW 일치'
             document.getElementById('check').style.color='#0F4C81';
             document.getElementById('check').style.fontSize='15px';
             document.getElementById('check').style.fontWeight='900';
         }
         else{
-            document.getElementById('check').innerHTML='PW 불일치';
+            document.getElementById('check').innerHTML=' PW 불일치';
             document.getElementById('check').style.color='red';
             document.getElementById('check').style.fontSize='15px';
             document.getElementById('check').style.fontWeight='900';
@@ -199,38 +207,35 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="myPwChangeOk" method="post" name="frm" onsubmit="return funcCon()"> 
+	<form:form action="myPwChangeOk" method="post" name="frm" onsubmit="return funcCon()" modelAttribute="employeeCommand"> 
 		<table>
 		<thead>
-			<tr
-				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">내 비밀번호 변경
-				</th>
-			</tr></thead>
-								<tbody>
-							<tr>
-							<th>현재 비밀번호</th>
-							<td><input type="password" name="oldPw"
-								size="30" required/>
-								<div class="detail">* 현재 비밀번호 입력</div></td>
-						</tr>
-						<tr>
-							<th>비밀번호 변경</th>
-							<td><input type="password" name="empPw"
-								size="30" required
-								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
-								class="pw" id="pw" onchange="check_pw()"/>
-								<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td>
-						</tr>
-						<tr>
-							<th>비밀번호 변경 확인</th>
-							<td><input type="password" name="empPwCon" required
-								size="30"
-								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
-								class="pw" id="pw2" onkeyup="check_pw()"/>
-	&nbsp;<span id="check"></span><form:errors path="empPwCon"/></td>
-						</tr>
-					</tbody>
+			<tr>
+				<th colspan="2">내 비밀번호 변경</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>현재 비밀번호</th>
+				<td><div class="items"><input type="password" name="oldPw" size="25" required/>
+					<div class="detail">* 현재 비밀번호 입력</div>&nbsp;
+					<div class="err"><form:errors path="oldPw"/></div></div></td>
+			</tr>
+			<tr>
+				<th>비밀번호 변경</th>
+				<td><div class="items"><input type="password" name="empPw" size="25" required class="pw" id="pw"
+					 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"/>
+					<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></div></td>
+			</tr>
+			<tr>
+					<th>비밀번호 변경 확인</th>
+					<td><div class="items">
+						<input type="password" name="empPwCon" required size="25" class="pw" id="pw2" onkeyup="check_pw()"
+						pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"/>
+					<span id="check"></span>
+					&nbsp;<div class="err"><form:errors path="empPwCon"/></div></div></td>
+			</tr>
+			</tbody>
 			<tfoot>
 			<tr>
 					<tr><td colspan="2" align="center"><div class="allbtn">
@@ -239,7 +244,7 @@ function funcCon(){
 						<input type="submit" class="btn" value="변경" /></div>
 			</td></tr></tfoot>
 		</table>
-		</form>
+		</form:form>
 	</div>
 
 

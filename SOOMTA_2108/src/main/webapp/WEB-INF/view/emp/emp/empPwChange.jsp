@@ -56,13 +56,11 @@ tbody td a {
 	font-weight: bold;
 	margin: 30px 10px 10px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
 }
 
 .allbtn {
-	height: 50px;
-	width: 180px;
+	height: 40px;
+	width: 125px;
 	margin: 0 auto;
 }
 
@@ -236,7 +234,7 @@ function funcCon(){
 								size="30"
 								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
 								class="pw" id="pw2" onkeyup="check_pw()"/>
-	&nbsp;<span id="check"></span><span class="empPwConErr"><form:errors path="empPwCon"/></span></td>
+	&nbsp;<span id="check"></span>&nbsp;<span class="empPwConErr"><form:errors path="empPwCon"/></span></td>
 						</tr>
 					</tbody>
 			<tfoot>
