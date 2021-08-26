@@ -19,7 +19,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width: 600px;
+	width: 500px;
 }
 
 thead th {
@@ -31,12 +31,12 @@ thead th {
 }
 tbody th {
 	padding-top: 30px;
-	width: 30%;
+	width: 55%;
 }
 
 tbody td {
 	padding-top: 30px;
-	width: 70%;
+	width: 45%;
 }
 
 .btn {
@@ -44,10 +44,8 @@ tbody td {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 10px 10px;
+	margin: 30px 10px 5px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -66,7 +64,7 @@ tbody td {
 <script type="text/javascript">
 function funcCon(){
 	if(confirm('정말 삭제하시겠습니까?\n*삭제 후 복구할 수 없습니다.')){
-		location.href='tutorDel';
+		location.href='tutorDel?tutorId=${tutor.tutorId}';
 	}else{
 		return false;
 	}
@@ -120,9 +118,9 @@ function funcCon(){
 			<tr>
 				<th colspan="2">
 				<input class="btn" type="button" value="리스트" onclick="location.href='tutorList'" />
-				<input class="btn" type="button" value="프로필" onclick="location.href='tutorProfile'" />
-				<input class="btn" type="button" value="수정" onclick="location.href='tutorMod'" /> 
-				<input class="btn" type="button" value="PW변경" onclick="location.href='tutorPwCon?empId=${emp.empId}'" /> 
+				<input class="btn" type="button" value="프로필" onclick="location.href='tutorProfile?tutorId=${tutor.tutorId}'" />
+				<input class="btn" type="button" value="PW변경" onclick="location.href='tutorPwCon?tutorId=${tutor.tutorId}'" /> 
+				<input class="btn" type="button" value="수정" onclick="location.href='tutorMod?tutorId=${tutor.tutorId}'" /> 
 				<input class="btn" type="button" class="btn" value="탈퇴(삭제)" onclick="funcCon()" /></th>
 			</tr></tfoot>
 		</table></div>

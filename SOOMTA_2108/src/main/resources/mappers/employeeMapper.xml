@@ -17,7 +17,7 @@
 
 <select id="empList" resultType="Model.EmployeeDTO">
 	select emp_Id empId, emp_Name empName, emp_Job empJob, hire_Date hireDate 
-	from employees
+	from employees order by hire_Date desc
 </select>
 
 <insert id="empInsert" parameterType="Model.EmployeeDTO">
@@ -58,14 +58,12 @@
 	tutor_Email tutorEmail, tutor_Since tutorSince, tutor_Email_Ck tutorEmailCk, tutor_Email_Ok tutorEmailOk
 </sql>
 <sql id="tutorProfile">
-	tutor_Certification tutorCertification, tutor_Career tutorCareer, tutor_Image tutorImage, tutor_Introduce tutorIntroduce, 
-	tutor_Likearea tutorLikearea
+	tutor_Certification tutorCertification, tutor_Career tutorCareer, tutor_Image tutorImage, tutor_Introduce tutorIntroduce
 </sql>
-
 
 <select id="tutorList" resultType="Model.TutorDTO">
 	select tutor_Id tutorId, tutor_Name tutorName, tutor_Since tutorSince 
-	from tutor
+	from tutor order by tutor_Since desc
 </select>
 
 <select id="tutorInfo" resultType="Model.TutorDTO" parameterType="string">
@@ -73,6 +71,17 @@
 	from tutor
 	where tutor_id = #{tutorId}
 </select>
+
+<select id="tutorProfile" resultType="Model.TutorDTO" parameterType="string">
+	select  <include refid="tutorProfile"/>, substr(tutor_Likearea,0,6) tutorLikearea
+	from tutor
+	where tutor_id = #{tutorId}
+</select>
+
+<delete id="tutorDel" parameterType="String">
+	delete from tutor where tutor_id = #{tutorId}
+</delete>
+
 
 <!-- 회원 관리 -->
 <sql id="memCol">
@@ -82,7 +91,7 @@
 
 <select id="memList" resultType="Model.MemberDTO">
 	select mem_Id memId, mem_Name memName, mem_Since memSince
-	from member 
+	from member order by mem_Since desc
 </select>
 
 <select id="memInfo" parameterType="string" resultType="Model.MemberDTO">
@@ -90,6 +99,15 @@
 	from member
 	where mem_id = #{memId}
 </select>
+
+<delete id="memDel" parameterType="String">
+	delete from member where mem_id = #{memId}
+</delete>
+
+
+<!-- 게시판 관리 -->
+
+
 </mapper>
 
 

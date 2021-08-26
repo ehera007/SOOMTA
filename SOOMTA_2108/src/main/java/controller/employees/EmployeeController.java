@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.EmployeeCommand;
+import service.employee.DelService;
 import service.employee.EmployeeDelService;
 import service.employee.EmployeeInfoService;
 import service.employee.EmployeeJoinService;
@@ -24,13 +25,31 @@ import service.employee.ListService;
 @Controller
 @RequestMapping("emp")
 public class EmployeeController {
-
+	@Autowired
+	EmployeeJoinService employeeJoinService;
+	@Autowired
+	EmployeeListService employeeListService;
+	@Autowired
+	EmployeeInfoService employeeInfoService;
+	@Autowired
+	EmployeeUpdateService employeeUpdateService;
+	@Autowired
+	EmployeePwUpdateService employeePwUpdateService;
+	@Autowired
+	EmployeeDelService employeeDelService;
+	@Autowired
+	ListService listService;
+	@Autowired
+	InfoService infoService;
+	@Autowired
+	DelService delService;
 	@RequestMapping("main")
 	public String empPage() {
 		return "emp/empmain";
 	}
 	@RequestMapping("boardList")//게시글 보기
-	public String boardList() {
+	public String boardList(Model model) {
+		listService.boardList(model);
 		return "emp/board/boardList";
 	}
 	@RequestMapping("boardInfo")//게시글 상세 보기
@@ -49,24 +68,31 @@ public class EmployeeController {
 	public String boardDel() {
 		return "redirect:boardList";
 	}
-	
 	@RequestMapping("boardWrite")//게시글 작성
 	public String boardWrite() {
 		return "emp/board/boardWrite";
 	}
-	//0825
 	@RequestMapping("memList")//일반 회원 보기
 	public String memList(Model model) {
 		listService.memList(model);
 		return "emp/mem/memList";
 	}
+	//0826
 	@RequestMapping("memInfo")//일반 회원 상세 보기
 	public String memInfo(@RequestParam(value="memId") String memId, Model model) {
 		infoService.memInfo(memId, model);
 		return "emp/mem/memInfo";
 	}
+	@RequestMapping("memPwCon")
+	public String memPwCon(@RequestParam(value="memId") String memId, Model model) {//회원pw변경 전 확인
+		infoService.memInfo(memId,model);
+		return "emp/mem/memPwCon";
+	}
+	
+	///////회원 pw 확인 및 수정///////////
+	
 	@RequestMapping("memMod")//회원 수정
-	public String memMod() {
+	public String memMod(@RequestParam(value="memId") String memId, Model model) {
 		return "emp/mem/memMod";
 	}
 	@RequestMapping("memModOk")//회원 수정 완료
@@ -74,27 +100,35 @@ public class EmployeeController {
 		return "redirect:memInfo";
 	}
 	@RequestMapping("memDel")//회원 탈퇴
-	public String memDel(){
+	public String memDel(@RequestParam(value="memId") String memId){
+		delService.memDel(memId);
 		return "redirect:memList";
 	}
-	
-	//0825
-	@Autowired
-	ListService listService;
 	@RequestMapping("tutorList")//튜터 회원보기
 	public String tutorList(Model model) {
 		listService.tutorList(model);
 		return "emp/tutor/tutorList";
 	}
-	@Autowired
-	InfoService infoService;
 	@RequestMapping("tutorInfo")//튜터 상세 보기(기본정보)
 	public String tutorInfo(@RequestParam(value="tutorId") String tutorId, Model model) {
 		infoService.tutorInfo(tutorId, model);
 		return "emp/tutor/tutorInfo";
 	}
+	@RequestMapping("tutorProfile")//튜터 프로필정보
+	public String tutorProfile(@RequestParam(value="tutorId") String tutorId, Model model) {
+		infoService.tutorProfile(tutorId, model);
+		return "emp/tutor/tutorProfile";
+	}
+	@RequestMapping("tutorPwCon")
+	public String tutorPwCon(@RequestParam(value="tutorId") String tutorId, Model model) {//튜터pw변경 전 확인
+		infoService.tutorInfo(tutorId,model);
+		return "emp/tutor/tutorPwCon";
+	}
+	
+	///////튜터 pw 확인 및 수정///////////
+	
 	@RequestMapping("tutorMod")//튜터 수정
-	public String tutorMod() {
+	public String tutorMod(@RequestParam(value="tutorId") String tutorId, Model model) {
 		return "emp/tutor/tutorMod";
 	}
 	@RequestMapping("tutorModOk")//튜터 수정 완료
@@ -102,20 +136,15 @@ public class EmployeeController {
 		return "redirect:tutorInfo";
 	}
 	@RequestMapping("tutorDel")//튜터 탈퇴
-	public String tutorDel(){
+	public String tutorDel(@RequestParam(value="tutorId") String tutorId){
+		delService.tutorDel(tutorId);
 		return "redirect:tutorList";
 	}
-	
-	
-	@Autowired
-	EmployeeListService employeeListService;
 	@RequestMapping("empList")//관리자 리스트 보기
 	public String empList(Model model) {
 		employeeListService.empList(model);
 		return "emp/emp/empList";
 	}
-	@Autowired
-	EmployeeInfoService employeeInfoService;
 	@RequestMapping("empInfo")//관리자 상세 보기
 	public String empInfo(@RequestParam(value="empId") String empId, Model model) {
 		employeeInfoService.empInfo(empId, model);
@@ -131,8 +160,6 @@ public class EmployeeController {
 		employeeInfoService.empInfo(empId,model);
 		return "emp/emp/empPwCon";
 	}
-	@Autowired
-	EmployeePwUpdateService employeePwUpdateService;
 	@RequestMapping(value="empPwChange", method=RequestMethod.POST)//관리자 pw 확인 및 수정
 	public String empPwChange(@RequestParam(value="empId") String empId, @RequestParam(value="empPw") String empPw, Model model, 
 			HttpSession session, @ModelAttribute(value = "employeeCommand") EmployeeCommand employeeCommand) {
@@ -152,16 +179,12 @@ public class EmployeeController {
 		}
 		return "emp/emp/empPwChangeOk"; 
 	}
-	@Autowired
-	EmployeeUpdateService employeeUpdateService;
 	@RequestMapping(value="empModOk", method=RequestMethod.POST)//관리자 수정 완료
 	public String empModOk(EmployeeCommand employeeCommand) {
 		employeeUpdateService.empUpdate(employeeCommand);
 		String empId = employeeCommand.getEmpId();
 		return "redirect:empInfo?empId="+empId;
 	}
-	@Autowired
-	EmployeeDelService employeeDelService;
 	@RequestMapping("empDel")//관리자 삭제
 	public String empDel(@RequestParam(value="empId") String empId) {
 		employeeDelService.empDel(empId);
@@ -171,8 +194,6 @@ public class EmployeeController {
 	public String empJoin() {
 		return "emp/emp/empJoin";
 	}
-	@Autowired
-	EmployeeJoinService employeeJoinService;
 	@RequestMapping(value="empJoinOk", method=RequestMethod.POST)//관리자 등록 완료
 	public String empJoinOk(EmployeeCommand employeeCommand) {
 		employeeJoinService.empInsert(employeeCommand);

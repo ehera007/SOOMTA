@@ -10,82 +10,42 @@
 @charset "UTF-8";
 /*중앙 main*/
 .main {
-	margin: 50px auto;
-	display: flex;
-	justify-content: space-evenly;
-}
-
-.chart {
-	border: 1px solid black;
-	width: 400px;
-	height: 400px;
-}
-.list{
-text-align:center;}
-.table {
-	width: 600px;
-	margin: 0 auto;
+	margin: 20px auto;
 }
 /* 테이블 스타일 */
-span {
-	color: #0F4C81;
-	font-size: 30px;
-	display:inline-block;
-	margin-bottom:20px;
-	font-weight:bolder;
-}
 table {
-    width: 100%;
-    border-top: 2px solid #0F4C81;
-    border-collapse: collapse;
-  }
-  
-thead{
- background-color: #0F4C81; 
- color: white; 
+	border: 2px solid #0F4C81;
+	border-radius: 12px;
+	box-shadow: 3px 3px 3px 3px #D5D5D5;
+	border-spacing: 0px;
+	margin: 50px auto 70px auto;
+	width: 500px;
 }
-tbody  th, td {
-    border-bottom: 1px solid #0F4C81;
-    padding: 5px;
-    text-align: center;
-  }
 
-  tbody tr:nth-child(2n) {
-    background-color:#F4F7F8; 
-    
-  }
-td a {
-	font-weight:bold;
-	color: #0F4C81; 
+thead th {
+	height: 50px;
+	background-color: #0F4C81;
+	color: white;
+	font-size: 25px;
+	border-radius: 8px 8px 0px 0px;
 }
-td a:hover {
-	font-weight:bold;
-	color: #0F4C81; 
+tbody th {
+	padding-top: 30px;
+	width: 55%;
 }
-td a:link {
-	font-weight:bold;
-	color: #0F4C81;
+
+tbody td {
+	padding-top: 30px;
+	width: 45%;
 }
-td a:visited {
-	font-weight:bold;
-	color: #0F4C81; 
-}
-td a:active {
-	font-weight:bold;
-	color: #0F4C81; 
-}
-/*버튼 스타일*/
+
 .btn {
 	height: 30px;
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
+	margin: 30px 10px 5px 10px;
 	border: none;
-}
-/*검색 부분*/
-.search{
-margin:20px auto;
-text-align:center;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -100,23 +60,20 @@ text-align:center;
 		});
 	});
 </script>
-<!-- 회원 ID 클릭 시 회원 정보 페이지로 이동 알림창 -->
-<script>
-	$(document)
-			.ready(
-					function() {
-						$('.memInfo')
-								.click(
-										function() {
-											alert('          잠시 후 회원 정보 페이지로 이동합니다.          \n          (수정,삭제 가능)          ');
-										});
-					});
+<!-- 삭제 확인 알림창 -->
+<script type="text/javascript">
+function funcCon(){
+	if(confirm('정말 삭제하시겠습니까?\n*삭제 후 복구할 수 없습니다.')){
+		location.href='tutorDel?tutorId=${tutor.tutorId}';
+	}else{
+		return false;
+	}
+}
 </script>
-
-
 <meta charset="UTF-8">
-<title>회원 현황</title>
+<title>튜터 정보</title>
 </head>
+<body>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
@@ -133,55 +90,45 @@ text-align:center;
 		</div>
 	</div>
 
-
 	<!-- 중앙 -->
-
 	<div class="main">
-		<div class="chart">google api 차트_수강생 수, 가입자 수, 탈퇴자, 소모임 생성 수</div>
-		<div class="list">
-			<span>가입 회원 리스트</span>
-			<div class="table">
-				<c:if test="${!empty memList }">
-				<table><thead>
-					<tr style="padding:10px; height:30px;">
-						<th width="10%">No.</th>
-						<th width="35%">아이디</th>
-						<th width="25%">이름</th>
-						<th width="30%">가입일</th>
-					</tr></thead>
-					<tbody>
-					<c:forEach items="${memList }" var="dto">
-					<c:set var="i" value="${i+1 }"/>
-						<tr>
-							<td>${i }</td>
-						<td><a href="memInfo?memId=${dto.memId}" class="memInfo">${dto.memId }</a></td>
-							<td>${dto.memName }</td>
-							<td><fmt:formatDate value="${dto.memSince}" type="date" pattern="yyyy-MM-dd"/></td>
-						</tr>
-					</c:forEach></tbody>
-				</table></c:if>
-				<c:if test="${empty memList }">가입한 회원이 없습니다.</c:if>
-			</div>
-			<!-- https://jg-han.tistory.com/38 참고해보기
-				https://dotheright.tistory.com/218 참고해보기(페이징 포함)
-			 -->
-			<div class="search">
-				<form>
-				<select name="ctgr">
-				<option value="id">ID</option>
-				<option value="name">이름</option>
-				<option value="hireDate">가입일</option>
-				</select>
-				<input type = "text" name="searchBar" value=""/>
-				<input type="submit" class="btn" value="검색"/>
-				</form>
-				
-			</div>
-		</div>
-	</div>
+		<table><thead>
+			<tr
+				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
+				<th colspan="2">튜터 '${tutor.tutorId }'의 정보</th>
+			</tr></thead><tbody>
+			<tr><th>ID</th><td>${tutor.tutorId }</td></tr>
+			<tr><th>이름</th><td>${tutor.tutorName }</td></tr>
+			<tr><th>생년월일</th><td><fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${tutor.tutorDob }"/></td></tr>
+			<tr><th>성별</th><td>
+			<c:if test="${tutor.tutorGender == 'M'}">남자</c:if>
+			<c:if test="${tutor.tutorGender == 'F'}">여자</c:if>
+			</td></tr>
+			<tr><th>이메일</th><td>${tutor.tutorEmail }</td></tr>
+			<tr><th>메일수신</th><td>
+			<c:if test="${tutor.tutorEmailCk == 'Y'}">수신</c:if>
+			<c:if test="${tutor.tutorEmailCk == 'N'}">거부</c:if>
+			</td></tr>
+			<tr><th>인증상태</th><td>
+			<c:if test="${tutor.tutorEmailOk == null}">미정</c:if>
+			<c:if test="${tutor.tutorEmailOk != null}">완료</c:if>
+			</td></tr>
+			<tr><th>전화번호</th><td>${tutor.tutorPhone }</td></tr>
+			<tr><th>지역</th><td>${tutor.tutorArea }</td></tr></tbody><tfoot>
+			<tr>
+				<th colspan="2">
+				<input class="btn" type="button" value="리스트" onclick="location.href='tutorList'" />
+				<input class="btn" type="button" value="프로필" onclick="location.href='tutorProfile'" />
+				<input class="btn" type="button" value="PW변경" onclick="location.href='tutorPwCon?tutorId=${tutor.tutorId}'" /> 
+				<input class="btn" type="button" value="수정" onclick="location.href='tutorMod'" /> 
+				<input class="btn" type="button" class="btn" value="탈퇴(삭제)" onclick="funcCon()" /></th>
+			</tr></tfoot>
+		</table></div>
+
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
-		class="Top"> <img src="../images/top.png" alt="topicon">
+		class="Top"> <img src="<c:url value='/images/top.png'/>"
+		alt="topicon" />
 	</a>
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">

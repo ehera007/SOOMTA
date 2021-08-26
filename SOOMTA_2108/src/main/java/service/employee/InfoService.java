@@ -14,6 +14,10 @@ public class InfoService {
 		TutorDTO dto = employeeRepository.tutorInfo(tutorId);
 		model.addAttribute("tutor", dto);
 	}
+	public void tutorProfile(String tutorId, Model model) {
+		TutorDTO dto = employeeRepository.tutorProfile(tutorId);
+		model.addAttribute("tutor", dto);
+	}
 	public void memInfo(String memId, Model model) {
 		MemberDTO dto = employeeRepository.memInfo(memId);
 		model.addAttribute("mem", dto);
