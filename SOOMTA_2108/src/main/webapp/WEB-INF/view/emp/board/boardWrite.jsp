@@ -61,8 +61,8 @@ th {
 <script>
 function ctgrChange(e){
 	var soomta=["회사소개","서비스안내","인재채용"]
-	var tutor=["T공지사항", "T이용안내", "T자주묻는질문"];
-	var member=["M공지사항", "M이용안내", "M자주묻는질문"];
+	var tutor=["공지사항", "이용안내", "자주묻는질문"];
+	var member=["공지사항", "이용안내", "자주묻는질문"];
 	var policy=["이용약관","개인정보처리방침","환불정책","사업자정보확인"]
 	var target=document.getElementById("faq_ctgr2");
 	
@@ -133,8 +133,6 @@ $(document).ready(function(){
 				</select>
 				<select id="faq_ctgr2" style="margin-left:5px;">
 						<option value="option2">--세부--</option>
-						<!-- <option value="event">이용안내</option>
-						<option value="qna">자주 묻는 질문</option> -->
 				</select></td>
 			</tr>
 			<tr>

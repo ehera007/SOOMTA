@@ -56,8 +56,6 @@ tbody td a {
 	font-weight: bold;
 	margin: 30px 10px 10px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
 }
 
 .allbtn {

@@ -213,7 +213,7 @@ function funcCon(){
 		<thead>
 			<tr
 				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">관리자 '${employeeCommand.empId }' 비밀번호 변경 
+				<th colspan="2">'${employeeCommand.empId }' 비밀번호 변경 
 				</th>
 			</tr></thead>
 								<tbody>

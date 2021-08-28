@@ -54,10 +54,8 @@ tbody td a {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 10px 10px;
+	margin: 30px 10px 10px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
 }
 
 .allbtn {

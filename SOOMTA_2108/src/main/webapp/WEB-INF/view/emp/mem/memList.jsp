@@ -56,23 +56,23 @@ tbody  th, td {
   }
 td a {
 	font-weight:bold;
-	color: #0F4C81; 
+	color: black; 
 }
 td a:hover {
 	font-weight:bold;
-	color: #0F4C81; 
+	color: black; 
 }
 td a:link {
 	font-weight:bold;
-	color: #0F4C81;
+	color: black;
 }
 td a:visited {
 	font-weight:bold;
-	color: #0F4C81; 
+	color: black; 
 }
 td a:active {
 	font-weight:bold;
-	color: #0F4C81; 
+	color: black; 
 }
 /*버튼 스타일*/
 .btn {

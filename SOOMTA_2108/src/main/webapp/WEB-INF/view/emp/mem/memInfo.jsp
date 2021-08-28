@@ -45,7 +45,7 @@ tbody td {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 30px 10px 5px 10px;
+	margin: 30px 10px 10px 10px;
 	border: none;
 }
 </style>
