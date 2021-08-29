@@ -197,9 +197,9 @@ function funcCon(){
 			<tfoot>
 			<tr>
 					<tr><td colspan="2" align="center"><div class="allbtn">
+				<input type="submit" class="btn" value="확인" />
 				<input type="button" class="btn" value="취소" 
 					onclick="location.href='empInfo?empId=${emp.empId}'" />
-				<input type="submit" class="btn" value="확인" />
 				</div>
 			</td></tr></tfoot>
 		</table>

@@ -10,10 +10,10 @@
 @charset "UTF-8";
 /*중앙 main*/
 .main {
-	margin: 50px auto;
+	margin: 50px auto 70px auto;
 }
 .table{
-width:800px;
+width:1000px;
 margin:0 auto;
 }
 /* 테이블 스타일 */
@@ -63,11 +63,21 @@ td a:active {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 10px 10px;
 	border: none;
-	float:right;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
+}
+/*검색 부분*/
+.search{
+margin:30px auto;
+text-align:center;
+}
+/*등록 버튼 스타일*/
+.joinbtn {
+	background-color: transparent;
+	color: #0F4C81;
+	font-weight: bold;
+	border: none;
+	margin: 0 0 0 15px;
+	float: right;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -90,7 +100,7 @@ $(document)
 			$('.boardInfo')
 					.click(
 							function() {
-								alert('잠시 후 게시글 정보 페이지로 이동합니다.');
+								alert('잠시 후 게시글 정보 페이지로 이동합니다.(수정, 삭제 가능)');
 							});
 		});
 </script>
@@ -130,55 +140,53 @@ $(document)
 	<!-- 중앙 -->
 	<div class="main">
 	<div class="table">
+	<c:if test="${!empty faqList }">
 	<table><thead>
 	<tr style="font-size: 25px; padding: 10px; height:80px; " >
 				<th colspan="6">등록 된 게시글 리스트</th></tr>
 				
 		<tr style="padding-bottom:20px; height:40px;">
-			<th width="10%">No.</th>
-			<th width="15%">분류</th>
-			<th width="30%">제목</th>
+			<th width="15%">No.</th>
+			<th width="10%">대분류</th>
+			<th width="15%">소분류</th>
+			<th width="37%">제목</th>
 			<th width="15%">작성자</th>
-			<th width="20%">작성일</th>
-			<th width="10%">조회수</th>
+			<th width="8%">조회수</th>
 		</tr></thead>
-		<tbody>
-		<tr>
-			<td>No.</td>
-			<td>분류</td>
-			<td><a href="boardInfo" class="boardInfo">제목</a></td>
-			<td>작성자</td>
-			<td>작성일</td>
-			<td>조회수</td>
-		</tr>
-		<tr>
-			<td>No.</td>
-			<td>분류</td>
-			<td>제목</td>
-			<td>작성자</td>
-			<td>작성일</td>
-			<td>조회수</td>
-		</tr>
-		<tr>
-			<td>No.</td>
-			<td>분류</td>
-			<td>제목</td>
-			<td>작성자</td>
-			<td>작성일</td>
-			<td>조회수</td>
-		</tr>
-		<c:forEach items="${lists }" var="dto">
+		<tbody><c:forEach items="${faqList }" var="dto">
 			<tr>
-				<td><a href="boardInfo" class="boardInfo">${faq_No }게시글 확인 페이지</a></td>
-				<td>${faqCategory}</td>
-				<td>${faqTitle }</td>
-				<td>${emp_Id  }</td>
-				<td>${faqDate}</td>
-				<td>${hit }</td>
+				<td><a href="boardInfo?faqNo=${dto.faqNo }" class="boardInfo">${dto.faqNo }</a></td>
+				<td><c:if test="${dto.faqCategory == 'soomta'}">숨타</c:if>
+					<c:if test="${dto.faqCategory == 'tutor'}">튜터안내</c:if>
+					<c:if test="${dto.faqCategory == 'member'}">고객센터</c:if>
+					<c:if test="${dto.faqCategory == 'policy'}">하단정보</c:if>
+				</td>
+				<td>${dto.faqCtgrS }</td>
+				<td>${dto.faqTitle }</td>
+				<td>${dto.empId  }</td>
+				<td>조회수</td>
 			</tr>
 		</c:forEach></tbody>
-	</table>
-<input class="btn" type="button" value="게시글 등록"
+	</table></c:if>
+	<c:if test="${empty faqList }">
+	등록된 게시글이 없습니다.</c:if>
+	<!-- https://jg-han.tistory.com/38 참고해보기
+				https://dotheright.tistory.com/218 참고해보기(페이징 포함)
+			 -->
+			<div class="search">
+				<form>
+				<select name="ctgr">
+				<option value="no">번호</option>
+				<option value="ctgrL">대분류</option>
+				<option value="ctgrS">소분류</option>
+				<option value="id">작성자</option>
+				</select>
+				<input type = "text" name="searchBar" value=""/>
+				<input type="submit" class="btn" value="검색"/>
+				</form>
+				
+			</div>
+<input class="joinbtn" type="button" value="게시글 등록"
 					onclick="location.href='boardWrite'" />
 					</div>
 	</div>

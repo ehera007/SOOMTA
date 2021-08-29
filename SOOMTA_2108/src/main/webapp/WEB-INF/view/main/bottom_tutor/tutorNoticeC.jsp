@@ -123,10 +123,17 @@ td a {
 		</div>
 		<table>
 			<tr style="font-size: 20px; padding: 5px;">
-				<th colspan="3">제목 ${ faqTitle}</th>
+				<th colspan="3">${ tNo.faqTitle}<input type="hidden" value="${tNo.faqNo }"/></th>
 			</tr>
 			<tr>
-				<td colspan="3" rowspan="2">${faqContents }<br /> ${faqImg }
+				<td colspan="3" rowspan="2"><br /> 
+				<c:if test="${tNo.faqImg != null}">
+				<!------------- 선생님 에러 ---------------ㄴ-->
+				<c:forTokens items="${tNo.faqImag }" delims="," var="faqImg">
+				<img src="<c:url value='/board/upload/${faqImg }'/>"/><br />
+				</c:forTokens></c:if>
+				<c:if test="${tNo.faqIng == null}"> </c:if>
+				${tNo.faqContents }<br /> 
 				</td>
 			</tr>
 		</table>

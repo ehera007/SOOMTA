@@ -66,7 +66,7 @@ tbody td a:visted{
 	font-size:15px;
 	font-weight: bold;
 	border:none;
-	margin: 30px 10px 15px 10px;
+	margin: 30px 10px 10px 10px;
 }
 .ck{
 	font-size:13px;
@@ -230,7 +230,7 @@ $(document).ready(function(){
    <h1>튜터 등록하고 숨타와 함께 하세요!</h1>
       <form action="tutorJoined" method="post" name="frm">
       <input type="hidden" name="tutorSince" value="${tutorSince }"/>
-   <input type="hidden" name="tutorEmailCk" value="Y" id="input_ck_hidden" />
+   <input type="hidden" name="tutorEmailCk" value="N" id="input_ck_hidden" />
       <table>
          <thead>
                <tr>
@@ -281,7 +281,7 @@ $(document).ready(function(){
             	<span class="ck">서비스 <a href="<c:url value='/policy/service'/>" target="_blank">이용약관</a>에 동의합니다. 
            		<span class="required"> (필수)</span></span><br/>
            <input type="checkbox" id="input_ck" checked><span class="ck">이벤트, 할인 등 이메일 수신에 동의  (선택)</span><br/>
-            <span style="text-align:right; font-size:10px;"><a href="<c:url value='/soomta/memberJoin'/>">회원 가입</a>을 원하시나요?</span></td></tr>
+            <span style="text-align:right; font-size:10px;"><a href="<c:url value='/soomta/memJoin'/>">회원 가입</a>을 원하시나요?</span></td></tr>
             <tr><th></th></tr><tr><th></th></tr></tbody>
          <tfoot>
          <tr><th colspan="2"><div class="allbtn">

@@ -66,7 +66,7 @@ tbody td a:visted{
 	font-size:15px;
 	font-weight: bold;
 	border:none;
-	margin: 30px 10px 15px 10px;
+	margin: 30px 10px 10px 10px;
 }
 .ck{
 	font-size:13px;
@@ -172,15 +172,13 @@ function check_pw(){
 </script>
 <!-- emailCk null값 대신 N 보내기-->
  <script>
- $(document).ready(function(){
-     	$("#input_ck").change(function(){
-     		if($("#input_ck").is(":checked")){
-     			document.getElementById("input_ck_hidden").value='Y';
-     		}else{
-     			document.getElementById("input_ck_hidden").value='N';
-     		}
-     	}
-     });
+ $(document).ready(function emailCk(){
+ 		if($("#input_ck").is(":checked")==true){
+ 			document.getElementById("input_ck_hidden").value='Y';
+ 		}else{
+ 			document.getElementById("input_ck_hidden").value='N';
+ 		}
+ });
  </script>
 
 <meta charset="UTF-8">
@@ -208,7 +206,7 @@ function check_pw(){
    <div class="main">
    <h1>숨타와 함께 숨은 시간을 찾아보세요 :)</h1>
       <form action="memJoined" method="post" name="frm">
-   	<input type="hidden" name="memEmailCk" value="Y" id="input_ck_hidden"/>
+       <input type="hidden" name="memEmailCk" id="input_ck_hidden" onchange="emailCk()"/>
       <table>
   <thead>
                <tr>

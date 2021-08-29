@@ -48,7 +48,6 @@ tbody td a {
 	font-weight: bold;
 	margin-left: 3px;
 }
-
 .btn {
 	height: 30px;
 	background-color: transparent;
@@ -59,7 +58,6 @@ tbody td a {
 }
 
 .allbtn {
-	height: 50px;
 	width: 180px;
 	margin: 0 auto;
 }
@@ -182,25 +180,31 @@ function funcCon(){
 	<!-- 중앙 -->
 	<div class="main">
 	<form action="memModOk" method="post" name="frm" onsubmit="return funcCon()"> 
-<input type="hidden" name="memId" value="${memId }"/>
+	<input type="hidden" name="memId" value="${mem.memId }"/>
 <table><thead>
 	<tr
 				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">회원 '${ID }' 정보 수정</th>
+				<th colspan="2">회원 '${mem.memId }' 정보 수정</th>
 			</tr></thead><tbody>
-			<tr><th>ID</th><td>${memId }</td></tr>
-			<tr><th>PW</th><td><input type="password" size="45"/></td></tr>
-			<tr><th>이름</th><td><input type="text" size="45"/></td></tr>
-			<tr><th>생년월일</th><td><input type="date" size="45"/></td></tr>
-			<tr><th>성별</th><td><input type="radio" name="gender" value="M" checked/><span style="margin-right:25px;">남자</span>
-			<input type="radio" name="gender" value="F"/>여자</td></tr>
-			<tr><th>이메일</th><td><input type="email"size="45"/></td></tr>
-			<tr><th>메일수신</th><td><input type="radio" name="emailCk" value="Y" checked/><span style="margin-right:32px;">Yes</span>
-			<input type="radio" name="emailCk" value="N"/>No</td></tr>
-						<tr><th>전화번호</th><td><input type="text"size="45"/></td></tr>
+			<tr><th>ID</th><td>${mem.memId }</td></tr>
+			<tr><th>이름</th><td><input type="text" size="45" name="memName" value="${mem.memName }" minlength="2" required/></td></tr>
+			<tr><th>생년월일</th><td>
+			<input type="date" name="memDob" value="<fmt:formatDate pattern='yyyy-MM-dd' value='${mem.memDob }'/>" required/>
+			</td></tr>
+			<tr><th>성별</th><td>
+			<input type="radio" name="memGender" value="M" <c:if test="${mem.memGender == 'M'}"> checked </c:if>/><span style="margin-right:25px;">남자</span>
+			<input type="radio" name="memGender" value="F" <c:if test="${mem.memGender == 'F'}"> checked </c:if>/>여자
+			</td></tr>
+			<tr><th>이메일</th><td><input type="email"size="45" name="memEmail" value="${mem.memEmail }" required/>
+			</td></tr>
+			<tr><th>메일수신</th><td>
+			<input type="radio" name="memEmailCk" value="Y" <c:if test="${mem.memEmailCk == 'Y'}">checked</c:if>/><span style="margin-right:25px;">수신</span>
+			<input type="radio" name="memEmailCk" value="N" <c:if test="${mem.memEmailCk == 'N'}">checked</c:if>/>거부
+			</td></tr>
+						<tr><th>전화번호</th><td><input type="text"size="45" name="memPhone" value="${mem.memPhone }" minlength="11" maxlength="11" required/></td></tr>
 			<tr><th>주소</th><td>
-<input type="text" path="addr"
-						id="sample4_roadAddress" size="36"
+<input type="text" path="addr" required name="memArea"
+						id="sample4_roadAddress" size="36" value="${mem.memArea }"
 						/> <a href="javascript:sample4_execDaumPostcode();">주소
 							검색</a>
 </td></tr></tbody><tfoot>

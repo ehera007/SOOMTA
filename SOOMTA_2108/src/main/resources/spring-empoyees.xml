@@ -17,4 +17,7 @@
 	<bean class="service.employee.ListService"/>
 	<bean class="service.employee.InfoService"/>
 	<bean class="service.employee.DelService"/>
+	<bean class="service.employee.FaqNumService"/>
+	<bean class="service.employee.FaqInsertService"/>
+	<bean class="service.employee.UpdateService"/>
 </beans>

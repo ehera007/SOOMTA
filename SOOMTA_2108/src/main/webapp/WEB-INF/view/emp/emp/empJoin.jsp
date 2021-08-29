@@ -266,10 +266,9 @@ function funcCon(){
 					<tfoot>
 						<tr>
 							<th colspan="2"><div class="allbtn">
-									<input type="reset" class="btn" value="내용 지우기" /> <input
-										class="btn" type="button" value="등록 취소"
-										onclick="javascript:history.back()" /> <input class="btn"
-										id="finish" type="submit" class="btn" value="관리자 등록" />
+									<input type="reset" class="btn" value="내용 지우기" />
+									<input class="btn" id="finish" type="submit" class="btn" value="관리자 등록" />
+									<input class="btn" type="button" value="등록 취소" onclick="javascript:history.back()" /> 
 								</div></th>
 						</tr>
 					</tfoot>

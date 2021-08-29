@@ -230,9 +230,9 @@ function funcCon(){
 			<tfoot>
 			<tr>
 					<tr><td colspan="2" align="center"><div class="allbtn">
+				<input type="submit" class="btn" value="수정 완료" />
 				<input type="button" class="btn" value="수정 취소" 
 					onclick="location.href='myInfo'" />
-				<input type="submit" class="btn" value="수정 완료" />
 				</div>
 			</td></tr></tfoot>
 		</table>

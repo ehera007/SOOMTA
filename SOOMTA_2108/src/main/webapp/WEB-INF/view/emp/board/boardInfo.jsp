@@ -20,7 +20,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width: 600px;
+	width: 800px;
 }
 
 thead th {
@@ -31,11 +31,11 @@ thead th {
 	border-radius: 8px 8px 0px 0px;
 }
 .th{
-margin-left:50px;
 font-weight:bold;
 }
 tbody td {
 	padding-top: 30px;
+	padding-left: 50px;
 }
 
 .btn {
@@ -43,10 +43,8 @@ tbody td {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 10px 10px;
+	margin: 30px 10px 10px 10px;
 	border: none;
-	/*border:1px solid #0F4C81;
-	border-radius:4px;*/
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -65,7 +63,7 @@ tbody td {
 <script type="text/javascript">
 function funcCon(){
 	if(confirm('정말 삭제하시겠습니까?\n*삭제 후 복구할 수 없습니다.')){
-		location.href='boardDel';
+		location.href='boardDel?faqNo=${faq.faqNo}';
 	}else{
 		return false;
 	}
@@ -97,18 +95,24 @@ function funcCon(){
 		<table><thead>
 			<tr
 				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="3">게시번호 '${ID }'의 정보</th>
+				<th colspan="3">게시번호 '${faq.faqNo }'의 정보</th>
 			</tr></thead><tbody>
-			<tr><td width="25%"><span class="th">분류 :</span> ${faqCategory }</td><td width="35%"><span class="th">작성일 :</span> ${faqDate }</td><td width="40%"><span class="th">작성자 :</span> ${empId }</td></tr>
-			<tr><td colspan="3"><span class="th">제목 :</span> ${faqTitle }</td></tr>
-			<tr><td colspan="3"><span class="th">내용 :</span> ${faqContents }</td></tr>
-			<tr><td colspan="3"><span class="th">첨부 이미지 :</span> ${faqImg }</td></tr></tbody><tfoot>
+			<tr><td width="35%"><span class="th">분류 :</span> ${faq.faqCategory } | ${faq.faqCtgrS }</td>
+			<td width="30%"><span class="th">작성일 :</span> 
+			<fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${faq.faqDate }"/></td>
+			<td width="35%" style="padding-right: 50px;"><span class="th">작성자 :</span> ${faq.empId }</td></tr>
+			<tr><td colspan="3" style="padding-right: 50px;"><span class="th">제목 :</span> ${faq.faqTitle }</td></tr>
+			<tr><td colspan="3" style="padding-right: 50px;">
+			<!------ 선생님 질문, 한줄 띄기 안 되는건지 ------->
+			<span class="th">내용 :</span>${fn:replace(faq.faqContents, cn , "<br />") }</td></tr>
+			<tr><td colspan="3" style="padding-right: 50px;"><span class="th">첨부 이미지 :</span> ${faq.faqImg }</td></tr></tbody><tfoot>
 					<tr>
 				<th colspan="3">
 				<input class="btn" type="button" value="리스트"
 					onclick="location.href='boardList'" />
 				<input class="btn" type="button" value="수정"
-					onclick="location.href='boardMod'" /> <input class="btn"
+					onclick="location.href='boardMod?faqNo=${faq.faqNo}'" /> 
+					<input class="btn"
 					type="button" class="btn" value="삭제"
 					onclick="funcCon()" /></th>
 			</tr></tfoot>

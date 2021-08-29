@@ -46,7 +46,7 @@ th {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 10px 10px;
+	margin: 30px 10px 10px 10px;
 	border: none;
 }
 </style>
@@ -66,8 +66,8 @@ th {
 <script>
 function ctgrChange(e){
 	var soomta=["회사소개","서비스안내","인재채용"]
-	var tutor=["T공지사항", "T이용안내", "T자주묻는질문"];
-	var member=["M공지사항", "M이용안내", "M자주묻는질문"];
+	var tutor=["공지사항", "이용안내", "자주묻는질문"];
+	var member=["공지사항", "이용안내", "자주묻는질문"];
 	var policy=["이용약관","개인정보처리방침","환불정책","사업자정보확인"]
 	var target=document.getElementById("faq_ctgr2");
 	
@@ -120,44 +120,42 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-<form action="boardModOk" method="post" name="frm" enctype="multipart/form-data" onsubmit="return funcCon()"> 
-<input type="hidden" name="empId" value="${empId }"/>
+<form action="boardModOk?faqNo=${faq.faqNo }" method="post" name="frm" enctype="multipart/form-data" onsubmit="return funcCon()"> 
+<input type="hidden" name="empId" value="${faq.empId }"/>
 <table align="center"><thead>
 			<tr>
 				<th colspan="2"
 					style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">관리자
-					게시글 작성</th>
+					게시글 수정</th>
 			</tr></thead>
 			<tr>
 				<th>No.</th>
-				<td>"${faq_No}"</td>
+				<td>"${faq.faqNo}"</td>
 			</tr>
 			<tr>
 				<th>분류</th>
 				<td>
-				<select id="faq_ctgr1" onchange="ctgrChange(this)">
-						<option value="soomta">숨타</option>
-						<option value="tutor" >튜터안내</option>
-						<option value="member" >고객센터</option>
-						<option value="policy">하단정보</option>
+				<select id="faq_ctgr1" name="faqCategory" onchange="ctgrChange(this)">
+						<option value="soomta" <c:if test="${faq.faqCategory == 'soomta'}">selected</c:if> >숨타</option>
+						<option value="tutor"  <c:if test="${faq.faqCategory == 'tutor'}">selected</c:if>>튜터안내</option>
+						<option value="member" <c:if test="${faq.faqCategory == 'member'}">selected</c:if>>고객센터</option>
+						<option value="policy" <c:if test="${faq.faqCategory == 'policy'}">selected</c:if>>하단정보</option>
 				</select>
-				<select id="faq_ctgr2" style="margin-left:5px;">
+				<select id="faq_ctgr2" name="faqCtgrS" style="margin-left:5px;">
 						<option value="option2">--세부--</option>
-						<!-- <option value="event">이용안내</option>
-						<option value="qna">자주 묻는 질문</option> -->
 				</select></td>
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" size="53" required/>
+				<td><input type="text" name="faqTitle" value="${faq.faqTitle }"size="53" required/>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="faq_Contents" rows="20" cols="55" required></textarea></td>
+				<td><textarea name="faqContents"rows="20" cols="55" required>${fn:replace(faq.faqContents, cn , "<br />") }</textarea></td>
 			</tr>
 			<tr>
 				<th>파일</th>
-				<td><input type="file" name="faq_Img " multiple="multiple" /></td>
+				<td><input type="file" name="faqImg " multiple="multiple" /></td>
 			</tr>
 			<tr>
 				<th colspan="2"><div class="allbtn"><input class="btn" type="submit" value="수정완료"/> 

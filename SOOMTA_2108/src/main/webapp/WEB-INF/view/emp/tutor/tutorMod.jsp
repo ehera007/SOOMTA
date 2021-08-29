@@ -49,16 +49,14 @@ tbody td a {
 }
 
 .btn {
-	height: 30px;
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 30px 10px 10px 10px;
+	margin: 0px 10px 10px 10px;
 	border: none;
 }
 
 .allbtn {
-	height: 50px;
 	width: 180px;
 	margin: 0 auto;
 }
@@ -189,36 +187,40 @@ function funcCon(){
 	<!-- 중앙 -->
 	<div class="main">
 		<form action="tutorModOk" method="post" name="frm" onsubmit="return funcCon()"> 
-<input type="hidden" name="memId" value="${memId }"/>
+<input type="hidden" name="tutorId" value="${tutor.tutorId }"/>
 <table><thead>
 	<tr
 				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">튜터 '${ID }' 정보 수정</th>
+				<th colspan="2">튜터 '${tutor.tutorId }' 정보 수정</th>
 			</tr></thead><tbody>
-			<tr><th>ID</th><td>${tutorId }</td></tr>
-			<tr><th>PW</th><td><input type="password" size="45"/></td></tr>
-			<tr><th>이름</th><td><input type="text" size="45"/></td></tr>
-			<tr><th>생년월일</th><td><input type="date"/></td></tr>
+			<tr><th>ID</th><td>${tutor.tutorId }</td></tr>
+			<tr><th>이름</th><td><input type="text" size="45" name="tutorName" value="${tutor.tutorName }" required minlength="2"/></td></tr>
+			<tr><th>생년월일</th><td>
+			<input type="date" name="tutorDob" value="<fmt:formatDate pattern='yyyy-MM-dd' value='${tutor.tutorDob }'/>" required/>
+			</td></tr>
 			<tr><th>성별</th>
-			<td><input type="radio" name="gender" value="M" checked/><span style="margin-right:25px;">남자</span>
-				<input type="radio" name="gender" value="F"/>여자</td></tr>
-			<tr><th>전화번호</th><td><input type="text"size="45"/></td></tr>
-			<tr><th>이메일</th><td><input type="email"size="45"/></td></tr>
-			<tr><th>메일수신</th><td><input type="radio" name="emailCk" value="Y" checked/><span style="margin-right:32px;">Yes</span>
-			<input type="radio" name="emailCk" value="N"/>No</td></tr>
-			<tr><th>인증상태</th><td><input type="radio" name="emailCon" value="Y" checked/><span style="margin-right:25px;">완료</span>
-			<input type="radio" name="emailCon" value="N"/>미정</td></tr>
+			<td>
+			<input type="radio" name="tutorGender" value="M" <c:if test="${tutor.tutorGender == 'M'}"> checked </c:if>/><span style="margin-right:25px;">남자</span>
+			<input type="radio" name="tutorGender" value="F" <c:if test="${tutor.tutorGender == 'F'}"> checked </c:if>/>여자</td></tr>
+			<tr><th>전화번호</th><td><input type="text"size="45" name="tutorPhone" value="${tutor.tutorPhone }" minlength="11" maxlength="11" required/></td></tr>
+			<tr><th>이메일</th><td><input type="email"size="45" name="tutorEmail" value="${tutor.tutorEmail }" required/></td></tr>
+			<tr><th>메일수신</th><td>
+			<input type="radio" name="tutorEmailCk" value="Y" <c:if test="${tutor.tutorEmailCk == 'Y'}">checked</c:if>/><span style="margin-right:25px;">수신</span>
+			<input type="radio" name="tutorEmailCk" value="N" <c:if test="${tutor.tutorEmailCk == 'N'}">checked</c:if>/>거부</td></tr>
+			<tr><th>인증상태</th><td>
+			<input type="radio" name="tutorEmailOk" value="Y" <c:if test="${tutor.tutorEmailOk == 'Y'}">checked</c:if>/><span style="margin-right:25px;">완료</span>
+			<input type="radio" name="tutorEmailOk" value="N" <c:if test="${tutor.tutorEmailOk != 'Y'}">checked</c:if>/>미정</td></tr>
 			<tr><th>주소</th><td>
-<input type="text" path="addr"
+<input type="text" path="addr" required name="tutorArea" value="${tutor.tutorArea }"
 						id="sample4_roadAddress" size="45"
 						/> <a href="javascript:sample4_execDaumPostcode();">주소
 							검색</a>
-</td></tr></tbody><tfoot>
+</td></tr>
 			<tr>
 				<th colspan="2"><div class="allbtn"><input class="btn" id="finish" type="submit" value="수정완료"/> 
 				<input class="btn" type="button" class="btn" value="수정취소"
 					onclick="javascript:history.back()" /></div></th>
-			</tr></tfoot>
+			</tr></tbody>
 		</table>
 </form></div>
 

@@ -69,6 +69,21 @@ public void tutorDel(String tutorId) {
 	int i = sqlSession.delete(statement,tutorId);
 	System.out.println(i+"명의 튜터가 삭제되었습니다.");
 }
+public void tutorPwUpdate(TutorDTO dto) {//튜터 pw 변경
+	statement = namespace + ".tutorPwUpdate";
+	int i = sqlSession.update(statement,dto);
+	System.out.println(i+"명의 튜터 pw를 변경.");
+}
+public void tutorUpdate(TutorDTO dto) {//튜터 수정
+	statement = namespace + ".tutorUpdate";
+	int i = sqlSession.update(statement, dto);
+	System.out.println(i+"개의 튜터 정보 수정.");
+}
+public void tutorProfileUpdate(TutorDTO dto) {//튜터 프로필 수정
+	statement = namespace + ".tutorProfileUpdate";
+	int i = sqlSession.update(statement, dto);
+	System.out.println(i+"개의 튜터 프로필 수정.");
+}
 
 //멤버
 public List<MemberDTO> memList(){//멤버리스트
@@ -79,15 +94,48 @@ public MemberDTO memInfo(String memId) {//회원정보
 	statement = namespace + ".memInfo";
 	return sqlSession.selectOne(statement,memId);
 }
-public void memDel(String memId) {
+public void memDel(String memId) {//회원삭제
 	statement = namespace + ".memDel";
 	int i = sqlSession.delete(statement,memId);
 	System.out.println(i+"명의 회원이 삭제되었습니다.");
 }
+public void memPwUpdate(MemberDTO dto){//회원 pw 변경
+	statement = namespace + ".memPwUpdate";
+	int i = sqlSession.update(statement,dto);
+	System.out.println(i+"명의 회원 pw를 변경.");
+}
+public void memUpdate(MemberDTO dto) {//회원수정
+	statement = namespace + ".memUpdate";
+	int i = sqlSession.update(statement, dto);
+	System.out.println(i+"개의 회원 정보 수정.");
+}
 
 //게시판
-public List<FaqDTO> boardList(){//멤버리스트
+public List<FaqDTO> boardList(){//게시판리스트
 	statement = namespace + ".boardList";
 	return sqlSession.selectList(statement);
+}
+public Long faqNo(){//게시판작성_번호
+	statement = namespace + ".faqNo";
+	return sqlSession.selectOne(statement);
+}
+public void faqInsert(FaqDTO dto) {//게시글 작성
+	statement = namespace + ".faqInsert";
+	int i = sqlSession.insert(statement,dto);
+	System.out.println(i+"개의 게시글이 등록되었습니다.");
+}
+public FaqDTO boardInfo(String faqNo) {//게시글 정보
+	statement = namespace + ".boardInfo";
+	return sqlSession.selectOne(statement,faqNo);
+}
+public void boardDel(String faqNo) {//게시글 삭제
+	statement = namespace + ".boardDel";
+	int i = sqlSession.delete(statement,faqNo);
+	System.out.println(i+"개의 게시글이 삭제되었습니다.");
+	}
+public void boardUpdate(FaqDTO dto) {//게시글 수정
+	statement = namespace + ".boardUpdate";
+	int i = sqlSession.update(statement, dto);
+	System.out.println(i+"개의 게시글를 수정하였습니다.");
 }
 }

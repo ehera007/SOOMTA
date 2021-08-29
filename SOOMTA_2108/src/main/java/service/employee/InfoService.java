@@ -1,8 +1,10 @@
 package service.employee;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
+import Model.FaqDTO;
 import Model.MemberDTO;
 import Model.TutorDTO;
 import repository.EmployeeRepository;
@@ -21,5 +23,9 @@ public class InfoService {
 	public void memInfo(String memId, Model model) {
 		MemberDTO dto = employeeRepository.memInfo(memId);
 		model.addAttribute("mem", dto);
+	}
+	public void boardInfo(String faqNo, Model model) {
+		FaqDTO dto = employeeRepository.boardInfo(faqNo);
+		model.addAttribute("faq", dto);
 	}
 }

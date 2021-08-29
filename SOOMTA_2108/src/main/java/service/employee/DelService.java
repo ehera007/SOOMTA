@@ -14,5 +14,9 @@ public class DelService {
 	public void memDel(String memId) {
 		employeeRepository.memDel(memId);
 	} 
+	
+	public void boardDel(String faqNo) {
+		employeeRepository.boardDel(faqNo);
+	}
 
 }

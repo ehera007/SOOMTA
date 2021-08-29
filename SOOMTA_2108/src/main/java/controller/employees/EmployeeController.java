@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.EmployeeCommand;
+import command.FaqCommand;
+import command.MemberCommand;
+import command.TutorCommand;
 import service.employee.DelService;
 import service.employee.EmployeeDelService;
 import service.employee.EmployeeInfoService;
@@ -19,8 +22,11 @@ import service.employee.EmployeeJoinService;
 import service.employee.EmployeeListService;
 import service.employee.EmployeePwUpdateService;
 import service.employee.EmployeeUpdateService;
+import service.employee.FaqInsertService;
+import service.employee.FaqNumService;
 import service.employee.InfoService;
 import service.employee.ListService;
+import service.employee.UpdateService;
 
 @Controller
 @RequestMapping("emp")
@@ -43,6 +49,12 @@ public class EmployeeController {
 	InfoService infoService;
 	@Autowired
 	DelService delService;
+	@Autowired
+	FaqNumService faqNumService;
+	@Autowired
+	FaqInsertService faqInsertService;
+	@Autowired
+	UpdateService updateService;
 	@RequestMapping("main")
 	public String empPage() {
 		return "emp/empmain";
@@ -53,31 +65,45 @@ public class EmployeeController {
 		return "emp/board/boardList";
 	}
 	@RequestMapping("boardInfo")//게시글 상세 보기
-	public String boardInfo() {
+	public String boardInfo(@RequestParam(value="faqNo") String faqNo, Model model) {
+		infoService.boardInfo(faqNo, model);
 		return "emp/board/boardInfo";
 	}
+	//////게시판 수정-파일삭제, 추가 해야됨+수정 후 날짜 당일로 변경////////////////////////
 	@RequestMapping("boardMod")//게시판 수정
-	public String boardMod() {
+	public String boardMod(@RequestParam(value="faqNo") String faqNo, Model model) {
+		infoService.boardInfo(faqNo, model);
 		return "emp/board/boardMod";
 	}
-	@RequestMapping("boardModOk")//게시판 수정 완료
-	public String boardModOk() {
-		return "redirect:boardInfo";
+	@RequestMapping(value="boardModOk", method=RequestMethod.POST)//게시판 수정 완료
+	public String boardModOk(FaqCommand faqCommand) {
+		updateService.boardUpdate(faqCommand);
+		Long faqNo = faqCommand.getFaqNo();
+		return "redirect:boardInfo?faqNo="+faqNo;
 	}
+	///////////////////////////////////////////
+	
 	@RequestMapping("boardDel")//게시판 삭제
-	public String boardDel() {
+	public String boardDel(@RequestParam(value="faqNo") String faqNo) {
+		delService.boardDel(faqNo);
 		return "redirect:boardList";
 	}
 	@RequestMapping("boardWrite")//게시글 작성
-	public String boardWrite() {
+	public String boardWrite(Model model, FaqCommand faqCommand) {
+		faqNumService.faqNo(model, faqCommand);
 		return "emp/board/boardWrite";
+	}
+	@RequestMapping(value="boardWriteOk", method=RequestMethod.POST)//게시글 작성 완료
+	public String boardWriteOk(FaqCommand faqCommand, HttpSession session) {
+		faqInsertService.boardInsert(faqCommand, session);
+		Long faqNo = faqCommand.getFaqNo();
+		return "redirect:boardInfo?faqNo="+faqNo;
 	}
 	@RequestMapping("memList")//일반 회원 보기
 	public String memList(Model model) {
 		listService.memList(model);
 		return "emp/mem/memList";
 	}
-	//0826
 	@RequestMapping("memInfo")//일반 회원 상세 보기
 	public String memInfo(@RequestParam(value="memId") String memId, Model model) {
 		infoService.memInfo(memId, model);
@@ -89,15 +115,35 @@ public class EmployeeController {
 		return "emp/mem/memPwCon";
 	}
 	
-	///////회원 pw 확인 및 수정///////////
-	
+	@RequestMapping(value="memPwChange", method=RequestMethod.POST)//회원 pw 확인 및 수정
+	public String memPwChange(@RequestParam(value="memId") String memId, @RequestParam(value="empPw") String empPw, Model model, 
+			HttpSession session, @ModelAttribute(value = "memberCommand") MemberCommand memberCommand) {
+		infoService.memInfo(memId,model);
+		int i = employeePwUpdateService.empPwCon(empPw, model, session);
+		if(i == 1) {
+			return "emp/mem/memPwConErr";
+		}else {
+			return "emp/mem/memPwChange";
+		}
+	}
+	@RequestMapping(value="memPwChangeOk", method=RequestMethod.POST)//회원 pw수정 완료
+	public String memPwChangeOk(MemberCommand memberCommand, Errors errors) {
+		updateService.memPwUpdate(memberCommand, errors);
+		if(errors.hasErrors()) {
+			return "emp/mem/memPwChange";
+		}
+		return "emp/mem/memPwChangeOk"; 
+	}
 	@RequestMapping("memMod")//회원 수정
 	public String memMod(@RequestParam(value="memId") String memId, Model model) {
+		infoService.memInfo(memId, model);
 		return "emp/mem/memMod";
 	}
-	@RequestMapping("memModOk")//회원 수정 완료
-	public String memModOk() {
-		return "redirect:memInfo";
+	@RequestMapping(value="memModOk", method=RequestMethod.POST)//회원 수정 완료
+	public String memModOk(MemberCommand memberCommand) {
+		updateService.memUpdate(memberCommand);
+		String memId = memberCommand.getMemId();
+		return "redirect:memInfo?memId="+memId;
 	}
 	@RequestMapping("memDel")//회원 탈퇴
 	public String memDel(@RequestParam(value="memId") String memId){
@@ -114,26 +160,60 @@ public class EmployeeController {
 		infoService.tutorInfo(tutorId, model);
 		return "emp/tutor/tutorInfo";
 	}
+	
+	@RequestMapping("tutorMod")//튜터 수정
+	public String tutorMod(@RequestParam(value="tutorId") String tutorId, Model model) {
+		infoService.tutorInfo(tutorId, model);
+		return "emp/tutor/tutorMod";
+	}
+	@RequestMapping(value="tutorModOk", method=RequestMethod.POST)//튜터 수정 완료
+	public String tutorModOk(TutorCommand tutorCommand) {
+		updateService.tutorUpdate(tutorCommand);
+		String tutorId = tutorCommand.getTutorId();
+		return "redirect:tutorInfo?tutorId="+tutorId;
+	}
+///////해야됨-프로필-이미지 관련 + 마이페이지랑 맞추기//////////
 	@RequestMapping("tutorProfile")//튜터 프로필정보
 	public String tutorProfile(@RequestParam(value="tutorId") String tutorId, Model model) {
 		infoService.tutorProfile(tutorId, model);
 		return "emp/tutor/tutorProfile";
 	}
+	@RequestMapping("tutorProfileMod")//튜터 프로필수정
+	public String tutorProfileMod(@RequestParam(value="tutorId") String tutorId, Model model) {
+		infoService.tutorProfile(tutorId, model);
+		return "emp/tutor/tutorProfileMod";
+	}
+	@RequestMapping(value="tutorProfileModOk", method=RequestMethod.POST)//튜터 프로필 수정 완료
+	public String tutorProfileModOk(TutorCommand tutorCommand) {
+		updateService.tutorProfileUpdate(tutorCommand);
+		String tutorId = tutorCommand.getTutorId();
+		return "redirect:tutorProfile?tutorId="+tutorId;
+	}
+	////////////////////////////////////
+	
 	@RequestMapping("tutorPwCon")
 	public String tutorPwCon(@RequestParam(value="tutorId") String tutorId, Model model) {//튜터pw변경 전 확인
 		infoService.tutorInfo(tutorId,model);
 		return "emp/tutor/tutorPwCon";
 	}
-	
-	///////튜터 pw 확인 및 수정///////////
-	
-	@RequestMapping("tutorMod")//튜터 수정
-	public String tutorMod(@RequestParam(value="tutorId") String tutorId, Model model) {
-		return "emp/tutor/tutorMod";
+	@RequestMapping(value="tutorPwChange", method=RequestMethod.POST)//튜터 pw 확인 및 수정
+	public String memPwChange(@RequestParam(value="tutorId") String tutorId, @RequestParam(value="empPw") String empPw, Model model, 
+			HttpSession session, @ModelAttribute(value = "tutorCommand") TutorCommand tutorCommand) {
+		infoService.tutorInfo(tutorId,model);
+		int i = employeePwUpdateService.empPwCon(empPw, model, session);
+		if(i == 1) {
+			return "emp/tutor/tutorPwConErr";
+		}else {
+			return "emp/tutor/tutorPwChange";
+		}
 	}
-	@RequestMapping("tutorModOk")//튜터 수정 완료
-	public String tutorModOk() {
-		return "redirect:tutorInfo";
+	@RequestMapping(value="tutorPwChangeOk", method=RequestMethod.POST)//튜터 pw수정 완료
+	public String tutorPwChangeOk(TutorCommand tutorCommand, Errors errors) {
+		updateService.tutorPwUpdate(tutorCommand, errors);
+		if(errors.hasErrors()) {
+			return "emp/tutor/tutorPwChange";
+		}
+		return "emp/tutor/tutorPwChangeOk"; 
 	}
 	@RequestMapping("tutorDel")//튜터 탈퇴
 	public String tutorDel(@RequestParam(value="tutorId") String tutorId){

@@ -1,5 +1,7 @@
 package command;
 
+import java.util.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class FaqCommand {
@@ -8,7 +10,9 @@ public class FaqCommand {
 	String faqCategory;
 	String faqContents;
 	MultipartFile []  faqImg;
-	
+	String faqTitle;
+	Date faqDate;
+	String faqCtgrS;
 	
 	public Long getFaqNo() {
 		return faqNo;
@@ -25,6 +29,15 @@ public class FaqCommand {
 	public MultipartFile[] getFaqImg() {
 		return faqImg;
 	}
+	public String getFaqTitle() {
+		return faqTitle;
+	}
+	public Date getFaqDate() {
+		return faqDate;
+	}
+	public String getFaqCtgrS() {
+		return faqCtgrS;
+	}
 	public void setFaqNo(Long faqNo) {
 		this.faqNo = faqNo;
 	}
@@ -40,4 +53,15 @@ public class FaqCommand {
 	public void setFaqImg(MultipartFile[] faqImg) {
 		this.faqImg = faqImg;
 	}
+	public void setFaqTitle(String faqTitle) {
+		this.faqTitle = faqTitle;
+	}
+	public void setFaqDate(Date faqDate) {
+		this.faqDate = faqDate;
+	}
+	public void setFaqCtgrS(String faqCtgrS) {
+		this.faqCtgrS = faqCtgrS;
+	}
+
+	
 }

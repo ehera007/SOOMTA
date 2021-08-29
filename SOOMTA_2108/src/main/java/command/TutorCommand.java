@@ -26,9 +26,21 @@ public class TutorCommand {
 	String tutorImage;
 	String tutorIntroduce;
 	String tutorLikearea;
+	String tutorEmailOk;
 	
 	
-	
+	public String getTutorEmailOk() {
+		return tutorEmailOk;
+	}
+	public void setTutorEmailOk(String tutorEmailOk) {
+		this.tutorEmailOk = tutorEmailOk;
+	}
+	public boolean isTutorPwConEq() {
+		return tutorPw.equals(tutorPwCon);
+	}
+	public boolean isTutorEmailConEq() {
+		return tutorEmail.equals(tutorEmailCon);
+	}
 	public Date getTutorSince() {
 		return tutorSince;
 	}

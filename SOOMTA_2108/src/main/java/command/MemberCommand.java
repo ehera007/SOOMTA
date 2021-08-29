@@ -20,6 +20,9 @@ public class MemberCommand {
 	String memEmailCk;
 	
 	
+	public boolean isMemPwConEq() {
+		return memPw.equals(memPwCon);
+	}
 	public String getMemPwCon() {
 		return memPwCon;
 	}

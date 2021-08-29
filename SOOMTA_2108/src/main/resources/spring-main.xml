@@ -14,4 +14,9 @@
 	<bean id="logInService" class="service.logIn.LogInService"/>
 	<bean id="logInRepository" class="repository.LogInRepository"/>
 	<bean id="cookieService" class="service.logIn.CookieService"/>
+	<bean class="service.faq.TutorListService"/>
+	<bean class="repository.FaqRepository"/>
+	<bean class="service.faq.MemListService"/>
+	<bean class="service.faq.FaqViewService"/>
+	<bean class="service.faq.HireListService"/>
 </beans>

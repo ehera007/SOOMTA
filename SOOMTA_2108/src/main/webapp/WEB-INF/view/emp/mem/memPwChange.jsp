@@ -59,8 +59,8 @@ tbody td a {
 }
 
 .allbtn {
-	height: 50px;
-	width: 180px;
+	height: 40px;
+	width: 125px;
 	margin: 0 auto;
 }
 
@@ -76,6 +76,16 @@ input {
 	float: left;
 	margin-right: 5px;
 }
+.id{
+ 	border : none;
+ 	background-color:transparent;
+ 	font-size: 18px;
+}
+.memPwConErr{
+	font-size:12px;
+	color:red;
+	font-weight:bold;
+}
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -88,17 +98,6 @@ input {
 			return false;
 		});
 	});
-</script>
-<!-- 수정 전 확인 알림창 -->
-<script type="text/javascript">
-function funcCon(){
-	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
-	if(cfm){
-		document.getElementById('frm').submit();
-	}else{
-		return false;
-	}
-}
 </script>
 <!-- 다음 주소 -->
 <script
@@ -158,8 +157,36 @@ function funcCon(){
 				}).open();
 	}
 </script>
+<!-- 비밀번호 확인 -->
+<script>
+    function check_pw(){
+    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+        if(document.getElementById('pw').value==document.getElementById('pw2').value){
+            document.getElementById('check').innerHTML='PW 일치'
+            document.getElementById('check').style.color='#0F4C81';
+            document.getElementById('check').style.fontSize='15px';
+            document.getElementById('check').style.fontWeight='900';
+        }
+        else{
+            document.getElementById('check').innerHTML='PW 불일치';
+            document.getElementById('check').style.color='red';
+            document.getElementById('check').style.fontSize='15px';
+            document.getElementById('check').style.fontWeight='900';
+        }}}
+</script>
+<!-- 수정 전 확인 알림창 -->
+<script type="text/javascript">
+function funcCon(){
+	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
+	if(cfm){
+		document.getElementById('frm').submit();
+	}else{
+		return false;
+	}
+}
+</script>
 <meta charset="UTF-8">
-<title>관리자 정보 수정</title>
+<title>회원 PW 변경</title>
 </head>
 <body>
 <body>
@@ -180,67 +207,45 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="empModOk" method="post" name="frm" onsubmit="return funcCon()"> 
-<input type="hidden" name="empId" value="${emp.empId }"/>
+	<form:form action="memPwChangeOk" method="post" name="frm" onsubmit="return funcCon()" modelAttribute="memberCommand"> 
+	
 		<table>
 		<thead>
 			<tr
 				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">관리자 '${emp.empId }'의 정보 수정
+				<th colspan="2">'${memberCommand.memId }' 비밀번호 변경 
 				</th>
 			</tr></thead>
 								<tbody>
 						<tr class="first_tr">
 							<th>아이디</th>
-							<td>${emp.empId }</tr>
+							<td><form:input path="memId" readonly="true" class="id"/></td></tr>
 						<tr>
-							<th>이름</th>
-							<td><input type="text" name="empName" minlength="2" required value="${emp.empName }"
-								size="30" />
-								<div class="detail">* 성 포함 입력</div></td>
+							<th>변경 비밀번호</th>
+							<td><input type="password" name="memPw"
+								size="30" required
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
+								class="pw" id="pw" onchange="check_pw()"/>
+								<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td>
 						</tr>
 						<tr>
-							<th>담당 파트</th>
-							<td><input type="text" name="empJob" minlength="2" maxlength="15" required
-								size="30" value="${emp.empJob }"/>
-								<div class="detail">* 담당하는 일을 입력</div></td>
-						</tr>
-						<tr>
-							<th>입사일</th>
-							<td><input type="date" name="hireDate" value="<fmt:formatDate pattern='yyyy-MM-dd' value='${emp.hireDate }'/>" required/>
-						</td>
-						</tr>
-						<tr>
-							<th>전화번호</th>
-							<td><input type="text" name="empPhone" minlength="11"
-								required size="30" maxlength="11" value="${emp.empPhone }"/>
-								<div class="detail">* ex) 01012341234</div></td>
-						</tr>
-						<tr>
-							<th>이메일</th>
-							<td><input type="text" id="email1" name="empEmail" value="${emp.empEmail }"
-								required size="30">
-								<div class="detail">* ex) email@email.com</div></td>
-						</tr>
-						<tr>
-							<th>주소</th>
-							<td>
-							<input type="text" name="empAddr" 
-						value="${emp.empAddr }"required size="30"
-								id="sample4_roadAddress" /> <a
-								href="javascript:sample4_execDaumPostcode();">주소 검색</a></td>
+							<th>변경 비밀번호 확인</th>
+							<td><input type="password" name="memPwCon" required
+								size="30"
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
+								class="pw" id="pw2" onkeyup="check_pw()"/>
+	&nbsp;<span id="check"></span>&nbsp;<span class="memPwConErr"><form:errors path="memPwCon"/></span></td>
 						</tr>
 					</tbody>
 			<tfoot>
 			<tr>
 					<tr><td colspan="2" align="center"><div class="allbtn">
-				<input type="submit" class="btn" value="수정 완료" />
-				<input type="button" class="btn" value="수정 취소" 
-					onclick="javascript:history.back();" />
-				</div>
+					<input type="submit" class="btn" value="변경" />
+					<input type="button" class="btn" value="취소" 
+					onclick="location.href='memInfo?memId=${mem.memId}'" /></div>
 			</td></tr></tfoot>
 		</table>
-		</form>
+		</form:form>
 	</div>
 
 

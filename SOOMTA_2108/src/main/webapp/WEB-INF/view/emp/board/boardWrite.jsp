@@ -26,12 +26,12 @@ thead th {
 	border-radius: 8px 8px 0px 0px;
 }
 th {
-    padding:10px;
+    padding-top:30px;
     width:25%;
   }
   
   td{
-    padding:10px;
+    padding-top:30px;
   width:75%;
   margin-right:10px;
   }
@@ -41,8 +41,11 @@ th {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 10px 10px;
+	margin: 0 10px 10px 10px;
 	border: none;
+}
+.No{
+border: none;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -109,8 +112,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 <!-- 중앙 -->
-	<form action="boardInfo" method="post" name="frm"
-		enctype="multipart/form-data">
+	<form:form action="boardWriteOk" method="post" name="frm" modelAttribute="faqCommand" enctype="multipart/form-data">
 		<table align="center">
 		<thead>
 			<tr>
@@ -120,42 +122,43 @@ $(document).ready(function(){
 			</tr></thead>
 			<tr>
 				<th>No.</th>
-				<td>"${faq_No}"</td>
+				<td><input type="text" name="faqNo" value="${faqNo}" readonly class="No"/></td>
 			</tr>
 			<tr>
 				<th>분류</th>
 				<td>
-				<select id="faq_ctgr1" onchange="ctgrChange(this)">
+				<select id="faq_ctgr1" name="faqCategory" onchange="ctgrChange(this)">
+						<option value="option1">--분류 선택--</option>
 						<option value="soomta">숨타</option>
 						<option value="tutor" >튜터안내</option>
 						<option value="member" >고객센터</option>
 						<option value="policy">하단정보</option>
 				</select>
-				<select id="faq_ctgr2" style="margin-left:5px;">
-						<option value="option2">--세부--</option>
+				<select id="faq_ctgr2" name="faqCtgrS" style="margin-left:5px;">
+						<option value="option2">--세부 선택--</option>
 				</select></td>
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" size="53" required/>
+				<td><input type="text" size="53" name="faqTitle" required/>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="faq_Contents" rows="20" cols="55" required></textarea></td>
+				<td><textarea name="faqContents" rows="20" cols="55" required></textarea></td>
 			</tr>
 			<tr>
 				<th>파일</th>
-				<td><input type="file" name="faq_Img " multiple="multiple" /></td>
+				<td><input type="file" name="faqImg " multiple="multiple" /></td>
 			</tr>
 			<tr>
 				<th colspan="2">
 				 <input type="reset" class="btn" value="내용 지우기" />
-				<input class="btn" type="button" value="등록 취소" onclick="javascript:history.back()"/>
 					<input class="btn" id="finish" type="submit"  value="게시글 등록" />
+					<input class="btn" type="button" value="등록 취소" onclick="javascript:history.back()"/>
 					</th>
 			</tr>
 		</table>
-	</form>
+	</form:form>
 
 
 

@@ -121,7 +121,7 @@ function funcCon(){
 				<input class="btn" type="button" value="프로필" onclick="location.href='tutorProfile?tutorId=${tutor.tutorId}'" />
 				<input class="btn" type="button" value="PW변경" onclick="location.href='tutorPwCon?tutorId=${tutor.tutorId}'" /> 
 				<input class="btn" type="button" value="수정" onclick="location.href='tutorMod?tutorId=${tutor.tutorId}'" /> 
-				<input class="btn" type="button" class="btn" value="탈퇴(삭제)" onclick="funcCon()" /></th>
+				<input class="btn" type="button" class="btn" value="삭제" onclick="funcCon()" /></th>
 			</tr></tfoot>
 		</table></div>
 

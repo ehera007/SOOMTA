@@ -142,39 +142,20 @@ td a:active {
 	<thead>
 		<tr style="padding:10px; height:30px;">
 			<th width="10%">No.</th>
-			<th width="15%">분류</th>
-			<th width="40%">제목</th>
+			<th width="55%">제목</th>
 			<th width="25%">작성일</th>
 			<th width="10%">조회수</th>
-		</tr></thead><tbody>					<tr>
-						<td>No.</td>
-						<td>분류</td>
-						<td><a href="tutorSupport" class="tutorSupport">제목</a></td>
-						<td>작성일</td>
-						<td>조회수</td>
-					</tr>
-					<tr>
-						<td>No.</td>
-						<td>분류</td>
-						<td><a href="tutorSupport" class="tutorSupport">제목</a></td>
-						<td>작성일</td>
-						<td>조회수</td>
-					</tr>
-		<tr><td>No.</td>
-						<td>분류</td>
-						<td><a href="tutorSupport" class="tutorSupport">제목</a></td>
-						<td>작성일</td>
-						<td>조회수</td>
-					</tr>
-		<c:forEach items="${lists }" var="dto">
+		</tr></thead><tbody>
+		<c:if test="${!empty tHelp }">
+		<c:forEach items="${tHelp }" var="dto">
+		<c:set var="i" value="${i+1 }"/>
 			<tr>
-				<td>1.</td>
-				<td>${faqCategory}</td>
-				<td><a href="tutorSupport">${faqTitle }</a></td>
-				<td>${faqDate}</td>
-				<td>${hit }</td>
-			</tr>
-		</c:forEach>
+				<td>${i }<input type="hidden" value="${dto.faqNo }"/></td>
+				<td><a href="tutorSupport?${dto.faqNo }">${dto.faqTitle }</a></td>
+<td><fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${dto.faqDate}"/></td>
+				<td>${dto.faqHit }</td>
+			</tr></c:forEach></c:if>
+	<c:if test="${empty tHelp }"><tr><th colspan="4">등록된 이용안내가 없습니다.</th></tr></c:if></tbody>
 	</table>
 	</div>
 	</div>

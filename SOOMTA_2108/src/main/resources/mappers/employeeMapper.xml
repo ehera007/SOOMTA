@@ -82,6 +82,26 @@
 	delete from tutor where tutor_id = #{tutorId}
 </delete>
 
+<update id="tutorPwUpdate" parameterType="Model.TutorDTO">
+	update tutor
+	set tutor_Pw = #{tutorPw}
+	where tutor_id = #{tutorId}
+</update>
+
+<update id="tutorUpdate"  parameterType="Model.TutorDTO">
+	update tutor 
+	set tutor_Area = #{tutorArea}, tutor_Dob = #{tutorDob}, tutor_Email = #{tutorEmail}, tutor_Email_Ck = #{tutorEmailCk}, tutor_Gender = #{tutorGender}, 
+		tutor_Name = #{tutorName}, tutor_Phone = #{tutorPhone}, tutor_Email_Ok = #{tutorEmailOk} 
+	where tutor_id = #{tutorId}
+</update>
+
+<update id="tutorProfileUpdate"  parameterType="Model.TutorDTO">
+	update tutor 
+	set tutor_Certification = #{tutorCertification}, tutor_Career = #{tutorCareer}, tutor_FinalEdu = #{tutorFinalEdu}, tutor_Respond = #{tutorRespond}, tutor_Likearea = #{tutorLikearea}, 
+		tutor_Introduce = #{tutorIntroduce} 
+	where tutor_id = #{tutorId}
+</update>
+
 
 <!-- 회원 관리 -->
 <sql id="memCol">
@@ -104,12 +124,54 @@
 	delete from member where mem_id = #{memId}
 </delete>
 
+<update id="memPwUpdate" parameterType="Model.MemberDTO">
+	update member
+	set mem_Pw = #{memPw}
+	where mem_id = #{memId}
+</update>
+
+<update id="memUpdate"  parameterType="Model.MemberDTO">
+	update member
+	set mem_Area = #{memArea}, mem_Dob = #{memDob}, mem_Email = #{memEmail}, mem_Email_Ck = #{memEmailCk}, mem_Gender = #{memGender}, 
+		mem_Name = #{memName}, mem_Phone = #{memPhone} 
+	where mem_id = #{memId}
+</update>
 
 <!-- 게시판 관리 -->
+<select id="boardList" resultType="Model.FaqDTO">
+	select faq_No faqNo, emp_Id empId, faq_Category faqCategory, faq_Ctgr_S faqCtgrS , faq_Date faqDate, faq_Title faqTitle 
+	from faq order by faq_Date desc
+</select>
 
+<select id="faqNo" resultType="long">
+	select to_char(sysdate,'yyyymmdd') || faq_Num.nextval from dual
+</select>
 
+<insert id="faqInsert" parameterType="Model.FaqDTO">
+	insert into faq(FAQ_NO, EMP_ID, FAQ_CATEGORY, FAQ_CONTENTS, FAQ_IMG, FAQ_TITLE, FAQ_DATE, FAQ_CTGR_S) 
+	values (#{faqNo}, #{empId}, #{faqCategory}, #{faqContents}, 
+	<if test="faqImg != null">#{faqImg}</if>
+	<if test="faqImg == null">null</if>
+	, #{faqTitle}, sysdate, #{faqCtgrS}) 
+</insert>
+
+<select id="boardInfo" parameterType="string" resultType="Model.FaqDTO">
+	select faq_No faqNo, faq_Category faqCategory, faq_Ctgr_S faqCtgrS, faq_Date faqDate, 
+	 		emp_Id empId, faq_Title faqTitle, faq_Contents faqContents, faq_Img faqImg 
+	 		from faq where faq_No = #{faqNo}
+</select>
+
+<delete id="boardDel" parameterType="string">
+	delete from faq where faq_No = #{faqNo}
+</delete>
+
+<update id="boardUpdate" parameterType="Model.FaqDTO">
+	update faq
+	set faq_Category, faq_Ctgr_S, emp_Id, faq_Title, faq_Contents, faq_Img
+	where faq_No = #{faqNo}
+	
+</update>
 </mapper>
-
 
 
 
