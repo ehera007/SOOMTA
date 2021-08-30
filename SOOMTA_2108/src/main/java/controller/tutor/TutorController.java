@@ -139,14 +139,7 @@ public class TutorController {
 			}
 			return "tutor/pwChangeOk";
 		}
-		@RequestMapping(value="pwChangeOk", method=RequestMethod.POST)//튜터 비번 변경 완료
-		public String pwChangeOk(TutorCommand tutorCommand, Errors errors, HttpSession session) {
-			tutorPwChangeService.pwChange(tutorCommand, errors, session);
-			if(errors.hasErrors()) {
-				return "tutor/pwChange";
-			}
-			return "tutor/pwChangeOk";
-		}
+		
 }
 		
 		
