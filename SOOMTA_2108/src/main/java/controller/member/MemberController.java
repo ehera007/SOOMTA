@@ -15,7 +15,6 @@ import command.BandCommand;
 import command.MemberCommand;
 import service.band.BandListService;
 import service.band.BandNumberService;
-import service.band.BandWishService;
 import service.band.BandWriteService;
 import service.member.MemberInfoSuJungService;
 import service.member.MemberOutService;
@@ -30,7 +29,7 @@ import validator.MemberPasswordValidator;
 @RequestMapping("member")
 public class MemberController {
 	@Autowired
-	MemberInfoSuJungService emberInfoSuJungService;
+	MemberInfoSuJungService memberInfoSuJungService;
 	
 	@RequestMapping("myPage")//회원 마이페이지
 	public String myPage(HttpSession session,Model model) {
