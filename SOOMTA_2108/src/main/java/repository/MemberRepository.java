@@ -11,7 +11,12 @@ public class MemberRepository {
 	String namespace="mappers.memberMapper";
 	String statement;
 	
-	public MemberDTO perData(String memId) {//회원 상세정보
+	public void memOut(String memId) {//회원 탈퇴
+		statement = namespace + ".memOut";
+		sqlSession.delete(statement, memId);
+	}
+	
+	public MemberDTO perData(String memId) {//회원 상세정보/수정
 		statement = namespace + ".perData";
 		return sqlSession.selectOne(statement, memId);
 	}
@@ -20,7 +25,18 @@ public class MemberRepository {
 		statement = namespace + ".memInsert";
 		int i = sqlSession.insert(statement,dto);
 		System.out.println(i+"명의 회원이 가입되었습니다.");
-		
+	}
+	
+	public void memPwUpdate(MemberDTO dto) {//비밀번호 변경
+		statement = namespace +".memPwUpdate";
+		int i = sqlSession.update(statement,dto);
+		System.out.println(i+"명의 비밀번호가 변경되었습니다");
+	}
+	
+	public void memUpdate(MemberDTO dto) {//회원 수정
+		statement = namespace +".memUpdate"; 
+		int i = sqlSession.update(statement,dto);
+		System.out.println(i+"개 수정");
 	}
 
 }

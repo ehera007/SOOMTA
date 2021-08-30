@@ -21,26 +21,16 @@ public class BandWriteService {
 			HttpSession session) {
 		BandDTO dto = new BandDTO();
 		dto.setBandNo(bandCommand.getBandNo());
-		System.out.println("번호"+bandCommand.getBandNo());
 		
 		dto.setBandCategoryL(bandCommand.getBandCategoryL());
-		System.out.println("카테큰"+bandCommand.getBandCategoryL());
 		dto.setBandCategoryS(bandCommand.getBandCategoryS());
-		System.out.println("카테작"+bandCommand.getBandCategoryS());
 		dto.setBandName(bandCommand.getBandName());
-		System.out.println("이름"+bandCommand.getBandName());
 		dto.setBandGender(bandCommand.getBandGender());
-		System.out.println("성별"+bandCommand.getBandGender());
 		dto.setBandAge(bandCommand.getBandAge());
-		System.out.println("나이"+bandCommand.getBandAge());
 		dto.setBandWay(bandCommand.getBandWay());
-		System.out.println("대면방식"+bandCommand.getBandWay());
 		dto.setBandTotal(bandCommand.getBandTotal());
-		System.out.println("총인원"+bandCommand.getBandTotal());
 		dto.setBandPublic(bandCommand.getBandPublic());
-		System.out.println("공비공"+bandCommand.getBandPublic());
 		dto.setBandIntroduce(bandCommand.getBandIntroduce());
-		System.out.println("소개"+bandCommand.getBandIntroduce());
 		dto.setBandRegiDay(bandCommand.getBandRegiDay());//수정 전 작성x
 		System.out.println("등록날짜"+bandCommand.getBandRegiDay());
 		

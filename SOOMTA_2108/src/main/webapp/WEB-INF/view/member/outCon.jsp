@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -220,9 +220,10 @@ ul {
  table {
     border: 2px solid #0F4C81;
     width: 470px;
-    height:170px;
+    height:150px;
     margin:40px auto;
     border-radius: 12px;
+    margin-bottom:80px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
     align-content: center;
@@ -233,6 +234,11 @@ ul {
  	padding-right:20px;
   	align-content: center;
   	vertical-align: middle;
+}
+.err{
+	color: red;
+	font-size: 12px;
+	font-weight:bold;
 }
   
 </style>
@@ -272,24 +278,30 @@ ul {
 				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
 
 	<!-- 중앙 : 탈퇴확인 폼 -->
-		<form action="<c:url value='/main'/>" method="post" 
+		<form action="memOutOk" method="post" 
 				onsubmit="return outConfirm()" name="frm">
 			<table align="center">
 				<h1 align ="center" style="color:#0F4C81">탈퇴 전 비밀번호를 다시 입력해 주세요.</h1>
 			<thead>
-				<tr><td style="padding-left: 40px;">비밀번호</td>
-					<td><input type="password" name="memPw" style="width:250px;"required/>
+				<tr><td style="padding-left: 40px; font-weight: bold;">비밀번호</td>
+					<td style="padding-top: 70px; "><input type="password" name="memPw" style="width:250px;"required/>
+						<br />
+						<div class="err">
+						<span>${pwFail }</span></div>
 						</td></tr></thead>
 				<tr><td colspan="2" align="center">
 					<input type="submit" value="탈퇴" 
 					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
 					font-size: 16px; padding-bottom: 20px"/>
+					<input type="button" value="취소"
+					onclick="javascript:history.back()"
+					style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;"/>
 				</td></tr>
 			</table>
 		</form>	

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -230,13 +230,13 @@ color: #0F4C81;
  table {
     border: 2px solid #0F4C81;
     border-radius: 12px;
-    width: 380px;
+    width: 500px;
     height:470px;
-    margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     text-align: center;
-    margin-top: 35px;
-    margin-bottom: 35px;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    padding-top: 15px;
   }
   
 .btn {
@@ -257,10 +257,11 @@ color: #0F4C81;
    padding-right: 35px;
 }
 th{
-	padding-left:85px;
+	padding-left:50px;
 }
 td{
-	padding-right:90px;
+	padding-left:50px;
+	padding-right:40px;
 }
 
 
@@ -290,52 +291,62 @@ td{
 				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
 	<div class="main">
 		<div class="mypageTitle">
-			<h1>'${memPderData.memId }'님의 개인 정보</h1>
+			<h1>${memPerData.memId } 님의 개인 정보</h1>
 			<p>변동사항이 있을 경우, 숨타가 알 수 있게 수정해주세요.</p>
 		</div>
 	</div>
 	
 	<!-- 중앙 : 개인정보 폼 -->
 	<div class="perForm">
-			  <table cellspacing="30">
+			  <table cellspacing="30" align="center">
 		         <tr>
 		             <th>아이디</th>
-		             <td>${memPerData.memId}</td>
+		             <td align="left">${memPerData.memId}</td>
+		         </tr>
+		          <tr>
+		             <th>이름</th>
+		             <td align="left">${memPerData.memName}</td>
 		         </tr>
 		         <tr>
 		             <th>가입일</th>
-		             <td>${memPerData.memSince} </td>
+		             <td align="left"><fmt:formatDate value="${memPerData.memSince}" 
+		             pattern="yyyy-MM-dd"/></td>
 		         </tr>
 		         <tr>    
 		             <th>생년월일</th>
-		             <td>${memberCommand.memDob} </td>
+		             <td align="left"><fmt:formatDate value="${memPerData.memDob}" 
+		             pattern="yyyy-MM-dd"/> </td>
 		         </tr>
 		         <tr>    
 		             <th>성별</th>
-		             <td>${memPerData.memGender} </td>
+		             <td align="left">${memPerData.memGender} </td>
+		         </tr>
+		         <tr>    
+		             <th>주소</th>
+		             <td align="left">${memPerData.memArea} </td>
 		         </tr>
 		         <tr>    
 		             <th>핸드폰</th>
-		             <td>${memPerData.memPhone} </td>
+		             <td align="left">${memPerData.memPhone} </td>
 		         </tr>
 		         <tr>    
 		             <th>이메일</th>
-		             <td>${memPerData.memEmail} </td>
+		             <td align="left">${memPerData.memEmail} </td>
 		         </tr>
 		         
 		         <tr>
-                   <th colspan="2" style="padding-right: 45px;">
+                   <th colspan="2" style="padding-right: 15px; padding-top: 30px;">
                    		<div class="allbtn">
-							<a href="<c:url value='/member/myPage'/>" 
-							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
 		                   <a href="<c:url value='/member/suJung'/>" 
-							style="text-decoration:none;">수정하기</a>
+							style="text-decoration:none;">수정하기</a>&emsp;&emsp;
+							<a href="<c:url value='/member/myPage'/>" 
+							style="text-decoration:none;">취소</a>
 						</div>
 					</th>
          		 </tr>

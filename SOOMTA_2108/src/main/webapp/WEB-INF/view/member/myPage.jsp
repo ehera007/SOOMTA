@@ -163,22 +163,13 @@ ul {
 padding-top: 80px;
 	padding-bottom: 80px;
 }
-.item{
-display:flex;
-justify-content: space-evenly;
-margin: 10px;
-table-layout: fixed;
 
-
-}
 .main-item {
    border: 1px solid black;
    width: 300px;
    height: 300px;
    margin-left: 250px;
    table-layout: fixed;
-  
-    
 }
 
 .mypageTitle {
@@ -192,33 +183,34 @@ table-layout: fixed;
 .dropMenu {
    align-items: center;
    display:flex;
-  
-   justify-content: space-evenly;
-   margin-right :100px;
 }
 
 
-.imgBox {
-   width: 200px;
-   height: 200px;
+.imgBox{
+   width: 240px;
+   height: 240px;
    background-color: #0F4C81;
-   margin: 50px 20px;
+   margin: 60px;
    color: white;
    text-align:center;
-   
 }
 
+.item {
+	display: flex;
+	margin: auto;
+	align-items: center;
+}
 
 .imgTitle {
 	border: 1px solid black;
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 }
 
 .dropList li {
    text-align: center;
-   margin: 10px 0px;
-   font-size: 18px;
+   margin-top: 10px;
+   font-size: 19px;
    list-style:none;
 }
 
@@ -241,6 +233,11 @@ table-layout: fixed;
 
 .imgBox ul {
 	display: block;
+}
+
+h1{
+	margin-top: 35px;
+	font-size: 35px;
 }
 </style>
 
@@ -271,46 +268,48 @@ table-layout: fixed;
 				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
 	<div class="main">
 		<div class="mypageTitle">
-			<h1>안녕하세요, '${ID}'님!</h1>
+			<h1>안녕하세요, ${memPerData.memId } 님!</h1>
 			<p>숨타와 함께 즐거운 하루 되세요 :)</p>
 		</div>
 		<div class="mypageMenu">
 			<div class="dropMenu">
-				<div class="imgBox">	
-					<div class="dropList">
-						<ul>
-			                <h1>내 정보</h1>
-							<li><a href="<c:url value='/member/perData'/>">개인 정보</a></li>
-							<li><a href="<c:url value='/member/pwCon'/>">PW 변경</a></li>
-							<li><a href="<c:url value='/member/outCon'/>">탈퇴하기</a></li>
-						</ul>
+				<div class="item">
+					<div class="imgBox">	
+						<div class="dropList">
+							<ul>
+				                <h1>내정보</h1>
+								<li><a href="<c:url value='/member/perData'/>">개인 정보</a></li>
+								<li><a href="<c:url value='/member/pwCon'/>">PW 변경</a></li>
+								<li><a href="<c:url value='/member/outCon'/>">탈퇴하기</a></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-
-				<div class="imgBox">
-					<div class="dropList">
-						<ul>
-							<h1>CLASS</h1>
-							<li><a href="<c:url value='/member/myClassList'/>">내 강의 목록</a></li>
-							<li><a href="<c:url value='/member/wishClass'/>">찜한 강의</a></li>
-						</ul>
+	
+					<div class="imgBox">
+						<div class="dropList">
+							<ul>
+								<h1>CLASS</h1>
+								<li><a href="<c:url value='/member/myClassList'/>">내 강의 목록</a></li>
+								<li><a href="<c:url value='/member/wishClass'/>">찜한 강의</a></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-
-				<div class="imgBox">
-					<div class="dropList">
-						<ul>
-							<h1>STUDY</h1>
-							<li><a href="<c:url value='/member/bandList'/>">내 모임 목록</a></li>
-							<li><a href="<c:url value='/member/wishBand'/>">찜한 모임</a></li>
-							<li><a href="<c:url value='/member/bandOpen'/>">모임 개설</a></li>
-						</ul>
+	
+					<div class="imgBox">
+						<div class="dropList">
+							<ul>
+								<h1>STUDY</h1>
+								<li><a href="<c:url value='/member/bandList'/>">내 모임 목록</a></li>
+								<li><a href="<c:url value='/member/wishBand'/>">찜한 모임</a></li>
+								<li><a href="<c:url value='/member/bandOpen'/>">모임 개설</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>

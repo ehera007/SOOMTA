@@ -7,6 +7,16 @@
 	select num_seq.nextval from dual
 </select>
 
+<insert id="bandWish" parameterType="Model.BandDTO">
+	merge into band_Wishlist bw
+	using (select band_no from Band where band_no=#{bandNo}) b1
+	on (bw.band_no = b1.band_no and bw.mem_Id = #{bandNo})
+	when matched then
+		update
+	when not matched then
+		insert
+</insert>
+
 <select id="bandList" resultType="Model.BandDTO">
 	select band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
 			band_Category_S bandCategoryS,band_Img bandImg, band_RegiDay bandRegiDay,

@@ -230,9 +230,10 @@ color: #0F4C81;
  table {
     border: 2px solid #0F4C81;
     border-radius: 12px;
-    width: 600px;
-    height:700px;
-    margin:20px auto;
+    width: 650px;
+    height:850px;
+    margin-top: 50px;
+    margin-bottom: 80px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
   }
@@ -248,7 +249,7 @@ th{
    padding-top: 15px;
 }
 td{
-   padding-left: 40px;
+   padding-left: 60px;
    padding-top: 15px;
 }
  .detail {
@@ -296,6 +297,21 @@ function ctgrChange(e){
     });
     
     </script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+ <script>
+ 
+    $(document).ready(function() {
+        $('#test').on('keyup', function() {
+            $('#test_cnt').html("("+$(this).val().length+" / 2000)");
+ 
+            if($(this).val().length > 2000) {
+                $(this).val($(this).val().substring(0, 2000));
+                $('#test_cnt').html("(2000 / 2000)");
+            }
+        });
+    });
+        
+    </script>
 <meta charset="UTF-8">
 <title>bandJoin</title>
 </head>
@@ -308,7 +324,7 @@ function ctgrChange(e){
 				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
@@ -317,14 +333,16 @@ function ctgrChange(e){
                enctype="multipart/form-data">
       <input type="hidden" name="bandRegiDay"/>
       <input type="hidden" name="memId"/>
-      <table>
+      <table align="center">
          <thead>
                <tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
                <th  colspan="2" style="padding: 10px 0px 10px 10px; ">소모임 개설 </th>
          </tr></thead>
          
-         <tr><th style="padding-top: 10px;">소모임 번호</th>
-            <td><input name="bandNo" value="${bandNo}" readonly="readonly"/></td>   
+         <tr><th style="padding-top: 35px;">소모임 번호</th>
+            <td style="padding-top: 35px;">
+            <input name="bandNo" value="${bandNo}" readonly="readonly"/></td>
+               
          <tr><th>카테고리</th>
            <td>
             <select id="ctgrL" onchange="ctgrChange(this)" name="bandCategoryL">
@@ -343,39 +361,51 @@ function ctgrChange(e){
        <tr><th>소모임 이름</th>
             <td><input type="text" name="bandName"style="width:200px;" required
             	minlength="2" maxlength="35"/></td></tr>
+         
          <tr><th>선호 성별</th>
             <td>
-               <input type="radio" name="bandGender" value="M" checked/>남
-               <input type="radio" name="bandGender" value="F"/>여
+               <input type="radio" name="bandGender" value="남성" checked/>남성
+               <input type="radio" name="bandGender" value="여성"/>여성
+               <input type="radio" name="bandGender" value="무관"/>무관
             </td></tr>
 
          <tr><th>선호 나이</th>
             <td><input type="text" name="bandAge"style="width:200px;"required/></td></tr>
+         
          <tr><th>모임방식</th>
             <td>
-                <input type="radio" name="bandWay" value="C" checked/>대면
-               <input type="radio" name="bandWay" value="N"/>비대면
+                <input type="radio" name="bandWay" value="대면" checked/>대면
+               <input type="radio" name="bandWay" value="비대면"/>비대면
+               <input type="radio" name="bandWay" value="무관"/>무관
              </td></tr>
+         
          <tr><th>총 인원 수</th>
             <td><input type="text" name="bandTotal"style="width:200px;"required/></td></tr>
+        
          <tr><th>공개 비공개</th>
          <td >
-               <input type="radio" name="bandPublic" value="O" checked/>공개
-               <input type="radio" name="bandPublic" value="N"/>비공개
+               <input type="radio" name="bandPublic" value="공개" checked/>공개
+               <input type="radio" name="bandPublic" value="비공개"/>비공개
             </td></tr>
       
-         <tr><th style="padding-bottom: 100px;">소모임 소개</th>
-            <td><textarea rows="6" cols="30" name="bandIntroduce" 
-            	required minlength="10"></textarea>
-            	<div class="detail">* 10자 이상 입력하세요</div>
+         <tr><th style="padding-bottom: 110px;">소모임 소개</th>
+            <td style="padding-bottom: 10px;"><textarea id="test"rows="6" cols="30" name="bandIntroduce" 
+            	required minlength="10"></textarea><div class="detail">* 10자 이상 입력하세요.</div>
+            	 <div id="test_cnt">(0 / 2000)</div>
             </td></tr>
-      <tr><th>소모임 이미지</th>
-         <td><input type="file" name="bandImg" multiple="multiple"/>
+            
+      <tr><th style="padding-bottom: 30px;">소모임 이미지</th>
+         <td style="padding-bottom: 30px;">
+         <input type="file" name="bandImg" multiple="multiple"/>
                </td></tr>
          <tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px;">
+               <input type="reset" class="btn" value="내용 지우기"
+               style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
                <input type="submit" value="밴드 등록" 
                   style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-            
+            	<input type="button" value="취소"
+					onclick="javascript:history.back()"
+					style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;"/>
             </th></tr>
             
          </table> 

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -221,7 +221,8 @@ ul {
     border: 2px solid #0F4C81;
     width: 470px;
     height:170px;
-    margin:40px auto;
+    margin-top:50px;
+    margin-bottom:70px;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
@@ -234,7 +235,11 @@ ul {
   	align-content: center;
   	vertical-align: middle;
 }
-  
+.err{
+	color: red;
+	font-size: 12px;
+	font-weight:bold;
+}
 </style>
 
 
@@ -249,8 +254,6 @@ ul {
     
     </script>
 
-
-
 <meta charset="UTF-8">
 <title>비밀번호확인</title>
 </head>
@@ -264,26 +267,33 @@ ul {
 				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
 	
 	<!-- 중앙 : 비밀번호 확인 폼 -->
+		<h1 align ="center" style="color:#0F4C81">${memPerData.memId } 님!</h1>
+		<h1 align ="center" style="color:#0F4C81">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
 		<form action="pwChange" method="post" name="frm"> 
 			<table align="center">
-				<h1 align ="center" style="color:#0F4C81">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
 				<thead>
-				<tr><td style="padding-left: 40px;">비밀번호</td>
+				<tr><td style="padding-left: 40px; font-weight: bold;">비밀번호</td>
 					<td><input type="password" name="memPw" style="width:250px;"/>
+					</br>
+					<div class="err">
+						<span>${pwFail1}</span>
+					</div>
 						</td></tr></thead>
 				<tr><td colspan="2" align="center">
 					<input type="submit" value="확인" 
 					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
 					font-size: 16px; padding-bottom: 20px "/>
+					<input type="button" value="취소"
+					onclick="javascript:history.back()"
+					style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;"/>
 						</td></tr>
 			</table>
-			<a href="<c:url value='/member/pwChange'/>">PW 변경</a>
 		</form>		
 		<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"

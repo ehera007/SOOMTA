@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -219,9 +219,10 @@ ul {
 
  table {
     border: 2px solid #0F4C81;
-    width: 500px;
-    height:200px;
-    margin:20px auto;
+    width: 550px;
+    height:220px;
+    margin-top:0px;
+    margin-bottom:80px;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
@@ -233,36 +234,13 @@ ul {
    font-size: 25px;
    border-radius: 8px 8px 0px 0px;
 }
-  
-
-  
+ .detail {
+	color: grey;
+	font-size: 8px;
+	font-style: italic;
+	text-align: left;
+}
 </style>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$("#btn").click(function(){
-		if($("#newPw").val()==""){
-			alert("변경 비밀번호를 입력하세요");
-			$("#newPw").focus();
-			return false;
-		}
-		if($("#newPwCon").val()==""){
-			alert("변경비밀번호확인을 입력하세요");
-			$("#newPwCon").focus();
-			return false;
-		}else{
-			if($("#newPw").val() != $("#newPwCon").val()){
-				alert("비밀번호확인의 값이 다릅니다.");
-				$("#newPw").val("");
-				$("#newPwCon").val("");
-				$("#newPw").focus();
-				return false;
-			}
-		}
-		$("#frm").submit();
-	});
-});
-</script>
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -275,7 +253,22 @@ $(function(){
     
     </script>
 
-
+<script>
+function check_pw(){
+    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+        if(document.getElementById('pw').value==document.getElementById('pw2').value){
+            document.getElementById('check').innerHTML='PW 일치'
+            document.getElementById('check').style.color='#0F4C81';
+            document.getElementById('check').style.fontSize='15px';
+            document.getElementById('check').style.fontWeight='900';
+        }
+        else{
+            document.getElementById('check').innerHTML='PW 불일치';
+            document.getElementById('check').style.color='red';
+            document.getElementById('check').style.fontSize='15px';
+            document.getElementById('check').style.fontWeight='900';
+        }}}
+</script>
 
 <meta charset="UTF-8">
 <title>비밀번호 변경</title>
@@ -290,26 +283,40 @@ $(function(){
 				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
 	
 	<!-- 중앙 : 비밀번호 변경 폼 -->
-		<form action="myPage" method="post" name="frm"> 
-			<table align="center" style="margin-bottom: 35px;">
-				 <h1 align ="center" style="color:#0F4C81; padding-bottom: 15px;">변경 비밀번호를 입력해 주세요!</h1>
+				<h1 align ="center" style="color:#0F4C81">${memPerData.memId } 님!</h1>
+				 <h1 align ="center" style="color:#0F4C81;">변경 비밀번호를 입력해 주세요!</h1>
 				
-				<tr><td align ="center" style="padding-top: 10px;">변경 비밀번호</td>
-					<td><input type="password" name="newPw" id="newPw"/><br />
+		<form action="pwChangeCon" method="post" name="frm"> 
+			<table align="center">
+				<tr><td><input type="hidden" name="memId"/></td></tr>
 				
-				<tr><td align ="center">변경 비밀번호 확인</td>
-					<td><input type="password" name="newPwCon" id="newPwCon"/><br />
+				<tr><th align ="center" style="padding-top: 10px;">변경 비밀번호</th>
+					<td style="padding-top: 14px;">
+						<input type="password" name="memPw" required
+						pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
+						class="pw" id="pw" onchange="check_pw()"/>
+						<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td></tr> <br />
+				
+				<tr><th align ="center" style="padding-bottom : 20px;">변경 비밀번호 확인</th>
+					<td style="padding-bottom: 20px;">
+					<input type="password" name="memPwCon" required
+						class="pw" id="pw2" onkeyup="check_pw()"/>
+						<span id="check"></span>
+						</td></tr> <br/>
 					
 				<tr><td colspan="2" align="center" >
-					<input type="button" value="비밀변호 변경" id="btn" onclick="location.href='myPage'"
+					<input type="submit" value="변경" id="btn" 
 					style="border: none; background: transparent; color: #0F4C81;
 					font-weight: bold; font-size: 16px;"/>
+					<input type="button" value="취소"
+					onclick="javascript:history.back()"
+					style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;"/>
 						</td></tr>
 					
 				

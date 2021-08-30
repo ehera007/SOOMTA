@@ -2,14 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.memberMapper">
-
+<!-- 내정보 보기 -->
 <select id="perData" parameterType="string" resultType="Model.MemberDTO">
-	select mem_Id memId, mem_Since memSince, mem_Dob memDob, mem_Gender memGender, 
-			mem_Phone memPhone, mem_Email memEmail 
+	select mem_Id memId,mem_Name memName,mem_Pw memPw, mem_Since memSince, mem_Dob memDob, mem_Gender memGender, 
+			mem_Phone memPhone, mem_Email memEmail ,mem_Area memArea
 	from member 
 	where mem_Id = #{memId} 
 </select>
 
+<!-- 비번 변경 -->
+<update id="memPwUpdate" parameterType="Model.MemberDTO">
+	update member
+	set mem_Pw = #{memPw}
+	where mem_Id = #{memId}
+</update>
+
+<!-- 탈퇴하기 -->
+<delete id="memOut" parameterType="string">
+	delete from member
+	where  mem_Id = #{memId}
+</delete>
+
+<!-- 내정보 수정 -->
+<update id="memUpdate" parameterType="Model.MemberDTO">
+	update member
+	set mem_Name = #{memName},
+		mem_Phone = #{memPhone},
+		mem_Email = #{memEmail},
+		mem_Area = #{memArea}
+	where mem_Id = #{memId}
+</update>
+
+
+<!-- 가입 -->
 <insert id="memInsert" parameterType="Model.MemberDTO">
 	insert into member (mem_Id, mem_Pw, mem_Name , mem_Phone , mem_Gender , 
 	mem_Dob , mem_Email , mem_Email_Ck , mem_Area , mem_Since) 

@@ -217,8 +217,9 @@ ul {
 /* 테이블 스타일 */
 table {
     width: 100%;
-    border-top: 2px solid #0F4C81;
     border-collapse: collapse;
+    margin-top: 30px;
+    margin-bottom: 60px;
   }
   
 thead{
@@ -294,7 +295,7 @@ td a:active {
 				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
@@ -305,37 +306,54 @@ td a:active {
 	<!-- 타이틀 -->
 	<table><thead>
       <tr style="padding-bottom:20px; height:40px;">
+         <th width="5%" style="background-color: white;"></th>
          <th width="10%">No.</th>
          <th width="15%">대분류/소분류</th>
          <th width="20%">모임명</th>
          <th width="15%">인원수</th>
-         <th width="10%">모임방식</th>
-         <th width="10%">공개여부</th>
-         <th width="10%">선호나이</th>
+         <th width="10%">성별</th>
+         <th width="10%">등급</th>
          <th width="10%">개설일</th>
+         <th width="5%" style="background-color: white;"></th>
         
       </tr></thead>
       <tbody>
       <tr>
+      	<td style="background-color: white; border-style: none;"></td>
          <td>No.</td>
          <td>대분류/소분류</td>
          <td><a href="boardInfo" class="boardInfo">모임명</a></td>
          <td>인원수</td>
-         <td>모임방식</td>
-         <td>공개여부</td>
-         <td>선호나이</td>
+         <td>성별</td>
+         <td>등급</td>
          <td>개설일</td>
+         <td style="background-color: white; border-style: none;"></td>
       </tr>
       <tr>
+      <td style="background-color: white; border-style: none;"></td>
          <td>No.</td>
          <td>대분류/소분류</td>
          <td>모임명</td>
          <td>인원수</td>
-         <td>모임방식</td>
-         <td>공개여부</td>
-         <td>선호나이</td>
+         <td>성별</td>
+         <td>등급</td>
          <td>개설일</td>
-      </tr></table>
+         <td style="background-color: white; border-style: none;"></td>
+      </tr>
+     	 <c:forEach items="${lists }" var="dto">
+			<tr>
+			<td style="background-color: white; border-style: none;"></td>
+				<td>${dto.bandNo}</td>
+				<td>${dto.bandCategoryL}/${dto.bandCategoryS}</td>
+				<td>${dto.bandName}</td>
+				<td>${dto.bandTotal}</td>
+				<td>${dto.bandGender}</td>
+				<td>${dto.memId}</td>
+				<td>${dto.bandRegiDay}</td>
+			<td style="background-color: white; border-style: none;"></td>
+			</tr>
+		</c:forEach></tbody>
+      </table>
 
 <!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"

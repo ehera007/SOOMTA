@@ -10,5 +10,10 @@
 	<bean id="memberJoinService" class="service.member.MemberJoinService"/>
 	<bean id="memberRepository" class="repository.MemberRepository"/>
 	<bean id="memberPerDataService" class="service.member.MemberPerDataService" />
-
+	<bean class="service.member.MemberOutService"/>
+	<bean class="service.member.MemberSuJungService"/>
+	<bean class="service.member.MemberPwChangeConService"/>
+	<bean class="service.member.MemberPwUpdateService"/>
+	<bean class="service.member.MemberInfoSuJungService"/>
+	
 </beans>

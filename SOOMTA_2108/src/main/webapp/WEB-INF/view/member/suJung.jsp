@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -220,13 +220,13 @@ ul {
 
  table {
     border: 2px solid #0F4C81;
-    width: 500px;
-    height:550px;
-    margin:20px auto;
+    width: 550px;
+    height:700px;
+    margin-top: 35px;
+    margin-bottom: 80px;
     border-spacing: 0px;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 35px;
   }
 
 
@@ -239,7 +239,10 @@ thead th {
 }
 
 th{
-	padding-left:45px; 
+	padding-left:60px; 
+}
+td{
+	padding-left: 50px;
 }
 .detail {
 	color: grey;
@@ -258,7 +261,64 @@ th{
     });
     
     </script>
+<!-- 다음 주소 -->
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+	function sample4_execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+						// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var roadAddr = data.roadAddress; // 도로명 주소 변수
+						var extraRoadAddr = ''; // 참고 항목 변수
+
+						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+							extraRoadAddr += data.bname;
+						}
+						// 건물명이 있고, 공동주택일 경우 추가한다.
+						if (data.buildingName !== '' && data.apartment === 'Y') {
+							extraRoadAddr += (extraRoadAddr !== '' ? ', '
+									+ data.buildingName : data.buildingName);
+						}
+						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+						if (extraRoadAddr !== '') {
+							extraRoadAddr = ' (' + extraRoadAddr + ')';
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById("sample4_roadAddress").value = roadAddr;
+
+						// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+						if (roadAddr !== '') {
+							document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+						} else {
+							document.getElementById("sample4_extraAddress").value = '';
+						}
+
+						var guideTextBox = document.getElementById("guide");
+						// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+						if (data.autoRoadAddress) {
+							var expRoadAddr = data.autoRoadAddress
+									+ extraRoadAddr;
+							guideTextBox.innerHTML = '(예상 도로명 주소 : '
+									+ expRoadAddr + ')';
+							guideTextBox.style.display = 'block';
+
+						} else {
+							guideTextBox.innerHTML = '';
+							guideTextBox.style.display = 'none';
+						}
+					}
+				}).open();
+	}
+</script> 
 <meta charset="UTF-8">
 <title>정보수정</title>
 </head>
@@ -272,54 +332,70 @@ th{
 				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
 	
 	<!-- 중앙 : 개인정보 수정 폼 -->
-		<form action="perData" method="post" name="frm"> 
-			<table>
+		<form:form action="suJungOk" method="post" name="frm" modelAttribute="memPerData"> 
+			<form:hidden path="memId" />
+			<form:hidden path="memGender" />
+			<input type="hidden" name="memDob" 
+				value="<fmt:formatDate value="${memPerData.memDob}" type="date" 
+			pattern="yyyy-MM-dd"/>"/>
+			<input type="hidden" name="memSince" 
+				value="<fmt:formatDate value="${memPerData.memSince}" type="date" 
+			pattern="yyyy-MM-dd"/>"/>
+			<table align="center">
 				<thead>
          <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
             <th colspan="2" style="padding-right: 45px;">개인 정보 수정 </th>
          </tr></thead>
-    			<tr><th style="padding-top: 15px;">아이디</th>
-					<td style="padding-top: 15px;"> ${memId } </td></tr>
+    			<tr><th style="padding-top: 25px;">아이디</th>
+					<td style="padding-top: 25px;"> ${memPerData.memId } </td></tr>
 			
-				<tr><th>이름</th>
-					<td><input type="text" name="name" minlength="2" required
-					style="width:200px;" value="${memName}"></td></tr>
+				<tr><th style="padding-bottom: 10px;">이름</th>
+					<td style="padding-bottom: 10px;">
+					<input type="text" name="memName" minlength="2" required
+					style="width:200px;" value="${memPerData.memName}"></td></tr>
 			
-				<tr><th>가입일</th>
-					<td> ${memSince } </td></tr>
+				<tr><th style="padding-bottom: 10px;">가입일</th>
+					<td style="padding-bottom: 10px;">
+					<fmt:formatDate value="${memPerData.memSince}" 
+		             pattern="yyyy-MM-dd"/></td></tr>
 			
-				<tr><th>생년월일</th>
-					<td> ${memDob } </td></tr>
+				<tr ><th style="padding-bottom: 10px;">생년월일</th>
+					<td style="padding-bottom: 10px;"><fmt:formatDate value="${memPerData.memDob}" 
+		             pattern="yyyy-MM-dd"/></td></tr>
 			
-				<tr><th>성별</th>
-				<td><input type="radio" name="Gender"  value="M" checked>남자
-					<input type="radio" name="Gender" value="F">여자</td></tr>
-			
+				<tr><th style="padding-bottom: 10px;">성별</th>
+				<td style="padding-bottom: 10px;">${memPerData.memGender }</td></tr>
+				
+				<tr><th>주소</th><td>
+		             <input type="text" name="memArea" value="${memPerData.memArea }" id="sample4_roadAddress" style="width:200px;"/>
+					<a href="javascript:sample4_execDaumPostcode();">주소검색</a>
+					</td>
+		         </tr>
 				<tr><th style="padding-bottom: 12px;">핸드폰</th>
-					<td><input type="text" name="ph" required
-						style="width:200px;" value="${memPhone }">
+					<td><input type="text" name="memPhone" required
+						style="width:200px;" value="${memPerData.memPhone }">
 						<div class="detail">* ex) 01012341234</div></td></tr>
 			
-				<tr><th style="padding-bottom: 12px;">이메일</th>
-					<td><input type="text" name="email"
-						style="width:200px;" value="${memEmail }">
+				<tr><th style="padding-bottom: 16px;">이메일</th>
+					<td ><input type="text" name="memEmail"
+						style="width:200px;" value="${memPerData.memEmail }">
 						<div class="detail">* ex) soomta@email.com</div></td></tr>
 			
-					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 15px; ">
+					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 10px;  padding-top: 20px;">
 						<input type="submit" value="수정 완료"
 							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
+						<input type="button"  value="취소" style="border: none;font-size: 16px;font-weight: bold;
 					 	background: transparent; color: #0F4C81;"
 						onclick="javascript:history.back();" />
 				</th></tr>
 			</table>
-		</form>		
+		</form:form>		
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"
 		href="#" class="Top"> <img src="../images/top.png" alt="topicon">

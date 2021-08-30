@@ -217,8 +217,10 @@ ul {
 /* 테이블 스타일 */
 table {
     width: 100%;
-    border-top: 2px solid #0F4C81;
+    /*border-top: 2px solid #0F4C81;*/
     border-collapse: collapse;
+    margin-top: 30px;
+    margin-bottom: 60px;
   }
   
 thead{
@@ -293,7 +295,7 @@ td a:active {
 				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
@@ -304,37 +306,44 @@ td a:active {
 	<!-- 타이틀 -->
 	<table><thead>
       <tr style="padding-bottom:20px; height:40px;">
+      	<th width="4%" style="background-color: white;"></th>
          <th width="10%">No.</th>
          <th width="15%">대분류/소분류</th>
          <th width="20%">강의명</th>
-         <th width="15%">기간</th>
-         <th width="10%">수강생</th>
+         <th width="13%">기간</th>
+         <th width="8%">수강생</th>
          <th width="10%">상태</th>
-         <th width="10%">만족도</th>
-         <th width="10%">후기</th>
+         <th width="8%">만족도</th>
+         <th width="8%">후기</th>
+         <th width="4%" style="background-color: white;"></th>
         
       </tr></thead>
       <tbody>
       <tr>
+      	<td style="background-color: white; border-style: none;"></td>
          <td>No.</td>
          <td>대분류/소분류</td>
-         <td><a href="boardInfo" class="boardInfo">강의명</a></td>
+         <td><a href="classInfo" class="classInfo">강의명</a></td>
          <td>기간</td>
          <td>수강생</td>
          <td>상태</td>
          <td>만족도</td>
          <td>후기</td>
+         <td style="background-color: white; border-style: none;"></td>
       </tr>
       <tr>
+      	<td style="background-color: white; border-style: none;"></td>
          <td>No.</td>
          <td>대분류/소분류</td>
-         <td>강의명</td>
+         <td><a href="classInfo" class="classInfo">강의명</a></td>
          <td>기간</td>
          <td>수강생</td>
          <td>상태</td>
          <td>만족도</td>
          <td>후기</td>
-      </tr></table>
+         <td style="background-color: white; border-style: none;"></td>
+      </tr>
+      </table>
    
 
 <!-- TOP이동 -->
