@@ -10,12 +10,17 @@ public class BandDetailController {
 	public String bandDetailHome() {
 		return "band/bandDetailHome";
 	}
+	
+	@RequestMapping("bandIntro")
+	public String bandIntro() {
+		return "band/bandIntro";
+	}
+	
 
 	@RequestMapping("bandDetail")
 	public String bandDetail() {
 		return "band/bandDetail";
 	}
-	
 
 	@RequestMapping("bandDetailmem")
 	public String bandDetailmem() {
@@ -45,5 +50,52 @@ public class BandDetailController {
 	@RequestMapping("bandDetailnotok")
 	public String bandDetailnotok() {
 		return "band/bandDetailnotok";
+	}
+
+	@RequestMapping("bandDetailjoin")
+	public String bandDetailjoin() {
+		return "band/bandDetailjoin";
+	}
+
+	// bandDetailjoinOk
+	@RequestMapping("bandDetailjoinOk")
+	public String bandDetailjoinOk() {
+		return "band/bandDetailjoinOk";
+	}
+	//bandDetailcontentjoin
+	@RequestMapping("bandDetailcontentjoin")
+	public String bandDetailcontentjoin() {
+		return "band/bandDetailcontentjoin";
+	}
+	
+	//bandDetailHomeMgr
+	@RequestMapping("bandDetailHomeMgr")
+	public String bandDetailHomeMgr() {
+		return "band/bandDetailHomeMgr";
+	}
+	
+	@RequestMapping("bandDetailContentSujung")
+	public String bandDetailcontentSujung() {
+		return "band/bandDetailcontentSujung";
+	}
+	
+	
+	@RequestMapping("bandDetailallMgr")
+	public String bandDetailallMgr() {
+		return "band/bandDetailallMgr";
+	}
+	
+	@RequestMapping("bandDetailmemMgr")
+	public String bandDetailmemMgr() {
+		return "band/bandDetailmemMgr";
+	}
+	@RequestMapping("bandDetailmyMgr")
+	public String bandDetailmyMgr() {
+		return "band/bandDetailmyMgr";
+	}
+	//강사상세 지우기!
+	@RequestMapping("tutorDetail")
+	public String tutorDetail() {
+		return "band/tutorDetail";
 	}
 }

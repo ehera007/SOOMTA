@@ -272,7 +272,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 		<div class="banddetail"> 
       <div class="bandleft">
 		  </div>
-			<!-- 중앙 우측 게시글/멤버리스트 -->
+			<!-- 중앙 메뉴밑 -->
       <div class="bandcenter">
       
       <table class="bandhomeTable">
@@ -315,6 +315,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 </tbody>
 </table>
 </table>
+
 			</div>
 			<!-- 중앙 우측 빈공간(공간잡기) -->
 			<div class="empty"></div>

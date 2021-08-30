@@ -235,16 +235,15 @@ margin : auto;
    padding-right: 35px;
 }
 th{
-	padding-left:30px;
-  width : 100px;
+	padding-left:85px;
 }
 td{
 	text-align : left;
-  padding-left:35px;
+  padding-left:85px;
+  width : 600px;
 }
 .contentjoin {
   text-align : right ;
-  margin-top: 50px;
 }
 .empty{
 width:150px;
@@ -254,6 +253,7 @@ width:150px;
 	width: auto;
 }
 </style>
+<script> function btn(){ alert('삭제되었습니다.'); } </script>
 <meta charset="UTF-8">
 <title>Band</title>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -285,50 +285,24 @@ width:150px;
 	<!-- 중앙 상단부 -->
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
-			<div class="bandMenu"><a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
+			<div class="bandMenu"><a href="bandDetailHomeMgr">Home</a><a href="bandDetailallMgr">전체 게시글</a><a href="bandDetailmemMgr">멤버</a><a href="bandDetailmyMgr">내가 쓴 게시글</a>
 		</div></div>
 		<!-- 중앙 하단부 -->
 	<div class="banddetail">
       <div class="bandDetailList">
-        <div class="contentjoin">
-        <a class="contentjoin" style="color: #0F4C81; font-weight: bold"
-         href="bandDetailcontentjoin"> 게시글 작성하기 </a>
-        </div>
 		  <form action="perForm"name="frm" >
-			  <table style="padding-top:20px;">
-              <tr> 
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-                <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-              </tr>   
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td colspan="3" height="50px">${contentname}</td>
-		         </tr>
-             	<tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-             		<tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-	         </table>
-           <br/>
-           <br/>
-            <table>
+			  <table>
               <tr>    
 		            <th width="70px" height="50px">분류</th>
 		            <td>${kind} </td>
 		          </tr>
-             <tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
               <tr>
 		             <th width="70px" height="50px";>제목</th>
 		             <td height="50px">${contentname}</td>
+		         </tr>
+		         <tr>
+		             <th width="70px" height="50px";>아이디</th>
+		             <td height="50px">${memId}</td>
 		         </tr>
 		         <tr>
 		             <th width="70px" height="50px">작성일</th>
@@ -338,7 +312,42 @@ width:150px;
 		             <th height="300px";>내용</th>
 		             <td >${content} </td>
 		         </tr>
+             <tr>
+                <td colspan="2" style="text-align:right; padding-right:70px; padding-bottom:20px">
+                <a onclick="javascript:btn()"  style="coloer:#0F4C81">삭제하기</a>
+              </td>
+             </tr>
 
+
+	         </table>
+           <br/>
+           <br/>
+            <table>
+              <tr>    
+		            <th width="70px" height="50px">분류</th>
+		            <td>${kind} </td>
+		          </tr>
+              <tr>
+		             <th width="70px" height="50px";>제목</th>
+		             <td height="50px">${contentname}</td>
+		         </tr>
+		         <tr>
+		             <th width="70px" height="50px";>아이디</th>
+		             <td height="50px">${memId}</td>
+		         </tr>
+		         <tr>
+		             <th width="70px" height="50px">작성일</th>
+		             <td>${contentday} </td>
+		         </tr>
+		         <tr>    
+		             <th height="300px";>내용</th>
+		             <td >${content} </td>
+		         </tr>
+             <tr>
+                <td colspan="2" style="text-align:right; padding-right:70px; padding-bottom:20px">
+                <a onclick="javascript:btn()"  style="coloer:#0F4C81">삭제하기</a>
+              </td>
+             </tr>
 
 	         </table>
                       <br/>
@@ -364,10 +373,16 @@ width:150px;
 		             <th height="300px";>내용</th>
 		             <td >${content} </td>
 		         </tr>
-
+             <tr>
+                <td colspan="2" style="text-align:right; padding-right:70px; padding-bottom:20px">
+                <a onclick="javascript:btn()"  style="coloer:#0F4C81">삭제하기</a>
+              </td>
+             </tr>
 
 	         </table>
 		</form>
+
+    <a class="contentjoin" href="bandDetailcontentjoin"> 게시글 작성하기 </a>
    </div>
 	</div>
 	<!-- 하단 고정 -->

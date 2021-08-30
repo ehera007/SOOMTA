@@ -179,78 +179,37 @@ ul {
 /*중앙 하단 부분*/
 .banddetail {
 	display: flex;
-	margin: 20px 0px;
 	justify-content: space-between;
-	/*
-	
-	align-items: center;
-	*/
-}
-/*
-.banddintro{
-border:1px solid blue;
-}
-/*중앙 하단 좌측 테이블 부분*/
-
-/*중앙 하단 우측 테이블 부분*/
-.perForm a:visited {
-	color: #0F4C81;
 }
 
-.perForm a:link {
-	color: #0F4C81;
+.bandList {
+  margin : auto;
 }
 
-.perForm a:hover {
-	color: #0F4C81;
-}
-.bandDetailList {
-	margin : auto;
-}
-
-table {
-	border: 2px solid #0F4C81;
-	border-radius: 12px;
-	width: 700px;
-	height: 460px;
-	margin : auto;
-	box-shadow: 3px 3px 3px 3px #D5D5D5;
+.bandlistall {
 	text-align: center;
-	margin-top: 35px;
-	margin-bottom: 35px;
+	border: 2px solid #0F4C81;
+	box-shadow: 3px 3px 3px 3px #D5D5D5;
+	border-spacing: 0px;
+  	margin : 50px auto;
+	width: 700px;
 }
 
-.btn {
-	height: 30px;
-	background-color: red;
-	color: #0F4C81;
-	font-weight: bold;
-	margin: 10px 10px;
-	border: none;
-	/*border:1px solid #0F4C81;
-   border-radius:4px;*/
+.bandlistall-menu {
+	text-align: center;
+	height: 50px;
+	background-color: #0F4C81;
+	color: white;
+	font-size: 20px;
+	border-radius: 8px 8px 0px 0px;
 }
 
-.allbtn {
-	height: 30px;
-	width: 250px;
-	margin: 0 auto;
-	padding-bottom: 0px;
-	padding-right: 35px;
+.bandmemtitle {
+	text-align: center;
 }
 
-th {
-	padding-left: 85px;
-}
-
-td {
-	text-align: left;
-	padding-left: 85px;
-	width: 600px;
-}
-
-.contentjoin {
-	text-align: right;
+.listtitle {
+	text-align: center;
 }
 
 .empty {
@@ -264,17 +223,7 @@ td {
 </style>
 <meta charset="UTF-8">
 <title>Band</title>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$('.Top').click(function() {
-			$('html, body').animate({
-				scrollTop : 0
-			}, 400);
-			return false;
-		});
-	});
-</script>
+
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
@@ -296,49 +245,88 @@ td {
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
 			<div class="bandMenu">
-				<a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a
-					href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
+				<div class="bandMenu">
+					<a href="bandDetailHomeMgr">Home</a><a href="bandDetailallMgr">전체 게시글</a><a
+						href="bandDetailmemMgr">멤버</a><a href="bandDetailmyMgr">내가 쓴 게시글</a>
+				</div>
 			</div>
 		</div>
 		<!-- 중앙 하단부 -->
 		<div class="banddetail">
-			<div class="bandDetailList">
-				<form action="perForm" name="frm">
-					<table>
-						<tr>
-							<th width="70px" height="50px">분류</th>
-							<td>${kind}</td>
-						</tr>
-						<tr>
-							<th width="70px" height="50px";>제목</th>
-							<td height="50px">${contentname}</td>
-						</tr>
-						<tr>
-							<th width="70px" height="50px";>아이디</th>
-							<td height="50px">${memId}</td>
-						</tr>
-						<tr>
-							<th width="70px" height="50px">작성일</th>
-							<td>${contentday}</td>
-						</tr>
-						<tr>
-							<th height="300px";>내용</th>
-							<td>${content}</td>
-						</tr>
-						<tr>
-							<th colspan="2" style="padding-right: 45px;">
-								<div class="allbtn">
-									<a href="bandDetailContentSujung"
-										style="text-decoration: none;">수정하기</a>
-										&emsp;&emsp; 
-									<a href="javascript:history.back()"
-										style="text-decoration: none;">뒤로가기</a>
-								</div>
-							</th>
-						</tr>
+			<!-- 중앙 멤버 소개 -->
+			<div class="bandlist" style="width: 700px; margin:auto;">
+				<br /> <br />
+				<h2 class="listtitle">'카친소'의 멤버</h2>
+				<table class="bandlistall">
+					<tr class="bandlistall-menu">
 
-					</table>
-				</form>
+						<td width="20%">권한</td>
+						<td width="50%">아이디</td>
+						<td width="30%">가입날짜</td>
+
+					</tr>
+					<tbody class="bandlistall-content">
+						<tr>
+							<td>관리자</td>
+							<td>hisfr11</td>
+							<td>21.08.18</td>
+						</tr>
+						<tr>
+							<td>일반</td>
+
+							<td>hisfr11</td>
+							<td>21.08.08</td>
+						</tr>
+						<tr>
+							<td>일반</td>
+
+							<td>geqrf</td>
+							<td>21.08.09</td>
+						</tr>
+						<tr>
+							<td>일반</td>
+
+							<td>cdfs</td>
+							<td>21.08.09</td>
+						</tr>
+					</tbody>
+				</table>
+        				<br /> <br />
+				<h2 class="listtitle">가입 신청</h2>
+				<table class="bandlistall">
+					<tr class="bandlistall-menu">
+
+						<td width="30%">아이디</td>
+						<td width="30%">신청날짜</td>
+            <td colspan="2" width="40%">승인/거절</td>
+					</tr>
+					<tbody class="bandlistall-content">
+						<tr>
+							<td>${mem_id}</td>
+							<td>21.08.18</td>
+              <td style="padding-left:50px;"><input type="checkbox" name="chk_allow" value="승인">승인</td>
+              <td style="padding-right:50px;"><input type="checkbox" name="chk_allow" value="거절">거절</td>
+						</tr>
+						<tr>
+							<td>${mem_id}</td>
+							<td>21.08.08</td>
+              <td style="padding-left:50px;"><input type="checkbox" name="chk_allow" value="승인">승인</td>
+              <td style="padding-right:50px;"><input type="checkbox" name="chk_allow" value="거절">거절</td>
+						</tr>
+						<tr>
+							<td>${mem_id}</td>
+							<td>21.08.09</td>
+              <td style="padding-left:50px;"><input type="checkbox" name="chk_allow" value="승인">승인</td>
+              <td style="padding-right:50px;"><input type="checkbox" name="chk_allow" value="거절">거절</td>
+						</tr>
+						<tr>
+							<td>${mem_id}</td>
+							<td>21.08.09</td>
+              <td style="padding-left:50px;"><input type="checkbox" name="chk_allow" value="승인">승인</td>
+              <td style="padding-right:50px;"><input type="checkbox" name="chk_allow" value="거절">거절</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<!-- 하단 고정 -->

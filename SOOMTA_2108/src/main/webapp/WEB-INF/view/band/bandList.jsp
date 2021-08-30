@@ -418,10 +418,10 @@ a:hover {
 			<div class="ctgr">
 				<li><a href="#">취업</a>
 					<ul class="titleSubmenu">
-						<li><a href="#">이력서^자소서</a></li>
-						<li><a href="#">면접</a></li>
-						<li><a href="#">인적성</a></li>
-						<li><a href="#">기타</a></li>
+						<li><a href="../employement/intertview">이력서^자소서</a></li>
+						<li><a href="../employement/resume">면접</a></li>
+						<li><a href="../employement/personality">인적성</a></li>
+						<li><a href="../employement/ect">기타</a></li>
 					</ul>
 				</li>
 			</div>
@@ -482,7 +482,7 @@ a:hover {
 		</form>
 		<table style="margin: auto; text-align: center;">
 			<tr>
-				<td width="150" height="150"><a href="../bandDetail"> <img width="150"
+				<td width="150" height="150"><a href="../bandIntro"> <img width="150"
 						height="150" src="#"/></a><br /> 자바동아리 </td>
 			</tr>
 			<!-- 쇼핑물 페이지처럼 c:if문 돌려서 4개 가져오시면 될거 같습니다 -->

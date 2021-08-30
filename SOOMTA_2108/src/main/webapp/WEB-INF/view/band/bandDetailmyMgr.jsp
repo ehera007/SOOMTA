@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,23 +163,23 @@ ul {
 	padding-top: 10px;
 	padding-bottom: 15px;
 }
-.bandMenu{
-	width:600px;
-	display:flex;
+
+.bandMenu {
+	width: 600px;
+	display: flex;
 	justify-content: space-evenly;
-	padding-top:10px;
-	font-size:14px;
-	margin:auto;
+	padding-top: 10px;
+	font-size: 14px;
+	margin: auto;
 }
-.bandTitle a{
+
+.bandTitle a {
 	color: white;
-	
 }
 /*중앙 하단 부분*/
 .banddetail {
 	display: flex;
 	margin: 20px 0px;
-	
 	justify-content: space-between;
 	/*
 	
@@ -190,87 +190,96 @@ ul {
 .banddintro{
 border:1px solid blue;
 }
-/*중앙 하단 좌측 테이블 부분*/
+/*중앙 하단 테이블 부분*/
 
-/*중앙 하단 우측 테이블 부분*/
-.perForm a:visited {
-	color: #0F4C81;
+
+.bandlistall {
+	border: 2px solid #0F4C81;
+	border-radius: 12px;
+	box-shadow: 3px 3px 3px 3px #D5D5D5;
+	border-spacing: 0px;
+	margin: 50px auto;
+	width: 700px;
+	text-align: center;
 }
-.perForm a:link {
-	color: #0F4C81;
+
+.bandlistall-menu {
+	height: 50px;
+	background-color: #0F4C81;
+	color: white;
+	font-size: 20px;
+	border-radius: 8px 8px 0px 0px;
+	text-align: center;
 }
-.perForm a:hover{
-color: #0F4C81;
+
+.mylisttitle {
+	text-align: center;
 }
-.bandDetailList {
-margin : auto;
-}
- table {
-    border: 2px solid #0F4C81;
-    border-radius: 12px;
-    width: 700px;
-    height:470px;
-    margin: auto;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    text-align: center;
-    margin-top: 35px;
-    margin-bottom: 35px;
-  }
- 
-.btn {
-   height: 30px;
-   background-color: red;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 10px 10px;
-   border: none;
-   /*border:1px solid #0F4C81;
-   border-radius:4px;*/
-}
-.allbtn {
-   height: 30px;
-   width: 250px;
-   margin: 0 auto;
-   padding-bottom: 0px;
-   padding-right: 35px;
-}
-th{
-	padding-left:30px;
-  width : 100px;
-}
-td{
-	text-align : left;
-  padding-left:35px;
-}
-.contentjoin {
-  text-align : right ;
-  margin-top: 50px;
-}
-.empty{
-width:150px;
-}
+
 .logo {
 	height: 40px;
 	width: auto;
 }
+
+.table {
+	margin: 20px auto 25px auto;
+}
+
+table {
+	width: 700px;
+	border-top: 2px solid #0F4C81;
+	border-collapse: collapse;
+}
+
+thead {
+	background-color: #0F4C81;
+	color: white;
+}
+
+tbody  th, td {
+	border-bottom: 1px solid #0F4C81;
+	padding: 5px;
+	text-align: center;
+}
+
+tbody tr:nth-child(2n) {
+	background-color: #F4F7F8;
+}
+
+td a {
+	font-weight: bold;
+	color: black;
+}
+
+td a:hover {
+	font-weight: bold;
+	color: black;
+}
+
+td a:link {
+	font-weight: bold;
+	color: black;
+}
+
+td a:visited {
+	font-weight: bold;
+	color: black;
+}
+
+td a:active {
+	font-weight: bold;
+	color: black;
+}
 </style>
 <meta charset="UTF-8">
 <title>Band</title>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-    $(document).ready(function(){
-    	$( '.Top' ).click( function() {
-        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-        	return false;
-        } );
-    });
-    
-    </script>
+
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
+			onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="nav">
 			<div class="nav-item">
 				<a href="#">마이페이지</a>
@@ -282,93 +291,56 @@ width:150px;
 	</div>
 	<!-- 중앙 -->
 	<div class="main">
-	<!-- 중앙 상단부 -->
+		<!-- 중앙 상단부 -->
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
-			<div class="bandMenu"><a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
-		</div></div>
+			<div class="bandMenu">
+				<a href="bandDetailHomeMgr">Home</a><a href="bandDetailallMgr">전체 게시글</a><a
+					href="bandDetailmemMgr">멤버</a><a href="bandDetailmyMgr">내가 쓴 게시글</a>
+			</div>
+		</div>
 		<!-- 중앙 하단부 -->
-	<div class="banddetail">
-      <div class="bandDetailList">
-        <div class="contentjoin">
-        <a class="contentjoin" style="color: #0F4C81; font-weight: bold"
-         href="bandDetailcontentjoin"> 게시글 작성하기 </a>
-        </div>
-		  <form action="perForm"name="frm" >
-			  <table style="padding-top:20px;">
-              <tr> 
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-                <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-              </tr>   
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td colspan="3" height="50px">${contentname}</td>
-		         </tr>
-             	<tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-             		<tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-	         </table>
-           <br/>
-           <br/>
-            <table>
-              <tr>    
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-		          </tr>
-             <tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td height="50px">${contentname}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-		         </tr>
-		         <tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-
-
-	         </table>
-                      <br/>
-           <br/>
-            <table>
-              <tr>    
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-		          </tr>
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td height="50px">${contentname}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-		         </tr>
-		         <tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-
-
-	         </table>
-		</form>
-   </div>
+		<div class="banddetail">
+			<div class="table">
+				<table>
+					<thead>
+						<tr style="padding: 10px; height: 30px;">
+							<th width="10%">No.</th>
+							<th width="15%">분류</th>
+							<th width="40%">제목</th>
+							<th width="25%">작성일</th>
+							<th width="10%">조회수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>No.</td>
+							<td>분류</td>
+							<td><a href="bandDetailContent">제목</a></td>
+							<td>작성일</td>
+							<td>조회수</td>
+						</tr>
+						<tr>
+							<td>No.</td>
+							<td>분류</td>
+							<td><a href="bandDetailContent">제목</a></td>
+							<td>작성일</td>
+							<td>조회수</td>
+						</tr>
+						<tr>
+							<td>No.</td>
+							<td>분류</td>
+							<td><a href="bandDetailContent">제목</a></td>
+							<td>작성일</td>
+							<td>조회수</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div>
+			<a style="text-align:right; font-weight:bold" href="bandDetailcontentjoin">게시글 작성하기</a>
+		</div>
 	</div>
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">
@@ -431,8 +403,3 @@ width:150px;
 					2021-서울숨타-1004 주식회사 숨타는 전자상거래 등에서의 소비자보호에 관한 법률에 따른 통신판매업과 통신판매중개업을
 					영위하고 있습니다. 주식회사 숨타는 통신판매중개자로서 중 개하는 통신판매에 관하여서는 통신판매의 당사자가 아니므로 어떠한
 					책임도 부담하지 아니합니다.왜냐하면 MBTI가 큐티인 사람의 프로젝트거든요.</address>
-			</div>
-		</div>
-	</div>
-</body>
-</html>

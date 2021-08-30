@@ -179,39 +179,20 @@ ul {
 /*중앙 하단 부분*/
 .banddetail {
 	display: flex;
-	margin: 20px 0px;
 	justify-content: space-between;
-	/*
-	
-	align-items: center;
-	*/
-}
-/*
-.banddintro{
-border:1px solid blue;
-}
-/*중앙 하단 좌측 테이블 부분*/
-.banddintro thead {
-	height: 150px;
 }
 
-.banddintro tbody {
-	font-size: 10px;
-	font-weight: normal;
+.bandList {
+  margin : auto;
 }
 
-.banddintro tbody a {
-	color: #0F4C81;
-}
-/*중앙 하단 우측 테이블 부분*/
 .bandlistall {
 	text-align: center;
 	border: 2px solid #0F4C81;
-	border-radius: 12px;
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
-	margin: 50px auto;
-	width: 400px;
+  	margin : 50px auto;
+	width: 700px;
 }
 
 .bandlistall-menu {
@@ -222,6 +203,9 @@ border:1px solid blue;
 	font-size: 20px;
 	border-radius: 8px 8px 0px 0px;
 }
+.bandlistall-content{
+	font-size: 20px;
+}
 
 .bandmemtitle {
 	text-align: center;
@@ -229,11 +213,15 @@ border:1px solid blue;
 
 .listtitle {
 	text-align: center;
+  font-size : 28px;
+  font-weight: bold;
+  color : #0F4C81
 }
 
 .empty {
 	width: 150px;
 }
+
 .logo {
 	height: 40px;
 	width: auto;
@@ -246,7 +234,8 @@ border:1px solid blue;
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
+			onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="nav">
 			<div class="nav-item">
 				<a href="#">마이페이지</a>
@@ -262,78 +251,45 @@ border:1px solid blue;
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
 			<div class="bandMenu">
-				<div class="bandMenu"><a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
-		</div>
+				<div class="bandMenu">
+					<a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a
+						href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
+				</div>
 			</div>
 		</div>
 		<!-- 중앙 하단부 -->
 		<div class="banddetail">
-			<!-- 중앙 좌측 밴드 소개 -->
-			<div class="banddintro">
-				<table class="bandintroTable">
-					<thead>
-						<tr>
-							<th colspan="4">img</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td colspan="4">모임명</td>
-						</tr>
-						<tr>
-							<td colspan="4">모임장</td>
-						</tr>
-						<tr>
-							<td colspan="4">시작일</td>
-						</tr>
-						<tr>
-							<td colspan="2">성별</td>
-							<td colspan="2">연령대</td>
-						</tr>
-						<tr>
-							<td colspan="2">현재 참여 인원 :</td>
-							<td colspan="2">(현재/정원)명</td>
-						</tr>
-						<tr>
-							<td colspan="4">성별 비율</td>
-						</tr>
-						<tr>
-							<td colspan="4" style="text-align: right; font-weight: bold"><a
-								href="bandDetail"> 탈퇴하기</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<!-- 중앙 우측 게시글/멤버리스트 -->
-			<div class="bandlist">
-				<h2 class="listtitle">'카친소'의 멤버</h2>
+			<!-- 중앙 멤버 소개 -->
+			<div class="bandlist" style="width: 700px; margin:auto;">
+				<br /> <br />
+				<p class="listtitle">'${BAND_NAME}'의 멤버 리스트</p>
 				<table class="bandlistall">
 					<tr class="bandlistall-menu">
-						
+
 						<td width="20%">권한</td>
 						<td width="50%">아이디</td>
 						<td width="30%">가입날짜</td>
-						
+
 					</tr>
 					<tbody class="bandlistall-content">
-						<tr>
-							<td>공지</td>
+						<tr style="height: 40px;"> 
+							<td>관리자</td>
 							<td>hisfr11</td>
 							<td>21.08.18</td>
 						</tr>
-						<tr>
-							<td>공지</td>
+						<tr style="height: 40px;">
+							<td>일반</td>
 
 							<td>hisfr11</td>
 							<td>21.08.08</td>
-						</tr>
-						<tr>
+						</tr >
+						<tr style="height: 40px;">
 							<td>일반</td>
 
 							<td>geqrf</td>
 							<td>21.08.09</td>
 						</tr>
-						<tr>
+						<tr style="height: 40px;">
 							<td>일반</td>
 
 							<td>cdfs</td>
@@ -342,73 +298,70 @@ border:1px solid blue;
 					</tbody>
 				</table>
 			</div>
-			<!-- 중앙 우측 빈공간(공간잡기) -->
-			<div class="empty"></div>
 		</div>
-	</div>
-	<!-- 하단 고정 -->
-	<hr style="color: #BEBEBE;">
-	<div class="footer">
-		<div class="footer-top">
-			<div class="footer-leftmenu">
-				<div class="footer-call">
-					<div class="footer-callNum">
-						<p>고객센터 1544-7979</p>
+		<!-- 하단 고정 -->
+		<hr style="color: #BEBEBE;">
+		<div class="footer">
+			<div class="footer-top">
+				<div class="footer-leftmenu">
+					<div class="footer-call">
+						<div class="footer-callNum">
+							<p>고객센터 1544-7979</p>
+						</div>
+						<div class="footer-callTime">
+							<p>
+								평일 10:30~18:00<br />점심 13:00~14:00<br />주말, 공휴일 제외
+							</p>
+						</div>
 					</div>
-					<div class="footer-callTime">
-						<p>
-							평일 10:30~18:00<br />점심 13:00~14:00<br />주말, 공휴일 제외
-						</p>
+
+					<div class="footer-rightmenu">
+						<div class="footer-menu">
+							<p>숨타</p>
+							<ul>
+								<li><a href="">회사소개</a></li>
+								<li><a href="">서비스소개</a></li>
+								<li><a href="">인재채용</a></li>
+							</ul>
+						</div>
+						<div class="footer-menu">
+							<p>튜터안내</p>
+							<ul>
+								<li><a href="">공지사항</a></li>
+								<li><a href="">이용안내</a></li>
+								<li><a href="">자주 묻는 질문</a></li>
+							</ul>
+						</div>
+						<div class="footer-menu">
+							<p>고객센터</p>
+							<ul>
+								<li><a href="">공지사항</a></li>
+								<li><a href="">이용안내</a></li>
+								<li><a href="">자주 묻는 질문</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="footer-bottommenu">
+					<div class="footer-submenu">
+						<a href="#">이용약관 </a> <a href="#">개인정보처리방침 </a> <a href="#">환불정책
+						</a> <a href="#">사업자정보확인 </a>
+					</div>
+					<div class="footer-app">
+						<a href="#">APP 다운 </a>
 					</div>
 				</div>
 
-				<div class="footer-rightmenu">
-					<div class="footer-menu">
-						<p>숨타</p>
-						<ul>
-							<li><a href="">회사소개</a></li>
-							<li><a href="">서비스소개</a></li>
-							<li><a href="">인재채용</a></li>
-						</ul>
-					</div>
-					<div class="footer-menu">
-						<p>튜터안내</p>
-						<ul>
-							<li><a href="">공지사항</a></li>
-							<li><a href="">이용안내</a></li>
-							<li><a href="">자주 묻는 질문</a></li>
-						</ul>
-					</div>
-					<div class="footer-menu">
-						<p>고객센터</p>
-						<ul>
-							<li><a href="">공지사항</a></li>
-							<li><a href="">이용안내</a></li>
-							<li><a href="">자주 묻는 질문</a></li>
-						</ul>
-					</div>
+				<div class="footer-address">
+					<address>(주) 숨타 | 대표 이지연 | 서울특별시 서초구 서초대로77길 55 에이프로스퀘어
+						3층 | soomta@gongbu.com | 사업자등록번호 : 123-21-01234 | 통신판매업신고 :
+						2021-서울숨타-1004 주식회사 숨타는 전자상거래 등에서의 소비자보호에 관한 법률에 따른 통신판매업과
+						통신판매중개업을 영위하고 있습니다. 주식회사 숨타는 통신판매중개자로서 중 개하는 통신판매에 관하여서는 통신판매의
+						당사자가 아니므로 어떠한 책임도 부담하지 아니합니다.왜냐하면 MBTI가 큐티인 사람의 프로젝트거든요.</address>
 				</div>
 			</div>
 		</div>
-		<div class="footer-bottom">
-			<div class="footer-bottommenu">
-				<div class="footer-submenu">
-					<a href="#">이용약관 </a> <a href="#">개인정보처리방침 </a> <a href="#">환불정책
-					</a> <a href="#">사업자정보확인 </a>
-				</div>
-				<div class="footer-app">
-					<a href="#">APP 다운 </a>
-				</div>
-			</div>
-
-			<div class="footer-address">
-				<address>(주) 숨타 | 대표 이지연 | 서울특별시 서초구 서초대로77길 55 에이프로스퀘어 3층
-					| soomta@gongbu.com | 사업자등록번호 : 123-21-01234 | 통신판매업신고 :
-					2021-서울숨타-1004 주식회사 숨타는 전자상거래 등에서의 소비자보호에 관한 법률에 따른 통신판매업과 통신판매중개업을
-					영위하고 있습니다. 주식회사 숨타는 통신판매중개자로서 중 개하는 통신판매에 관하여서는 통신판매의 당사자가 아니므로 어떠한
-					책임도 부담하지 아니합니다.왜냐하면 MBTI가 큐티인 사람의 프로젝트거든요.</address>
-			</div>
-		</div>
-	</div>
 </body>
 </html>

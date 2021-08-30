@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,24 +163,25 @@ ul {
 	padding-top: 10px;
 	padding-bottom: 15px;
 }
-.bandMenu{
-	width:600px;
-	display:flex;
+
+.bandMenu {
+	width: 600px;
+	display: flex;
 	justify-content: space-evenly;
-	padding-top:10px;
-	font-size:14px;
-	margin:auto;
+	padding-top: 10px;
+	font-size: 14px;
+	margin: auto;
 }
-.bandTitle a{
+
+.bandTitle a {
 	color: white;
-	
 }
 /*중앙 하단 부분*/
 .banddetail {
 	display: flex;
-	margin: 20px 0px;
-	
+	margin: 20px auto 0px auto;
 	justify-content: space-between;
+  width: 800px;
 	/*
 	
 	align-items: center;
@@ -190,47 +191,90 @@ ul {
 .banddintro{
 border:1px solid blue;
 }
-/*중앙 하단 좌측 테이블 부분*/
+/*중앙 하단 테이블 부분*/
 
-.banddintro thead{
- height:150px;
- }
-.banddintro tbody{
-font-size:10px;
-font-weight:normal;
-}
-.banddintro tbody a{
-color:#0F4C81;
-}
-/*중앙 하단 우측 테이블 부분*/
-.bandlistall{
-   border: 2px solid #0F4C81;
-   border-radius: 12px;
-   box-shadow: 3px 3px 3px 3px #D5D5D5;
-   border-spacing: 0px;
-   margin: 50px auto;
-   width: 700px;
-   text-align: center;
-}
-.bandlistall-menu{
-  height: 50px;
-   background-color: #0F4C81;
-   color: white;
-   font-size: 20px;
-   border-radius: 8px 8px 0px 0px;
-   text-align: center;
-}
-.mylisttitle{
+
+.bandlistall {
+	border: 2px solid #0F4C81;
+	border-radius: 12px;
+	box-shadow: 3px 3px 3px 3px #D5D5D5;
+	border-spacing: 0px;
+	margin: 50px auto;
+	width: 700px;
 	text-align: center;
 }
-.empty{
-width:150px;
+
+.bandlistall-menu {
+	height: 50px;
+	background-color: #0F4C81;
+	color: white;
+	font-size: 20px;
+	border-radius: 8px 8px 0px 0px;
+	text-align: center;
 }
+
+.mylisttitle {
+	text-align: center;
+}
+
 .logo {
 	height: 40px;
 	width: auto;
 }
 
+.table {
+	margin: 30px auto 55px auto;
+}
+.contentjoin{
+  text-align : right;
+  color : #0F4C81;
+}
+table {
+	width: 800px;
+	border-top: 2px solid #0F4C81;
+	border-collapse: collapse;
+  margin: 30px auto 55px auto;
+}
+
+thead {
+	background-color: #0F4C81;
+	color: white;
+}
+
+tbody  th, td {
+	border-bottom: 1px solid #0F4C81;
+	padding: 5px;
+	text-align: center;
+}
+
+tbody tr:nth-child(2n) {
+	background-color: #F4F7F8;
+}
+
+td a {
+	font-weight: bold;
+	color: black;
+}
+
+td a:hover {
+	font-weight: bold;
+	color: black;
+}
+
+td a:link {
+	font-weight: bold;
+	color: black;
+}
+
+td a:visited {
+	font-weight: bold;
+	color: black;
+}
+
+td a:active {
+	font-weight: bold;
+	color: black;
+}
 </style>
 <meta charset="UTF-8">
 <title>Band</title>
@@ -239,7 +283,8 @@ width:150px;
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
+			onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="nav">
 			<div class="nav-item">
 				<a href="#">마이페이지</a>
@@ -251,91 +296,55 @@ width:150px;
 	</div>
 	<!-- 중앙 -->
 	<div class="main">
-	<!-- 중앙 상단부 -->
+		<!-- 중앙 상단부 -->
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
-			<div class="bandMenu"><a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
-		</div></div>
+			<div class="bandMenu">
+				<a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a
+					href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
+			</div>
+		</div>
 		<!-- 중앙 하단부 -->
 		<div class="banddetail">
-		<!-- 중앙 좌측 밴드 소개 -->
-			<div class="banddintro">
-			<table class="bandintroTable">
-<thead>
-  <tr>
-    <th colspan="4">img</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td  colspan="4">모임명</td>
-  </tr>
-  <tr>
-    <td  colspan="4">모임장</td>
-  </tr>
-  <tr>
-    <td  colspan="4">시작일</td>
-  </tr>
-  <tr>
-    <td  colspan="2">성별</td>
-    <td  colspan="2">연령대</td>
-  </tr>
-  <tr>
-    <td  colspan="2">현재 참여 인원 : </td>
-    <td  colspan="2">(현재/정원)명</td>
-  </tr>
-  <tr>
-    <td colspan="4">성별 비율</td>
-  </tr>
-  <tr>
-    <td colspan="4" style="text-align:right; font-weight:bold"><a href="bandDetail">탈퇴하기</a></td>
-  </tr>
-</tbody>
-</table>
+			<div class="table">
+        <div class="contentjoin">
+        <a style="color: #0F4C81; font-weight:bold" href="bandDetailcontentjoin">게시글 작성하기</a>
+        </div>
+				<table>
+					<thead>
+						<tr style="padding: 10px; height: 30px;">
+							<th width="10%">No.</th>
+							<th width="15%">분류</th>
+							<th width="55%">제목</th>
+							<th width="15%">작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>No.</td>
+							<td>분류</td>
+							<td><a href="bandDetailContent">제목</a></td>
+							<td>작성일</td>
+						</tr>
+						<tr>
+							<td>No.</td>
+							<td>분류</td>
+							<td><a href="bandDetailContent">제목</a></td>
+							<td>작성일</td>
+						</tr>
+						<tr>
+							<td>No.</td>
+							<td>분류</td>
+							<td><a href="bandDetailContent">제목</a></td>
+							<td>작성일</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			<!-- 중앙 우측 게시글/멤버리스트 -->
-			<div class="bandlist">
-			<h2 class="mylisttitle">내가 쓴 게시글</h2>
-	<table class="bandlistall">
-	<thead class="bandlistall-menu">
-    		<tr>
-        	<td width="10%">번호</td>
-            <td width="60%">제목</td>
-            <td width="15%">작성자</td>
-            <td width="15%">게시날짜</td>
-        	</tr>
-    	</thead>
-    	<tbody class="bandlistall-content">
-    		  <tr>
-        	<td>1</td>
-            <td><a href="bandDetailContent"  style="color: black" > 오늘 차가 많이 밀렸네요 ㅠㅠ</a></td>
-            <td>jena</td>
-            <td>21.08.18</td>
-       		</tr>
-           <tr>
-        	<td>2</td>
-            <td><a href="bandDetailContent"  style="color: black" >저희모임 규칙이렇게 바꾸는건 어떤가요? </a></td>
-            <td>jena</td>
-            <td>21.08.08</td>
-       		</tr>
-           <tr>
-        	<td>3</td>
-            <td><a href="bandDetailContent"  style="color: black" >안녕하세요! 8월 20일 study 하실 분 계신가요? </a></td>
-            <td>jena</td>
-            <td>21.08.09</td>
-       		</tr>
-           <tr>
-        	<td>4</td>
-            <td><a href="bandDetailContent"  style="color: black" >일산 사시는 분 찾아요 (1/4) </a> </td>
-            <td>jena</td>
-            <td>21.08.09</td>
-       		</tr>
-   	</tbody>
-</table>
-			</div>
-			<!-- 중앙 우측 빈공간(공간잡기) -->
-			<div class="empty"></div>
-		</div></div>
+		</div>
+		<div>
+		</div>
+	</div>
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">
 	<div class="footer">

@@ -243,7 +243,6 @@ pageEncoding="UTF-8" isELIgnored="false"%>
       }
 
 		</style>
-		<script> function btn(){ alert('밴드 가입 후 이용가능합니다.'); } </script>
 		<meta charset="UTF-8">
 		<title>Band</title>
 
@@ -267,13 +266,13 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 	<!-- 중앙 상단부 -->
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
-			<div class="bandMenu"><a href="bandDetail">Home</a><a onclick="javascript:btn()">전체 게시글</a><a onclick="javascript:btn()">멤버</a><a onclick="javascript:btn()">내가 쓴 게시글</a>
+			<div class="bandMenu"><a href="bandDetailHomeMgr">Home</a><a href="bandDetailallMgr">전체 게시글</a><a href="bandDetailmemMgr">멤버관리</a><a href="bandDetailmyMgr">내가 쓴 게시글</a>
 		</div></div>
 		<!-- 중앙 하단부 -->
 		<div class="banddetail"> 
       <div class="bandleft">
 		  </div>
-
+			<!-- 중앙 메뉴밑 -->
       <div class="bandcenter">
       
       <table class="bandhomeTable">
@@ -311,16 +310,12 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     <td colspan="3">남 25 % 여 75 % </td>
   </tr>
   <tr>
-    <td class="bandjoinbutton" colspan="4" style="text-align:right; font-weight:bold"><a href="#">가입하기</a></td>
+    <td class="bandjoinbutton" colspan="4" style="text-align:right; font-weight:bold"><a href="bandDetailmemMgr">탈퇴하기(밴드장위임)</a></td>
   </tr>
-  <tr>
-  	<td colspan="4" style="text-align:right; font-weight:bold"><a href="bandDetailHome">공개</a>       <a href="bandDetailjoin">  비공개</a></td>
-  	</tr>
 </tbody>
 </table>
 </table>
-<a href="bandDetailHomeMgr">밴드관리자페이지</a>
-<a href="tutorDetail">튜터디테일</a>
+
 			</div>
 			<!-- 중앙 우측 빈공간(공간잡기) -->
 			<div class="empty"></div>

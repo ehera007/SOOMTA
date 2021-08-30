@@ -246,7 +246,7 @@ th {
 td {
 	text-align: left;
 	padding-left: 85px;
-	width: 600px;
+	width: 500px;
 }
 
 .contentjoin {
@@ -303,15 +303,24 @@ td {
 		<!-- 중앙 하단부 -->
 		<div class="banddetail">
 			<div class="bandDetailList">
+
+        <h2 style="text-align:center; color:#0F4C81">게시글 수정하기</h2>
 				<form action="perForm" name="frm">
 					<table>
 						<tr>
 							<th width="70px" height="50px">분류</th>
-							<td>${kind}</td>
+							<td>
+                <select id="ctgrL" name="bandCategoryL" style="width:100px;" >
+                  <option>공지</option>
+                  <option>일반</option>
+                  <option>3뭐루할까융</option>
+                </select>
+              </td>
 						</tr>
 						<tr>
 							<th width="70px" height="50px";>제목</th>
-							<td height="50px">${contentname}</td>
+							<td height="50px"><input type="text" name="contentName"style="width:350px;" required
+            	minlength="2" maxlength="35"/></td>
 						</tr>
 						<tr>
 							<th width="70px" height="50px";>아이디</th>
@@ -323,16 +332,17 @@ td {
 						</tr>
 						<tr>
 							<th height="300px";>내용</th>
-							<td>${content}</td>
+							<td><input type="text" name="content"style="width:350px; height: 200px;" required
+            	minlength="2" maxlength="35"/></td>
 						</tr>
 						<tr>
 							<th colspan="2" style="padding-right: 45px;">
 								<div class="allbtn">
-									<a href="bandDetailContentSujung"
-										style="text-decoration: none;">수정하기</a>
+									<a href="bandDetailContent"
+										style="text-decoration: none;">수정완료</a>
 										&emsp;&emsp; 
 									<a href="javascript:history.back()"
-										style="text-decoration: none;">뒤로가기</a>
+										style="text-decoration: none;">취소하기</a>
 								</div>
 							</th>
 						</tr>

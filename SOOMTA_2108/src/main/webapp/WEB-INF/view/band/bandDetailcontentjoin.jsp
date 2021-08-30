@@ -217,7 +217,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	text-align: center;
 	margin-top: 35px;
-	margin-bottom: 35px;
+	margin-bottom: 100px;
 }
 
 .btn {
@@ -237,16 +237,17 @@ table {
 	margin: 0 auto;
 	padding-bottom: 0px;
 	padding-right: 35px;
+  	color: #0F4C81;
 }
 
 th {
-	padding-left: 85px;
+	padding-left: 65px;
 }
 
 td {
 	text-align: left;
 	padding-left: 85px;
-	width: 600px;
+	width: 500px;
 }
 
 .contentjoin {
@@ -260,6 +261,10 @@ td {
 .logo {
 	height: 40px;
 	width: auto;
+}
+.jointitle{
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
 </style>
 <meta charset="UTF-8">
@@ -303,36 +308,38 @@ td {
 		<!-- 중앙 하단부 -->
 		<div class="banddetail">
 			<div class="bandDetailList">
+
+        <h2 class="jointitle" style="text-align:center; color:#0F4C81">게시글 등록하기</h2>
 				<form action="perForm" name="frm">
 					<table>
 						<tr>
-							<th width="70px" height="50px">분류</th>
-							<td>${kind}</td>
+							<th style="padding-top: 15px; padding-bottom: 10px" width="70px" height="50px">분류</th>
+							<td style="padding-top: 15px; padding-bottom: 10px">
+                <select id="ctgrL" name="bandCategoryL" style="width:100px;" >
+                  <option>공지</option>
+                  <option>일반</option>
+                  <option>질문</option>
+                </select>
+              </td>
 						</tr>
 						<tr>
-							<th width="70px" height="50px";>제목</th>
-							<td height="50px">${contentname}</td>
+							<th style="padding-top: 10px; padding-bottom: 20px" width="70px" height="50px";>제목</th>
+							<td style="padding-top: 10px; padding-bottom: 20px" height="50px"><input type="text" name="contentName"style="width:350px;" required
+            	minlength="2" maxlength="35"/></td>
 						</tr>
 						<tr>
-							<th width="70px" height="50px";>아이디</th>
-							<td height="50px">${memId}</td>
-						</tr>
-						<tr>
-							<th width="70px" height="50px">작성일</th>
-							<td>${contentday}</td>
-						</tr>
-						<tr>
-							<th height="300px";>내용</th>
-							<td>${content}</td>
+							<th height="300px" style="padding-top: 10px; padding-bottom: 40px";>내용</th>
+							<td style="padding-top: 10px; padding-bottom: 40px"><input type="text" name="content"style="width:350px; height: 300px;" required
+            	minlength="2" maxlength="35"/></td>
 						</tr>
 						<tr>
 							<th colspan="2" style="padding-right: 45px;">
 								<div class="allbtn">
-									<a href="bandDetailContentSujung"
-										style="text-decoration: none;">수정하기</a>
+									<a href="bandDetailmy"
+										style="text-decoration: none; color:#0F4C81; ">등록하기</a>
 										&emsp;&emsp; 
-									<a href="javascript:history.back()"
-										style="text-decoration: none;">뒤로가기</a>
+									<a href="bandDetailmy"
+										style="text-decoration: none; color:#0F4C81;">취소하기</a>
 								</div>
 							</th>
 						</tr>

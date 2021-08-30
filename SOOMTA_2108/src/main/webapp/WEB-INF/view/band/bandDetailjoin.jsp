@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
+
 /*전체 글씨꼴 설정*/
 body {
 	font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
@@ -156,222 +163,162 @@ ul {
 	font-weight: bolder;
 }
 /*중앙*/
-.bandTitle {
+.mypageTitle {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 15px;
 }
-.bandMenu{
-	width:600px;
-	display:flex;
-	justify-content: space-evenly;
-	padding-top:10px;
-	font-size:14px;
-	margin:auto;
-}
-.bandTitle a{
-	color: white;
-	
-}
-/*중앙 하단 부분*/
-.banddetail {
-	display: flex;
-	margin: 20px 0px;
-	
-	justify-content: space-between;
-	/*
-	
-	align-items: center;
-	*/
-}
-/*
-.banddintro{
-border:1px solid blue;
-}
-/*중앙 하단 좌측 테이블 부분*/
 
-/*중앙 하단 우측 테이블 부분*/
-.perForm a:visited {
+.dropMenu {
+	align-items: center;
+	margin: 50px 0px;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.imgBox {
+	border: 1px solid black;
+	width: 200px;
+	height: 310px;
+	background-color: #0F4C81;
+}
+
+.imgTitle {
+	border: 1px solid black;
+	width: 200px;
+	height: 200px;
+}
+
+.dropList li {
+	background-color: #0F4C81;
+	text-align: center;
+	margin: 10px 0px;
+	font-size: 15px;
+}
+
+.dropList a:link {
+	color: white;
+	background-color: #0F4C81;
+}
+
+.dropList a:visited {
+	color: white;
+	background-color: #0F4C81;
+}
+
+.dropList a:hover {
+	color: white;
+}
+
+.dropMenu ul {
+	display: none;
+}
+
+.imgBox:hover ul {
+	display: block;
+}
+
+/*고정 외 중앙 테이블 스타일*/
+
+.bandjoinForm a:visited {
 	color: #0F4C81;
 }
-.perForm a:link {
+.bandjoinForm a:link {
 	color: #0F4C81;
 }
-.perForm a:hover{
+.bandjoinForm a:hover{
 color: #0F4C81;
 }
-.bandDetailList {
-margin : auto;
-}
+
  table {
     border: 2px solid #0F4C81;
     border-radius: 12px;
-    width: 700px;
-    height:470px;
-    margin: auto;
+    width: 500px;
+    height:500px;
+    margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
-    text-align: center;
-    margin-top: 35px;
-    margin-bottom: 35px;
+    border-spacing: 0px;
   }
- 
-.btn {
-   height: 30px;
-   background-color: red;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 10px 10px;
-   border: none;
-   /*border:1px solid #0F4C81;
-   border-radius:4px;*/
-}
-.allbtn {
-   height: 30px;
-   width: 250px;
-   margin: 0 auto;
-   padding-bottom: 0px;
-   padding-right: 35px;
+  thead th {
+   height: 35px;
+   background-color: #0F4C81;
+   color: white;
+   font-size: 25px;
+   border-radius: 8px 8px 0px 0px;
 }
 th{
-	padding-left:30px;
-  width : 100px;
+	padding-left: 70px;
 }
 td{
-	text-align : left;
-  padding-left:35px;
+	padding-left: 40px;
 }
-.contentjoin {
-  text-align : right ;
-  margin-top: 50px;
-}
-.empty{
-width:150px;
-}
-.logo {
-	height: 40px;
-	width: auto;
-}
+  
 </style>
+
 <meta charset="UTF-8">
-<title>Band</title>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-    $(document).ready(function(){
-    	$( '.Top' ).click( function() {
-        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-        	return false;
-        } );
-    });
-    
-    </script>
+<title>Insert title here</title>
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		<!-- 로그인 안된 경우 -->
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="soomta/login">로그인</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="soomta/tutorJoin">튜터등록</a>
+			</div>
+			<div class="nav-item">
+				<a href="soomta/memJoin">무료회원가입</a>
 			</div>
 		</div>
 	</div>
-	<!-- 중앙 -->
-	<div class="main">
-	<!-- 중앙 상단부 -->
-		<div class="bandTitle">
-			<h1>BAND NAME</h1>
-			<div class="bandMenu"><a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
-		</div></div>
-		<!-- 중앙 하단부 -->
-	<div class="banddetail">
-      <div class="bandDetailList">
-        <div class="contentjoin">
-        <a class="contentjoin" style="color: #0F4C81; font-weight: bold"
-         href="bandDetailcontentjoin"> 게시글 작성하기 </a>
-        </div>
-		  <form action="perForm"name="frm" >
-			  <table style="padding-top:20px;">
-              <tr> 
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-                <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-              </tr>   
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td colspan="3" height="50px">${contentname}</td>
-		         </tr>
-             	<tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-             		<tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-	         </table>
-           <br/>
-           <br/>
-            <table>
-              <tr>    
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-		          </tr>
-             <tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td height="50px">${contentname}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-		         </tr>
-		         <tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-
-
-	         </table>
-                      <br/>
-           <br/>
-            <table>
-              <tr>    
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-		          </tr>
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td height="50px">${contentname}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-		         </tr>
-		         <tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-
-
-	         </table>
+  <!---------------------------------------------------------------------------------------->
+	<div class="bandjoinForm">
+		<form action="bandjoinOk" method="get" name="bandfrm" 
+					enctype="multipart/form-data">
+		<table>
+			<thead>
+         		<tr style="background-color: #0F4C81; color: white; font-size: 25px;" > 
+            	<th  colspan="2" style="padding: 10px 0px 10px 10px; "> 밴드 가입 </th>
+         </tr></thead>
+					
+			<tr><th style="padding-top : 15px;">PW확인</th>
+				<td style="padding-top : 15px;"><input type="password" value="${mem_pw}" name="bandmemPw"style="width:150px;" /></td></tr>
+			<tr><th>이름</th>
+				<td><input type="text" name="bandmemName" value="${mem_name}" style="width:150px;"/></td></tr>
+			<tr><th>생년월일</th>
+				<td><input type="date" name="bandmemDob" value="${mem_Dob}" style="width:150px;"/></td></tr>
+			<tr><th>성별</th>
+				<td>
+					<input type="radio" name="bandmemGender" value="M" checked/>남
+					<input type="radio" name="bandmemGender" value="F"/>여
+				</td></tr>
+			<tr><th>핸드폰</th>
+				<td><input type="text" name="bandmemPhone" value="${mem_phone}"style="width:150px;"/></td></tr>
+			<tr><th>이메일</th>
+				<td><input type="text" name="bandmemEmail" value="${mem_email}"style="width:150px;"/></td></tr>
+			
+			<tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px;">
+					<input type="submit" value="밴드가입" 
+						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
+            
+					<input type="button"  value="취소" style="border: none;font-size: 16px;font-weight: bold;
+					 	background: transparent; color: #0F4C81;"
+						onclick="javascript:history.back();" />
+				</th></tr>
+				
+			</table> 
 		</form>
-   </div>
 	</div>
-	<!-- 하단 고정 -->
+	<a href="bandDetailjoinOk">회원 가입 완료 후 확인페이지</a>
+<!-- --------------------------------------------------->
 	<hr style="color: #BEBEBE;">
+
 	<div class="footer">
 		<div class="footer-top">
 			<div class="footer-leftmenu">
@@ -380,9 +327,11 @@ width:150px;
 						<p>고객센터 1544-7979</p>
 					</div>
 					<div class="footer-callTime">
-						<p>
-							평일 10:30~18:00<br />점심 13:00~14:00<br />주말, 공휴일 제외
-						</p>
+						<ul>
+							<li>평일 10:30~18:00</li>
+							<li>점심 13:00~14:00</li>
+							<li>주말, 공휴일 제외</li>
+						</ul>
 					</div>
 				</div>
 
@@ -394,6 +343,7 @@ width:150px;
 							<li><a href="">서비스소개</a></li>
 							<li><a href="">인재채용</a></li>
 						</ul>
+
 					</div>
 					<div class="footer-menu">
 						<p>튜터안내</p>
@@ -434,5 +384,6 @@ width:150px;
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
