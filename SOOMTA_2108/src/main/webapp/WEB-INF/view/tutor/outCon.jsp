@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -162,9 +162,8 @@ ul {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	
+	padding-top: 10px;
+	padding-bottom: 15px;
 }
 
 .dropMenu {
@@ -217,61 +216,31 @@ ul {
 }
 
 /*고정 외 중앙 테이블 스타일*/
-.perForm{
-
-	padding-top: 50px;
-	padding-bottom: 50px;
-
-}
-.perForm a:visited {
-	color: #0F4C81;
-	
-}
-.perForm a:link {
-	color: #0F4C81;
-	
-}
-.perForm a:hover{
-color: #0F4C81;
-	
-}
 
  table {
     border: 2px solid #0F4C81;
-    width: 650px;
-    height:550px;
-    margin:20px auto;
-    border-spacing: 0px;
+    width: 470px;
+    height:170px;
+    margin:40px auto;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 35px;
-    margin-top: 20px;
-   	padding-top: 20px;
+    border-spacing: 0px;
+    align-content: center;
   }
+ thead tr,td {
+ 	margin: 50px 0px 0px 0px;
+ 	padding-top: 50px;
+ 	padding-right:20px;
+  	align-content: center;
+  	vertical-align: middle;
+}
+.tutorOut{
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
   
-.btn {
-   height: 30px;
-   background-color: white;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 10px 10px;
-   border: none;
-   
-}
-.allbtn {
-   height: 30px;
-   width: 300px;
-   margin: 0 auto;
-   padding-bottom: 0px;
-   padding-right: 55px;
-}
-th{
-	padding-left:30px;
-}
-td{
-	padding-right:100px;
-}
 </style>
+
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -283,11 +252,31 @@ td{
     });
     
     </script>
-   
+
+<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+<script type="text/javascript">
+	function outConfirm(){
+		if(confirm("정말로 탈퇴하시겠습니까? ")){
+			document.frm.submit();
+		}else{
+			return false;
+		}
+	}
+</script>
+
 <meta charset="UTF-8">
-<title>tutorPromanage</title>
+<title>PwCon</title>
 </head>
 <body>
+
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
@@ -300,76 +289,29 @@ td{
 			</div>
 		</div>
 	</div>
-	<div class="main">
-		<div class="mypageTitle">
-			<h1>'${tutor.tutorId}'님의 프로필</h1>
-			<p>학생들에게 자신을 뽐내주세요!</p>
-		</div>
-	</div>
-
 	
-	<!-- 중앙 : 개인정보 폼 -->
-	<div class="perForm">
-		<form action="perForm"name="frm">
-			<table>
-			<tr>
-				 <th>회원구분 </th><td>
-				 튜터</td>
-			</tr>
-			<tr>	 
-				 <th> 자격증 </th><td>
-				 <c:if test = "${tutor.tutorCertification == null}" >-</c:if>
-				 <c:if test = "${tutor.tutorCertification != null}">${tutor.tutorCertification}</c:if>
-				 </td>
-			</tr>
-			<tr>	 
-				 <th> 경력 </th><td>
-				 <c:if test = "${tutor.tutorCareer == null}" >-</c:if>
-				 <c:if test = "${tutor.tutorCareer != null}">${tutor.tutorCareer}</c:if>
-				 </td>
-			</tr>
-			
-			<tr>	
-				 <th> 학력(전공)</th><td>
-				 <c:if test = "${tutor.tutorFinalEdu == null}" >-</c:if>
-				 <c:if test = "${tutor.tutorFinalEdu != null}">${tutor.tutorFinalEdu}</c:if>
-				 </td>
-			</tr>
-			
-			<tr>	 
-				 <th>연락 가능 시간 </th><td>
-				 <c:if test = "${tutor.tutorRespond == null}" >-</c:if>
-				 <c:if test = "${tutor.tutorRespond != null}">${tutor.tutorRespond}</c:if>
-				 </td>
-			</tr>
-			<tr>	 
-				 <th>수업방식 </th><td>
-				 <c:if test = "${tutor.tutorLikearea == null}" >-</c:if>
-				 <c:if test = "${tutor.tutorLikearea != null}">${tutor.tutorLikearea}</c:if>
-				 </td>
-			</tr>
-			<tr>	 
-				 <th> 소개 </th><td>
-				 <c:if test = "${tutor.tutorIntroduce == null}" >-</c:if>
-				 <c:if test = "${tutor.tutorIntroduce != null}">${tutor.tutorIntroduce}</c:if>
-				 </td>
-			</tr>
-			<tr>		
+	<!-- 중앙 : 탈퇴확인 폼 -->
+		<div class="tutorOut">
+		<form action="outOk" method="post" 
+				onsubmit="return outConfirm()" name="frm">
+			<table align="center">
+				<h1 align ="center" style="color:#0F4C81">탈퇴를 원하시면 비밀번호를 입력해주세요!</h1>
+			<thead>
+				<tr><td style="padding-left: 40px;">비밀번호</td>
+					<td><input type="password" name="tutorPw" style="width:250px;"/>
+						</td></tr></thead>
 					
-				
-					<tr>
-                   <th colspan="2" style="padding-left: 40px;">
-                   		<div class="allbtn">
-							<a href="<c:url value='/tutor/promanageSujung'/>" 
-							style="text-decoration:none;">수정하기</a>&emsp;&emsp;
-							<a href="<c:url value='/tutor/myPage'/>"
-							style="text-decoration:none;">뒤로가기</a>
-						</div>
-					</th>
-         		 </tr>
+				<tr><td colspan="2" align="center">
+					
+					<input type="submit" value="탈퇴" 
+					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
+					font-size: 16px; padding-bottom: 20px"/>
+				</td></tr>
 			</table>
-		</form>
-	</div>
+		</form>	
+			
+		
+		</div>
 <!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"
 		href="#" class="Top"> <img src="../images/top.png" alt="topicon">

@@ -28,6 +28,17 @@ public class TutorCommand {
 	String tutorLikearea;
 	String tutorEmailOk;
 	
+
+	String oldPw;
+	public String getOldPw() {
+		return oldPw;
+	}
+	public void setOldPw(String oldPw) {
+		this.oldPw = oldPw;
+	}
+	public Boolean isTutorPwConEq() {
+		return tutorPw.equals(tutorPwCon);
+	}
 	
 	public String getTutorEmailOk() {
 		return tutorEmailOk;
@@ -35,9 +46,7 @@ public class TutorCommand {
 	public void setTutorEmailOk(String tutorEmailOk) {
 		this.tutorEmailOk = tutorEmailOk;
 	}
-	public boolean isTutorPwConEq() {
-		return tutorPw.equals(tutorPwCon);
-	}
+	
 	public boolean isTutorEmailConEq() {
 		return tutorEmail.equals(tutorEmailCon);
 	}

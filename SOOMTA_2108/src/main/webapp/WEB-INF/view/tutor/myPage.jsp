@@ -143,10 +143,11 @@ table-layout: fixed;
 }
 .main-item {
    border: 1px solid black;
-   width: 300px;
-   height: 300px;
+   width: 380px;
+   height: 380px;
    margin-left: 250px;
    table-layout: fixed;
+   margin-right: 100px;
   
     
 }
@@ -165,25 +166,38 @@ table-layout: fixed;
    margin-right :100px;
 }
 .imgBox {
-   width: 200px;
-   height: 200px;
+   width: 250px;
+   height: 250px;
    background-color: #0F4C81;
    margin: 50px 20px;
    color: white;
    text-align:center;
+   font-size: 30px;
+   padding-top : 30px;
    
 }
 .imgTitle {
 	border: 1px solid black;
 	width: 200px;
 	height: 200px;
+  
 }
 .dropList li {
    text-align: center;
-   margin: 10px 0px;
-   font-size: 18px;
+   margin-top: 12px;
+   margin-bottom: 12px;
+   font-size: 20px;
    list-style:none;
 }
+
+.dropList1 li {
+   text-align: center;
+   margin-top: 25px;
+   margin-bottom: 10px;
+   font-size: 20px;
+   list-style:none;
+}
+
 .dropList a:link {
    color: white;
 }
@@ -191,6 +205,20 @@ table-layout: fixed;
    color: white;
 }
 .dropList a:hover {
+   color: white;
+}
+.dropMenu ul {
+	
+	display: none;
+}
+
+.dropList1 a:link {
+   color: white;
+}
+.dropList1 a:visited {
+   color: white;
+}
+.dropList1 a:hover {
    color: white;
 }
 .dropMenu ul {
@@ -233,7 +261,7 @@ table-layout: fixed;
 	</div>
 	<div class="main">
 		<div class="mypageTitle">
-			<h1>안녕하세요, '${ID}'님!</h1>
+			<h1>안녕하세요, '${tutor.tutorId}'님!</h1>
 			<p>숨타와 함께 즐거운 하루 되세요 :)</p>
 		</div>
 	 <div class=mypage>
@@ -248,15 +276,14 @@ table-layout: fixed;
 							<h1>내정보</h1>
 							<li><a href="perData">개인 정보</a></li>
 							<li><a href="promanage">프로필 관리</a></li>
-							<li><a href="pwCon">PW 변경</a></li>
-							<li><a href="out">탈퇴하기</a></li>
+							<li><a href="outCon">탈퇴하기</a></li>
 						</ul>
 					</div>
 				</div>
 
 				<div class="dropMenu">
 					<div class="imgBox" >
-					<div class="dropList">
+					<div class="dropList1">
 						<ul>
 							<h1>강의 정보</h1>
 							<li><a href="MylectureList">내 강의 목록</a></li>

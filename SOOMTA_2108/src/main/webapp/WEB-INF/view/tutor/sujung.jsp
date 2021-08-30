@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -217,18 +217,18 @@ ul {
 
 /*고정 외 중앙 테이블 스타일*/
 
-
- table {
+table {
     border: 2px solid #0F4C81;
-    width: 600px;
-    height:550px;
+    width: 650px;
+    height:600px;
     margin:20px auto;
     border-spacing: 0px;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 35px;
+    margin-bottom: 100px;
+    margin-top: 70px;
+    
   }
-
 
 thead th {
    height: 50px;
@@ -239,26 +239,28 @@ thead th {
 }
 
 th{
-	padding-left:45px; 
+	padding-left:100px; 
+}
+td{
+  padding-left: 50px;
 }
 .detail {
 	color: grey;
-	font-size: 12px;
+	font-size: 8px;
 	font-style: italic;
 	text-align: left;
 }
 
 .perForm{
-
+	width: 800px;
+	margin: 0 auto;
 	padding-top: 50px;
 	padding-bottom: 50px;
 
 }
-input {
-	display: inline-block;
-	
-	margin-right: 5px;
-}
+
+
+
 
 
 </style>
@@ -273,8 +275,9 @@ input {
     
     </script>
 
+
 <meta charset="UTF-8">
-<title>tutorSujung</title>
+<title>튜터 개인정보 수정</title>
 </head>
 <body>
 
@@ -292,44 +295,48 @@ input {
 	</div>
 	
 	<!-- 중앙 : 개인정보 수정 폼 -->
-	<div class="perForm">
-		<form action="sujungOk" method="post" name="frm"> 
+	<form action="sujungOk" method="post" name="frm" onsubmit="return funcCon()"> 
+	<input type="hidden" name="tutorId" value="${tutor.tutorId}"/>
 			<table>
 				<thead>
          <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
-            <th colspan="2" style="padding-right: 45px;">튜터 정보 수정 </th>
+            <th colspan="2" style="padding-right: 100px;">튜터 정보 수정 </th>
          </tr></thead>
     			<tr><th style="padding-top: 15px;">아이디</th>
-					<td style="padding-top: 15px;"> ${Id } </td></tr>
+					<td style="padding-top: 15px;"> ${tutor.tutorId} </td></tr>
 			
-				<tr><th>이름</th>
-					<td><input type="text" name="name" minlength="2" required
-					style="width:200px;" value="${name}"></td></tr>
-			
+				<tr><th style="padding-bottom: 5px;">이름</th>
+					<td><input type="text" name="tutorName" required
+						style="width:200px;" value="${tutor.tutorName}">
+		         </tr>
 				<tr><th>가입일</th>
-					<td> ${since } </td></tr>
+					<td><fmt:formatDate value="${tutor.tutorSince}" type="date" pattern="yyyy-MM-dd"/> </td></tr>
 			
 				<tr><th>생년월일</th>
-					<td> ${dob } </td></tr>
-			
+					<td><fmt:formatDate value="${tutor.tutorDob}" type="date" pattern="yyyy-MM-dd"/> </td></tr>
+		
 				<tr><th>성별</th>
-				<td><input type="radio" name="Gender"  value="M">남자
+				<td><input type="radio" name="Gender"  value="M" checked>남자
 					<input type="radio" name="Gender" value="F">여자</td></tr>
 			
-				<tr><th style="padding-bottom: 10px;">핸드폰</th>
-					<td><input type="text" name="ph" required
-						style="width:200px;" value="${ph }">
-						<div class="detail">* ex) 01012341234</div></td></tr>
+				<tr><th>핸드폰</th>
+					<td><input type="text" name="tutorPhone" required
+						style="width:200px;" value="${tutor.tutorPhone}">
+						<div class="detail" style="display: inline-block;">* ex) 01012341234</div></td></tr>
 			
 				<tr><th style="padding-bottom: 10px;">이메일</th>
-					<td><input type="text" name="email"
-						style="width:200px;" value="${email }">
-						<div class="detail">* ex) soomta@email.com</div></td></tr>
+					<td><input type="text" name="tutorEmail"
+						style="width:200px;" value="${tutor.tutorEmail}">
+						<div class="detail"style="display: inline-block;"style="display: inline-block;">* ex) soomta@email.com</div></td></tr>
+			
+			
+					<div><td><th style="font-size:13px; text-align:left; padding-left:20px;"><a href="/SOOMTA_2108/tutor/pwChange">비밀번호 변경</a>은 이 곳을 눌러주세요!</th></td></div>
+			
 			
 					<tr><th colspan="3"align="center" style="padding-right: 10px; padding-bottom: 15px; ">
 						<input type="submit" value="수정 완료" 
 							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;
+						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold; padding-right: 100px;
 					 	background: transparent; color: #0F4C81;"
 						onclick="javascript:history.back();" />
 				</th></tr>

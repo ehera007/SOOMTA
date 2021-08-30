@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -246,6 +246,8 @@ color: #0F4C81;
     text-align: center;
     margin-top: 45px;
     margin-bottom: 35px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
   
 .btn {
@@ -303,7 +305,7 @@ td{
 	</div>
 	<div class="main">
 		<div class="mypageTitle">
-			<h1>'${ID}'님의 개인 정보</h1>
+			<h1>'${tutor.tutorId}'님의 개인 정보</h1>
 			<p>변동사항이 있을 경우, 숨타가 알 수 있게 수정해주세요.</p>
 		</div>
 	</div>
@@ -314,36 +316,37 @@ td{
 			  <table>
 		         <tr>
 		             <th>이름</th>
-		             <td>${NAME}</td>
+		             <td>${tutor.tutorName}</td>
 		         </tr>
 		         <tr>
 		             <th>가입일</th>
-		             <td>${SINCE} </td>
+		             <td><fmt:formatDate value="${tutor.tutorSince}" type="date" pattern="yyyy-MM-dd"/> </td>
 		         </tr>
 		         <tr>    
 		             <th>생년월일</th>
-		             <td>${DOB} </td>
+		             <td><fmt:formatDate value="${tutor.tutorDob}" type="date" pattern="yyyy-MM-dd"/> </td>
 		         </tr>
-		         <tr>    
+		          <tr>    
 		             <th>성별</th>
-		             <td>${GENDER} </td>
+		             <td>${tutor.tutorGender} </td>
 		         </tr>
 		         <tr>    
 		             <th>핸드폰</th>
-		             <td>${PH} </td>
+		             <td>${tutor.tutorPhone} </td>
 		         </tr>
 		         <tr>    
 		             <th>이메일</th>
-		             <td>${EMAIL} </td>
+		             <td>${tutor.tutorEmail} </td>
 		         </tr>
 		         
 		         <tr>
                    <th colspan="2" style="padding-right: 45px;">
                    		<div class="allbtn">
-							<a href="<c:url value='/tutor/myPage'/>"
-							style="text-decoration:none;">뒤로가기</a>&emsp;&emsp;
-		                   <a href="<c:url value='/tutor/sujung'/>" 
-							style="text-decoration:none;">수정하기</a>
+							<a href="<c:url value='/tutor/sujung'/>"
+							style="text-decoration:none;">수정하기</a>&emsp;&emsp;
+		                   <a href="<c:url value='/tutor/myPage'/>" 
+							style="text-decoration:none;">뒤로가기</a>
+							
 						</div>
 					</th>
          		 </tr>

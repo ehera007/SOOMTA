@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -272,6 +272,8 @@ input {
     });
     
     </script>
+    
+ 
 
 <meta charset="UTF-8">
 <title>정보수정</title>
@@ -283,7 +285,7 @@ input {
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
+				<a href="<c:url value='/tutor/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
 				<a href="#">로그아웃</a>
@@ -293,42 +295,39 @@ input {
 	
 	<!-- 중앙 : 개인정보 수정 폼 -->
 		<div class="perForm">
-		<form action="promanageSujungOk" method="post" name="frm"> 
+		<form action="promanageSujungOk" method="post" name="frm" onsubmit="return funcCon()"> 
 			<table>
 				<thead>
          <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
             <th colspan="2" style="padding-right: 45px;">정보 수정 </th>
          </tr></thead>
     			<tr><th style="padding-top: 15px;">회원구분</th>
-					<td style="padding-top: 15px;"> ${CTGR } </td></tr>
-			
-				<tr><th>지역</th>
-					<td><input type="text" name="AREA" minlength="2" required
-					style="width:200px;" value="${AREA}">
-					<div class="detail">* ex) 수도권</div></td></tr>
-			
-				<tr><th>응답가능시간</th>
-					<td><input type="text" name="RESPOND" minlength="2" required
-					style="width:200px;" value="${RESPOND}">
-					<div class="detail">* ex) 평일 오후 12시~5시</div></td></tr>
-			
-				<tr><th>경력</th>
-					<td><input type="text" name="CAREER" minlength="2" required
-					style="width:200px;" value="${CAREER}">
-					<div class="detail">* ex) 이젠아이티학원 3년차 강사</div></td></tr>
-			
+					<td style="padding-top: 15px;"> 튜터 </td></tr>
 				<tr><th>자격증</th>
-				<td><input type="text" name="name" minlength="2" required
-					style="width:200px;" value="${CERTIFICATION}">
+				<td><input type="text" name="tutorCertification" minlength="2" required
+					style="width:200px;" value="${tutor.tutorCertification}">
 					<div class="detail">* ex) 컴퓨터활용능력2급</div></td></tr>
 					
-				<tr><th>학력</th>
-				<td><input type="text" name="FINALEDU" minlength="2" required
-					style="width:200px;" value="${FINALEDU}">
-					<div class="detail">* ex) 한국대학교 경영학과</div></td></tr>	
-				<tr><th>소개</th>
-            	<td><textarea rows="2" cols="26" name="BANDINTRODUCE"></textarea></td></tr>
+				<tr><th>경력</th>
+					<td><input type="text" name="tutorCareer" minlength="2" required
+					style="width:200px;" value="${tutor.tutorCareer}">
+					<div class="detail">* ex) 이젠아이티학원 3년차 강사</div></td></tr>
 				
+				<tr><th>학력</th>
+				<td><input type="text" name="tutorFinalEdu" minlength="2" required
+					style="width:200px;" value="${tutor.tutorFinalEdu}">
+					<div class="detail">* ex) 한국대학교 경영학과</div></td></tr>	
+				<tr><th>응답가능시간</th>
+					<td><input type="text" name="tutorRespond" minlength="2" required
+					style="width:200px;" value="${tutor.tutorRespond}">
+					<div class="detail">* ex) 평일 오후 12시~5시</div></td></tr>
+				<tr><th>수업방식</th>
+					<td><input type="text" name="tutorLikearea" minlength="2" required
+					style="width:200px; " value="${tutor.tutorLikearea}">
+					
+				<tr><th>소개</th>
+            	<td><textarea rows="2" cols="26" name="tutorIntroduce" value="${tutor.tutorIntroduce}"></textarea>
+				<div class="detail">* 20자 내외</div></td></tr>
 			
 					<tr><th colspan="3"align="center" style="padding-left: 250px; padding-bottom: 15px; ">
 						<input type="submit" value="수정 완료" 

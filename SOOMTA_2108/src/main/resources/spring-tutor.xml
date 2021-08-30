@@ -9,4 +9,12 @@
 	<bean class="controller.tutor.TutorController"/>
 	<bean id="tutorJoinService" class="service.tutor.TutorJoinService"/>
 	<bean id="tutorRepository" class="repository.TutorRepository"/>
+	<bean class="service.tutor.TutorOutService"/>
+	<bean id = "tutorInfoService" class="service.tutor.TutorInfoService" />
+	<bean id = "tutorOutService" class="service.tutor.TutorOutService" />
+	<bean id = "tutorPromanageService" class="service.tutor.TutorPromanageService" />
+	<bean id = "tutorUpdateService" class="service.tutor.TutorUpdateService" />
+	<bean id = "tutorPwChangeService" class="service.tutor.TutorPwChangeService" />
+	
+	
 </beans>

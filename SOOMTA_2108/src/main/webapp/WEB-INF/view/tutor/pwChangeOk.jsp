@@ -21,7 +21,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width: 650px;
+	width: 600px;
 }
 
 thead th {
@@ -34,12 +34,12 @@ thead th {
 
 tbody th {
 	padding-top: 30px;
-	width: 32%;
+	width: 30%;
 }
 
 tbody td {
 	padding-top: 30px;
-	width: 68%;
+	width: 70%;
 }
 
 tbody td a {
@@ -54,38 +54,17 @@ tbody td a {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 20px 10px 5px 10px;
+	margin: 30px 10px 10px 10px;
 	border: none;
+	padding-bottom:10px;
 }
 
 .allbtn {
 	height: 50px;
-	width: 120px;
-	margin: 0 auto;
+	width: 240px;
+	margin: 0 auto 10px auto;
 }
 
-.detail {
-	color: grey;
-	font-size: 8px;
-	font-style: italic;
-	padding-top: 3px;
-}
-
-input {
-	display: inline-block;
-	float: left;
-	margin-right: 5px;
-}
-.err {
-	color: red;
-	font-size: 13px;
-	text-align: left;
-	font-weight:bold;
-	padding-top: 1px;
-}
-.items{
-	display:flex;
-}
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -99,40 +78,9 @@ input {
 		});
 	});
 </script>
-<!-- 다음 주소 -->
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<!-- 비밀번호 확인 -->
-<script>
-    function check_pw(){
-    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
-        if(document.getElementById('pw').value==document.getElementById('pw2').value){
-            document.getElementById('check').innerHTML=' PW 일치'
-            document.getElementById('check').style.color='#0F4C81';
-            document.getElementById('check').style.fontSize='15px';
-            document.getElementById('check').style.fontWeight='900';
-        }
-        else{
-            document.getElementById('check').innerHTML=' PW 불일치';
-            document.getElementById('check').style.color='red';
-            document.getElementById('check').style.fontSize='15px';
-            document.getElementById('check').style.fontWeight='900';
-        }}}
-</script>
-<!-- 수정 전 확인 알림창 -->
-<script type="text/javascript">
-function funcCon(){
-	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
-	if(cfm){
-		document.getElementById('frm').submit();
-	}else{
-		return false;
-	}
-}
-</script>
 <meta charset="UTF-8">
-<title>내 PW 변경</title>
+<title>PW 변경 완료</title>
 </head>
 <body>
 <body>
@@ -153,46 +101,27 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form:form action="pwChangeOk" method="post" name="frm" onsubmit="return funcCon()" modelAttribute="tutorCommand"> 
 		<table>
 		<thead>
 			<tr>
-				<th colspan="2">내 비밀번호 변경</th>
-			</tr>
-		</thead>
+				<th colspan="2">내 PW 변경 완료!
+				</th>
+			</tr></thead>
 		<tbody>
 			<tr>
-				<th>현재 비밀번호</th>
-				<td><div class="items"><input type="password" name="oldPw" size="25" required/>
-					<div class="detail">* 현재 비밀번호 입력</div>&nbsp;
-					<div class="err"><form:errors path="oldPw"/></div></div></td>
-			</tr>
-			
-			<tr>
-				<th>비밀번호 변경</th>
-				<td><div class="items"><input type="password" name="tutorPw" size="25" required class="pw" id="pw"
-					 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"/>
-					<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></div></td>
+				<th colspan="2">비밀번호 변경이 완료되었습니다.</th>
 			</tr>
 			<tr>
-					<th>비밀번호 변경 확인</th>
-					<td><div class="items">
-						<input type="password" name="tutorPwCon" required size="25" class="pw" id="pw2" onkeyup="check_pw()"
-						pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"/>
-					<span id="check"></span>
-					&nbsp;<div class="err"><form:errors path="tutorPwCon"/></div></div></td>
+				<th colspan="2">확인을 누르면 마이페이지로 이동합니다.</th>
 			</tr>
-			</tbody>
+					</tbody>
 			<tfoot>
 			<tr>
-					<tr><td colspan="2" align="center"><div class="allbtn">
-				<input type="submit" class="btn" value="변경" />
-				<input type="button" class="btn" value="취소" 
-					onclick="javascript:history.back();" />
-						</div>
-			</td></tr></tfoot>
+				<td colspan="2" align="center"><div class="allbtn">
+				<input type="button" class="btn" value="확인" onclick="location.href='tutor/myPage'" />
+				</div></td>
+			</tr></tfoot>
 		</table>
-		</form:form>
 	</div>
 
 

@@ -10,4 +10,68 @@
 	#{tutorDob}, #{tutorEmail}, #{tutorEmailCk}, #{tutorArea}, sysdate)
 </insert>
 
+<!-- 튜터탈퇴 -->
+<delete id="tutorOut" parameterType="string">
+	DELETE FROM Tutor
+	WHERE Tutor_Id = #{tutorId}
+</delete>
+
+<delete id="tutorDelete" parameterType="string">
+	delete from tutor
+	where tutor_Id = #{tutorId}
+</delete>
+
+<update id="tutorPwUpdate" parameterType="Model.TutorDTO">
+	update tutor
+	SET Tutor_Pw = #{tutorPw}
+	WHERE tutor_Id = #{tutorId}
+</update>
+
+<!-- 튜터 개인정보 수정 -->
+<update id="perDataUpdate" parameterType="Model.TutorDTO">
+	UPDATE Tutor SET 
+	tutor_Name = #{tutorName},  
+	tutor_Email = #{tutorEmail},
+	tutor_Phone = #{tutorPhone}
+	WHERE tutor_id = #{tutorId}
+</update>
+
+<!-- 튜터 강의정보 수정 -->
+<update id="promanageSujung" parameterType="Model.TutorDTO">
+	UPDATE Tutor SET 
+	tutor_Likearea = #{tutorLikearea},  
+	tutor_Respond = #{tutorRespond},
+	tutor_Career = #{tutorCareer},
+	tutor_Certification = #{tutorCertification},
+	tutor_FinalEdu = #{tutorFinalEdu},
+	tutor_Introduce = #{tutorIntroduce}
+	
+	WHERE tutor_id = #{tutorId}
+</update>
+
+
+
+<select id="perData" parameterType="string" 
+		resultType="Model.TutorDTO">
+	select tutor_Id tutorId, tutor_Name tutorName,tutor_Since tutorSince, tutor_Dob tutorDob,tutor_Gender tutorGender, tutor_Email tutorEmail,
+	 	   tutor_Phone tutorPhone, tutor_Pw tutorPw
+	from tutor
+	where Tutor_ID = #{tutorId}
+</select>
+
+<select id="promanage" parameterType="string" 
+		resultType="Model.TutorDTO">
+	select tutor_Area tutorArea, tutor_Respond tutorRespond,tutor_Career tutorCareer, 
+	tutor_Certification tutorCertification,tutor_FinalEdu tutorFinalEdu, tutor_Introduce tutorIntroduce
+	from tutor
+	where Tutor_ID = #{tutorId}
+</select>
+
+<!-- 튜터 비번 수정 -->
+<update id="pwChange" parameterType="Model.TutorDTO"> 
+	UPDATE Tutor SET
+	Tutor_Pw = #{tutorPw}
+	WHERE Tutor_Id = #{tutorId}
+</update>
+
 </mapper>
