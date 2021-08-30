@@ -131,8 +131,7 @@ public class MemberController {
 		return "member/wishClass";
 	}
 		
-	@Autowired
-	BandWishService bandWishService;
+	
 	@RequestMapping("wishBand")
 	public String wishBand() {
 		return "member/wishBand";
