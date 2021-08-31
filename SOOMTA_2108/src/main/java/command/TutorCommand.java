@@ -36,7 +36,7 @@ public class TutorCommand {
 	public void setOldPw(String oldPw) {
 		this.oldPw = oldPw;
 	}
-	public Boolean isTutorPwConEq() {
+	public boolean isTutorPwConEq() {
 		return tutorPw.equals(tutorPwCon);
 	}
 	
