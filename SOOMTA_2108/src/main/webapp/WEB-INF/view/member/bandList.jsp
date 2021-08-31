@@ -323,7 +323,9 @@ td a:active {
 				<td>${dto.bandCategoryL}/${dto.bandCategoryS}</td>
 				<td>${dto.bandName}</td>
 				<td>${dto.bandTotal}</td>
-				<td>${dto.bandGender}</td>
+				<td>
+					<c:if test="${dto.bandGender == 'M'}">남성</c:if>
+					<c:if test="${dto.bandGender == 'F'}">여성</c:if></td>
 				<td>${dto.memId}</td>
 				<td><fmt:formatDate value="${dto.bandRegiDay}" 
 		             pattern="yyyy-MM-dd"/></td>

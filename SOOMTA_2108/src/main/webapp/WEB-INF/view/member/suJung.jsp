@@ -370,7 +370,10 @@ td{
 		             pattern="yyyy-MM-dd"/></td></tr>
 			
 				<tr><th style="padding-bottom: 10px;">성별</th>
-				<td style="padding-bottom: 10px;">${memPerData.memGender }</td></tr>
+				<td style="padding-bottom: 10px;">
+					<c:if test="${memPerData.memGender == 'M'}">남성</c:if>
+         			<c:if test="${memPerData.memGender == 'F'}">여성</c:if>
+         		</td></tr>
 				
 				<tr><th>주소</th><td>
 		             <input type="text" name="memArea" value="${memPerData.memArea }" id="sample4_roadAddress" style="width:200px;"/>

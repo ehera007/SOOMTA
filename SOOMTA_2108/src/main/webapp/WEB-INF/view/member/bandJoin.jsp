@@ -364,9 +364,9 @@ function ctgrChange(e){
          
          <tr><th>선호 성별</th>
             <td>
-               <input type="radio" name="bandGender" value="남성" checked/>남성
-               <input type="radio" name="bandGender" value="여성"/>여성
-               <input type="radio" name="bandGender" value="무관"/>무관
+               <input type="radio" name="bandGender" value="M" checked/>남성
+               <input type="radio" name="bandGender" value="F"/>여성
+               <input type="radio" name="bandGender" value="U"/>무관
             </td></tr>
 
          <tr><th>선호 나이</th>
@@ -374,9 +374,9 @@ function ctgrChange(e){
          
          <tr><th>모임방식</th>
             <td>
-                <input type="radio" name="bandWay" value="대면" checked/>대면
-               <input type="radio" name="bandWay" value="비대면"/>비대면
-               <input type="radio" name="bandWay" value="무관"/>무관
+               <input type="radio" name="bandWay" value="C" checked/>대면
+               <input type="radio" name="bandWay" value="N"/>비대면
+               <input type="radio" name="bandWay" value="U"/>무관
              </td></tr>
          
          <tr><th>총 인원 수</th>
@@ -384,8 +384,8 @@ function ctgrChange(e){
         
          <tr><th>공개 비공개</th>
          <td >
-               <input type="radio" name="bandPublic" value="공개" checked/>공개
-               <input type="radio" name="bandPublic" value="비공개"/>비공개
+               <input type="radio" name="bandPublic" value="O" checked/>공개
+               <input type="radio" name="bandPublic" value="P"/>비공개
             </td></tr>
       
          <tr><th style="padding-bottom: 110px;">소모임 소개</th>

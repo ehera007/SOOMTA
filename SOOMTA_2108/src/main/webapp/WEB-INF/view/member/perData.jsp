@@ -325,7 +325,10 @@ td{
 		         </tr>
 		         <tr>    
 		             <th>성별</th>
-		             <td align="left">${memPerData.memGender} </td>
+		             <td align="left">
+		             	<c:if test="${memPerData.memGender == 'M'}">남성</c:if>
+         				<c:if test="${memPerData.memGender == 'F'}">여성</c:if>
+         			</td>
 		         </tr>
 		         <tr>    
 		             <th>주소</th>
