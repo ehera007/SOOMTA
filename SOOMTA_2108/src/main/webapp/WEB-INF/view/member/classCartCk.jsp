@@ -304,7 +304,7 @@ a:hover {
 				</tr>
 				<tr>
 					<td colspan="3" class="tagClassCart">
-						<a href="#">확인하기</a>
+						 <a href="javascript:history.go(-3)">돌아가기</a>&nbsp;&nbsp;<a href="myClassList">확인하기</a>
 					</td>
 				</tr>
 			</table>

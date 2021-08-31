@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.classMapper">
+<resultMap type="Model.ClassDTO" id="baseResult">
+	<id column="class_No" property="classNo"/>
+	<result column="class_Name" property="className"/> 
+	<result column="class_Category_L" property="classCategoryL"/>
+	<result column="class_Category_S" property="classCategoryS"/>
+	<result column="class_Price" property="classPrice"/>
+	<result column="class_Gender" property="classGender"/>
+	<result column="class_Way" property="classWay"/>
+	<result column="class_Introduce" property="classIntroduce"/>
+	<result column="class_Start" property="classStart"/>
+	<result column="class_End" property="classEnd"/>
+	<result column="class_Total" property="classTotal"/>
+	<result column="class_Img" property="classImg"/>
+	<result column="tutor_Id" property="tutorId"/>
+	<result column="class_Regiday" property="classRegiday"/>
+	<result column="class_State" property="classState"/>
+</resultMap>
+<select id="classNo" resultType="string">
+	select class_num.nextval
+	from dual
+</select>
+<insert id="classOpen" parameterType="Model.ClassDTO">
+	insert into Soomta_Class(
+	tutor_Id, class_Name, class_Img, class_Start, class_End, 
+	class_Introduce, class_Category_L, class_Category_S, class_Price, class_Gender, class_Way, 
+	class_Total, class_No, class_Regiday) 
+	values (
+	#{tutorId}, #{className}, #{classImg}, #{classStart}, #{classEnd}, 
+	#{classIntroduce}, #{classCategoryL}, #{classCategoryS}, #{classPrice}, #{classGender}, #{classWay}, 
+	#{classTotal}, #{classNo}, sysdate)
+</insert>
+<select id="tutorClassList" resultType="Model.ClassDTO" parameterType="string">
+	select class_No classNo, tutor_Id tutorId, class_Name className, class_Img classImg, class_Regiday classRegiday, class_Start classStart, class_End classEnd, class_Introduce classIntroduce, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Price classPrice, class_Gender classGender, class_Way classWay, class_State classState, class_Total classTotal 
+	from Soomta_Class
+	where tutor_Id = #{tutorId}
+</select>
+<select id="classDetail" parameterType="string" resultType="Model.ClassDTO">
+	select class_No classNo, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, class_End classEnd, 
+	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg
+	from Soomta_Class 
+	where class_No = #{classNo}
+</select>
+<delete id="classDelete" parameterType="string">
+	delete from Soomta_Class
+	where class_No = #{classNo}
+</delete>
+<update id="classRetouch" parameterType="Model.ClassDTO">
+	update Soomta_Class
+	set class_Name = #{className}, class_Category_L = #{classCategoryL}, class_Category_S = #{classCategoryS}, class_Start = #{classStart}, class_End = #{classEnd}, 
+	class_Total = #{classTotal}, class_Price = #{classPrice}, class_Way = #{classWay}, class_Gender = #{classGender}, class_Introduce = #{classIntroduce}, class_Img = #{classImg} 
+	where class_No = #{classNo}
+</update>
+</mapper>

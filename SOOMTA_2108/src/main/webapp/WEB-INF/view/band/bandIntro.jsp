@@ -8,7 +8,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>SOOMTA</title>
-
+	<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+   	<script>
+    $(document).ready(function(){
+    	$( '.Top' ).click( function() {
+        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        	return false;
+        } );
+    });
+	</script>
 	</head>
 	<style type="text/css">
 		/*전체 글씨꼴 설정*/
@@ -235,7 +244,7 @@
 
 		}
 
-
+		
 		/* 0----*/
 		.DetailTag {
 			position: relative;
@@ -321,12 +330,29 @@
 			font-size: 16px;
 			font-weight: 900;
 		}
+		/*하단 고정 버튼*/
+.bottomFixButton{
+	width: 100px;
+	height: 28px;
+	text-align: center;
+	
+	background: #0F4C81;
+	color: #fff;
+	padding-top:7px;
+}
+header a:visited {
+	color: #fff;
+}
+header a:hover { 
+	text-decoration:none !important
+}
 	</style>
 
 	<body>
 		<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 		<div class="header">
-			<img src="#" />SOOMTA
+			<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
+			onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="search">검색바</div>
 		<!-- 로그인 안된 경우 -->
 		<div class="nav">
@@ -365,12 +391,12 @@
             <div class="button-4" >
             <div class="eff-4">
             </div>
-            <a href="bandDetail"> BAND상세홈 들어가기 </a>
+            <a href="bandDetail"> 밴드홈 </a>
             </div>
             <div class="button-4" >
             <div class="eff-4">
             </div>
-            <a href="#"> 구매하기 </a>
+            <a href="#"> 가입하기 </a>
             </div>
             </div>
         </div>
@@ -407,17 +433,26 @@
             <div class="button-4" >
             <div class="eff-4">
             </div>
-            <a href="#"> 문의하기 </a>
+            <a href="bandDetail"> 밴드홈 </a>
           </div>
             <div class="button-4">
             <div class="eff-4">
             </div>
-            <a href="#"> 구매하기 </a>
+            <a href="#">문의하기</a>
           </div>
         </div>
 	    </div>
 	    </div>
     </div> 
+    <!-- TOP이동 -->
+	<a style="position: fixed; bottom: 3px; right: 17px;"
+		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
+	<!-- 하단 문의하기/구매하기 고정 -->
+	<header>
+		<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 170px;"><a href="bandDetail">밴드홈</a></div>
+	<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 60px;"><a href="#">문의하기</a></div>
+	</header>
 		<!-- 하단 고정 -->
 		<hr style="color: #BEBEBE;">
 		<div class="footer">

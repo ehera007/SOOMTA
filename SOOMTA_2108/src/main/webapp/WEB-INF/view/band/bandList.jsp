@@ -100,13 +100,13 @@ a:hover {
 
 /*전체카테고리 보기*/
 .allCtgr {
+	left: 20px;
 	position: relative;
 	display: inline;
 	z-index: 1;
 }
 
 .mainmenu {
-	
 	padding: 8px;
 	font-size: 15px;
 	border: none;
@@ -114,66 +114,73 @@ a:hover {
 }
 
 .submenu {
-	
 	display: none;
 	position: absolute;
 	width: 130px;
 	font-size: 15px;
 	text-align: center;
-	background-color:white;
+	background-color: white;
 }
 
 .ctgr {
 	border: 3px solid #0F4C81;
-	margin-bottom:5px;
-	list-style:none;
+	margin-bottom: 5px;
+	list-style: none;
 }
 
 .allCtgr:hover .submenu {
 	display: block;
 }
-/*
-.allCtgr:hover .mainmenu {
-	background-color: yellow;
-}*/
 
-.titlemainmenu{
-	font-size:20px;
-	color:#0F4C81;
+.titlemainmenu {
+	font-size: 20px;
+	color: #0F4C81;
 }
 
 /*------------*/
-
 .ctgr>li {
-    position: relative;
+	position: relative;
 }
+
 .ctgr>li:hover .titleSubmenu {
-    left: 100%;
+	left: 100%;
 }
+
 .ctgr>li a, .titleSubmenu>li a {
-    border-radius: 10px;
-    margin: 10px;
-    color:#0F4C81;
+	border-radius: 10px;
+	margin: 10px;
+	color: #0F4C81;
 }
+
 .titleSubmenu {
-    position: absolute;
-    top: -3px;
-    background: #6BD089;
-    width: 80%;
-    left: -9999px;
-    list-style:none;
-    text-align: center;
-    margin: 0 auto;
-    /*left: 100%;*/
-    /*display: none;*/
+	position: absolute;
+	top: -3px;
+	width: 80%;
+	left: -10000px;
+	list-style: none;
+	text-align: center;
+	margin: 0 auto;
+	color: #0F4C81;
 }
 
 .titleSubmenu>li a:hover {
-    background: #085820;
-    color: #fff;
+	color: #085820;
 }
-/*------------*/
 
+#titleSubLine{
+	border: 3px solid #0F4C81;
+	width: 100px;
+	margin: 3px;
+}
+
+.titleSubLineIcon{
+	list-style-image: url("../../images/ctgricon.png");
+	position: absolute;
+    left: 14px;
+    top: 5px;
+    width:18px;
+    height:18px
+}
 
 /*중앙 구역 분할 */
 .main {
@@ -184,7 +191,39 @@ a:hover {
 
 .DetailTag {
 	position: relative;
-	left: 40px;
+	left: 100px;
+	width:700px;
+	height:200px;
+	align-items: center;
+}
+
+/*페이징*/
+.page{
+	text-align:center;
+	width:50%;
+	margin: 0 auto;
+}
+
+.pagination{
+	list-style:none;
+	display:inline-block;
+	padding:0;
+	margin-top:20px;
+}
+
+.pagination li{
+	display:inline;
+	text-align:center;
+}
+
+.pagination a{
+	float:left;
+	display:block;
+	font-size:14px;
+	text-decoration:none;
+	padding : 5px 12px;
+	color:#0F4C81;
+	line-height:1.5;
 }
 /*하단 구역 분할*/
 .footer {
@@ -230,6 +269,8 @@ a:hover {
 .footer-menu {
 	margin-left: 40px;
 }
+
+
 /* 하단고정 글자 색상, 사이즈 등 */
 .footer-callNum p {
 	color: #0F4C81;
@@ -317,54 +358,58 @@ a:hover {
 			<div class="ctgr">
 				<li><a href="#">학업</a>
 					<ul class="titleSubmenu">
-						<li><a href="../education/child">유아</a></li>
-						<li><a href="../education/elementary">초딩</a></li>
-						<li><a href="../education/medium">중등</a></li>
-						<li><a href="../education/employeement">입시^편입</a></li>
-						<li><a href="../education/ect">기타</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../../class/education/child">유아</a></li>
+						<li id="titleSubLine"><a href="../../class/education/elementary">초딩</a></li>
+						<li id="titleSubLine"><a href="../../class/education/medium">중등</a></li>
+						<li id="titleSubLine"><a href="../../class/education/employeement">입시/편입</a></li>
+						<li id="titleSubLine"><a href="../../class/education/ect">기타</a></li>
 					</ul>
 				</li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">자격증/시험</a>
 					<ul class="titleSubmenu">
-						<li><a href="../ctificate/publicOfficer">공무원</a></li>
-						<li><a href="../ctificate/NCS">NCS</a></li>
-						<li><a href="../ctificate/taxation">세무^회계^변리</a></li>
-						<li><a href="../ctificate/foreign">외국어</a></li>
-						<li><a href="../ctificate/design">디자인</a></li>
-						<li><a href="../ctificate/ect">기타</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../../class/ctificate/publicOfficer">공무원</a></li>
+						<li id="titleSubLine"><a href="../../class/ctificate/NCS">NCS</a></li>
+						<li id="titleSubLine"><a href="../../class/ctificate/taxation">세무/회계</a></li>
+						<li id="titleSubLine"><a href="../../class/ctificate/foreign">외국어</a></li>
+						<li id="titleSubLine"><a href="../../class/ctificate/design">디자인</a></li>
+						<li id="titleSubLine"><a href="../../class/ctificate/ect">기타</a></li>
 					</ul>
 				</li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">예체능</a>
 					<ul class="titleSubmenu">
-						<li><a href="../art/art">미술</a></li>
-						<li><a href="../art/sports">스포츠</a></li>
-						<li><a href="../art/cook">요리</a></li>
-						<li><a href="../art/music">음악</a></li>
-						<li><a href="../art/ect">기타</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../../class/art/art">미술</a></li>
+						<li id="titleSubLine"><a href="../../class/art/sports">스포츠</a></li>
+						<li id="titleSubLine"><a href="../../class/art/cook">요리</a></li>
+						<li id="titleSubLine"><a href="../../class/art/music">음악</a></li>
+						<li id="titleSubLine"><a href="../../class/art/ect">기타</a></li>
 					</ul>
 				</li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">재태크</a>
 					<ul class="titleSubmenu">
-						<li><a href="../retack/estate">부동산</a></li>
-						<li><a href="../retack/stock">주식</a></li>
-						<li><a href="../retack/fund">펀드</a></li>
-						<li><a href="../retack/ect">기타</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../../class/retack/estate">부동산</a></li>
+						<li id="titleSubLine"><a href="../../class/retack/stock">주식</a></li>
+						<li id="titleSubLine"><a href="../../class/retack/fund">펀드</a></li>
 					</ul>
 				</li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">취업</a>
 					<ul class="titleSubmenu">
-						<li><a href="../employement/intertview">이력서/자소서</a></li>
-						<li><a href="../employement/resume">면접</a></li>
-						<li><a href="../employement/personality">인적성</a></li>
-						<li><a href="../employement/ect">기타</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../../class/employement/intertview">이력서</a></li>
+						<li id="titleSubLine"><a href="../../class/employement/resume">면접</a></li>
+						<li id="titleSubLine"><a href="../../class/employement/personality">인적성</a></li>
+						<li id="titleSubLine"><a href="../../class/employement/ect">기타</a></li>
 					</ul>
 				</li>
 			</div>
@@ -375,53 +420,58 @@ a:hover {
 			<div class="ctgr">
 				<li><a href="#">학업</a>
 					<ul class="titleSubmenu">
-						<li><a href="../education/child">유아</a></li>
-						<li><a href="../education/elementary">초딩</a></li>
-						<li><a href="../education/medium">중등</a></li>
-						<li><a href="../education/employeement">입시^편입</a></li>
-						<li><a href="../education/ect">기타</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../education/child">유아</a></li>
+						<li id="titleSubLine"><a href="../education/elementary">초딩</a></li>
+						<li id="titleSubLine"><a href="../education/medium">중등</a></li>
+						<li id="titleSubLine"><a href="../education/employeement">입시/편입</a></li>
+						<li id="titleSubLine"><a href="../education/ect">기타</a></li>
 					</ul>
 				</li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">자격증/시험</a>
 					<ul class="titleSubmenu">
-						<li><a href="../ctificate/publicOfficer">공무원</a></li>
-						<li><a href="../ctificate/NCS">NCS</a></li>
-						<li><a href="../ctificate/taxation">세무^회계^변리</a></li>
-						<li><a href="../ctificate/foreign">외국어</a></li>
-						<li><a href="../ctificate/design">디자인</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../ctificate/publicOfficer">공무원</a></li>
+						<li id="titleSubLine"><a href="../ctificate/NCS">NCS</a></li>
+						<li id="titleSubLine"><a href="../ctificate/taxation">세무/회계</a></li>
+						<li id="titleSubLine"><a href="../ctificate/foreign">외국어</a></li>
+						<li id="titleSubLine"><a href="../ctificate/design">디자인</a></li>
 					</ul>
 				</li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">예체능</a>
 					<ul class="titleSubmenu">
-						<li><a href="../art/art">미술</a></li>
-						<li><a href="../art/sports">스포츠</a></li>
-						<li><a href="../art/cook">요리</a></li>
-						<li><a href="../art/music">음악</a></li>
-						<li><a href="../art/ect">기타</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../art/art">미술</a></li>
+						<li id="titleSubLine"><a href="../art/sports">스포츠</a></li>
+						<li id="titleSubLine"><a href="../art/cook">요리</a></li>
+						<li id="titleSubLine"><a href="../art/music">음악</a></li>
+						<li id="titleSubLine"><a href="../art/ect">기타</a></li>
 					</ul>
 				</li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">재태크</a>
 					<ul class="titleSubmenu">
-						<li><a href="../retack/estate">부동산</a></li>
-						<li><a href="../retack/stock">주식</a></li>
-						<li><a href="../retack/fund">펀드</a></li>
-						<li><a href="../retack/ect">기타</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../retack/estate">부동산</a></li>
+						<li id="titleSubLine"><a href="../retack/stock">주식</a></li>
+						<li id="titleSubLine"><a href="../retack/fund">펀드</a></li>
+						<li id="titleSubLine"><a href="../retack/ect">기타</a></li>
 					</ul>
 				</li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">취업</a>
 					<ul class="titleSubmenu">
-						<li><a href="../employement/intertview">이력서^자소서</a></li>
-						<li><a href="../employement/resume">면접</a></li>
-						<li><a href="../employement/personality">인적성</a></li>
-						<li><a href="../employement/ect">기타</a></li>
+					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<li id="titleSubLine"><a href="../employement/intertview">이력서</a></li>
+						<li id="titleSubLine"><a href="../employement/resume">면접</a></li>
+						<li id="titleSubLine"><a href="../employement/personality">인적성</a></li>
+						<li id="titleSubLine"><a href="../employement/ect">기타</a></li>
 					</ul>
 				</li>
 			</div>

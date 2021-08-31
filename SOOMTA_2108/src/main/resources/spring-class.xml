@@ -12,4 +12,12 @@
 	<bean class="controller.class1.CtificateCtgrConroller"/>
 	<bean class="controller.class1.ArtCtgrController"/>
 	<bean class="controller.class1.EmployementCtgrController"/>
+	<bean class="repository.ClassRepository"/>
+	<bean class="controller.class1.TutorClassController"/>
+	<bean class="service.class1.ClassOpenService"/>
+	<bean class="service.class1.TutorClassListService"/>
+	<bean class="service.class1.ClassNumberService"/>
+	<bean class="service.class1.ClassDetailService"/>
+	<bean class="service.class1.ClassDeleteService"/>
+	<bean class="service.class1.ClassRetouchService"/>
 </beans>

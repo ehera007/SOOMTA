@@ -1,6 +1,9 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -261,12 +264,12 @@ a:hover {
 		var ctg6 = ["기타"];
 		var target = document.getElementById("classSubCategory");
 		
-		if(e.value == "a") var d = ctg1;
-		else if(e.value == "b") var d = ctg2;
-		else if(e.value == "c") var d = ctg3;
-		else if(e.value == "d") var d = ctg4;
-		else if(e.value == "e") var d = ctg5;
-		else if(e.value == "f") var d = ctg6;
+		if(e.value == "STUDY") var d = ctg1;
+		else if(e.value == "TEST") var d = ctg2;
+		else if(e.value == "ENT") var d = ctg3;
+		else if(e.value == "ECONOMY") var d = ctg4;
+		else if(e.value == "EMP") var d = ctg5;
+		else if(e.value == "ETC") var d = ctg6;
 		
 		target.options.length = 0;
 		
@@ -301,48 +304,66 @@ a:hover {
 	<div class="main">
 		<section class="formSize">
 			<div id="classRetouchTitle"><h2>강의 수정</h2></div>
-			<form name="classRetouch" action="classRetouchCheck">
+			<form:form name="classRetouch" action="classRetouchOk" method="post" modelAttribute="classCommand" enctype="multipart/form-data">
 				<span id="title">분류</span>
-				<select onchange="classMainCategory(this)">
-					<option value="">대분류</option>
-					<option value="a">학업</option>
-					<option value="b">자격증/시험</option>
-					<option value="c">예체능</option>
-					<option value="d">재태크</option>
-					<option value="e">취업</option>
-					<option value="f">기타</option>
+				<select onchange="classMainCategory(this)" name="classCategoryL">
+					<option value="STUDY"
+					<c:if test="${dto.classCategoryL == 'STUDY'}">selected</c:if> >학업</option>
+					<option value="TEST"
+					<c:if test="${dto.classCategoryL == 'TEST'}">selected</c:if> >자격증/시험</option>
+					<option value="ENT"
+					<c:if test="${dto.classCategoryL == 'ENT'}">selected</c:if> >예체능</option>
+					<option value="ECONOMY"
+					<c:if test="${dto.classCategoryL == 'ECONOMY'}">selected</c:if> >재태크</option>
+					<option value="EMP"
+					<c:if test="${dto.classCategoryL == 'EMP'}">selected</c:if> >취업</option>
+					<option value="ETC"
+					<c:if test="${dto.classCategoryL == 'ETC'}">selected</c:if> >기타</option>
 				</select>
-				<select id="classSubCategory" name="classSubCategory">
+				<select id="classSubCategory" name="classCategoryS">
 					<option value="">소분류</option>
 				</select><br/>
 				<span id="title">강의명</span>
-				<input type="text" name="ClassName" placeholder="강의명 입력"><br/>
+				<input type="text" name="className" placeholder="강의명 입력" value="${dto.className }"><br/>
 				<span id="title">기간</span>
-				<input type="date" name="statDay"/> ~ <input type="date" name="endDay"/><br/>
+				<input type="date" name="classStart" value="<fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd" />"/> ~ <input type="date" name="classEnd" value="<fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd" />"/><br/>
 				<span id="title">정원</span>
-				<input type="number" name="personnel" min="1" max="30"/>명<br/>
+				<input type="number" name="classTotal" min="1" max="30" value="${dto.classTotal }"/>명<br/>
 				<span id="title">금액</span>
-				<input id="inputPrice" type="text" name="classPrice"/>원<br/>
+				<input id="inputPrice" type="text" name="classPrice" value="${dto.classPrice }"/>원<br/>
 				<span id="title">수업방식</span>
-				<select name="teackingMethod">
-					<option value="">선택</option>
-        			<option value="1">과외</option>
-        			<option value="2">카페</option>
-        			<option value="3">학원</option>
+				<select name="classWay">
+        			<option value="s"
+        			<c:if test="${dto.classWay == 's'}">selected</c:if>>과외</option>
+        			<option value="g"
+        			<c:if test="${dto.classWay == 'g'}">selected</c:if>>그룹</option>
+        			<option value="n"
+        			<c:if test="${dto.classWay == 'n'}">selected</c:if>>비대면</option>
 				</select><br/>
 				<span id="title">수강생 성별</span>
-				<input type="radio" name="gender" value="m">남자
-				<input type="radio" name="gender" value="m">여자
-				<input type="radio" name="gender" value="m">무관<br/>
+				<input type="radio" name="classGender" value="m"
+				<c:if test="${dto.classGender == 'm'}">checked</c:if> />남자
+				<input type="radio" name="classGender" value="w"
+				<c:if test="${dto.classGender == 'w'}">checked</c:if> />여자
+				<input type="radio" name="classGender" value="x"
+				<c:if test="${dto.classGender == 'x'}">checked</c:if> />무관<br/>
 				<span id="title">강의 내용</span>
-				<input type="text" name="ClassContent"><br/>
+				<input type="text" name="classIntroduce" value="${dto.classIntroduce }"><br/>
 				<span id="title">첨부파일</span>
-				<input type="file" name="classImg"/><br/>
+				<c:forTokens items="${dto.classImg }" delims="," var="classImg">
+				<p>
+				<span id="fileName">${dto.classImg }</span>
+				<input type="button" id = "btn" value="삭제" onclick = "fileDel(this)"/>
+				</p>
+				</c:forTokens>
+				<input type="file" name="classImg" multiple="multiple"/><br/>
 				<div class="submitlocation">
 					<input id="submitClass" type="submit" value="수정하기"/> / 
 					<a id="submitClass" href="MylectureList">취소하기</a>
 				</div>
-			</form>
+			</form:form>
+			<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-latest.js" ></script>
 		</section>
 	</div>
    <!-- 하단 고정 -->
@@ -417,3 +438,31 @@ a:hover {
 
 </body>
 </html>
+<script>
+	function classMainCategory1() {
+		var ctg1 = ["유아","초등","중등","입시/편입","기타"];
+		var ctg2 = ["공무원","NCS","세무/회계","외국어","디자인"];
+		var ctg3 = ["미술","스포츠","요리","음악","기타"];
+		var ctg4 = ["부동산","주식","펀드"];
+		var ctg5 = ["이력서","면접","인적성","기타"];
+		var ctg6 = ["기타"];
+		var target = document.getElementById("classSubCategory");
+		
+		if('${dto.classCategoryL}' == "STUDY") var d = ctg1;
+		else if('${dto.classCategoryL}' == "TEST") var d = ctg2;
+		else if('${dto.classCategoryL}' == "ENT") var d = ctg3;
+		else if('${dto.classCategoryL}' == "ECONOMY") var d = ctg4;
+		else if('${dto.classCategoryL}' == "EMP") var d = ctg5;
+		else if('${dto.classCategoryL}' == "ETC") var d = ctg6;
+		
+		target.options.length = 0;
+		
+		for(x in d){
+			var opt = document.createElement("option");
+		    opt.value=d[x];
+		    opt.innerHTML = d[x];
+		    target.appendChild(opt);
+		}
+	}
+	classMainCategory1();
+</script>

@@ -1,6 +1,7 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,6 +126,7 @@ h2{
 	padding-bottom: 30px;
 	border-radius: 12px;
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
+
 }
 
 #title{
@@ -145,6 +147,9 @@ h2{
 	margin-top: 40px;
 	border:0;
 	outline:0;
+	border:none;
+	background:none;
+	color:#0F4C81;
 }
 
 /*하단 구역 분할*/
@@ -259,12 +264,12 @@ a:hover {
 		var ctg6 = ["기타"];
 		var target = document.getElementById("classSubCategory");
 		
-		if(e.value == "a") var d = ctg1;
-		else if(e.value == "b") var d = ctg2;
-		else if(e.value == "c") var d = ctg3;
-		else if(e.value == "d") var d = ctg4;
-		else if(e.value == "e") var d = ctg5;
-		else if(e.value == "f") var d = ctg6;
+		if(e.value == "STUDY") var d = ctg1;
+		else if(e.value == "TEST") var d = ctg2;
+		else if(e.value == "ENT") var d = ctg3;
+		else if(e.value == "ECONOMY") var d = ctg4;
+		else if(e.value == "EMP") var d = ctg5;
+		else if(e.value == "ETC") var d = ctg6;
 		
 		target.options.length = 0;
 		
@@ -285,59 +290,57 @@ a:hover {
 		<!-- 로그인 안된 경우 -->
 		<div class="nav">
 			<div class="nav-item">
-				<a href="<c:url value='/soomta/login'/>">로그인</a>
+				<a href="myPage">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
+				<a href="../soomta/logOut">로그아웃</a></div>
 			</div>
 		</div>
-	</div>
 	<!-- 메인 -->
 	<div class="main">
 		<section class="formSize">
 			<div id="newClassTitle"><h2>강의 개설</h2></div>
-			<form name="newClass" action="newClassCheck">
+			<form name="newClassOpened" action="newClassOpenedOk" enctype="multipart/form-data" method="post">
+				<span id="title">소모임 번호</span>
+           		<input name="classNo" value="${classNo}" readonly="readonly"/><br/>
 				<span id="title">분류</span>
-				<select onchange="classMainCategory(this)">
+				<select onchange="classMainCategory(this)" name="classCategoryL">
 					<option>대분류</option>
-					<option value="a">학업</option>
-					<option value="b">자격증/시험</option>
-					<option value="c">예체능</option>
-					<option value="d">재태크</option>
-					<option value="e">취업</option>
-					<option value="f">기타</option>
+					<option value="STUDY">학업</option>
+					<option value="TEST">자격증/시험</option>
+					<option value="ENT">예체능</option>
+					<option value="ECONOMY">재태크</option>
+					<option value="EMP">취업</option>
+					<option value="ETC">기타</option>
 				</select>
-				<select id="classSubCategory" name="classSubCategory">
+				<select id="classSubCategory" name="classCategoryS">
 					<option value="">소분류</option>
 				</select><br/>
 				<span id="title">강의명</span>
-				<input type="text" name="ClassName" placeholder="강의명 입력"><br/>
+				<input type="text" name="className" placeholder="강의명 입력"><br/>
 				<span id="title">기간</span>
-				<input type="date" name="statDay"/> ~ <input type="date" name="endDay"/><br/>
+				<input type="date" name="classStart" required pattern="yyyy-MM-dd"/> ~ <input type="date" name="classEnd" required pattern="yyyy-MM-dd"/><br/>
 				<span id="title">정원</span>
-				<input type="number" name="personnel" min="1" max="30"/>명<br/>
+				<input type="number" name="classTotal" min="1" max="30"/>명<br/>
 				<span id="title">금액</span>
 				<input id="inputPrice" type="text" name="classPrice"/>원<br/>
 				<span id="title">수업방식</span>
-				<select name="teackingMethod">
-					<option value="">선택</option>
-        			<option value="1">과외</option>
-        			<option value="2">카페</option>
-        			<option value="3">학원</option>
+				<select name="classWay">
+					<option>선택</option>
+        			<option value="s">과외</option>
+        			<option value="g">그룹</option>
+        			<option value="n">비대면</option>
 				</select><br/>
 				<span id="title">수강생 성별</span>
-				<input type="radio" name="gender" value="m">남자
-				<input type="radio" name="gender" value="m">여자
-				<input type="radio" name="gender" value="m">무관<br/>
+				<input type="radio" name="classGender" value="m">남자
+				<input type="radio" name="classGender" value="w">여자
+				<input type="radio" name="classGender" value="x">무관<br/>
 				<span id="title">강의 내용</span>
-				<input type="text" name="ClassContent"><br/>
+				<input type="text" name="classIntroduce"><br/>
 				<span id="title">첨부파일</span>
-				<input type="file" name="classImg"/><br/>
+				<input type="file" name="classImg" multiple="multiple"/><br/>
 				<div class="submitlocation">
-					<input id="submitClass" type="submit" value="강의 등록하기"/>
+					<input id="submitClass" type="submit" value="완료"/>
 				</div>
 			</form>
 		</section>

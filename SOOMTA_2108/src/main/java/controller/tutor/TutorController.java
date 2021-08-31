@@ -39,31 +39,6 @@ public class TutorController {
 	public String joinForm() {
 		return "tutor/joinForm";
 	}
-	@RequestMapping("MylectureList")
-	public String MylectureList() {
-		return "tutor/MylectureList";
-	}
-	@RequestMapping("newClassOpened")
-	public String newClassOpened() {
-		return "tutor/newClassOpened";
-	}
-	@RequestMapping("reviewView")
-	public String reviewView() {
-		return "tutor/reviewView";
-	}
-	@RequestMapping("newClassCheck")
-	public String newClassCheck() {
-		return "tutor/newClassCheck";
-	}
-	@RequestMapping("classRetouch")
-	public String classRetouch() {
-		return "tutor/classRetouch";
-	}
-	@RequestMapping("classRetouchCheck")
-	public String classRetouchCheck() {
-		return "tutor/classRetouchCheck";
-	}
-
 	@RequestMapping("outCon")//탈퇴
 	   public String outCon() {
 	      return "tutor/outCon";//탈퇴전 비밀번호 확인 폼

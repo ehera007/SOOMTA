@@ -1,316 +1,336 @@
-<!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ include file="../include/tags.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
+
 /*전체 글씨꼴 설정*/
 body {
-	font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
+   font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
 }
 
 /*a태그 라인 삭제*/
 a:link {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 a:visited {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+   text-decoration: underline;
 }
 
 /*상단 고정 a 태그 색상 변경*/
 .nav-item a:visited {
-	color: #0F4C81;
+   color: #0F4C81;
 }
 
 .nav-item a:link {
-	color: #0F4C81;
+   color: #0F4C81;
 }
 
 .nav-item a:hover {
-	color: #0F4C81;
+   color: #0F4C81;
 }
 
 /*하단 고정 a 태그 색상 등 변경*/
 .footer-menu a:linnk {
-	color: black;
+   color: black;
 }
 
 .footer-menu a:visited {
-	color: black;
-	font-weight: bold;
+   color: black;
+   font-weight: bold;
 }
 
 .footer-menu a:hover {
-	color: black;
-	font-weight: bold;
+   color: black;
+   font-weight: bold;
 }
 
 .footer-bottom a:link {
-	color: #BEBEBE;
-	font-weight: bold;
+   color: #BEBEBE;
+   font-weight: bold;
 }
 
 .footer-bottom a:visited {
-	color: #BEBEBE;
+   color: #BEBEBE;
 }
 
 .footer-bottom a:hover {
-	color: #BEBEBE;
+   color: #BEBEBE;
 }
 
 .footer-submenu a {
-	margin-right: 10px;
+   margin-right: 10px;
 }
 
 /*상단 구역 분할, 색상 변경*/
 .header {
-	color: #0F4C81;
-	height: 70px;
-	display: flex;
-	align-items: center;
-	font-weight: bold;
+   color: #0F4C81;
+   height: 70px;
+   display: flex;
+   align-items: center;
+   font-weight: bold;
 }
 
 .nav {
-	color: #0F4C81;
-	display: flex;
-	margin-left: auto;
+   color: #0F4C81;
+   display: flex;
+   margin-left: auto;
 }
 
 .nav-item {
-	margin: 15px;
-	font-size: 12px;
-}
-
-
-/*중앙 구역 분할 */
-.MylectureListTitle {
-	background-color: #0F4C81;
-	color: white;
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 15px;
-}
-
-.main {
-	width: 1200px;
-	margin: 0 auto;
-	z-index: 2;
-}
-
-/*클래스 리스트 테이블*/
-table{
-	width:1000px;
-	margin: 0 auto;
-	border-collapse:collapse;
-	line-height:14px;
-}
-
-table td, th{
-	border-top:1px solid black;
-	border-bottom:1px solid black;
-	border-collapse:collapse;
-	text-align:center;
-	padding:10px;
-}
-
-th{
-	background: #D5D5D5;
-}
-
-/*페이징*/
-.page{
-	text-align:center;
-	width:50%;
-	margin: 0 auto;
-}
-
-.pagination{
-	list-style:none;
-	display:inline-block;
-	padding:0;
-	margin-top:20px;
-}
-
-.pagination li{
-	display:inline;
-	text-align:center;
-}
-
-.pagination a{
-	float:left;
-	display:block;
-	font-size:14px;
-	text-decoration:none;
-	padding : 5px 12px;
-	color:#0F4C81;
-	line-height:1.5;
+   margin: 15px;
+   font-size: 15px;
 }
 
 /*하단 구역 분할*/
 .footer {
-	width: 800px;
-	height: 70px;
-	margin: 0 auto;
+   width: 800px;
+   height: 70px;
+   margin: 0 auto;
 }
 
 .footer-top {
-	display: flex;
-	align-items: center;
+   display: flex;
+   align-items: center;
 }
 
 .footer-bottom {
-	font-size: 12px;
-	color: #BEBEBE;
+   font-size: 12px;
+   color: #BEBEBE;
 }
 
 .footer-bottommenu {
-	display: flex;
-	align-items: center;
-	margin: 5px;
+   display: flex;
+   align-items: center;
+   margin: 5px;
 }
 
 .footer-app {
-	display: flex;
-	margin-left: auto;
+   display: flex;
+   margin-left: auto;
 }
 
 .footer-leftmenu {
-	width: 800px;
-	display: flex;
-	align-items: center;
-	display: flex;
+   width: 800px;
+   display: flex;
+   align-items: center;
+   display: flex;
 }
 
 .footer-rightmenu {
-	width: 400px;
-	display: flex;
-	margin-left: auto;
+   width: 400px;
+   display: flex;
+   margin-left: auto;
 }
 
 .footer-menu {
-	margin-left: 40px;
+   margin-left: 40px;
 }
 /* 하단고정 글자 색상, 사이즈 등 */
 .footer-callNum p {
-	color: #0F4C81;
-	font-size: 20px;
-	font-weight: 900;
+   color: #0F4C81;
+   font-size: 18px;
+   font-weight: bolder;
 }
 
-.footer-callTime ul {
-	list-style: none;
-	padding-left: 0px;
-	font-size: 14px;
-	font-weight: bold;
+.footer-callTime p {
+   font-size: 14px;
+   font-weight: bold;
 }
 
-.footer-rightmenu ul {
-	list-style: none;
-	padding-left: 0px;
-	font-size: 14px;
-	font-weight: bold;
-}
-
-.footer-callTime li {
-	margin-bottom: 3px;
-}
-
-.footer-rightmenu li {
-	margin-bottom: 5px;
+ul {
+   list-style: none;
+   padding-left: 0px;
+   font-size: 13px;
+   font-weight: bold;
 }
 
 .footer-menu p {
-	color: #0F4C81;
-	font-size: 16px;
-	font-weight: 900;
+   color: #0F4C81;
+   font-size: 15px;
+   font-weight: bolder;
+}
+/*중앙*/
+.myClassTitle {
+   background-color: #0F4C81;
+   color: white;
+   text-align: center;
+   padding-top: 10px;
+   padding-bottom: 10px;
 }
 
-a:link {
-	color: #0F4C81;
-	text-decoration: none;
+.dropMenu {
+   align-items: center;
+   margin: 50px 0px;
+   display: flex;
+   justify-content: space-evenly;
 }
 
-a:visited {
-	color: #0F4C81;
-	text-decoration: none;
+.imgBox {
+   border: 1px solid black;
+   width: 200px;
+   height: 310px;
+   background-color: #0F4C81;
 }
 
-a:active {
-	color: #0F4C81;
-	text-decoration: none;
+.imgTitle {
+   border: 1px solid black;
+   width: 200px;
+   height: 200px;
 }
 
-a:hover {
-	color: #0F4C81;
-	text-decoration: none;
+.dropList li {
+   background-color: #0F4C81;
+   text-align: center;
+   margin: 10px 0px;
+   font-size: 15px;
+}
+
+.dropList a:link {
+   color: white;
+   background-color: #0F4C81;
+}
+
+.dropList a:visited {
+   color: white;
+   background-color: #0F4C81;
+}
+
+.dropList a:hover {
+   color: white;
+}
+
+.dropMenu ul {
+   display: none;
+}
+
+.imgBox:hover ul {
+   display: block;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-top: 2px solid #0F4C81;
+    border-collapse: collapse;
+  }
+  
+thead{
+ background-color: #0F4C81; 
+ color: white; 
+}
+tbody  th, td {
+    border-bottom: 1px solid #0F4C81;
+    padding: 5px;
+    text-align: center;
+  }
+
+  tbody tr:nth-child(2n) {
+    background-color:#F4F7F8; 
+    
+  }
+td a {
+   font-weight:bold;
+   color:black;
+}
+td a:hover {
+   font-weight:bold;
+   color:black;
+}
+td a:link {
+   font-weight:bold;
+   color:black;
+}
+td a:visited {
+   font-weight:bold;
+   color:black;
+}
+td a:active {
+   font-weight:bold;
+   color:black;
+}
+/*버튼 스타일*/
+.btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 10px 10px;
+   border: none;
+   float:right;
+   /*border:1px solid #0F4C81;
+   border-radius:4px;*/
 }
 </style>
 <meta charset="UTF-8">
-<title>마이클래스리스트</title>
-
+<title>My Class List</title>
 </head>
 <body>
-	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
-	<div class="header">
-		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
-			onclick="location.href='/SOOMTA_2108/main'" />
-		<!-- 로그인 안된 경우 -->
-		<div class="nav">
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/login'/>">로그인</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
-			</div>
-		</div>
-	</div>
-	<!-- 메인 -->
-	<div class="MylectureListTitle">
-		<h1 align="center" style="font-size:200%;">'혠꿍'님의 강의 목록</h1>
-		<p align="center" style="font-size:20px;">숨타에서 총 n개의 강의를 개설하셨슴돠</p>
-	</div>
-	<div class="main">
-	<br/>
-	<form style="direction: rtl;">
-			<select name="ranking">
-				<option value="one">5개씩 보기</option>
-				<option value="two">10개씩 보기</option>
-				<option value="three">20개씩 보기</option>
-			</select>
-		</form>
-		<br/>
-		<table>
-			<tr>
-				<th colspan="3">No. | 분류 | 소분류</th>
-				<th colspan="2">강의명 | 기간</th>
-				<th colspan="3">상태/상세 | 만족도 | 후기</th>
-			</tr>
-			<tr>
-				<td>01 </td>|<td> 재태크 </td>|<td> 주식</td>
-				<td><a href="../class/classDetailPage">70층에 사람있어요 </td>|<td> 21.08~21.10</a></td>
-				<td><a href="newClassCheck">진행중</a> </td>|<td> 미등록 </td>|<td> <a href="reviewView">후기보기</a></td>
-			</tr>
-		</table>
-		<div class="page">
-			<ul class="pagination">
-				<li><a href="#" class="pagenum">1</a></li>
-				<li><a href="#" class="pagenum">2</a></li>
-				<li><a href="#" class="pagenum">3</a></li>
-				<li><a href="#" class="pagenum">4</a></li>
-			</ul>
-		</div>
-	</div>
-   <!-- 하단 고정 -->
+<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
+   <div class="header">
+      <img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+      <div class="nav">
+         <div class="nav-item">
+            <a href="#">마이페이지</a>
+         </div>
+         <div class="nav-item">
+            <a href="#">로그아웃</a>
+         </div>
+      </div>
+   </div>
+   
+   <div class="myClassTitle">
+         <h1>''님의 강의 목록</h1>
+         <p>숨타에서 총 n개의 강의를 개설하셨슴돠</p>
+      </div>
+      <!-- 타이틀 -->
+   <table>
+   <thead>
+      <tr style="padding-bottom:20px; height:40px;">
+         <th width="10%">No.</th>
+         <th width="15%">대분류/소분류</th>
+         <th width="25%">강의명</th>
+         <th width="20%">기간</th>
+         <th width="10%">상태</th>
+         <th width="10%">상세</th>
+         <th width="10%">후기</th>
+      </tr>
+      </thead>
+      <c:forEach items="${list }" var="dto">
+      <tbody>
+      <tr>
+         <td>${dto.classNo }</td>
+         <td>
+         	<c:if test="${dto.classCategoryL == 'STUDY' }">학업</c:if>
+			<c:if test="${dto.classCategoryL == 'TEST' }">자격증&시험</c:if>
+			<c:if test="${dto.classCategoryL == 'ENT' }">예체능</c:if>
+			<c:if test="${dto.classCategoryL == 'ECONOMY' }">재태크</c:if>
+			<c:if test="${dto.classCategoryL == 'EMP' }">취업</c:if>
+			<c:if test="${dto.classCategoryL == 'ETC' }">기타</c:if> / 
+			${dto.classCategoryS }</td>
+         <td>${dto.className }</td>
+         <td>
+         	<fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd"/>
+         	~
+         	<fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd"/>
+         </td>
+         <td>상태</td>
+         <td><a href="classCheck?classNo=${dto.classNo}">상세</a></td>
+         <td><a href="reviewView">후기</a></td>
+      </tr>
+      </tbody>
+      </c:forEach>
+      </table>
+<!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 
    <div class="footer">

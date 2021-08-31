@@ -1,6 +1,10 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -244,9 +248,13 @@ a:hover {
 }
 </style>
 <script type="text/javascript">
-	function classDelete() {
+	function classDel() {
 		alert("삭제하시겠습니까?");
-		history.back();	
+		if(confirm("삭제하시면 복구하실수없습니다.")){
+			javascript:location.href='classDelete?classNo=${dto.classNo }';
+		}else{
+			return false;
+		}
 	}
 </script>
 <meta charset="UTF-8">;
@@ -274,28 +282,46 @@ a:hover {
 	<!-- 메인 -->
 	<div class="main">
 		<section class="formSize">
-			<div id="ClassCheckTitle"><h2>강의 이름뜨는 자리</h2></div>
+			<div id="ClassCheckTitle"><h2>${dto.className }</h2></div>
+				<span id="title">분류</span>
+				대분류
+				<c:if test="${dto.classCategoryL == 'STUDY' }">학업</c:if>
+				<c:if test="${dto.classCategoryL == 'TEST' }">자격증&시험</c:if>
+				<c:if test="${dto.classCategoryL == 'ENT' }">예체능</c:if>
+				<c:if test="${dto.classCategoryL == 'ECONOMY' }">재태크</c:if>
+				<c:if test="${dto.classCategoryL == 'EMP' }">취업</c:if>
+				<c:if test="${dto.classCategoryL == 'ETC' }">기타</c:if>
+				/ 
+				${dto.classCategoryS}
+				<br/>
 				<span id="title">강의명</span>
-				대분류 / 소분류<br/>
-				<span id="title">강의명</span>
-				강의명<br/>
+				${dto.className }<br/>
 				<span id="title">기간</span>
-				시작날 ~ 종료날<br/>
+				<fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd"/>
+				~
+				<fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd"/>
+				<br/>
 				<span id="title">정원</span>
-				몇명인지 명<br/>
+				${dto.classTotal } 명<br/>
 				<span id="title">금액</span>
-				얼마인지 원<br/>
+				${dto.classPrice } 원<br/>
 				<span id="title">수업방식</span>
-				방식출력<br/>
+        		<c:if test="${dto.classWay.trim() == 's'}">과외</c:if>
+        		<c:if test="${dto.classWay.trim() == 'g'}">그룹</c:if>
+				<c:if test="${dto.classWay.trim() == 'n'}">비대면</c:if>
+				<br/>
 				<span id="title">수강생 성별</span>
-				성별출력<br/>
-				<span id="title">강의 내용</span>
-				강의 내용 출력<br/>
+				<c:if test="${dto.classGender == 'm' }">남자</c:if>
+				<c:if test="${dto.classGender == 'w' }">여자</c:if>
+				<c:if test="${dto.classGender == 'x' }">무관</c:if>
+				<br/>
+				<span id="title">강의 소개</span>
+				${dto.classIntroduce }<br/>
 				<span id="title">첨부파일</span>
-				첨부파일 이미지명 출력<br/>
+				${dto.classImg }<br/>
 				<div class="Taglocation">
-					<a id="btncolor" href="classRetouch">수정하기</a> / 
-					<button id="btncolor" onclick="classDelete()">삭제하기</button>
+					<a id="btncolor" href="classRetouch?classNo=${dto.classNo }">수정하기</a> / 
+					<input id="btncolor" type="button" value="삭제하기" onclick="classDel()" />
 				</div>
 		</section>
 	</div>

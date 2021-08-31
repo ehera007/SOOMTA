@@ -618,8 +618,8 @@ header a:hover {
 	</a>
 	<!-- 하단 문의하기/구매하기 고정 -->
 	<header>
-	<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 60px;"><a href="#">문의하기</a></div>
 	<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 170px;"><a href="../member/classCart">구매하기</a></div>
+	<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 60px;"><a href="#">문의하기</a></div>
 	</header>
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">
