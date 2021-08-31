@@ -247,7 +247,7 @@ color: #0F4C81;
     margin-top: 45px;
     margin-bottom: 35px;
     padding-top: 30px;
-    padding-bottom: 30px;
+    
   }
   
 .btn {
@@ -264,7 +264,8 @@ color: #0F4C81;
    width: 300px;
    margin: 0 auto;
    padding-bottom: 0px;
-   padding-right: 55px;
+   padding-right: 50px;
+   padding-left: 20px;
 }
 th{
 	padding-left:85px;
@@ -326,10 +327,10 @@ td{
 		             <th>생년월일</th>
 		             <td><fmt:formatDate value="${tutor.tutorDob}" type="date" pattern="yyyy-MM-dd"/> </td>
 		         </tr>
-		          <tr>    
-		             <th>성별</th>
-		             <td>${tutor.tutorGender} </td>
-		         </tr>
+		          <tr><th>성별</th><td>
+					<c:if test="${tutor.tutorGender == 'M'}">남자</c:if>
+					<c:if test="${tutor.tutorGender == 'F'}">여자</c:if>
+			</td></tr>
 		         <tr>    
 		             <th>핸드폰</th>
 		             <td>${tutor.tutorPhone} </td>
@@ -338,16 +339,20 @@ td{
 		             <th>이메일</th>
 		             <td>${tutor.tutorEmail} </td>
 		         </tr>
-		         
+		        
 		         <tr>
-                   <th colspan="2" style="padding-right: 45px;">
-                   		<div class="allbtn">
+		        
+                   <th colspan="2" style="padding-right: 60px;">
+                   		<div class ="allbtn" >
 							<a href="<c:url value='/tutor/sujung'/>"
-							style="text-decoration:none;">수정하기</a>&emsp;&emsp;
-		                   <a href="<c:url value='/tutor/myPage'/>" 
+							style="text-decoration:none;">수정하기</a>&emsp;
+              				<a href="<c:url value='/tutor/pwChange'/>"
+							style="text-decoration:none;">PW변경</a>&emsp;
+		                    <a href="<c:url value='/tutor/myPage'/>" 
 							style="text-decoration:none;">뒤로가기</a>
 							
 						</div>
+						
 					</th>
          		 </tr>
 

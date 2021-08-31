@@ -315,9 +315,10 @@ td{
 				<tr><th>생년월일</th>
 					<td><fmt:formatDate value="${tutor.tutorDob}" type="date" pattern="yyyy-MM-dd"/> </td></tr>
 		
-				<tr><th>성별</th>
-				<td><input type="radio" name="Gender"  value="M" checked>남자
-					<input type="radio" name="Gender" value="F">여자</td></tr>
+				 <tr><th>성별</th><td>
+					<c:if test="${tutor.tutorGender == 'M'}">남자</c:if>
+					<c:if test="${tutor.tutorGender == 'F'}">여자</c:if>
+				</td></tr>
 			
 				<tr><th>핸드폰</th>
 					<td><input type="text" name="tutorPhone" required

@@ -132,7 +132,7 @@ ul {
 }
 /*중앙*/
 .mypage{
-padding-top: 80px;
+	padding-top: 80px;
 	padding-bottom: 80px;
 }
 .item{
@@ -144,11 +144,11 @@ table-layout: fixed;
 .main-item {
    border: 1px solid black;
    width: 380px;
-   height: 380px;
+   height: 350px;
    margin-left: 250px;
    table-layout: fixed;
    margin-right: 100px;
-  
+  table-layout: fixed;
     
 }
 .mypageTitle {
@@ -162,12 +162,20 @@ table-layout: fixed;
    align-items: center;
    display:flex;
   
-   justify-content: space-evenly;
+   
+   margin-right :100px;
+}
+.dropMenu1 {
+   align-items: center;
+   display:flex;
+  
+   
+   margin-left :50px;
    margin-right :100px;
 }
 .imgBox {
-   width: 250px;
-   height: 250px;
+   width: 240px;
+   height: 220px;
    background-color: #0F4C81;
    margin: 50px 20px;
    color: white;
@@ -176,6 +184,8 @@ table-layout: fixed;
    padding-top : 30px;
    
 }
+
+
 .imgTitle {
 	border: 1px solid black;
 	width: 200px;
@@ -281,7 +291,7 @@ table-layout: fixed;
 					</div>
 				</div>
 
-				<div class="dropMenu">
+				<div class="dropMenu1">
 					<div class="imgBox" >
 					<div class="dropList1">
 						<ul>

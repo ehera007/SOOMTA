@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -162,9 +167,8 @@ ul {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	
+	padding-top: 10px;
+	padding-bottom: 15px;
 }
 
 .dropMenu {
@@ -217,72 +221,49 @@ ul {
 }
 
 /*고정 외 중앙 테이블 스타일*/
-.perForm{
 
-	padding-top: 50px;
-	padding-bottom: 50px;
-
-}
-.perForm a:visited {
-	color: #0F4C81;
-	
-}
-.perForm a:link {
-	color: #0F4C81;
-	
-}
-.perForm a:hover{
-color: #0F4C81;
-	
-}
-
- table {
+table {
     border: 2px solid #0F4C81;
-    width: 650px;
+    width: 700px;
     height:550px;
     margin:20px auto;
     border-spacing: 0px;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 35px;
-    margin-top: 20px;
-   	padding-top: 20px;
+    margin-bottom: 100px;
+    margin-top: 70px;
+    padding-top:30px;
   }
-  
-.btn {
-   height: 30px;
-   background-color: white;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 10px 10px;
-   border: none;
-   
+
+thead th {
+   height: 50px;
+   background-color: #0F4C81;
+   color: white;
+   font-size: 25px;
+   border-radius: 8px 8px 0px 0px;
 }
-.allbtn {
-   height: 30px;
-   width: 300px;
-   margin: 0 auto;
-   padding-bottom: 0px;
-   padding-right: 55px;
-}
+
 th{
-	padding-left:30px;
+	padding-left:10px; 
 }
 td{
-	padding-right:100px;
+  
 }
+.detail {
+	color: grey;
+	font-size: 8px;
+	font-style: italic;
+	text-align: left;
+}
+
+.perForm{
+	width: 800px;
+	margin: 0 auto;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
 </style>
-<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-    $(document).ready(function(){
-    	$( '.Top' ).click( function() {
-        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-        	return false;
-        } );
-    });
-    
-    </script>
    
 <meta charset="UTF-8">
 <title>tutorPromanage</title>
@@ -317,54 +298,60 @@ td{
 				 튜터</td>
 			</tr>
 			<tr>	 
-				 <th> 자격증 </th><td>
-				 <c:if test = "${tutor.tutorCertification == null}" >-</c:if>
+				 <th>자격증 </th><td>
+				 <c:if test = "${tutor.tutorCertification == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorCertification != null}">${tutor.tutorCertification}</c:if>
 				 </td>
 			</tr>
 			<tr>	 
-				 <th> 경력 </th><td>
-				 <c:if test = "${tutor.tutorCareer == null}" >-</c:if>
+				 <th>경력 </th><td>
+				 <c:if test = "${tutor.tutorCareer == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorCareer != null}">${tutor.tutorCareer}</c:if>
 				 </td>
 			</tr>
 			
 			<tr>	
-				 <th> 학력(전공)</th><td>
-				 <c:if test = "${tutor.tutorFinalEdu == null}" >-</c:if>
+				 <th>학력</th><td>
+				 <c:if test = "${tutor.tutorFinalEdu == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorFinalEdu != null}">${tutor.tutorFinalEdu}</c:if>
 				 </td>
 			</tr>
 			
 			<tr>	 
 				 <th>연락 가능 시간 </th><td>
-				 <c:if test = "${tutor.tutorRespond == null}" >-</c:if>
+				 <c:if test = "${tutor.tutorRespond == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorRespond != null}">${tutor.tutorRespond}</c:if>
 				 </td>
 			</tr>
 			<tr>	 
 				 <th>수업방식 </th><td>
-				 <c:if test = "${tutor.tutorLikearea == null}" >-</c:if>
+				 <c:if test = "${tutor.tutorLikearea == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorLikearea != null}">${tutor.tutorLikearea}</c:if>
 				 </td>
 			</tr>
 			<tr>	 
-				 <th> 소개 </th><td>
-				 <c:if test = "${tutor.tutorIntroduce == null}" >-</c:if>
+				 <th>소개 </th><td>
+				 <c:if test = "${tutor.tutorIntroduce == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorIntroduce != null}">${tutor.tutorIntroduce}</c:if>
 				 </td>
 			</tr>
-			<tr>		
+			<tr>	 
+				 <th>이미지 </th><td>
+				 <c:if test = "${tutor.tutorImage == null}" >미입력</c:if>
+				 <c:if test = "${tutor.tutorImage != null}">${tutor.tutorImage}</c:if>
+				 </td>
+			</tr>		
 					
-				
-					<tr>
-                   <th colspan="2" style="padding-left: 40px;">
+					
+				<tr>
+                   <th colspan="2" style="padding-left: 10px; ">
                    		<div class="allbtn">
 							<a href="<c:url value='/tutor/promanageSujung'/>" 
 							style="text-decoration:none;">수정하기</a>&emsp;&emsp;
 							<a href="<c:url value='/tutor/myPage'/>"
 							style="text-decoration:none;">뒤로가기</a>
 						</div>
+						
 					</th>
          		 </tr>
 			</table>

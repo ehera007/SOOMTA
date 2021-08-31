@@ -50,6 +50,9 @@ public class TutorUpdateService {
 		dto.setTutorIntroduce(tutorCommand.getTutorIntroduce());
 		System.out.println(tutorCommand.getTutorIntroduce());
 		
+		dto.setTutorImage(tutorCommand.getTutorImage());
+		System.out.println(tutorCommand.getTutorIntroduce());
+		
 		LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");
 		dto.setTutorId(logIn.getUserId());
 		

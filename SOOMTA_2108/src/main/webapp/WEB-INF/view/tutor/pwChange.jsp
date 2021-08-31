@@ -86,6 +86,12 @@ input {
 .items{
 	display:flex;
 }
+th{
+	padding-left:30px;
+}
+td{
+ 	padding-left:20px;
+}
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -157,7 +163,7 @@ function funcCon(){
 		<table>
 		<thead>
 			<tr>
-				<th colspan="2">내 비밀번호 변경</th>
+				<th colspan="2" style="padding-left:5px;">내 비밀번호 변경</th>
 			</tr>
 		</thead>
 		<tbody>

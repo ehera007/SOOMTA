@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import command.EmployeeCommand;
+
 import command.TutorCommand;
 import repository.TutorRepository;
 import service.employee.EmployeeUpdateService;
@@ -25,10 +25,20 @@ import service.tutor.TutorUpdateService;
 @Controller 
 @RequestMapping("tutor")
 public class TutorController {
+	@Autowired
+	TutorInfoService tutorInfoService ;
+	@Autowired
+	TutorPromanageService tutorPromanageService ;
+	@Autowired
+	   TutorOutService tutorOutService;
+	@Autowired
+	TutorPwChangeService tutorPwChangeService;
 	
 	
 	@RequestMapping("myPage")//튜터 마이페이지
-	public String myPage() {
+	public String myPage(HttpSession session, Model model,
+			@ModelAttribute TutorCommand tutorCommand) {
+		tutorInfoService.perData(session,model);
 		return "tutor/myPage";
 	}
 	@RequestMapping("out")//튜터 탈퇴하기 페이지
@@ -50,10 +60,9 @@ public class TutorController {
 		String path = tutorOutService.tutorDelete(tutorPw, session, model);
 		return path;
 	}
-	@Autowired
-	TutorInfoService tutorInfoService ;
-	@RequestMapping("perData")//튜터 개인정보
-	public String perData(HttpSession session, Model model) {
+	
+	@RequestMapping("perData")
+	public String perData(HttpSession session, Model model) {//튜터 개인정보 
 		tutorInfoService.perData(session,model);
 		return "tutor/perData";
 	}
@@ -70,9 +79,8 @@ public class TutorController {
 		tutorUpdateService.perDataUpdate(tutorCommand, session);
 		return "redirect:perData";
 	}
-	@Autowired
-	TutorPromanageService tutorPromanageService ;//튜터 강의 정보
-	@RequestMapping("promanage")
+	
+	@RequestMapping("promanage")//튜터 강의 정보
 	public String promanage(HttpSession session, Model model) {
 		tutorPromanageService.promanage(session,model);
 		return "tutor/promanage";
@@ -87,28 +95,26 @@ public class TutorController {
 		tutorUpdateService.promanageSujung(tutorCommand, session);
 		return "redirect:promanage";
 	}
-	@Autowired
-	   TutorOutService tutorOutService;//탈퇴시 이동 주소
-	   @RequestMapping("OutOk")
-	   public String OutOk(
-	         @RequestParam(value="tutorPw") String tutorPw,
-	         HttpSession session, Model model){
-	      String path = tutorOutService.tutorDelete(tutorPw, session, model);
-	      return path;
+	
+	@RequestMapping("OutOk")//탈퇴시 이동 주소
+	public String OutOk(
+	@RequestParam(value="tutorPw") String tutorPw,
+	HttpSession session, Model model){
+	String path = tutorOutService.tutorDelete(tutorPw, session, model);
+	return path;
 	   }
-	   @Autowired
-		TutorPwChangeService tutorPwChangeService ;//튜터 비번 변경
-	   @RequestMapping("pwChange")
+	   
+	   @RequestMapping("pwChange")//튜터 비번 변경
 	   public String pwChange() {
-	      return "tutor/pwChange";
+	   return "tutor/pwChange";
 	}	
 		@RequestMapping(value="pwChangeOk", method=RequestMethod.POST)//튜터 비번 변경 완료
 		public String pwChangeOk(TutorCommand tutorCommand, Errors errors, HttpSession session) {
-			tutorPwChangeService.pwChange(tutorCommand, errors, session);
-			if(errors.hasErrors()) {
-				return "tutor/pwChange";
+		tutorPwChangeService.pwChange(tutorCommand, errors, session);
+		if(errors.hasErrors()) {
+		return "tutor/pwChange";
 			}
-			return "tutor/pwChangeOk";
+		return "tutor/pwChangeOk";
 		}
 		
 }

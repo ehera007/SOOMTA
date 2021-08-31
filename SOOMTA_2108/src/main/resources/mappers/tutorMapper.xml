@@ -44,13 +44,14 @@
 	tutor_Career = #{tutorCareer},
 	tutor_Certification = #{tutorCertification},
 	tutor_FinalEdu = #{tutorFinalEdu},
-	tutor_Introduce = #{tutorIntroduce}
+	tutor_Introduce = #{tutorIntroduce},
+	tutor_Image = #{tutorImage}
 	
 	WHERE tutor_id = #{tutorId}
 </update>
 
 
-
+<!-- 튜터 개인정보  -->
 <select id="perData" parameterType="string" 
 		resultType="Model.TutorDTO">
 	select tutor_Id tutorId, tutor_Name tutorName,tutor_Since tutorSince, tutor_Dob tutorDob,tutor_Gender tutorGender, tutor_Email tutorEmail,
@@ -59,10 +60,12 @@
 	where Tutor_ID = #{tutorId}
 </select>
 
+<!-- 튜터 강의정보 -->
 <select id="promanage" parameterType="string" 
 		resultType="Model.TutorDTO">
-	select tutor_Area tutorArea, tutor_Respond tutorRespond,tutor_Career tutorCareer, 
-	tutor_Certification tutorCertification,tutor_FinalEdu tutorFinalEdu, tutor_Introduce tutorIntroduce
+	select tutor_Id tutorId, tutor_Area tutorArea, tutor_Respond tutorRespond,tutor_Career tutorCareer, 
+	tutor_Certification tutorCertification,tutor_FinalEdu tutorFinalEdu, tutor_Introduce tutorIntroduce,
+	tutor_Image tutorImage
 	from tutor
 	where Tutor_ID = #{tutorId}
 </select>

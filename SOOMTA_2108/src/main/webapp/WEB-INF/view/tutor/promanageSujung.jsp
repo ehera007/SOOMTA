@@ -5,70 +5,55 @@
 <html>
 <head>
 <style type="text/css">
-
 /*전체 글씨꼴 설정*/
 body {
 	font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
 }
-
 /*a태그 라인 삭제*/
 a:link {
 	text-decoration: none;
 }
-
 a:visited {
 	text-decoration: none;
 }
-
 a:hover {
 	text-decoration: underline;
 }
-
 /*상단 고정 a 태그 색상 변경*/
 .nav-item a:visited {
 	color: #0F4C81;
 }
-
 .nav-item a:link {
 	color: #0F4C81;
 }
-
 .nav-item a:hover {
 	color: #0F4C81;
 }
-
 /*하단 고정 a 태그 색상 등 변경*/
 .footer-menu a:linnk {
 	color: black;
 }
-
 .footer-menu a:visited {
 	color: black;
 	font-weight: bold;
 }
-
 .footer-menu a:hover {
 	color: black;
 	font-weight: bold;
 }
-
 .footer-bottom a:link {
 	color: #BEBEBE;
 	font-weight: bold;
 }
-
 .footer-bottom a:visited {
 	color: #BEBEBE;
 }
-
 .footer-bottom a:hover {
 	color: #BEBEBE;
 }
-
 .footer-submenu a {
 	margin-right: 10px;
 }
-
 /*상단 구역 분할, 색상 변경*/
 .header {
 	color: #0F4C81;
@@ -77,59 +62,49 @@ a:hover {
 	align-items: center;
 	font-weight: bold;
 }
-
 .nav {
 	color: #0F4C81;
 	display: flex;
 	margin-left: auto;
 }
-
 .nav-item {
 	margin: 15px;
 	font-size: 15px;
 }
-
 /*하단 구역 분할*/
 .footer {
 	width: 800px;
 	height: 70px;
 	margin: 0 auto;
 }
-
 .footer-top {
 	display: flex;
 	align-items: center;
 }
-
 .footer-bottom {
 	font-size: 12px;
 	color: #BEBEBE;
 }
-
 .footer-bottommenu {
 	display: flex;
 	align-items: center;
 	margin: 5px;
 }
-
 .footer-app {
 	display: flex;
 	margin-left: auto;
 }
-
 .footer-leftmenu {
 	width: 800px;
 	display: flex;
 	align-items: center;
 	display: flex;
 }
-
 .footer-rightmenu {
 	width: 400px;
 	display: flex;
 	margin-left: auto;
 }
-
 .footer-menu {
 	margin-left: 40px;
 }
@@ -139,19 +114,16 @@ a:hover {
 	font-size: 18px;
 	font-weight: bolder;
 }
-
 .footer-callTime p {
 	font-size: 14px;
 	font-weight: bold;
 }
-
 ul {
 	list-style: none;
 	padding-left: 0px;
 	font-size: 13px;
 	font-weight: bold;
 }
-
 .footer-menu p {
 	color: #0F4C81;
 	font-size: 15px;
@@ -165,58 +137,47 @@ ul {
 	padding-top: 10px;
 	padding-bottom: 15px;
 }
-
 .dropMenu {
 	align-items: center;
 	margin: 50px 0px;
 	display: flex;
 	justify-content: space-evenly;
 }
-
 .imgBox {
 	border: 1px solid black;
 	width: 200px;
 	height: 310px;
 	background-color: #0F4C81;
 }
-
 .imgTitle {
 	border: 1px solid black;
 	width: 200px;
 	height: 200px;
 }
-
 .dropList li {
 	background-color: #0F4C81;
 	text-align: center;
 	margin: 10px 0px;
 	font-size: 15px;
 }
-
 .dropList a:link {
 	color: white;
 	background-color: #0F4C81;
 }
-
 .dropList a:visited {
 	color: white;
 	background-color: #0F4C81;
 }
-
 .dropList a:hover {
 	color: white;
 }
-
 .dropMenu ul {
 	display: none;
 }
-
 .imgBox:hover ul {
 	display: block;
 }
-
 /*고정 외 중앙 테이블 스타일*/
-
 table {
     border: 2px solid #0F4C81;
     width: 650px;
@@ -227,7 +188,6 @@ table {
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     margin-bottom: 35px;
   }
-
 thead th {
    height: 50px;
    background-color: #0F4C81;
@@ -235,7 +195,6 @@ thead th {
    font-size: 25px;
    border-radius: 8px 8px 0px 0px;
 }
-
 th{
 	padding-left:45px; 
 }
@@ -245,22 +204,17 @@ th{
 	font-style: italic;
 	text-align: left;
 }
-
 .perForm{
 	width: 800px;
 	margin: 0 auto;
 	padding-top: 50px;
 	padding-bottom: 50px;
-
 }
 input {
 	display: inline-block;
 	float: left;
 	margin-right: 5px;
 }
-
-
-
 </style>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -324,10 +278,22 @@ input {
 				<tr><th>수업방식</th>
 					<td><input type="text" name="tutorLikearea" minlength="2" required
 					style="width:200px; " value="${tutor.tutorLikearea}">
+					<div class="detail">* ex) 비대면, 대면, 과외</div></td></tr>
 					
 				<tr><th>소개</th>
             	<td><textarea rows="2" cols="26" name="tutorIntroduce" value="${tutor.tutorIntroduce}"></textarea>
-				<div class="detail">* 20자 내외</div></td></tr>
+            	</td></tr>
+				
+				<tr><th>이미지</th>
+					<td><input type="file" name="tutorImage" 
+					id="tutorImage" accept="image/png, image/jpeg" value="${tutor.tutorImage}">
+					
+				
+				
+				
+				
+			
+			
 			
 					<tr><th colspan="3"align="center" style="padding-left: 250px; padding-bottom: 15px; ">
 						<input type="submit" value="수정 완료" 
