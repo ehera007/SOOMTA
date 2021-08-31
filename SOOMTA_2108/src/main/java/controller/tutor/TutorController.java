@@ -22,10 +22,6 @@ import service.tutor.TutorPromanageService;
 import service.tutor.TutorPwChangeService;
 import service.tutor.TutorUpdateService;
 
-
-
-
-
 @Controller 
 @RequestMapping("tutor")
 public class TutorController {
