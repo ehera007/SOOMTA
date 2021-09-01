@@ -224,7 +224,7 @@ ul {
 
 table {
     border: 2px solid #0F4C81;
-    width: 700px;
+    width: 630px;
     height:550px;
     margin:20px auto;
     border-spacing: 0px;
@@ -244,10 +244,11 @@ thead th {
 }
 
 th{
-	padding-left:10px; 
+  padding-left:40px;
 }
 td{
-  
+  width:380px;
+  padding-right:70px;
 }
 .detail {
 	color: grey;
@@ -266,7 +267,7 @@ td{
 </style>
    
 <meta charset="UTF-8">
-<title>tutorPromanage</title>
+<title>강의정보</title>
 </head>
 <body>
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
@@ -318,7 +319,7 @@ td{
 			</tr>
 			
 			<tr>	 
-				 <th>연락 가능 시간 </th><td>
+				 <th>연락가능시간 </th><td>
 				 <c:if test = "${tutor.tutorRespond == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorRespond != null}">${tutor.tutorRespond}</c:if>
 				 </td>
@@ -347,9 +348,9 @@ td{
                    <th colspan="2" style="padding-left: 10px; ">
                    		<div class="allbtn">
 							<a href="<c:url value='/tutor/promanageSujung'/>" 
-							style="text-decoration:none;">수정하기</a>&emsp;&emsp;
+							style="text-decoration:none;">수정하기</a>&emsp;
 							<a href="<c:url value='/tutor/myPage'/>"
-							style="text-decoration:none;">뒤로가기</a>
+							style="text-decoration:none;">확인</a>
 						</div>
 						
 					</th>

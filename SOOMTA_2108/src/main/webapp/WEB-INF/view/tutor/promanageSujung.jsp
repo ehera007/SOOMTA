@@ -198,6 +198,7 @@ thead th {
 th{
 	padding-left:45px; 
 }
+
 .detail {
 	color: grey;
 	font-size: 8px;
@@ -230,7 +231,7 @@ input {
  
 
 <meta charset="UTF-8">
-<title>정보수정</title>
+<title>강의정보 수정</title>
 </head>
 <body>
 
@@ -277,16 +278,17 @@ input {
 					<div class="detail">* ex) 평일 오후 12시~5시</div></td></tr>
 				<tr><th>수업방식</th>
 					<td><input type="text" name="tutorLikearea" minlength="2" required
-					style="width:200px; " value="${tutor.tutorLikearea}">
+					style="width:200px;" value="${tutor.tutorLikearea}">
 					<div class="detail">* ex) 비대면, 대면, 과외</div></td></tr>
 					
 				<tr><th>소개</th>
-            	<td><textarea rows="2" cols="26" name="tutorIntroduce" value="${tutor.tutorIntroduce}"></textarea>
+            	<td><textarea rows="4" cols="26" name="tutorIntroduce" >${tutor.tutorIntroduce}</textarea>
             	</td></tr>
 				
 				<tr><th>이미지</th>
-					<td><input type="file" name="tutorImage" 
-					id="tutorImage" accept="image/png, image/jpeg" value="${tutor.tutorImage}">
+					<td>${tutor.tutorImage}<br />
+					<input type="file" name="tutorImage" 
+					id="tutorImage" accept="image/png, image/jpeg">
 					
 				
 				

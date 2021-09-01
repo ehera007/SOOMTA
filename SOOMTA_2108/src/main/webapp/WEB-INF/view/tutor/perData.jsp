@@ -289,7 +289,7 @@ td{
     </script>
 
 <meta charset="UTF-8">
-<title>tutorPerData</title>
+<title>튜터 개인정보</title>
 </head>
 <body>
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
@@ -344,12 +344,12 @@ td{
 		        
                    <th colspan="2" style="padding-right: 60px;">
                    		<div class ="allbtn" >
+                   			<a href="<c:url value='/tutor/pwChange'/>"
+							style="text-decoration:none;">PW변경</a>&emsp;
 							<a href="<c:url value='/tutor/sujung'/>"
 							style="text-decoration:none;">수정하기</a>&emsp;
-              				<a href="<c:url value='/tutor/pwChange'/>"
-							style="text-decoration:none;">PW변경</a>&emsp;
 		                    <a href="<c:url value='/tutor/myPage'/>" 
-							style="text-decoration:none;">뒤로가기</a>
+							style="text-decoration:none;">확인</a>
 							
 						</div>
 						
