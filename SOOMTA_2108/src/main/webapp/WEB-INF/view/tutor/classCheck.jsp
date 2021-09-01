@@ -251,7 +251,7 @@ a:hover {
 	function classDel() {
 		alert("삭제하시겠습니까?");
 		if(confirm("삭제하시면 복구하실수없습니다.")){
-			javascript:location.href='classDelete?classNo=${dto.classNo }';
+			javascript:location.href='classDelete?classNo=${dto.classNo}';
 		}else{
 			return false;
 		}
@@ -264,25 +264,21 @@ a:hover {
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
-			onclick="location.href='/SOOMTA_2108/main'" />
-		<!-- 로그인 안된 경우 -->
+		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="nav">
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/login'/>">로그인</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
-			</div>
-		</div>
+         <div class="nav-item">
+            <a href="myPage">마이페이지</a>
+         </div>
+         <div class="nav-item">
+            <a href="../soomta/logOut">로그아웃</a>
+         </div>
+      </div>
 	</div>
 	<!-- 메인 -->
 	<div class="main">
 		<section class="formSize">
 			<div id="ClassCheckTitle"><h2>${dto.className }</h2></div>
+			<input type="hidden" name="classNo" value="${classNo }"/>
 				<span id="title">분류</span>
 				대분류
 				<c:if test="${dto.classCategoryL == 'STUDY' }">학업</c:if>
@@ -320,8 +316,9 @@ a:hover {
 				<span id="title">첨부파일</span>
 				${dto.classImg }<br/>
 				<div class="Taglocation">
-					<a id="btncolor" href="classRetouch?classNo=${dto.classNo }">수정하기</a> / 
-					<input id="btncolor" type="button" value="삭제하기" onclick="classDel()" />
+					<a id="btncolor" href="classRetouch?classNo=${dto.classNo }">수정하기</a>  
+					<input id="btncolor" type="button" value="삭제하기" onclick="classDel()" /> 
+					<a id="btncolor" href="javascript:history.back()">취소</a>
 				</div>
 		</section>
 	</div>

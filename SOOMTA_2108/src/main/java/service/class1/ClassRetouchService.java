@@ -29,12 +29,14 @@ public class ClassRetouchService {
 		dto.setClassIntroduce(classCommand.getClassIntroduce());
 		dto.setClassNo(classCommand.getClassNo());
 		
-		//사진 수정해야함
+		ClassDTO dto1 = classRepository.classDetail(classCommand.getClassNo().toString());
+		dto.setClassImg(dto1.getClassImg());
+		
+		/* 이미지 수정 보류
 		String [] fileName = classCommand.getFileDel().split(",");
 		ClassDTO dto1 = classRepository.classDetail(classCommand.getClassNo().toString());
 		dto.setClassImg(dto1.getClassImg());
-		String realPath = session.getServletContext()
-				.getRealPath("WEB-INF/view/tutor/upload");
+		String realPath = session.getServletContext().getRealPath("WEB-INF/view/tutor/upload");
 		String storeFile = ""; 
 		if(!classCommand.getClassImg()[0].getOriginalFilename().equals("") ) {
 			for(MultipartFile mf : classCommand.getClassImg()) {
@@ -48,6 +50,7 @@ public class ClassRetouchService {
 				storeFile = storeFile + store + ","; 
 			}
 		}
+		
 		String classFileName = dto1.getClassImg();
 		if(!fileName[0].equals("")) {	
 			for(String s : fileName) {
@@ -62,7 +65,7 @@ public class ClassRetouchService {
 			dto.setClassImg(storeFile + dto.getClassImg());
 		}else {
 			dto.setClassImg(storeFile);
-		}
+		}*/
 		classRepository.classRetouch(dto);
 	}	
 }

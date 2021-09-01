@@ -1,6 +1,9 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -475,9 +478,9 @@ a:hover {
 		<table>
 			<tr style="color: #0F4C81;">
 				<td><a href="./../../class/mainCtgr">Class </a>></td>
-				<td><a href="./../../../SOOMTA_2108/class/education">메인카테고리
+				<td><a href="./../../../SOOMTA_2108/class/education">${list[0].classCategoryL }
 				</a>></td>
-				<td>세부카테고리</td>
+				<td>${list[0].classCategoryS }</td>
 			</tr>
 		</table>
 		<br />
@@ -516,11 +519,20 @@ a:hover {
 			</select>
 		</form>
 		<table style="margin: auto; text-align: center;">
-			<tr>
-				<td width="150" height="150"><a href="../../class/classDetailPage"> <img width="150"
-						height="150" src="#"/></a><br /> 상품 500원 </td>
+			<tr style="vertical-align: bottom;">
+			<c:forEach items="${list }" var="dto" varStatus="cnt">
+				<td width="200" height="250" >
+				<a href="../../class/classDetailPage?classNo=${dto.classNo }"> 
+				<img width="150" height="150" src="../../class/upload/${dto.classImg.split(',')[0] }"/><br/>
+				${dto.className}<br/>
+				${dto.classPrice}원
+				</a>
+				</td>
+				<c:if test="${cnt.count % 4 == 0 }">
+				</tr><tr>
+				</c:if>
+			</c:forEach>
 			</tr>
-			<!-- 쇼핑물 페이지처럼 c:if문 돌려서 4개 가져오시면 될거 같습니다 -->
 		</table>
 		<div class="page">
 			<ul class="pagination">

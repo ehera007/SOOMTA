@@ -18,8 +18,7 @@ public class ClassDTO {
 	String classWay;//
 	String classState;
 	String classTotal;
-	
-	
+
 	public String getClassTotal() {
 		return classTotal;
 	}

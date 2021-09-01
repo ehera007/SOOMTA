@@ -280,17 +280,17 @@ td a:active {
       <img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
       <div class="nav">
          <div class="nav-item">
-            <a href="#">마이페이지</a>
+            <a href="myPage">마이페이지</a>
          </div>
          <div class="nav-item">
-            <a href="#">로그아웃</a>
+            <a href="../soomta/logOut">로그아웃</a>
          </div>
       </div>
    </div>
    
    <div class="myClassTitle">
-         <h1>''님의 강의 목록</h1>
-         <p>숨타에서 총 n개의 강의를 개설하셨슴돠</p>
+         <h1>'${list[0].tutorId }'님의 강의 목록</h1>
+         <p>숨타에서 총 ${classCount }개의 강의를 개설하셨습니다 :)</p>
       </div>
       <!-- 타이틀 -->
    <table>
@@ -317,7 +317,7 @@ td a:active {
 			<c:if test="${dto.classCategoryL == 'EMP' }">취업</c:if>
 			<c:if test="${dto.classCategoryL == 'ETC' }">기타</c:if> / 
 			${dto.classCategoryS }</td>
-         <td>${dto.className }</td>
+         <td><a href="../class/classDetailPage?classNo=${dto.classNo }">${dto.className }</a></td>
          <td>
          	<fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd"/>
          	~

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -60,6 +60,7 @@ height:100%;
 	<div class="header">
 				<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<!-- 로그인 안된 경우 -->
+		<c:if test="${empty logIn }">
 		<div class="nav">
 			<div class="nav-item">
 				<a href="<c:url value='/soomta/login'/>">로그인</a>
@@ -71,6 +72,18 @@ height:100%;
 				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
 			</div>
 		</div>
+		</c:if>
+		<!-- 로그인 된 경우 -->
+		<c:if test="${!empty logIn }">
+		<div class="nav">
+         <div class="nav-item">
+            <a href="myPage">마이페이지</a>
+         </div>
+         <div class="nav-item">
+            <a href="../soomta/logOut">로그아웃</a>
+         </div>
+      </div>
+      </c:if>
 	</div>
 	<!-- 중앙 : 검색바, 선택 -->
 	<div class="mypageTitle">

@@ -287,7 +287,7 @@ a:hover {
 	<div class="header">
 		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
 			onclick="location.href='/SOOMTA_2108/main'" />
-		<!-- 로그인 안된 경우 -->
+		<!-- 상단메뉴 -->
 		<div class="nav">
 			<div class="nav-item">
 				<a href="myPage">마이페이지</a>

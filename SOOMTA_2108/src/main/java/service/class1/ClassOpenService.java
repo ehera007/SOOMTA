@@ -23,27 +23,16 @@ public class ClassOpenService {
 	public void classOpen(ClassCommand classCommand, HttpSession session) {
 		ClassDTO dto = new ClassDTO();
 		dto.setClassCategoryL(classCommand.getClassCategoryL());
-		System.out.println("1"+dto.getClassCategoryL());
 		dto.setClassCategoryS(classCommand.getClassCategoryS());
-		System.out.println("2"+dto.getClassCategoryS());
 		dto.setClassName(classCommand.getClassName());
-		System.out.println("3"+dto.getClassName());
 		dto.setClassStart(classCommand.getClassStart());
-		System.out.println("4"+dto.getClassStart());
 		dto.setClassEnd(classCommand.getClassEnd());
-		System.out.println("5"+dto.getClassEnd());
 		dto.setClassTotal(classCommand.getClassTotal());
-		System.out.println("6"+dto.getClassTotal());
 		dto.setClassPrice(classCommand.getClassPrice());
-		System.out.println("7"+dto.getClassPrice());
 		dto.setClassWay(classCommand.getClassWay());
-		System.out.println("8"+dto.getClassWay());
 		dto.setClassGender(classCommand.getClassGender());
-		System.out.println("9"+dto.getClassGender());
 		dto.setClassIntroduce(classCommand.getClassIntroduce());
-		System.out.println("10"+dto.getClassIntroduce());
 		dto.setClassNo(classCommand.getClassNo());
-		System.out.println("11"+dto.getClassNo());
 			
 		String classImg= "";
 			for(MultipartFile mf : classCommand.getClassImg()) {

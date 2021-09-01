@@ -16,8 +16,7 @@ public class ClassDeleteService {
 		ClassDTO dto = classRepository.classDetail(classNo);
 		if(dto.getClassImg() != null) {
 			String [] fileNames = dto.getClassImg().split(",");
-			String realPath = 
-					session.getServletContext().getRealPath("WEB-INF/view/tutor/upload");
+			String realPath = session.getServletContext().getRealPath("WEB-INF/view/tutor/upload");
 			if(fileNames != null  && !fileNames[0].equals("")) {
 				for(String fileName : fileNames) {
 					File file = new File(realPath + "/" + fileName);

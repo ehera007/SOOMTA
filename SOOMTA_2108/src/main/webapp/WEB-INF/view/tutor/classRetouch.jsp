@@ -305,6 +305,7 @@ a:hover {
 		<section class="formSize">
 			<div id="classRetouchTitle"><h2>강의 수정</h2></div>
 			<form:form name="classRetouch" action="classRetouchOk" method="post" modelAttribute="classCommand" enctype="multipart/form-data">
+			<input type="hidden" name="classNo"value="${dto.classNo}"/>
 				<span id="title">분류</span>
 				<select onchange="classMainCategory(this)" name="classCategoryL">
 					<option value="STUDY"
@@ -334,11 +335,11 @@ a:hover {
 				<span id="title">수업방식</span>
 				<select name="classWay">
         			<option value="s"
-        			<c:if test="${dto.classWay == 's'}">selected</c:if>>과외</option>
+        			<c:if test="${dto.classWay.trim() == 's'}">selected</c:if>>과외</option>
         			<option value="g"
-        			<c:if test="${dto.classWay == 'g'}">selected</c:if>>그룹</option>
+        			<c:if test="${dto.classWay.trim() == 'g'}">selected</c:if>>그룹</option>
         			<option value="n"
-        			<c:if test="${dto.classWay == 'n'}">selected</c:if>>비대면</option>
+        			<c:if test="${dto.classWay.trim() == 'n'}">selected</c:if>>비대면</option>
 				</select><br/>
 				<span id="title">수강생 성별</span>
 				<input type="radio" name="classGender" value="m"
@@ -350,13 +351,7 @@ a:hover {
 				<span id="title">강의 내용</span>
 				<input type="text" name="classIntroduce" value="${dto.classIntroduce }"><br/>
 				<span id="title">첨부파일</span>
-				<c:forTokens items="${dto.classImg }" delims="," var="classImg">
-				<p>
 				<span id="fileName">${dto.classImg }</span>
-				<input type="button" id = "btn" value="삭제" onclick = "fileDel(this)"/>
-				</p>
-				</c:forTokens>
-				<input type="file" name="classImg" multiple="multiple"/><br/>
 				<div class="submitlocation">
 					<input id="submitClass" type="submit" value="수정하기"/> / 
 					<a id="submitClass" href="MylectureList">취소하기</a>

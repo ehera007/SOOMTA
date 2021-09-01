@@ -27,7 +27,7 @@ public class ClassRepository {
 		return sqlSession.selectList(statement, tutorId);
 	}
 	
-	public ClassDTO classDetail(String classNo) {
+	public ClassDTO classDetail(String classNo) { //클래스 상세보기
 		statement = namespace + ".classDetail";
 		return sqlSession.selectOne(statement, classNo);
 	}
@@ -37,8 +37,21 @@ public class ClassRepository {
 		sqlSession.delete(statement, classNo);
 	}
 	
-	public void classRetouch(ClassDTO dto) {
+	public void classRetouch(ClassDTO dto) { //클래스 수정
 		statement = namespace + ".classRetouch";
 		sqlSession.update(statement, dto);
+	}
+	
+	public int classCount(String tutorId) { //클래스 생성 수
+		statement = namespace + ".classCount";
+		return sqlSession.selectOne(statement, tutorId);
+	}
+	public List<ClassDTO> classList(String classCategoryS ){ //메인 클래스 리스트
+		statement = namespace + ".classList";
+		return sqlSession.selectList(statement, classCategoryS);
+	}
+	public ClassDTO classDetailPage(String classNo) {
+		statement = namespace + ".classDetailPage";
+		return sqlSession.selectOne(statement, classNo);
 	}
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -97,13 +97,11 @@ height:100%;
 			<div class="main-item">
 			
 			<a href="education/medium">
-				<img src="../images/categories/education_detail/medium.png" 
-					alt="중등" /></a>
+				<img src="../images/categories/education_detail/medium.png" alt="중등" /></a>
 			</div>
 			<div class="main-item">
 			<a href="education/employeement">
-				<img src="../images/categories/education_detail/college.png" 
-					alt="입시/편입" /></a>
+				<img src="../images/categories/education_detail/college.png" alt="입시/편입" /></a>
 			</div>
 			<div class="main-item">
 			<a href="education/ect">

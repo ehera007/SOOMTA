@@ -1,11 +1,18 @@
 package controller.class1;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import service.class1.ClassDetailPageService;
 
 @Controller
 @RequestMapping("class")
 public class ClassCtgrController {
+	@Autowired
+	ClassDetailPageService classDetailPageService;
 	//학업
 	@RequestMapping("mainCtgr")
 	public String classMainCtgr(){
@@ -36,8 +43,9 @@ public class ClassCtgrController {
 	public String ect() {
 		return "class/ectCrgr";
 	}
-	@RequestMapping("classDetailPage")
-	public String classDetailPage() {
+	@RequestMapping("classDetailPage") //클래스 상세보기 페이지
+	public String classDetailPage(@RequestParam(value="classNo") String classNo, Model model) {
+		classDetailPageService.classDetailPage(classNo, model);
 		return "class/classDetailPage";
 	}
 }

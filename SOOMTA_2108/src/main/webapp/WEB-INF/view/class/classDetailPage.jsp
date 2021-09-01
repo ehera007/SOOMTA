@@ -2,6 +2,7 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	<%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -427,19 +428,47 @@ header a:hover {
 		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
 			onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="search">검색바</div>
+		
+		
 		<!-- 로그인 안된 경우 -->
+		<c:if test="${empty logIn }">
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">로그인</a>
+				<a href="<c:url value='/soomta/login'/>">로그인</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">튜터등록</a>
+				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">무료회원가입</a>
+				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
 			</div>
 		</div>
+	</c:if>
+		
+			<!-- 로그인 된 경우 -->
+	<c:if test="${!empty logIn }">
+	<div class="nav">
+	<!-- 관리자 -->
+	<c:if test="${logIn.grade == 'emp' }">
+	<div class="nav-item">
+		<a href="<c:url value='/emp/main'/>">마이페이지</a></div></c:if>
+	<!-- 튜터 -->
+	<c:if test="${logIn.grade == 'tutor' }">
+	<div class="nav-item">
+	<a href="<c:url value='/tutor/myPage'/>">마이페이지</a></div></c:if>
+	<!-- 멤버 -->
+	<c:if test="${logIn.grade == 'mem' }">
+	<div class="nav-item">
+	<a href="<c:url value='/member/myPage'/>">마이페이지</a></div></c:if>
+	<!-- 로그아웃 -->
+	<div class="nav-item">
+		<a href="<c:url value='/soomta/logOut'/>">로그아웃</a></div>	
 	</div>
+	</c:if>
+		
+	</div>
+	
+	
 	<!-- 중앙 : 검색바, 선택 -->
 	<div class="main">
 		<div class="allmain">
@@ -553,33 +582,52 @@ header a:hover {
 					</div>
 				</div>
 			</div>
-
-
+			<form action="#" method="post">
+			<input type="hidden" name="classNo" value="${dto.classNo }"/>
 			<div class="main_right">
 				<div class="topcate">
-					<div class="topcate-left" style="color: #0F4C81;">메인카테고리</div>
-					<div class="topcate-right" style="color: #0F4C81;">> 세부카테고리</div>
+					<div class="topcate-left" style="color: #0F4C81;">${dto.classCategoryL }</div>
+					<div class="topcate-right" style="color: #0F4C81;">> ${dto.classCategoryS }</div>
 				</div>
 				<div class="introtop">
-					<div class="intro-detail1">강의사진</div>
+					<div class="intro-detail1">${dto.classImg }</div>
 					<div class="intro-detail2">
-						<div class="intro-title">강의명 title</div>
-						<div class="intro-price">10,000원</div>
-						<div class="intro-content1">소제목</div>
-						<div class="intro-content2">내용</div>
-						<div class="intro-during">학습기간</div>
-						<div class="intro-memberno">수강생수</div>
-						<div class="intro-classkind">수업방식</div>
-						<div class="button-4">
-							<div class="eff-4"></div>
-							<a href="../member/classCart"> 구매하기 </a>
-						</div>
-						<div class="button-4">
-							<div class="eff-4"></div>
-							<a href="#"> 문의하기 </a>
-						</div>
+					<div class="intro-title">
+					강의명 ${dto.className }
 					</div>
-				</div>
+					<div class="intro-price">
+					가격 ${dto.classPrice } 원
+					</div>
+					<div class="intro-content1">
+					성별 
+					<c:if test="${dto.classGender == 'm' }">남자</c:if>
+					<c:if test="${dto.classGender == 'w' }">여자</c:if>
+					<c:if test="${dto.classGender == 'x' }">무관</c:if>
+					</div>
+					<div class="intro-content2">
+					내용 ${dto.classIntroduce }
+					</div>
+					<div class="intro-during">학습기간 
+					<fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd"/> ~ 
+					<fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd"/>
+					</div>
+					<div class="intro-memberno">수강생수 ${dto.classTotal } 명</div>
+					<div class="intro-classkind">
+					수업방식 
+					<c:if test="${dto.classWay.trim() == 's'}">과외</c:if>
+        			<c:if test="${dto.classWay.trim() == 'g'}">그룹</c:if>
+					<c:if test="${dto.classWay.trim() == 'n'}">비대면</c:if>
+					</div>
+					<div class="button-4">
+					<div class="eff-4"></div>
+						<input type="submit" value="구매하기" />
+					</div>
+					<div class="button-4">
+						<div class="eff-4"></div>
+						<a href="#"> 문의하기 </a>
+					</div>
+					</div>
+				</div></div></form>
 				<div class="middle-button">
 					<div class="button-4">
 						<div class="eff-4"></div>
@@ -609,16 +657,15 @@ header a:hover {
 				<a name="satisfyreView"></a> <!-- 후기위치 이동 -->
 				<div class="satisfyreview"><a href="../tutor/reviewView">만족도/후기</a></div>
 			</div>
+
 		</div>
 	</div>
 	
 	<!-- TOP이동 -->
-	<a style="position: fixed; bottom: 3px; right: 17px;"
-		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
-	</a>
+	<a style="position: fixed; bottom: 3px; right: 17px;"href="#" class="Top"> <img src="../images/top.png" alt="topicon"></a>
 	<!-- 하단 문의하기/구매하기 고정 -->
 	<header>
-	<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 170px;"><a href="../member/classCart">구매하기</a></div>
+	<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 170px;"> <a href="../member/classCart">구매하기</a></div>
 	<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 60px;"><a href="#">문의하기</a></div>
 	</header>
 	<!-- 하단 고정 -->

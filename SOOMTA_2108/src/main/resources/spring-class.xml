@@ -20,4 +20,6 @@
 	<bean class="service.class1.ClassDetailService"/>
 	<bean class="service.class1.ClassDeleteService"/>
 	<bean class="service.class1.ClassRetouchService"/>
+	<bean class="service.class1.ClassListService"/>
+	<bean class="service.class1.ClassDetailPageService"/>
 </beans>

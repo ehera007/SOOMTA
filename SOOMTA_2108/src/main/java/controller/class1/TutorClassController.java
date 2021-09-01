@@ -28,7 +28,7 @@ public class TutorClassController {
 	ClassNumberService classNumberService;
 	@Autowired
 	ClassDetailService classDetailService;
-
+	@Autowired
 	ClassDeleteService classDeleteService;
 	@Autowired
 	ClassRetouchService classRetouchService;
@@ -62,19 +62,15 @@ public class TutorClassController {
 		classDetailService.classDetail(classNo, model);
 		return "tutor/classCheck";
 	}
-	@RequestMapping("classRetouch") //클래스 수정````
+	@RequestMapping("classRetouch") //클래스 수정 페이지이동
 	public String classRetouch(@RequestParam(value = "classNo") String classNo, Model model) {
 		classDetailService.classDetail(classNo, model);
 		return "tutor/classRetouch";
 	}
-	@RequestMapping("classRetouchOk") //클래스 수정2
+	@RequestMapping("classRetouchOk") //클래스 수정하기
 	public String classRetouch(ClassCommand classCommand, HttpSession session) {
 		classRetouchService.classRetouch(classCommand, session);
 		return "redirect:MylectureList";
-	}
-	@RequestMapping("classRetouchCheck") //클래스 수정 확인````
-	public String classRetouchCheck() {
-		return "tutor/classRetouchCheck";
 	}
 	@RequestMapping("classDelete") //클래스 삭제
 	public String classDelete(@RequestParam(value="classNo") String classNo, HttpSession session) {
