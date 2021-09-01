@@ -103,9 +103,11 @@ function funcCon(){
 			<td width="35%" style="padding-right: 50px;"><span class="th">작성자 :</span> ${faq.empId }</td></tr>
 			<tr><td colspan="3" style="padding-right: 50px;"><span class="th">제목 :</span> ${faq.faqTitle }</td></tr>
 			<tr><td colspan="3" style="padding-right: 50px;">
-			<!------ 선생님 질문, 한줄 띄기 안 되는건지 ------->
-			<span class="th">내용 :</span>${fn:replace(faq.faqContents, cn , "<br />") }</td></tr>
-			<tr><td colspan="3" style="padding-right: 50px;"><span class="th">첨부 이미지 :</span> ${faq.faqImg }</td></tr></tbody><tfoot>
+			<span class="th">내용 </span><br/><br/>${fn:replace(faq.faqContents, br , "<br />") }</td></tr>
+			<tr><td colspan="3" style="padding-right: 50px;"><span class="th">첨부 이미지 </span> 
+			<c:forEach items="${faq.faqImg }" var="dto">
+				<br/>${dto}</c:forEach>
+			</td></tr></tbody><tfoot>
 					<tr>
 				<th colspan="3">
 				<input class="btn" type="button" value="리스트"

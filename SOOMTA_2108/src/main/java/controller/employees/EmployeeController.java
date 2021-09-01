@@ -69,15 +69,15 @@ public class EmployeeController {
 		infoService.boardInfo(faqNo, model);
 		return "emp/board/boardInfo";
 	}
-	//////게시판 수정-파일삭제, 추가 해야됨+수정 후 날짜 당일로 변경////////////////////////
+	//////게시판 수정-+수정 후 날짜 당일로 변경////////////////////////
 	@RequestMapping("boardMod")//게시판 수정
 	public String boardMod(@RequestParam(value="faqNo") String faqNo, Model model) {
 		infoService.boardInfo(faqNo, model);
 		return "emp/board/boardMod";
 	}
 	@RequestMapping(value="boardModOk", method=RequestMethod.POST)//게시판 수정 완료
-	public String boardModOk(FaqCommand faqCommand) {
-		updateService.boardUpdate(faqCommand);
+	public String boardModOk(FaqCommand faqCommand, HttpSession session) {
+		updateService.boardUpdate(faqCommand, session);
 		Long faqNo = faqCommand.getFaqNo();
 		return "redirect:boardInfo?faqNo="+faqNo;
 	}

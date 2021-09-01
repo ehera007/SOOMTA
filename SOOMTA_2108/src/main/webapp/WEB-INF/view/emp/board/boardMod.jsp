@@ -31,12 +31,13 @@ thead th {
 	border-radius: 8px 8px 0px 0px;
 }
 th {
-    padding:10px;
+    padding-top: 30px;
     width:25%;
+vertical-align: top;
   }
   
   td{
-    padding:10px;
+    padding-top: 30px;
   width:75%;
   margin-right:10px;
   }
@@ -48,6 +49,9 @@ th {
 	font-weight: bold;
 	margin: 30px 10px 10px 10px;
 	border: none;
+}
+.file{
+	padding-bottom:10px;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -62,19 +66,19 @@ th {
 		});
 	});
 </script>
-<!-- select box -->
+<!-- select box e.value-->
 <script>
-function ctgrChange(e){
+function ctgrChange(){
 	var soomta=["회사소개","서비스안내","인재채용"]
 	var tutor=["공지사항", "이용안내", "자주묻는질문"];
 	var member=["공지사항", "이용안내", "자주묻는질문"];
 	var policy=["이용약관","개인정보처리방침","환불정책","사업자정보확인"]
 	var target=document.getElementById("faq_ctgr2");
 	
-	if(e.value=="tutor") var d = tutor;
-	else if(e.value == "member") var d = member;
-	else if(e.value == "soomta") var d = soomta;
-	else if(e.value == "policy") var d = policy;
+	if('${faq.faqCategory}'=="tutor") var d = tutor;
+	else if('${faq.faqCategory}' == "member") var d = member;
+	else if('${faq.faqCategory}' == "soomta") var d = soomta;
+	else if('${faq.faqCategory}' == "policy") var d = policy;
 	
 	target.options.length = 0;
 	
@@ -85,6 +89,7 @@ function ctgrChange(e){
 		target.appendChild(opt);
 	}
 }
+ctgrChange();
 </script>
 <!-- 수정 확인 알림창 -->
 <script type="text/javascript">
@@ -121,7 +126,7 @@ function funcCon(){
 	<!-- 중앙 -->
 	<div class="main">
 <form action="boardModOk?faqNo=${faq.faqNo }" method="post" name="frm" enctype="multipart/form-data" onsubmit="return funcCon()"> 
-<input type="hidden" name="empId" value="${faq.empId }"/>
+<input type="hidden" name="faqNo" value="${faq.faqNo }"/>
 <table align="center"><thead>
 			<tr>
 				<th colspan="2"
@@ -130,7 +135,7 @@ function funcCon(){
 			</tr></thead>
 			<tr>
 				<th>No.</th>
-				<td>"${faq.faqNo}"</td>
+				<td>${faq.faqNo}</td>
 			</tr>
 			<tr>
 				<th>분류</th>
@@ -143,6 +148,23 @@ function funcCon(){
 				</select>
 				<select id="faq_ctgr2" name="faqCtgrS" style="margin-left:5px;">
 						<option value="option2">--세부--</option>
+						<c:if test="${faq.faqCategory == 'soomta'}">
+						<option value="회사소개" <c:if test="${faq.faqCtgrS == '회사소개'}">selected</c:if> >회사소개</option>
+						<option value="서비스안내" <c:if test="${faq.faqCtgrS == '서비스안내'}">selected</c:if> >서비스안내</option>
+						<option value="인재채용" <c:if test="${faq.faqCtgrS == '인재채용'}">selected</c:if> >인재채용</option></c:if>
+						<c:if test="${faq.faqCategory == 'tutor'}">
+						<option value="공지사항" <c:if test="${faq.faqCtgrS == '공지사항'}">selected</c:if> >공지사항</option>
+						<option value="이용안내" <c:if test="${faq.faqCtgrS == '이용안내'}">selected</c:if> >이용안내</option>
+						<option value="자주묻는질문" <c:if test="${faq.faqCtgrS == '자주묻는질문'}">selected</c:if> >자주묻는질문</option></c:if>
+						<c:if test="${faq.faqCategory == 'member'}">
+						<option value="공지사항" <c:if test="${faq.faqCtgrS == '공지사항'}">selected</c:if> >공지사항</option>
+						<option value="이용안내" <c:if test="${faq.faqCtgrS == '이용안내'}">selected</c:if> >이용안내</option>
+						<option value="자주묻는질문" <c:if test="${faq.faqCtgrS == '자주묻는질문'}">selected</c:if> >자주묻는질문</option></c:if>
+						<c:if test="${faq.faqCategory == 'policy'}">
+						<option value="이용약관" <c:if test="${faq.faqCtgrS == '이용약관'}">selected</c:if> >이용약관</option>
+						<option value="개인정보처리방침" <c:if test="${faq.faqCtgrS == '개인정보처리방침'}">selected</c:if> >개인정보처리방침</option>
+						<option value="환불정책" <c:if test="${faq.faqCtgrS == '환불정책'}">selected</c:if> >환불정책</option>
+						<option value="사업자정보확인" <c:if test="${faq.faqCtgrS == '사업자정보확인'}">selected</c:if> >사업자정보확인</option></c:if>
 				</select></td>
 			</tr>
 			<tr>
@@ -151,11 +173,18 @@ function funcCon(){
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="faqContents"rows="20" cols="55" required>${fn:replace(faq.faqContents, cn , "<br />") }</textarea></td>
+				<td><textarea name="faqContents"rows="20" cols="55" required>${faq.faqContents}</textarea></td>
 			</tr>
 			<tr>
-				<th>파일</th>
-				<td><input type="file" name="faqImg " multiple="multiple" /></td>
+				<th>기존 파일</th>
+				<td>
+				<c:forTokens items="${faq.faqImg  }" delims="," var="faqImg">
+					<div class="file"><span id="fileName">${faqImg } </span> 
+					<input type="button" id = "btn" value="삭제" 
+						onclick = "fileDel(this)"/><br/></div>
+				</c:forTokens></td></tr>
+			<tr><th>삭제 파일</th><td><input type="text" name="fileDel1" id = "fileDel1" size="53"/></td></tr>
+			<tr><th>파일 추가 </th><td><input type="file" name="faqImg" multiple="multiple"/></td>
 			</tr>
 			<tr>
 				<th colspan="2"><div class="allbtn"><input class="btn" type="submit" value="수정완료"/> 
@@ -164,7 +193,23 @@ function funcCon(){
 			</tr>
 		</table>
 </form></div>
-
+<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-latest.js" ></script>
+<script type="text/javascript">
+	function fileDel(btn){
+			var delFile = $("#fileDel1").val()
+			if($(btn).attr("value") == "삭제"){
+				$(btn).attr("value","삭제취소");
+				$("#fileDel1").val(
+						$(btn).parent().children("#fileName").text().trim()+"," 
+						+ delFile)
+			}else{
+				$(btn).attr("value","삭제");
+				fileName = $(btn).parent().children("#fileName").text().trim()+",";
+				$("#fileDel1").val(delFile.replace(fileName,""));
+			}
+	}
+</script>
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
 		class="Top"> <img src="../images/top.png" alt="topicon">

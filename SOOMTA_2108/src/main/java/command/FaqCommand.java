@@ -13,7 +13,16 @@ public class FaqCommand {
 	String faqTitle;
 	Date faqDate;
 	String faqCtgrS;
+	String fileDel1;
 	
+	
+	
+	public String getFileDel1() {
+		return fileDel1;
+	}
+	public void setFileDel1(String fileDel1) {
+		this.fileDel1 = fileDel1;
+	}
 	public Long getFaqNo() {
 		return faqNo;
 	}

@@ -1,11 +1,18 @@
 package service.employee;
 
 
+import java.io.File;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.Errors;
+import org.springframework.web.multipart.MultipartFile;
 
 import Model.FaqDTO;
+import Model.LogInDTO;
 import Model.MemberDTO;
 import Model.TutorDTO;
 import command.FaqCommand;
@@ -18,16 +25,53 @@ public class UpdateService {
 	EmployeeRepository employeeRepository;
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-	public void boardUpdate(FaqCommand faqCommand) {
+	public void boardUpdate(FaqCommand faqCommand, HttpSession session) {
 		FaqDTO dto = new FaqDTO();
 		dto.setEmpId(faqCommand.getEmpId());
 		dto.setFaqCategory(faqCommand.getFaqCategory());
 		dto.setFaqContents(faqCommand.getFaqContents());
 		dto.setFaqCtgrS(faqCommand.getFaqCtgrS());
-		//dto.setFaqImg(faqCommand.getFaqImg());
 		dto.setFaqTitle(faqCommand.getFaqTitle());
-		employeeRepository.boardUpdate(dto);
-		}
+		LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");
+		dto.setEmpId(logIn.getUserId());
+		
+		String [] fileNames = faqCommand.getFileDel1().split(",");
+		FaqDTO dto1 = employeeRepository.boardInfo(faqCommand.getFaqNo().toString());
+				dto.setFaqImg(dto1.getFaqImg());
+				String realPath = session.getServletContext()
+						.getRealPath("WEB-INF/view/emp/board/uploadImg");
+				String storeFile = ""; 
+				if(!faqCommand.getFaqImg()[0].getOriginalFilename().equals("") ) {
+					for(MultipartFile mf : faqCommand.getFaqImg()) {
+						String original = mf.getOriginalFilename();
+						String fileNameExt = original.substring(
+								original.lastIndexOf("."));
+						String store = 
+								UUID.randomUUID().toString().replace("-", "")
+								+fileNameExt;
+						File file = new File(realPath + "/" + store);
+						try {mf.transferTo(file);} 
+						catch (Exception e) {e.printStackTrace();} 
+						storeFile = storeFile + store + ","; 
+					}
+				}
+				String faqImgName = dto1.getFaqImg();
+				if(!fileNames[0].equals("")) {	
+					for(String s : fileNames) {
+						String delfile = s+ ",";
+						faqImgName = faqImgName.replace(delfile,"");
+						File file = new File(realPath + "/" + s);
+						if(file.exists()) {file.delete();}
+					}
+					dto.setFaqImg(faqImgName);
+				}
+				if(dto.getFaqImg() != null) {
+					dto.setFaqImg(storeFile + dto.getFaqImg());
+				}else {
+					dto.setFaqImg(storeFile);
+				}
+				employeeRepository.boardUpdate(dto);
+			}
 	
 	public void memPwUpdate(MemberCommand memberCommand, Errors errors) {
 		MemberDTO dto = new MemberDTO();

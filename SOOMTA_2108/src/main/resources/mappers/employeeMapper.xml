@@ -165,11 +165,15 @@
 	delete from faq where faq_No = #{faqNo}
 </delete>
 
+<!-- 선생님 질문 부적접한 열유형 -->
 <update id="boardUpdate" parameterType="Model.FaqDTO">
 	update faq
-	set faq_Category, faq_Ctgr_S, emp_Id, faq_Title, faq_Contents, faq_Img
+	set faq_Category = #{faqCategory}, faq_Ctgr_S = #{faqCtgrS}, emp_Id = #{empId}, faq_Title = #{faqTitle}, 
+	faq_Contents = #{faqContents}, 
+	<if test="faqImg != null">#{faqImg}</if>
+	<if test="faqImg == null">null</if>
+	, faq_date = sysdate
 	where faq_No = #{faqNo}
-	
 </update>
 </mapper>
 
