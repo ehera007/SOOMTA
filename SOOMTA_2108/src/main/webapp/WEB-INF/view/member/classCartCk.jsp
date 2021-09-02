@@ -287,11 +287,14 @@ a:hover {
 		<p align="center" style="font-size:20px;">숨타와 함께 숨은 시간을 찾아보세요</p>
 	</div>
 	<div class="main">
-				<form action="classCartCk" method="get">
 		<div class="classCartForm">
 			<table>
 				<tr>
-					<th colspan="2" class="className">강의명</th>
+					<td>구매번호</td>
+					<td>${dto.purchaseNo}</td>
+				</tr>
+				<tr>
+					<th colspan="2" class="className">강의명 ${dto1.className }</th>
 					<td class="classPayment">얼마 원</td>
 				</tr>
 				<tr>

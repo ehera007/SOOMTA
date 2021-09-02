@@ -1,6 +1,9 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,7 +141,7 @@ a:hover {
 	width:200px;
 	height:25px;
 }
-.paymentMethod{
+.payment{
 	padding-top:30px;
 	width:250px;
 	height:25px;
@@ -274,30 +277,45 @@ a:hover {
 	<!-- 메인 -->
 	<div class="classCartTitle">
 		<h1 align="center" style="font-size:200%;">결제하기</h1>
-		<p align="center" style="font-size:20px;">강의명</p>
+		<p align="center" style="font-size:20px;">${dto.className }</p>
 	</div>
 	<div class="main">
-		<form action="classCartCk" method="get">
+		<form name="classCart" action="classCartOk" method="post">
+		<input type="hidden" name="classNo" value="${dto.classNo }"/>
+		<input type="hidden" name="tutorId" value="${dto.tutorId }"/>
 		<div class="classCartForm">
 			<table>
 				<tr>
-					<th colspan="2" class="className">강의명</th>
-					<td class="classPayment">얼마 원</td>
+					<td>구매번호</td>
+					<td><input name="purchaseNo" value="${purchaseNo }"/></td>
 				</tr>
 				<tr>
-					<td class="classPeriod">학습 기간 : 21.08.09~21.08.10 | </td>
-					<td class="Personnel">인원 : 5 명 | </td>
-					<td class="classMethod">수업 방식 : 비대면</td>
+					<th colspan="2" class="className">${dto.className }</th>
+					<td class="classPayment">${dto.classPrice } 원</td>
 				</tr>
 				<tr>
-					<td colspan="2" class="paymentMethod">결제 수단</td>
-					<td class="paymentMethodCk"><!-- 결제수단선택 옵션 -->
-						<select name="paymentMethodCkSort">
+					<td class="classPeriod">학습 기간 : <fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd" /> | </td>
+					<td class="Personnel">인원 : ${dto.classTotal } | </td>
+					<td class="classMethod">수업 방식 : 
+					<c:if test="${dto.classWay.trim() == 's'}">과외</c:if>
+					<c:if test="${dto.classWay.trim() == 'g'}">그룹</c:if>
+					<c:if test="${dto.classWay.trim() == 'n'}">비대면</c:if>
+					</td>
+				</tr>
+				<tr>
+					<td class="payment">결제 수단</td>
+					<td class="paymentMethodCk" colspan="2"><!-- 결제수단선택 옵션 -->
+						<select name="purchaseMethod">
 							<option value="">선택</option>
-							<option value="a">신용카드</option>
-							<option value="b">카카오페이</option>
-							<option value="c">무통장</option>
+							<option value="c">신용카드</option>
+							<option value="m">무통장</option>
 						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 정보</td>
+					<td colspan="2">
+						<input type="text" name="purchaseInformation"/>
 					</td>
 				</tr>
 				<tr>

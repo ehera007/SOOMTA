@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -201,46 +201,77 @@ a:hover {
 }
 
 /*이미지 사이즈 관련 스타일*/
-img{
-width:auto;
-height:100%;
+img {
+	width: auto;
+	height: 100%;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-    $(document).ready(function(){
-    	$( '.Top' ).click( function() {
-        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-        	return false;
-        } );
-    });
-    
-    </script>
+<script>
+	$(document).ready(function() {
+		$('.Top').click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 400);
+			return false;
+		});
+	});
+</script>
 <meta charset="UTF-8">
 <title>Education Category</title>
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-				<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+		<img class="logo" src="./../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<!-- 로그인 안된 경우 -->
-		<div class="nav">
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/login'/>">로그인</a>
+		<c:if test="${empty logIn }">
+			<div class="nav">
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/login'/>">로그인</a>
+				</div>
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+				</div>
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
+				</div>
 			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+		</c:if>
+
+		<!-- 로그인 된 경우 -->
+		<c:if test="${!empty logIn }">
+			<div class="nav">
+				<!-- 관리자 -->
+				<c:if test="${logIn.grade == 'emp' }">
+					<div class="nav-item">
+						<a href="<c:url value='/emp/main'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 튜터 -->
+				<c:if test="${logIn.grade == 'tutor' }">
+					<div class="nav-item">
+						<a href="<c:url value='/tutor/myPage'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 멤버 -->
+				<c:if test="${logIn.grade == 'mem' }">
+					<div class="nav-item">
+						<a href="<c:url value='/member/myPage'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 로그아웃 -->
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
+				</div>
 			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
-			</div>
-		</div>
+		</c:if>
 	</div>
 	<!-- 중앙 : 검색바, 선택 -->
 	<div class="mypageTitle">
-		<h1 align="center" style="font-size:200%;">예체능</h1>
-		<p align="center"  style="font-size:20px;">숨타와 함께 시작해보세요</p>
+		<h1 align="center" style="font-size: 200%;">예체능</h1>
+		<p align="center" style="font-size: 20px;">숨타와 함께 시작해보세요</p>
 		<div class="search">
 			<input onkeyup="filter()" type="text" id="value"
 				placeholder="Type to Search">
@@ -250,37 +281,35 @@ height:100%;
 	<div class="main">
 		<div class="item">
 			<div class="main-item">
-			<a href="art/art">
-				<img src="../images/categories/art_detail/art.png" 
-					alt="미술" /></a>
+				<a href="art/art"> <img
+					src="../images/categories/art_detail/art.png" alt="미술" /></a>
 			</div>
 			<div class="main-item">
-			<a href="art/sports">
-				<img src="../images/categories/art_detail/sports.png" alt="스포츠" /></a>
+				<a href="art/sports"> <img
+					src="../images/categories/art_detail/sports.png" alt="스포츠" /></a>
 			</div>
 			<div class="main-item">
-			<a href="art/ccook">
-			<img src="../images/categories/art_detail/cook.png" alt="요리"/></a>
+				<a href="art/ccook"> <img
+					src="../images/categories/art_detail/cook.png" alt="요리" /></a>
 			</div>
 			<div class="main-item">
-			
-			<a href="art/music">
-				<img src="../images/categories/art_detail/music.png" 
-					alt="음악" /></a>
+
+				<a href="art/music"> <img
+					src="../images/categories/art_detail/music.png" alt="음악" /></a>
 			</div>
 			<div class="main-item">
-			
-			<a href="art/ect">
-				<img src="../images/categories/ect.png" class="ctgr" alt="기타" /></a>
+
+				<a href="art/ect"> <img src="../images/categories/ect.png"
+					class="ctgr" alt="기타" /></a>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- TOP이동 -->
-	<a style="position: fixed; bottom: 20px; right: 50px;"
-		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
+		class="Top"> <img src="../images/top.png" alt="topicon">
 	</a>
-	
+
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">
 	<div class="footer">

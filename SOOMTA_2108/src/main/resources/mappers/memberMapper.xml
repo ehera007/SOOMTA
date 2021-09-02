@@ -41,5 +41,12 @@
 	values(#{memId}, #{memPw}, #{memName}, #{memPhone}, #{memGender}, 
 	#{memDob}, #{memEmail}, #{memEmailCk}, #{memArea}, sysdate)
 </insert>
-
+<select id="purchaseNo" resultType="string">
+	select purchaseNo.nextval
+	from dual
+</select>
+<insert id="purchaseInsert" parameterType="Model.PurchaseDTO">
+	insert into purchase (purchase_No, class_No, mem_Id, tutor_Id, purchase_Date, purchase_Method, purchase_Information) 
+	values(#{purchaseNo}, #{classNo}, #{memId}, #{tutorId}, sysdate, #{purchaseMethod}, #{purchaseInformation})
+</insert>
 </mapper>

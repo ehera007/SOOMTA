@@ -51,6 +51,7 @@ public class ClassRepository {
 		return sqlSession.selectList(statement, classCategoryS);
 	}
 	public ClassDTO classDetailPage(String classNo) {
+		System.out.println(classNo);
 		statement = namespace + ".classDetailPage";
 		return sqlSession.selectOne(statement, classNo);
 	}

@@ -168,6 +168,11 @@ ul {
    padding-bottom: 10px;
 }
 
+#title{
+	padding-bottom:20px;
+	height:40px;
+}
+
 .dropMenu {
    align-items: center;
    margin: 50px 0px;
@@ -219,9 +224,12 @@ ul {
 
 /* 테이블 스타일 */
 table {
-    width: 100%;
-    border-top: 2px solid #0F4C81;
+    width: 90%;
     border-collapse: collapse;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    margin-left:auto;
+	margin-right:auto;
   }
   
 thead{
@@ -295,7 +303,7 @@ td a:active {
       <!-- 타이틀 -->
    <table>
    <thead>
-      <tr style="padding-bottom:20px; height:40px;">
+      <tr id="title">
          <th width="10%">No.</th>
          <th width="15%">대분류/소분류</th>
          <th width="25%">강의명</th>

@@ -1,8 +1,8 @@
-package Model;
+package command;
 
 import java.util.Date;
 
-public class PurchaseDTO {
+public class PurchaseCommand {
 	String purchaseNo;//구매번호
 	String classNo;//클래스 번호
 	String memId;//회원 아이디
@@ -10,7 +10,6 @@ public class PurchaseDTO {
     Date purchaseDate;//구매일시
     String purchaseMethod;//결제방법
     String purchaseInformation;//결제정보
-
 	public String getPurchaseNo() {
 		return purchaseNo;
 	}
@@ -53,5 +52,4 @@ public class PurchaseDTO {
 	public void setPurchaseInformation(String purchaseInformation) {
 		this.purchaseInformation = purchaseInformation;
 	}
-    
 }

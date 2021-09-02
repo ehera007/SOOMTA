@@ -2,7 +2,7 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-	<%@ include file="../include/tags.jsp"%>
+<%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +10,15 @@
 <title>SOOMTA</title>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-    $(document).ready(function(){
-    	$( '.Top' ).click( function() {
-        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-        	return false;
-        } );
-    });
+<script>
+	$(document).ready(function() {
+		$('.Top').click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 400);
+			return false;
+		});
+	});
 </script>
 </head>
 <style type="text/css">
@@ -86,22 +88,23 @@ a:hover {
 /*상단 구역 분할, 색상 변경*/
 .header {
 	color: #0F4C81;
-	height: 70px;
+	height: 50px;
 	display: flex;
 	align-items: center;
 	font-weight: bold;
+	padding-bottom: 30px;
 }
 
-.search {
+/*.search {
 	border: 1px solid black;
 	height: 40px;
 	width: 600px;
 	margin: 0 auto;
 	position: relative;
-	/*본인 위치에서 175px만큼 왼쪽이동*/
+	본인 위치에서 175px만큼 왼쪽이동
 	left: 175px;
 	border-radius: 2em;
-}
+}*/
 
 .nav {
 	color: #0F4C81;
@@ -184,10 +187,19 @@ a:hover {
 	color: #085820;
 }
 
-#titleSubLine{
+#titleSubLine {
 	border: 3px solid #0F4C81;
 	width: 100px;
 	margin: 3px;
+}
+
+.titleSubLineIcon{
+	list-style-image: url("./../images/ctgricon.png");
+	position: absolute;
+    left: 14px;
+    top: 5px;
+    width:18px;
+    height:18px
 }
 
 /*수정한부분 */
@@ -199,6 +211,7 @@ a:hover {
 .main_left {
 	float: left;
 	width: 20%;
+	padding-top: 10px;
 }
 
 .main_right {
@@ -237,10 +250,11 @@ a:hover {
 }
 
 .intro-detail2 {
-	border: solid 1px;
+	/*border: solid 1px;*/
 	float: right;
 	width: 48%;
 	height: 300px;
+	/*text-align: center;*/
 }
 
 .middle-button {
@@ -250,8 +264,10 @@ a:hover {
 }
 
 /*강의 간단 정보*/
-.intro-title{
-	
+#titleName {
+	display: inline-block;
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 
 /*버튼 css  1*/
@@ -405,20 +421,21 @@ a:hover {
 }
 
 /*하단 고정 버튼*/
-.bottomFixButton{
+.bottomFixButton {
 	width: 100px;
 	height: 28px;
 	text-align: center;
-	
 	background: #0F4C81;
 	color: #fff;
-	padding-top:7px;
+	padding-top: 7px;
 }
+
 header a:visited {
 	color: #fff;
 }
-header a:hover { 
-	text-decoration:none !important
+
+header a:hover {
+	text-decoration: none !important
 }
 </style>
 
@@ -427,48 +444,50 @@ header a:hover {
 	<div class="header">
 		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
 			onclick="location.href='/SOOMTA_2108/main'" />
-		<div class="search">검색바</div>
-		
-		
+		<!-- <div class="search">검색바</div> -->
 		<!-- 로그인 안된 경우 -->
 		<c:if test="${empty logIn }">
-		<div class="nav">
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/login'/>">로그인</a>
+			<div class="nav">
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/login'/>">로그인</a>
+				</div>
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+				</div>
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
+				</div>
 			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+		</c:if>
+
+		<!-- 로그인 된 경우 -->
+		<c:if test="${!empty logIn }">
+			<div class="nav">
+				<!-- 관리자 -->
+				<c:if test="${logIn.grade == 'emp' }">
+					<div class="nav-item">
+						<a href="<c:url value='/emp/main'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 튜터 -->
+				<c:if test="${logIn.grade == 'tutor' }">
+					<div class="nav-item">
+						<a href="<c:url value='/tutor/myPage'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 멤버 -->
+				<c:if test="${logIn.grade == 'mem' }">
+					<div class="nav-item">
+						<a href="<c:url value='/member/myPage'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 로그아웃 -->
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
+				</div>
 			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
-			</div>
-		</div>
-	</c:if>
-		
-			<!-- 로그인 된 경우 -->
-	<c:if test="${!empty logIn }">
-	<div class="nav">
-	<!-- 관리자 -->
-	<c:if test="${logIn.grade == 'emp' }">
-	<div class="nav-item">
-		<a href="<c:url value='/emp/main'/>">마이페이지</a></div></c:if>
-	<!-- 튜터 -->
-	<c:if test="${logIn.grade == 'tutor' }">
-	<div class="nav-item">
-	<a href="<c:url value='/tutor/myPage'/>">마이페이지</a></div></c:if>
-	<!-- 멤버 -->
-	<c:if test="${logIn.grade == 'mem' }">
-	<div class="nav-item">
-	<a href="<c:url value='/member/myPage'/>">마이페이지</a></div></c:if>
-	<!-- 로그아웃 -->
-	<div class="nav-item">
-		<a href="<c:url value='/soomta/logOut'/>">로그아웃</a></div>	
+		</c:if>
 	</div>
-	</c:if>
-		
-	</div>
-	
-	
 	<!-- 중앙 : 검색바, 선택 -->
 	<div class="main">
 		<div class="allmain">
@@ -480,19 +499,25 @@ header a:hover {
 						<div class="ctgr">
 							<li><a href="#">학업</a>
 								<ul class="titleSubmenu">
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
 									<li id="titleSubLine"><a href="../class/education/child">유아</a></li>
-									<li id="titleSubLine"><a href="../class/education/elementary">초딩</a></li>
+									<li id="titleSubLine"><a
+										href="../class/education/elementary">초딩</a></li>
 									<li id="titleSubLine"><a href="../class/education/medium">중등</a></li>
-									<li id="titleSubLine"><a href="../class/education/employeement">입시/편입</a></li>
+									<li id="titleSubLine"><a
+										href="../class/education/employeement">입시/편입</a></li>
 									<li id="titleSubLine"><a href="../class/education/ect">기타</a></li>
 								</ul></li>
 						</div>
 						<div class="ctgr">
 							<li><a href="#">자격증/시험</a>
 								<ul class="titleSubmenu">
-									<li id="titleSubLine"><a href="../class/ctificate/publicOfficer">공무원</a></li>
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
+									<li id="titleSubLine"><a
+										href="../class/ctificate/publicOfficer">공무원</a></li>
 									<li id="titleSubLine"><a href="../class/ctificate/NCS">NCS</a></li>
-									<li id="titleSubLine"><a href="../class/ctificate/taxation">세무/회계</a></li>
+									<li id="titleSubLine"><a
+										href="../class/ctificate/taxation">세무/회계</a></li>
 									<li id="titleSubLine"><a href="../class/ctificate/foreign">외국어</a></li>
 									<li id="titleSubLine"><a href="../class/ctificate/design">디자인</a></li>
 								</ul></li>
@@ -500,6 +525,7 @@ header a:hover {
 						<div class="ctgr">
 							<li><a href="#">예체능</a>
 								<ul class="titleSubmenu">
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
 									<li id="titleSubLine"><a href="../class/art/art">미술</a></li>
 									<li id="titleSubLine"><a href="../class/art/sports">스포츠</a></li>
 									<li id="titleSubLine"><a href="../class/art/cook">요리</a></li>
@@ -510,6 +536,7 @@ header a:hover {
 						<div class="ctgr">
 							<li><a href="#">재태크</a>
 								<ul class="titleSubmenu">
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
 									<li id="titleSubLine"><a href="../class/retack/estate">부동산</a></li>
 									<li id="titleSubLine"><a href="../class/retack/stock">주식</a></li>
 									<li id="titleSubLine"><a href="../class/retack/fund">펀드</a></li>
@@ -518,9 +545,13 @@ header a:hover {
 						<div class="ctgr">
 							<li><a href="#">취업</a>
 								<ul class="titleSubmenu">
-									<li id="titleSubLine"><a href="../class/employement/intertview">이력서</a></li>
-									<li id="titleSubLine"><a href="../class/employement/resume">면접</a></li>
-									<li id="titleSubLine"><a href="../class/employement/personality">인적성</a></li>
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
+									<li id="titleSubLine"><a
+										href="../class/employement/intertview">이력서</a></li>
+									<li id="titleSubLine"><a
+										href="../class/employement/resume">면접</a></li>
+									<li id="titleSubLine"><a
+										href="../class/employement/personality">인적성</a></li>
 									<li id="titleSubLine"><a href="../class/education/ect">기타</a></li>
 								</ul></li>
 						</div>
@@ -531,49 +562,54 @@ header a:hover {
 						<div class="ctgr">
 							<li><a href="#">학업</a>
 								<ul class="titleSubmenu">
-									<li id="titleSubLine"><a href="#">유아</a></li>
-									<li id="titleSubLine"><a href="#">초딩</a></li>
-									<li id="titleSubLine"><a href="#">중등</a></li>
-									<li id="titleSubLine"><a href="#">입시/편입</a></li>
-									<li id="titleSubLine"><a href="#">기타</a></li>
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
+									<li id="titleSubLine"><a href="./../band/education/child">유아</a></li>
+									<li id="titleSubLine"><a href="./../band/education/elementary">초딩</a></li>
+									<li id="titleSubLine"><a href="./../band/education/medium">중등</a></li>
+									<li id="titleSubLine"><a href="./../band/education/employeement">입시/편입</a></li>
+									<li id="titleSubLine"><a href="./../band/education/ect">기타</a></li>
 								</ul></li>
 						</div>
 						<div class="ctgr">
 							<li><a href="#">자격증/시험</a>
 								<ul class="titleSubmenu">
-									<li id="titleSubLine"><a href="#">공무원</a></li>
-									<li id="titleSubLine"><a href="#">NCS</a></li>
-									<li id="titleSubLine"><a href="#">세무/회계</a></li>
-									<li id="titleSubLine"><a href="#">외국어</a></li>
-									<li id="titleSubLine"><a href="#">디자인</a></li>
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
+									<li id="titleSubLine"><a href="./../band/ctificate/publicOfficer">공무원</a></li>
+									<li id="titleSubLine"><a href="./../band/ctificate/NCS">NCS</a></li>
+									<li id="titleSubLine"><a href="./../band/ctificate/taxation">세무/회계</a></li>
+									<li id="titleSubLine"><a href="./../band/ctificate/foreign">외국어</a></li>
+									<li id="titleSubLine"><a href="./../band/ctificate/design">디자인</a></li>
 								</ul></li>
 						</div>
 						<div class="ctgr">
 							<li><a href="#">예체능</a>
 								<ul class="titleSubmenu">
-									<li id="titleSubLine"><a href="#">미술</a></li>
-									<li id="titleSubLine"><a href="#">스포츠</a></li>
-									<li id="titleSubLine"><a href="#">요리</a></li>
-									<li id="titleSubLine"><a href="#">음악</a></li>
-									<li id="titleSubLine"><a href="#">기타</a></li>
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
+									<li id="titleSubLine"><a href="./../band/art/art">미술</a></li>
+									<li id="titleSubLine"><a href="./../band/art/sports">스포츠</a></li>
+									<li id="titleSubLine"><a href="./../band/art/cook">요리</a></li>
+									<li id="titleSubLine"><a href="./../band/art/music">음악</a></li>
+									<li id="titleSubLine"><a href="./../band/art/ect">기타</a></li>
 								</ul></li>
 						</div>
 						<div class="ctgr">
 							<li><a href="#">재태크</a>
 								<ul class="titleSubmenu">
-									<li id="titleSubLine"><a href="#">부동산</a></li>
-									<li id="titleSubLine"><a href="#">초등</a></li>
-									<li id="titleSubLine"><a href="#">중동</a></li>
-									<li id="titleSubLine"><a href="#">기타</a></li>
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
+									<li id="titleSubLine"><a href="./../band/retack/estate">부동산</a></li>
+									<li id="titleSubLine"><a href="./../band/retack/stock">주식</a></li>
+									<li id="titleSubLine"><a href="./../band/retack/fund">펀드</a></li>
+									<li id="titleSubLine"><a href="./../band/retack/ect">기타</a></li>
 								</ul></li>
 						</div>
 						<div class="ctgr">
 							<li><a href="#">취업</a>
 								<ul class="titleSubmenu">
-									<li id="titleSubLine"><a href="#">이력서</a></li>
-									<li id="titleSubLine"><a href="#">면접</a></li>
-									<li id="titleSubLine"><a href="#">인적성</a></li>
-									<li id="titleSubLine"><a href="#">기타</a></li>
+								<img src="./../images/ctgricon.png" class="titleSubLineIcon"/>
+									<li id="titleSubLine"><a href="./../band/employement/intertview">이력서</a></li>
+									<li id="titleSubLine"><a href="./../band/employement/resume">면접</a></li>
+									<li id="titleSubLine"><a href="./../band/employement/personality">인적성</a></li>
+									<li id="titleSubLine"><a href="./../band/education/etc">기타</a></li>
 								</ul></li>
 						</div>
 						<div class="ctgr">
@@ -582,52 +618,53 @@ header a:hover {
 					</div>
 				</div>
 			</div>
-			<form action="#" method="post">
-			<input type="hidden" name="classNo" value="${dto.classNo }"/>
+
+			
 			<div class="main_right">
+			<form action="../member/classCart" method="post">
+			<input type="hidden" name="classNo" value="${dto.classNo }"/>
+			<input type="hidden" name="tutorId" value="${dto.tutorId }"/>
 				<div class="topcate">
-					<div class="topcate-left" style="color: #0F4C81;">${dto.classCategoryL }</div>
-					<div class="topcate-right" style="color: #0F4C81;">> ${dto.classCategoryS }</div>
+					<div class="topcate-left" style="color: #0F4C81;">
+					<c:if test="${dto.classCategoryL == 'STUDY' }">학업</c:if>
+					<c:if test="${dto.classCategoryL == 'TEST' }">자격증</c:if>
+					<c:if test="${dto.classCategoryL == 'ENT' }">예체능</c:if>
+					<c:if test="${dto.classCategoryL == 'ECONOMY' }">재태크</c:if>
+					<c:if test="${dto.classCategoryL == 'EMP' }">취업</c:if>
+					<c:if test="${dto.classCategoryL == 'ETC' }">기타</c:if>
+					> ${dto.classCategoryS }</div>
 				</div>
 				<div class="introtop">
 					<div class="intro-detail1">${dto.classImg }</div>
 					<div class="intro-detail2">
-					<div class="intro-title">
-					강의명 ${dto.className }
+						<span id="titleName">강의명 : </span> ${dto.className }<br /> <span
+							id="titleName">가격 : </span> ${dto.classPrice } 원<br /> <span
+							id="titleName">성별 : </span>
+						<c:if test="${dto.classGender == 'm' }">남자</c:if>
+						<c:if test="${dto.classGender == 'w' }">여자</c:if>
+						<c:if test="${dto.classGender == 'x' }">무관</c:if>
+						<br /> <span id="titleName">내용 : </span> ${dto.classIntroduce }<br />
+						<span id="titleName">학습기간 : </span>
+						<fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd" />
+						~
+						<fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd" />
+						<br /> <span id="titleName">수강생수 : </span> ${dto.classTotal } 명<br />
+						<span id="titleName">수업방식 : </span>
+						<c:if test="${dto.classWay.trim() == 's'}">과외</c:if>
+						<c:if test="${dto.classWay.trim() == 'g'}">그룹</c:if>
+						<c:if test="${dto.classWay.trim() == 'n'}">비대면</c:if>
+						<br />
+						<div class="button-4">
+							<div class="eff-4">
+							<input type="submit" value="가입하기"/></div>
+						</div>
+						<div class="button-4">
+							<div class="eff-4"></div>
+							<a href="#"> 문의하기 </a>
+						</div>
 					</div>
-					<div class="intro-price">
-					가격 ${dto.classPrice } 원
-					</div>
-					<div class="intro-content1">
-					성별 
-					<c:if test="${dto.classGender == 'm' }">남자</c:if>
-					<c:if test="${dto.classGender == 'w' }">여자</c:if>
-					<c:if test="${dto.classGender == 'x' }">무관</c:if>
-					</div>
-					<div class="intro-content2">
-					내용 ${dto.classIntroduce }
-					</div>
-					<div class="intro-during">학습기간 
-					<fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd"/> ~ 
-					<fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd"/>
-					</div>
-					<div class="intro-memberno">수강생수 ${dto.classTotal } 명</div>
-					<div class="intro-classkind">
-					수업방식 
-					<c:if test="${dto.classWay.trim() == 's'}">과외</c:if>
-        			<c:if test="${dto.classWay.trim() == 'g'}">그룹</c:if>
-					<c:if test="${dto.classWay.trim() == 'n'}">비대면</c:if>
-					</div>
-					<div class="button-4">
-					<div class="eff-4"></div>
-						<input type="submit" value="구매하기" />
-					</div>
-					<div class="button-4">
-						<div class="eff-4"></div>
-						<a href="#"> 문의하기 </a>
-					</div>
-					</div>
-				</div></div></form>
+				</div>
+				</form>
 				<div class="middle-button">
 					<div class="button-4">
 						<div class="eff-4"></div>
@@ -643,8 +680,9 @@ header a:hover {
 					</div>
 				</div>
 				<a name="classDetail">
-				<div class="classdetail">강의 설명</div></a><br/>
-				<a name="tutorDetail"></a> <!-- 강사소개위치 이동 -->
+					<div class="classdetail">강의 설명</div>
+				</a><br /> <a name="tutorDetail"></a>
+				<!-- 강사소개위치 이동 -->
 				<div class="tutordetail">
 					<div class="tutordetail-main">강사소개</div>
 					<div class="tutordetail-content">강사내용</div>
@@ -653,20 +691,30 @@ header a:hover {
 						<div class="eff-4"></div>
 						<a href="#"> 강사에게 1:1 </a>
 					</div>
-				</div><br/>
-				<a name="satisfyreView"></a> <!-- 후기위치 이동 -->
-				<div class="satisfyreview"><a href="../tutor/reviewView">만족도/후기</a></div>
+				</div>
+				<br /> <a name="satisfyreView"></a>
+				<!-- 후기위치 이동 -->
+				<div class="satisfyreview">
+					<a href="../tutor/reviewView">만족도/후기</a>
+				</div>
 			</div>
-
 		</div>
 	</div>
-	
+
 	<!-- TOP이동 -->
-	<a style="position: fixed; bottom: 3px; right: 17px;"href="#" class="Top"> <img src="../images/top.png" alt="topicon"></a>
+	<a style="position: fixed; bottom: 3px; right: 17px;" href="#"
+		class="Top"> <img src="../images/top.png" alt="topicon">
+	</a>
 	<!-- 하단 문의하기/구매하기 고정 -->
 	<header>
-	<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 170px;"> <a href="../member/classCart">구매하기</a></div>
-	<div class="bottomFixButton" style="position: fixed; bottom: 3px; right: 60px;"><a href="#">문의하기</a></div>
+		<div class="bottomFixButton"
+			style="position: fixed; bottom: 3px; right: 170px;">
+			<a href="../member/classCart">등록하기</a>
+		</div>
+		<div class="bottomFixButton"
+			style="position: fixed; bottom: 3px; right: 60px;">
+			<a href="#">문의하기</a>
+		</div>
 	</header>
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">

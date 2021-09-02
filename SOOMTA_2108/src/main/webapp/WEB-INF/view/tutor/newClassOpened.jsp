@@ -301,7 +301,7 @@ a:hover {
 		<section class="formSize">
 			<div id="newClassTitle"><h2>강의 개설</h2></div>
 			<form name="newClassOpened" action="newClassOpenedOk" enctype="multipart/form-data" method="post">
-				<span id="title">소모임 번호</span>
+				<span id="title">클래스 번호</span>
            		<input name="classNo" value="${classNo}" readonly="readonly"/><br/>
 				<span id="title">분류</span>
 				<select onchange="classMainCategory(this)" name="classCategoryL">

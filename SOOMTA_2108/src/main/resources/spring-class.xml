@@ -22,4 +22,5 @@
 	<bean class="service.class1.ClassRetouchService"/>
 	<bean class="service.class1.ClassListService"/>
 	<bean class="service.class1.ClassDetailPageService"/>
+	<bean class="service.class1.ClassCartService"/>
 </beans>

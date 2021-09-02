@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import Model.MemberDTO;
+import Model.PurchaseDTO;
 
 public class MemberRepository {
 	@Autowired
@@ -38,5 +39,14 @@ public class MemberRepository {
 		int i = sqlSession.update(statement,dto);
 		System.out.println(i+"개 수정");
 	}
-
+	
+	public String purchaseNo() { //구매번호 생성
+		statement = namespace + ".purchaseNo";
+		return sqlSession.selectOne(statement);
+	}
+	
+	public void purchaseInsert(PurchaseDTO dto) {
+		statement = namespace + ".purchaseInsert";
+		sqlSession.insert(statement, dto);
+	}
 }

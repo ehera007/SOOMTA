@@ -15,5 +15,5 @@
 	<bean class="service.member.MemberPwChangeConService"/>
 	<bean class="service.member.MemberPwUpdateService"/>
 	<bean class="service.member.MemberInfoSuJungService"/>
-	
+	<bean class="service.member.MemberPurchaseOkService"/>
 </beans>

@@ -32,6 +32,7 @@ public class TutorClassController {
 	ClassDeleteService classDeleteService;
 	@Autowired
 	ClassRetouchService classRetouchService;
+	
 	@RequestMapping("newClassOpened") //클래스 개설 하기
 	public String newClassCreate(Model model) {
 		classNumberService.classNo(model);

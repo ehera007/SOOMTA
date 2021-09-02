@@ -12,14 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.BandCommand;
+import command.ClassCommand;
 import command.MemberCommand;
+import command.PurchaseCommand;
 import service.band.BandListService;
 import service.band.BandNumberService;
-import service.band.BandWriteService; 
+import service.band.BandWriteService;
+import service.class1.ClassCartService;
 import service.member.MemberInfoSuJungService;
 import service.member.MemberOutService;
 import service.member.MemberPerDataService;
-import service.member.MemberPwChangeConService; 
+import service.member.MemberPurchaseOkService;
+import service.member.MemberPwChangeConService;
 import service.member.MemberPwUpdateService;
 import service.member.MemberSuJungService;
 import validator.MemberPasswordValidator;
@@ -160,14 +164,21 @@ public class MemberController {
 		bandNumberService.bandNo(model);
 		return "member/bandJoin";
 	}
-
+	
+	@Autowired
+	ClassCartService classCartService;
+	
 	@RequestMapping("classCart")//강의결제페이지
-	public String classCart() {
+	public String classCart(@RequestParam(value="classNo") String classNo, Model model) {
+		classCartService.classCart(classNo, model);
 		return "member/classCart";
 	}
 	
-	@RequestMapping("classCartCk")//강의결제확인페이지
-	public String classCartCk() {
+	@Autowired
+	MemberPurchaseOkService memberPurchaseOkService;
+	@RequestMapping(value="classCartOk", method = RequestMethod.POST)//강의결제확인페이지
+	public String classCartCk(PurchaseCommand purchaseCommand, HttpSession session, Model model) {
+		memberPurchaseOkService.purchaseOk(purchaseCommand, session, model); //결제번호 랜덤 생성
 		return "member/classCartCk";
 	}
 	

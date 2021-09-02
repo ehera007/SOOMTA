@@ -74,7 +74,7 @@ a:hover {
 /*상단 구역 분할, 색상 변경*/
 .header {
 	color: #0F4C81;
-	height: 70px;
+	height: 50px;
 	display: flex;
 	align-items: center;
 	font-weight: bold;
@@ -336,10 +336,11 @@ a:hover {
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img class="logo" src="../../images/soomta_logo.png" alt="SOOMTA"
-			onclick="location.href='/SOOMTA_2108/main'" />
+		<img class="logo" src="../../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="search">검색바</div>
 		<!-- 로그인 안된 경우 -->
+				<!-- 로그인 안된 경우 -->
+		<c:if test="${empty logIn }">
 		<div class="nav">
 			<div class="nav-item">
 				<a href="<c:url value='/soomta/login'/>">로그인</a>
@@ -351,6 +352,28 @@ a:hover {
 				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
 			</div>
 		</div>
+	</c:if>
+		
+			<!-- 로그인 된 경우 -->
+	<c:if test="${!empty logIn }">
+	<div class="nav">
+	<!-- 관리자 -->
+	<c:if test="${logIn.grade == 'emp' }">
+	<div class="nav-item">
+		<a href="<c:url value='/emp/main'/>">마이페이지</a></div></c:if>
+	<!-- 튜터 -->
+	<c:if test="${logIn.grade == 'tutor' }">
+	<div class="nav-item">
+	<a href="<c:url value='/tutor/myPage'/>">마이페이지</a></div></c:if>
+	<!-- 멤버 -->
+	<c:if test="${logIn.grade == 'mem' }">
+	<div class="nav-item">
+	<a href="<c:url value='/member/myPage'/>">마이페이지</a></div></c:if>
+	<!-- 로그아웃 -->
+	<div class="nav-item">
+		<a href="<c:url value='/soomta/logOut'/>">로그아웃</a></div>	
+	</div>
+	</c:if>
 	</div>
 	<!-- 중앙 : 검색바, 선택 -->
 
@@ -478,7 +501,13 @@ a:hover {
 		<table>
 			<tr style="color: #0F4C81;">
 				<td><a href="./../../class/mainCtgr">Class </a>></td>
-				<td><a href="./../../../SOOMTA_2108/class/education">${list[0].classCategoryL }
+				<td><a href="./../../../SOOMTA_2108/class/education">
+					<c:if test="${list[0].classCategoryL == 'STUDY' }">학업</c:if>
+					<c:if test="${list[0].classCategoryL == 'TEST' }">자격증</c:if>
+					<c:if test="${list[0].classCategoryL == 'ENT' }">예체능</c:if>
+					<c:if test="${list[0].classCategoryL == 'ECONOMY' }">재태크</c:if>
+					<c:if test="${list[0].classCategoryL == 'EMP' }">취업</c:if>
+					<c:if test="${list[0].classCategoryL == 'ETC' }">기타</c:if>
 				</a>></td>
 				<td>${list[0].classCategoryS }</td>
 			</tr>
@@ -523,7 +552,7 @@ a:hover {
 			<c:forEach items="${list }" var="dto" varStatus="cnt">
 				<td width="200" height="250" >
 				<a href="../../class/classDetailPage?classNo=${dto.classNo }"> 
-				<img width="150" height="150" src="../../class/upload/${dto.classImg.split(',')[0] }"/><br/>
+				<img width="150" height="150" src="./../class/upload/${dto.classImg.split(',')[0] }"/><br/>
 				${dto.className}<br/>
 				${dto.classPrice}원
 				</a>
