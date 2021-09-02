@@ -284,26 +284,13 @@ a:hover {
 	<!-- 메인 -->
 	<div class="MylectureListTitle">
 		<h1 align="center" style="font-size:200%;">결제확인</h1>
-		<p align="center" style="font-size:20px;">숨타와 함께 숨은 시간을 찾아보세요</p>
+		<p align="center" style="font-size:20px;">결제가 완료되었습니다 :)</p>
 	</div>
 	<div class="main">
 		<div class="classCartForm">
 			<table>
 				<tr>
-					<td>구매번호</td>
-					<td>${dto.purchaseNo}</td>
-				</tr>
-				<tr>
-					<th colspan="2" class="className">강의명 ${dto1.className }</th>
-					<td class="classPayment">얼마 원</td>
-				</tr>
-				<tr>
-					<td class="classPeriod">학습 기간 : 21.08.09~21.08.10 | </td>
-					<td class="Personnel">인원 : 5 명 | </td>
-					<td class="classMethod">수업 방식 : 비대면</td>
-				</tr>
-				<tr>
-					<td colspan="3" class="paymentEnd">결제가 완료되었습니다 !</td>
+					<td colspan="3" class="paymentEnd">숨타와 보람찬 하루 보내세요 :)</td>
 				</tr>
 				<tr>
 					<td colspan="3" class="tagClassCart">
