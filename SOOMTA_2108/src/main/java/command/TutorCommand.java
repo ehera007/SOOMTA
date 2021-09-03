@@ -3,6 +3,7 @@ package command;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class TutorCommand {
 	String tutorId;
@@ -23,12 +24,18 @@ public class TutorCommand {
 	String tutorFinalEdu;
 	String tutorRespond;
 	String tutorArea;
-	String tutorImage;
+	MultipartFile tutorImage;
 	String tutorIntroduce;
 	String tutorLikearea;
 	String tutorEmailOk;
-	
+	String delFile;
 
+	public String getDelFile() {
+		return delFile;
+	}
+	public void setDelFile(String delFile) {
+		this.delFile = delFile;
+	}
 	String oldPw;
 	public String getOldPw() {
 		return oldPw;
@@ -110,8 +117,11 @@ public class TutorCommand {
 	public String getTutorArea() {
 		return tutorArea;
 	}
-	public String getTutorImage() {
+	public MultipartFile getTutorImage() {
 		return tutorImage;
+	}
+	public void setTutorImage(MultipartFile tutorImage) {
+		this.tutorImage = tutorImage;
 	}
 	public String getTutorIntroduce() {
 		return tutorIntroduce;
@@ -155,9 +165,7 @@ public class TutorCommand {
 	public void setTutorArea(String tutorArea) {
 		this.tutorArea = tutorArea;
 	}
-	public void setTutorImage(String tutorImage) {
-		this.tutorImage = tutorImage;
-	}
+
 	public void setTutorIntroduce(String tutorIntroduce) {
 		this.tutorIntroduce = tutorIntroduce;
 	}

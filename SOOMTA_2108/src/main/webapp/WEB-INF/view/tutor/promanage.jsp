@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,8 +165,9 @@ ul {
 	background-color: #0F4C81;
 	color: white;
 	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 15px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	
 }
 
 .dropMenu {
@@ -221,48 +220,65 @@ ul {
 }
 
 /*고정 외 중앙 테이블 스타일*/
-
-table {
-    border: 2px solid #0F4C81;
-    width: 630px;
-    height:550px;
-    margin:20px auto;
-    border-spacing: 0px;
-    border-radius: 12px;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 100px;
-    margin-top: 70px;
-    padding-top:30px;
-  }
-
-thead th {
-   height: 50px;
-   background-color: #0F4C81;
-   color: white;
-   font-size: 25px;
-   border-radius: 8px 8px 0px 0px;
-}
-
-th{
-  padding-left:40px;
-}
-td{
-  width:380px;
-  padding-right:70px;
-}
-.detail {
-	color: grey;
-	font-size: 8px;
-	font-style: italic;
-	text-align: left;
-}
-
 .perForm{
-	width: 800px;
-	margin: 0 auto;
+
 	padding-top: 50px;
 	padding-bottom: 50px;
+
 }
+.perForm a:visited {
+	color: #0F4C81;
+	
+}
+.perForm a:link {
+	color: #0F4C81;
+	
+}
+.perForm a:hover{
+color: #0F4C81;
+	
+}
+
+ table {
+    border: 2px solid #0F4C81;
+    border-radius: 12px;
+    width: 500px;
+    height:550px;
+    margin:20px auto;
+    box-shadow: 3px 3px 3px 3px #D5D5D5;
+    margin-top: 45px;
+    margin-bottom: 35px;
+    padding-top: 30px;
+    
+  }
+  
+.btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 10px 10px;
+   border: none;
+   
+}
+.allbtn {
+   height: 30px;
+   width: 300px;
+   margin: 0 auto;
+   padding-bottom: 0px;
+   padding-right: 50px;
+   padding-left: 20px;
+}
+th{
+	padding-left:85px;
+	width: 300px;
+}
+td{
+	padding-right:90px;
+	padding-left:35px;
+	width: 300px;
+}
+
 
 </style>
    
@@ -294,10 +310,7 @@ td{
 	<div class="perForm">
 		<form action="perForm"name="frm">
 			<table>
-			<tr>
-				 <th>회원구분 </th><td>
-				 튜터</td>
-			</tr>
+			
 			<tr>	 
 				 <th>자격증 </th><td>
 				 <c:if test = "${tutor.tutorCertification == null}" >미입력</c:if>
@@ -312,20 +325,20 @@ td{
 			</tr>
 			
 			<tr>	
-				 <th>학력</th><td>
+				 <th>최종학력</th><td>
 				 <c:if test = "${tutor.tutorFinalEdu == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorFinalEdu != null}">${tutor.tutorFinalEdu}</c:if>
 				 </td>
 			</tr>
 			
 			<tr>	 
-				 <th>연락가능시간 </th><td>
+				 <th>응답가능시간 </th><td>
 				 <c:if test = "${tutor.tutorRespond == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorRespond != null}">${tutor.tutorRespond}</c:if>
 				 </td>
 			</tr>
 			<tr>	 
-				 <th>수업방식 </th><td>
+				 <th>선호방식 </th><td>
 				 <c:if test = "${tutor.tutorLikearea == null}" >미입력</c:if>
 				 <c:if test = "${tutor.tutorLikearea != null}">${tutor.tutorLikearea}</c:if>
 				 </td>
@@ -339,7 +352,9 @@ td{
 			<tr>	 
 				 <th>이미지 </th><td>
 				 <c:if test = "${tutor.tutorImage == null}" >미입력</c:if>
-				 <c:if test = "${tutor.tutorImage != null}">${tutor.tutorImage}</c:if>
+				 <c:if test = "${tutor.tutorImage != null}">
+				 <img src="../tutor/upload/${tutor.tutorImage}" />
+				 </c:if>
 				 </td>
 			</tr>		
 					

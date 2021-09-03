@@ -224,6 +224,14 @@ input {
         	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
         	return false;
         } );
+    	$("#delFile").click(function(){
+    		
+    		if($("#fileDel").val() == ""){
+    			$("#fileDel").val($("#fileName").text());
+    		}else{
+    			$("#fileDel").val("");
+    		}
+    	});
     });
     
     </script>
@@ -247,17 +255,17 @@ input {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 중앙 : 개인정보 수정 폼 -->
 		<div class="perForm">
-		<form action="promanageSujungOk" method="post" name="frm" onsubmit="return funcCon()"> 
+		<form action="promanageSujungOk" method="post" name="frm" enctype="multipart/form-data"> 
+			<input type="text" name="delFile" id = "fileDel"/> 
 			<table>
 				<thead>
          <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
             <th colspan="2" style="padding-right: 45px;">정보 수정 </th>
          </tr></thead>
-    			<tr><th style="padding-top: 15px;">회원구분</th>
-					<td style="padding-top: 15px;"> 튜터 </td></tr>
+    			
 				<tr><th>자격증</th>
 				<td><input type="text" name="tutorCertification" minlength="2" required
 					style="width:200px;" value="${tutor.tutorCertification}">
@@ -268,7 +276,7 @@ input {
 					style="width:200px;" value="${tutor.tutorCareer}">
 					<div class="detail">* ex) 이젠아이티학원 3년차 강사</div></td></tr>
 				
-				<tr><th>학력</th>
+				<tr><th>최종학력</th>
 				<td><input type="text" name="tutorFinalEdu" minlength="2" required
 					style="width:200px;" value="${tutor.tutorFinalEdu}">
 					<div class="detail">* ex) 한국대학교 경영학과</div></td></tr>	
@@ -276,7 +284,7 @@ input {
 					<td><input type="text" name="tutorRespond" minlength="2" required
 					style="width:200px;" value="${tutor.tutorRespond}">
 					<div class="detail">* ex) 평일 오후 12시~5시</div></td></tr>
-				<tr><th>수업방식</th>
+				<tr><th>선호방식</th>
 					<td><input type="text" name="tutorLikearea" minlength="2" required
 					style="width:200px;" value="${tutor.tutorLikearea}">
 					<div class="detail">* ex) 비대면, 대면, 과외</div></td></tr>
@@ -286,7 +294,7 @@ input {
             	</td></tr>
 				
 				<tr><th>이미지</th>
-					<td>${tutor.tutorImage}<br />
+					<td><span id="fileName">${tutor.tutorImage}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="delFile">삭제</span><br />
 					<input type="file" name="tutorImage" 
 					id="tutorImage" accept="image/png, image/jpeg">
 					
