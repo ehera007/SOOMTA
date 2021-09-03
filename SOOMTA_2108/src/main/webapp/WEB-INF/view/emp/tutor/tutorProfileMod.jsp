@@ -19,7 +19,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width: 500px;
+	width: 650px;
 }
 
 thead th {
@@ -29,23 +29,35 @@ thead th {
 	font-size: 25px;
 	border-radius: 8px 8px 0px 0px;
 }
+
 tbody th {
 	padding-top: 30px;
-	width: 55%;
+	width: 30%;
 }
 
 tbody td {
 	padding-top: 30px;
-	width: 45%;
+	width: 70%;
+}
+
+tbody td a {
+	font-size: 12px;
+	color: #0F4C81;
+	font-weight: bold;
+	margin-left: 3px;
 }
 
 .btn {
-	height: 30px;
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 30px 10px 10px 10px;
+	margin: 0px 10px 10px 10px;
 	border: none;
+}
+
+.allbtn {
+	width: 180px;
+	margin: 0 auto;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -60,8 +72,19 @@ tbody td {
 		});
 	});
 </script>
+<!-- 수정 확인 알림창 -->
+<script type="text/javascript">
+function funcCon(){
+	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
+	if(cfm){
+		document.getElementById('frm').submit();
+	}else{
+		return false;
+	}
+}
+</script>
 <meta charset="UTF-8">
-<title>튜터 프로필 정보</title>
+<title>튜터 수정</title>
 </head>
 <body>
 <body>
@@ -80,40 +103,43 @@ tbody td {
 		</div>
 	</div>
 
+
 	<!-- 중앙 -->
 	<div class="main">
+		<form action="tutorProfileModOk" method="post" name="frm" onsubmit="return funcCon()"> 
+<input type="hidden" name="tutorId" value="${tutor.tutorId }"/>
 		<table><thead>
-			<tr
-				style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
-				<th colspan="2">튜터 '${tutor.tutorId }'의 프로필 정보</th>
-			</tr></thead><tbody>
+			<tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">
+				<th colspan="2">튜터 '${tutor.tutorId }'의 프로필 수정</th>
+			</tr></thead>
+		<tbody>
 			<tr><th>ID</th><td>${tutor.tutorId }</td></tr>
-			<tr><th>자격증</th><td>${tutor.tutorCertification }</td></tr>
-			<tr><th>경력</th><td>${tutor.tutorCareer }</td></tr>
+			<tr><th>자격증</th><td><input type="text" name="tutorCertification" value="${tutor.tutorCertification }" size="53"/></td></tr>
+			<tr><th>경력</th><td><input type="text" name="tutorCareer" value="${tutor.tutorCareer }" size="53"/></td></tr>
 			<tr><th>최종학력</th><td>
-			<c:if test="${tutor.tutorFinalEdu == 'M'}">대졸</c:if>
-			<c:if test="${tutor.tutorFinalEdu == 'F'}">초대졸</c:if>
+			<input type="text" name="tutorFinalEdu" value="${tutor.tutorFinalEdu }" size="53"/>
 			</td></tr>
-			<tr><th>응답가능시간</th><td>${tutor.tutorRespond }</td></tr>
-			<tr><th>선호장소</th><td>
-			<c:if test="${tutor.tutorLikearea == 'Y'}">대면</c:if>
+			<tr><th>응답가능시간</th><td><input type="text" name="tutorRespond" value="${tutor.tutorRespond }" size="53"/></td></tr>
+			<tr><th>선호방식</th><td>
+			<input type="text" name="tutorLikearea" value="${tutor.tutorLikearea}" size="53"/>
 			</td></tr>
-			<tr><th>소개</th><td>${tutor.tutorIntroduce}	</td></tr>
-			<tr><th>이미지</th><td>${tutor.tutorImage }</td></tr>
+			<tr><th>소개</th><td><textarea name="tutorIntroduce" value="${tutor.tutorIntroduce}" rows="20" cols="55"/></textarea></td></tr>
+			<tr><th>이미지</th><td><c:if test = "${tutor.tutorImage == null}" >미입력</c:if>
+				 <c:if test = "${tutor.tutorImage != null}">${tutor.tutorImage}</c:if></td></tr>
 			<tr>
-				<th colspan="2">
-				<input class="btn" type="button" value="리스트" onclick="location.href='tutorList'" />
-				<input class="btn" type="button" value="기본정보" onclick="location.href='tutorInfo?tutorId=${tutor.tutorId}'" />
-				<input class="btn" type="button" value="PW변경" onclick="location.href='tutorPwCon?tutorId=${tutor.tutorId}'" /> 
-				<input class="btn" type="button" value="수정" onclick="location.href='tutorProfileMod?tutorId=${tutor.tutorId}'" /> 
-			</tr>
-		</table></div>
+				<th colspan="2"><div class="allbtn"><input class="btn" id="finish" type="submit" value="수정완료"/> 
+				<input class="btn" type="button" class="btn" value="수정취소"
+					onclick="javascript:history.back()" /></div></th>
+			</tr></tbody>
+		</table>
+</form></div>
 
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
 		class="Top"> <img src="<c:url value='/images/top.png'/>"
 		alt="topicon" />
 	</a>
+
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">
 

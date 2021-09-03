@@ -2,15 +2,17 @@ package command;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FaqCommand {
-	Long faqNo;
+	String faqNo;
 	String empId;
 	String faqCategory;
 	String faqContents;
 	MultipartFile []  faqImg;
 	String faqTitle;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date faqDate;
 	String faqCtgrS;
 	String fileDel1;
@@ -23,7 +25,7 @@ public class FaqCommand {
 	public void setFileDel1(String fileDel1) {
 		this.fileDel1 = fileDel1;
 	}
-	public Long getFaqNo() {
+	public String getFaqNo() {
 		return faqNo;
 	}
 	public String getEmpId() {
@@ -47,7 +49,7 @@ public class FaqCommand {
 	public String getFaqCtgrS() {
 		return faqCtgrS;
 	}
-	public void setFaqNo(Long faqNo) {
+	public void setFaqNo(String faqNo) {
 		this.faqNo = faqNo;
 	}
 	public void setEmpId(String empId) {

@@ -27,11 +27,11 @@ public class UpdateService {
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 	public void boardUpdate(FaqCommand faqCommand, HttpSession session) {
 		FaqDTO dto = new FaqDTO();
-		dto.setEmpId(faqCommand.getEmpId());
 		dto.setFaqCategory(faqCommand.getFaqCategory());
 		dto.setFaqContents(faqCommand.getFaqContents());
 		dto.setFaqCtgrS(faqCommand.getFaqCtgrS());
 		dto.setFaqTitle(faqCommand.getFaqTitle());
+		dto.setFaqNo(Long.parseLong(faqCommand.getFaqNo()));
 		LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");
 		dto.setEmpId(logIn.getUserId());
 		
@@ -108,6 +108,7 @@ public class UpdateService {
 	public void tutorUpdate(TutorCommand tutorCommand) {
 		TutorDTO dto = new TutorDTO();
 		dto.setTutorId(tutorCommand.getTutorId());
+		dto.setTutorName(tutorCommand.getTutorName());
 		dto.setTutorArea(tutorCommand.getTutorArea());
 		dto.setTutorDob(tutorCommand.getTutorDob());
 		dto.setTutorGender(tutorCommand.getTutorGender());
@@ -126,7 +127,6 @@ public class UpdateService {
 		dto.setTutorRespond(tutorCommand.getTutorRespond());
 		dto.setTutorLikearea(tutorCommand.getTutorLikearea());
 		dto.setTutorIntroduce(tutorCommand.getTutorIntroduce());
-		//dto.setTutorImage(tutorCommand.getTutorImage());
 		employeeRepository.tutorProfileUpdate(dto);
 	}
 	

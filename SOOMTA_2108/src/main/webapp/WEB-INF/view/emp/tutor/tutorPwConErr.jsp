@@ -169,7 +169,7 @@ input {
 
 	<!-- 중앙 -->
 	<div class="main">
-	<form action="memPwChange?memId=${tutor.tutorId}" method="post" name="frm">
+	<form action="tutorPwChange?tutorId=${tutor.tutorId}" method="post" name="frm">
 		<table>
 		<thead>
 			<tr>
@@ -187,7 +187,7 @@ input {
 					<tr><td colspan="2" align="center"><div class="allbtn">
 				<input type="submit" class="btn" value="확인" />
 				<input type="button" class="btn" value="취소" 
-					onclick="location.href='memInfo?memId=${tutor.tutorId}'" />
+					onclick="location.href='tutorInfo?tutorId=${tutor.tutorId}'" />
 				</div>
 			</td></tr></tfoot>
 		</table>

@@ -19,7 +19,7 @@ table {
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
 	border-spacing: 0px;
 	margin: 50px auto 70px auto;
-	width: 500px;
+	width: 600px;
 }
 
 thead th {
@@ -31,12 +31,12 @@ thead th {
 }
 tbody th {
 	padding-top: 30px;
-	width: 55%;
+	width: 50%;
 }
 
 tbody td {
 	padding-top: 30px;
-	width: 45%;
+	width: 50%;
 }
 
 .btn {
@@ -44,7 +44,7 @@ tbody td {
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
-	margin: 30px 10px 10px 10px;
+	margin: 0px 10px 10px 10px;
 	border: none;
 }
 </style>
@@ -88,18 +88,30 @@ tbody td {
 				<th colspan="2">튜터 '${tutor.tutorId }'의 프로필 정보</th>
 			</tr></thead><tbody>
 			<tr><th>ID</th><td>${tutor.tutorId }</td></tr>
-			<tr><th>자격증</th><td>${tutor.tutorCertification }</td></tr>
-			<tr><th>경력</th><td>${tutor.tutorCareer }</td></tr>
+			<tr><th>자격증</th>
+			<td><c:if test="${tutor.tutorCertification == null}">미입력</c:if>
+				<c:if test="${tutor.tutorCertification != null}">${tutor.tutorCertification }</c:if></td></tr>
+			<tr><th>경력</th>
+			<td><c:if test = "${tutor.tutorCareer == null}" >미입력</c:if>
+				 <c:if test = "${tutor.tutorCareer != null}">${tutor.tutorCareer}</c:if></td></tr>
 			<tr><th>최종학력</th><td>
-			<c:if test="${tutor.tutorFinalEdu == 'M'}">대졸</c:if>
-			<c:if test="${tutor.tutorFinalEdu == 'F'}">초대졸</c:if>
+				<c:if test = "${tutor.tutorFinalEdu == null}" >미입력</c:if>
+				<c:if test = "${tutor.tutorFinalEdu != null}">${tutor.tutorFinalEdu}</c:if>
+
 			</td></tr>
-			<tr><th>응답가능시간</th><td>${tutor.tutorRespond }</td></tr>
-			<tr><th>선호장소</th><td>
-			<c:if test="${tutor.tutorLikearea == 'Y'}">대면</c:if>
+			<tr><th>응답가능시간</th>
+			<td> <c:if test = "${tutor.tutorRespond == null}" >미입력</c:if>
+				 <c:if test = "${tutor.tutorRespond != null}">${tutor.tutorRespond}</c:if></td></tr>
+			<tr><th>선호방식</th><td>
+			<c:if test = "${tutor.tutorLikearea == null}" >미입력</c:if>
+				 <c:if test = "${tutor.tutorLikearea != null}">${tutor.tutorLikearea}</c:if>
 			</td></tr>
-			<tr><th>소개</th><td>${tutor.tutorIntroduce}	</td></tr>
-			<tr><th>이미지</th><td>${tutor.tutorImage }</td></tr>
+			<tr><th>소개</th>
+			<td> <c:if test = "${tutor.tutorIntroduce == null}" >미입력</c:if>
+				 <c:if test = "${tutor.tutorIntroduce != null}"> ${fn:replace(tutor.tutorIntroduce, br , "<br />") }</c:if></td></tr>
+			<tr><th>이미지</th>
+			<td><c:if test = "${tutor.tutorImage == null}" >미입력</c:if>
+				 <c:if test = "${tutor.tutorImage != null}">${tutor.tutorImage}</c:if></td></tr>	
 			<tr>
 				<th colspan="2">
 				<input class="btn" type="button" value="리스트" onclick="location.href='tutorList'" />

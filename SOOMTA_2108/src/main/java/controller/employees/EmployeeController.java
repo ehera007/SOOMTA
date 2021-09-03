@@ -69,7 +69,6 @@ public class EmployeeController {
 		infoService.boardInfo(faqNo, model);
 		return "emp/board/boardInfo";
 	}
-	//////게시판 수정-+수정 후 날짜 당일로 변경////////////////////////
 	@RequestMapping("boardMod")//게시판 수정
 	public String boardMod(@RequestParam(value="faqNo") String faqNo, Model model) {
 		infoService.boardInfo(faqNo, model);
@@ -78,11 +77,9 @@ public class EmployeeController {
 	@RequestMapping(value="boardModOk", method=RequestMethod.POST)//게시판 수정 완료
 	public String boardModOk(FaqCommand faqCommand, HttpSession session) {
 		updateService.boardUpdate(faqCommand, session);
-		Long faqNo = faqCommand.getFaqNo();
+		String faqNo = faqCommand.getFaqNo();
 		return "redirect:boardInfo?faqNo="+faqNo;
 	}
-	///////////////////////////////////////////
-	
 	@RequestMapping("boardDel")//게시판 삭제
 	public String boardDel(@RequestParam(value="faqNo") String faqNo) {
 		delService.boardDel(faqNo);
@@ -96,7 +93,7 @@ public class EmployeeController {
 	@RequestMapping(value="boardWriteOk", method=RequestMethod.POST)//게시글 작성 완료
 	public String boardWriteOk(FaqCommand faqCommand, HttpSession session) {
 		faqInsertService.boardInsert(faqCommand, session);
-		Long faqNo = faqCommand.getFaqNo();
+		String faqNo = faqCommand.getFaqNo();
 		return "redirect:boardInfo?faqNo="+faqNo;
 	}
 	@RequestMapping("memList")//일반 회원 보기
@@ -114,7 +111,6 @@ public class EmployeeController {
 		infoService.memInfo(memId,model);
 		return "emp/mem/memPwCon";
 	}
-	
 	@RequestMapping(value="memPwChange", method=RequestMethod.POST)//회원 pw 확인 및 수정
 	public String memPwChange(@RequestParam(value="memId") String memId, @RequestParam(value="empPw") String empPw, Model model, 
 			HttpSession session, @ModelAttribute(value = "memberCommand") MemberCommand memberCommand) {
@@ -160,7 +156,6 @@ public class EmployeeController {
 		infoService.tutorInfo(tutorId, model);
 		return "emp/tutor/tutorInfo";
 	}
-	
 	@RequestMapping("tutorMod")//튜터 수정
 	public String tutorMod(@RequestParam(value="tutorId") String tutorId, Model model) {
 		infoService.tutorInfo(tutorId, model);
@@ -172,7 +167,7 @@ public class EmployeeController {
 		String tutorId = tutorCommand.getTutorId();
 		return "redirect:tutorInfo?tutorId="+tutorId;
 	}
-///////해야됨-프로필-이미지 관련 + 마이페이지랑 맞추기//////////
+
 	@RequestMapping("tutorProfile")//튜터 프로필정보
 	public String tutorProfile(@RequestParam(value="tutorId") String tutorId, Model model) {
 		infoService.tutorProfile(tutorId, model);
@@ -189,8 +184,6 @@ public class EmployeeController {
 		String tutorId = tutorCommand.getTutorId();
 		return "redirect:tutorProfile?tutorId="+tutorId;
 	}
-	////////////////////////////////////
-	
 	@RequestMapping("tutorPwCon")
 	public String tutorPwCon(@RequestParam(value="tutorId") String tutorId, Model model) {//튜터pw변경 전 확인
 		infoService.tutorInfo(tutorId,model);

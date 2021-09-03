@@ -57,8 +57,8 @@
 	tutor_Id tutorId, tutor_Name tutorName, tutor_Dob tutorDob, tutor_Gender tutorGender, tutor_Phone tutorPhone, 
 	tutor_Email tutorEmail, tutor_Since tutorSince, tutor_Email_Ck tutorEmailCk, tutor_Email_Ok tutorEmailOk
 </sql>
-<sql id="tutorProfile">
-	tutor_Certification tutorCertification, tutor_Career tutorCareer, tutor_Image tutorImage, tutor_Introduce tutorIntroduce
+<sql id="profile">
+	tutor_Certification tutorCertification, tutor_Career tutorCareer, tutor_Image tutorImage, tutor_Introduce tutorIntroduce, tutor_Likearea tutorLikearea
 </sql>
 
 <select id="tutorList" resultType="Model.TutorDTO">
@@ -73,7 +73,7 @@
 </select>
 
 <select id="tutorProfile" resultType="Model.TutorDTO" parameterType="string">
-	select  <include refid="tutorProfile"/>, substr(tutor_Likearea,0,6) tutorLikearea
+	select  <include refid="profile"/>, tutor_id tutorId
 	from tutor
 	where tutor_id = #{tutorId}
 </select>
@@ -165,14 +165,12 @@
 	delete from faq where faq_No = #{faqNo}
 </delete>
 
-<!-- 선생님 질문 부적접한 열유형 -->
 <update id="boardUpdate" parameterType="Model.FaqDTO">
 	update faq
 	set faq_Category = #{faqCategory}, faq_Ctgr_S = #{faqCtgrS}, emp_Id = #{empId}, faq_Title = #{faqTitle}, 
-	faq_Contents = #{faqContents}, 
-	<if test="faqImg != null">#{faqImg}</if>
-	<if test="faqImg == null">null</if>
-	, faq_date = sysdate
+	faq_Contents = #{faqContents}, faq_date = sysdate, 
+	<if test="faqImg != null">faq_Img = #{faqImg}</if>
+	<if test="faqImg == null">faq_Img = null</if>
 	where faq_No = #{faqNo}
 </update>
 </mapper>

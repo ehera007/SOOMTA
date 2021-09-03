@@ -18,7 +18,7 @@ public class FaqInsertService {
 	EmployeeRepository employeeRepository;
 	public void boardInsert(FaqCommand faqCommand, HttpSession session) {
 		FaqDTO dto = new FaqDTO();
-		dto.setFaqNo(faqCommand.getFaqNo());
+		dto.setFaqNo(Long.parseLong(faqCommand.getFaqNo()));
 		dto.setFaqCategory(faqCommand.getFaqCategory());
 		dto.setFaqCtgrS(faqCommand.getFaqCtgrS());
 		dto.setFaqTitle(faqCommand.getFaqTitle());

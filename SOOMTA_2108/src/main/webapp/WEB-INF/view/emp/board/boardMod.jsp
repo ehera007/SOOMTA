@@ -125,8 +125,9 @@ function funcCon(){
 
 	<!-- 중앙 -->
 	<div class="main">
-<form action="boardModOk?faqNo=${faq.faqNo }" method="post" name="frm" enctype="multipart/form-data" onsubmit="return funcCon()"> 
+<form action="boardModOk" method="post" name="frm" enctype="multipart/form-data" onsubmit="return funcCon()"> 
 <input type="hidden" name="faqNo" value="${faq.faqNo }"/>
+
 <table align="center"><thead>
 			<tr>
 				<th colspan="2"

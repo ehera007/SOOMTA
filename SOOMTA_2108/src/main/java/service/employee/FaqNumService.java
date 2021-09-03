@@ -11,7 +11,7 @@ public class FaqNumService {
 	EmployeeRepository employeeRepository;
 	public void faqNo(Model model, FaqCommand faqCommand) {
 		Long faqNo = employeeRepository.faqNo();
-		faqCommand.setFaqNo(faqNo);
+		faqCommand.setFaqNo(faqNo.toString());
 		model.addAttribute("faqCommand",faqCommand);
 		model.addAttribute("faqNo",faqNo);
 	}

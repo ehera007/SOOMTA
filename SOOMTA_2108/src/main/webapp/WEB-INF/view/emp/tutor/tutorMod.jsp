@@ -85,15 +85,6 @@ margin-right:5px;
 	});
 </script>
 
-<!-- 수정 완료 알림창 -->
-<!-- 
-<script>
-$(document).ready(function(){
-	$('#finish').submit(function(){
-		alert('                                  튜터 수정 완료\n                     ');
-	});
-});
-</script> -->
 <!-- 수정 확인 알림창 -->
 <script type="text/javascript">
 function funcCon(){
