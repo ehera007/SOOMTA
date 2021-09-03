@@ -49,7 +49,6 @@ public class ClassOpenService {
 					e.printStackTrace();
 				}
 			dto.setClassImg(classImg);
-			System.out.println("11"+ dto.getClassImg());
 		}
 		
 		LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");

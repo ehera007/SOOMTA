@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import Model.ClassDTO;
 
+
 public class ClassRepository {
 	@Autowired
 	SqlSession sqlSession;
@@ -55,4 +56,9 @@ public class ClassRepository {
 		statement = namespace + ".classDetailPage";
 		return sqlSession.selectOne(statement, classNo);
 	}
+	
+	/*public ClassCartDTO classDetailPage(ClassDTO dto) {
+		statement = namespace + ".classDetailPage";
+		return sqlSession.selectOne(statement, dto);
+	}*/
 }

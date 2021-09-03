@@ -267,9 +267,31 @@ a:hover {
 #titleName {
 	display: inline-block;
 	margin-top: 8px;
-	margin-bottom: 8px;
+	margin-bottom: 6px;
 }
+/*강사소개*/
+.tutorImg{
+	width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+.tutordetail{
+	padding-left: 10px;
+	padding-right: 100px;
+	padding-top: 50px;
 
+}
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.tutorPro{
+	position: relative;
+	left: 200px;
+	bottom: 147px;
+}
 /*버튼 css  1*/
 .button-4 {
 	width: 100px;
@@ -313,6 +335,30 @@ a:hover {
 	color: #fff;
 }
 
+.button-5{
+	width: 100px;
+	height: 30px;
+	border: 1px solid #0F4C81;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 5px 0 0;
+	left: 200px;
+	bottom: 125px;
+}
+
+#subbtn{
+	border:none;
+	border-right:0px;
+	border-top:0px;
+	boder-left:0px;
+	boder-bottom:0px;
+
+}
+
 /*버튼 끝 */
 .classdetail {
 	height: 300px;
@@ -320,8 +366,8 @@ a:hover {
 }
 
 .tutordetail {
-	height: 300px;
-	border: solid 1px;
+	height: 200px;
+	/*border: solid 1px;*/
 }
 
 .satisfyreview {
@@ -429,6 +475,24 @@ a:hover {
 	color: #fff;
 	padding-top: 7px;
 }
+.TopButton {
+	display:inline-block;
+	width: 100px;
+	height: 28px;
+	text-align: center;
+	background: #0F4C81;
+	color: #fff;
+	padding-top: 2px;
+}
+.subButton{
+	display:inline-block;
+	width: 100px;
+	height: 32px;
+	text-align: center;
+	background: #0F4C81;
+	color: #fff;
+	font-size:16px;
+}
 
 header a:visited {
 	color: #fff;
@@ -438,7 +502,19 @@ header a:hover {
 	text-decoration: none !important
 }
 </style>
-
+<script type="text/javascript">
+	function classJoin() {
+		var id ='${logIn.grade}';
+		//alert("삭제하시겠습니까?");
+		if(id == 'mem'){
+			alert("구매하시겠습니까?");
+			javascript:location.href='../member/classCart?classNo=${dto.classNo}&tutorId=${dto.tutorId}';
+		}else{
+			alert("일반 회원으로 로그인해주세요.");
+			return false;
+		}
+	}
+</script>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
@@ -654,17 +730,17 @@ header a:hover {
 						<c:if test="${dto.classWay.trim() == 'g'}">그룹</c:if>
 						<c:if test="${dto.classWay.trim() == 'n'}">비대면</c:if>
 						<br />
-						<div class="button-4">
-							<div class="eff-4">
-							<input type="submit" value="가입하기"/></div>
+						<div class="subButton" style="margin-top:10px;">
+							<input class="subButton" id ="subbtn" type="button" value="가입하기" onclick="classJoin()" />
+							<!-- <input type="submit" value="가입하기"/> -->
 						</div>
-						<div class="button-4">
-							<div class="eff-4"></div>
-							<a href="#"> 문의하기 </a>
+						<div class="TopButton" >
+							<a class="TopButton" href="#"> 문의하기 </a>
 						</div>
 					</div>
 				</div>
 				</form>
+				<!-- a태그 화면 내에서 이동 -->
 				<div class="middle-button">
 					<div class="button-4">
 						<div class="eff-4"></div>
@@ -683,17 +759,29 @@ header a:hover {
 					<div class="classdetail">강의 설명</div>
 				</a><br /> <a name="tutorDetail"></a>
 				<!-- 강사소개위치 이동 -->
+				<hr color="black" size="1px"/>
 				<div class="tutordetail">
-					<div class="tutordetail-main">강사소개</div>
-					<div class="tutordetail-content">강사내용</div>
-					<div class="tutordetail-time">강사응답시간</div>
-					<div class="button-4">
+					<div class="tutordetail-content">
+					<div class="tutorImg">
+   						 <img class="profile" src="./../images/main_class.png"/>
+   					</div>
+   					
+   					<div class="tutorPro">
+   						<table >
+   							<tr style="font-size:23px;"><td colspan=3><a href="#">${dto1.tutorId}</a></td></tr>
+   							<tr><td>총 강의 수</td><td>&nbsp;|&nbsp;</td><td>만족도</td><td>&nbsp;|&nbsp;</td><td>연락 가능 시간</td></tr>
+   							<tr align="center"><td>${classCount }개</td><td>&nbsp;|&nbsp;</td><td>n점</td><td>&nbsp;|&nbsp;</td><td>${dto1.tutorRespond }</td></tr>
+   						</table>
+   					</div>
+					</div>
+					<div class="button-5">
 						<div class="eff-4"></div>
 						<a href="#"> 강사에게 1:1 </a>
 					</div>
 				</div>
 				<br /> <a name="satisfyreView"></a>
 				<!-- 후기위치 이동 -->
+				<hr color="black" size="1px"/>
 				<div class="satisfyreview">
 					<a href="../tutor/reviewView">만족도/후기</a>
 				</div>

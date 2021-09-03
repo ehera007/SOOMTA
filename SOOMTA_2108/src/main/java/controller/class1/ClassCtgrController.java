@@ -1,5 +1,7 @@
 package controller.class1;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,8 +46,8 @@ public class ClassCtgrController {
 		return "class/ectCrgr";
 	}
 	@RequestMapping("classDetailPage") //클래스 상세보기 페이지
-	public String classDetailPage(@RequestParam(value="classNo") String classNo, Model model) {
-		classDetailPageService.classDetailPage(classNo, model);
+	public String classDetailPage(@RequestParam(value="classNo") String classNo, @RequestParam(value="tutorId") String tutorId, Model model) {
+		classDetailPageService.classDetailPage(classNo, tutorId, model);
 		return "class/classDetailPage";
 	}
 }

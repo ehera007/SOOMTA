@@ -550,8 +550,9 @@ a:hover {
 		<table style="margin: auto; text-align: center;">
 			<tr style="vertical-align: bottom;">
 			<c:forEach items="${list }" var="dto" varStatus="cnt">
+
 				<td width="200" height="250" >
-				<a href="../../class/classDetailPage?classNo=${dto.classNo }"> 
+				<a href="../../class/classDetailPage?classNo=${dto.classNo }&tutorId=${dto.tutorId}"> 
 				<img width="150" height="150" src="./../class/upload/${dto.classImg.split(',')[0] }"/><br/>
 				${dto.className}<br/>
 				${dto.classPrice}원

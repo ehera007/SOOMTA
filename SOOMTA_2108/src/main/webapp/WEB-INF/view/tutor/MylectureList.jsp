@@ -325,7 +325,7 @@ td a:active {
 			<c:if test="${dto.classCategoryL == 'EMP' }">취업</c:if>
 			<c:if test="${dto.classCategoryL == 'ETC' }">기타</c:if> / 
 			${dto.classCategoryS }</td>
-         <td><a href="../class/classDetailPage?classNo=${dto.classNo }">${dto.className }</a></td>
+         <td><a href="../class/classDetailPage?classNo=${dto.classNo }&tutorId=${dto.tutorId}">${dto.className }</a></td>
          <td>
          	<fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd"/>
          	~
