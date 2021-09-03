@@ -337,7 +337,7 @@ td{
 					<tr><th colspan="3"align="center" style="padding-right: 10px; padding-bottom: 15px; ">
 						<input type="submit" value="수정 완료" 
 							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold; padding-right: 100px;
+						<input type="button"  value="취소" style="border: none;font-size: 16px;font-weight: bold; padding-right: 100px;
 					 	background: transparent; color: #0F4C81;"
 						onclick="javascript:history.back();" />
 				</th></tr>

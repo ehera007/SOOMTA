@@ -242,7 +242,7 @@ color: #0F4C81;
  table {
     border: 2px solid #0F4C81;
     border-radius: 12px;
-    width: 500px;
+    width: 650px;
     height:550px;
     margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
@@ -270,13 +270,13 @@ color: #0F4C81;
    padding-left: 20px;
 }
 th{
-	padding-left:85px;
+	padding-left:20px;
 	width: 300px;
 }
 td{
 	padding-right:90px;
-	padding-left:35px;
-	width: 300px;
+	padding-left:15px;
+	width: 250px;
 }
 
 
