@@ -309,41 +309,43 @@ td{
 	<div class="ClassInfoForm">
 		<form action="myClassList" onsubmit="return cancel()" name="frm">
 			<table>
+		         <input type="hidden" name="classNo" value="${dto.classNo}"/>
 			<thead>
 		         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
-		            <th colspan="2" style="padding-right: 60px;">강의정보 </th>
+		            <th colspan="2" style="padding-right: 60px;">강의정보</th>
 		         </tr></thead>
+		         
 				<tr>
 		             <th style="padding-top: 20px;">분류</th>
-		             <td style="padding-top: 20px;">${Category_L }/${Category_S}</td>
+		             <td style="padding-top: 20px;">${dto.classCategoryL }/${dto.classCategoryS}</td>
 		        </tr>
 		        <tr>
 		             <th>강의명</th>
-		             <td>${className}</td>
+		             <td>${dto.className}</td>
 		        </tr>
 		        <tr>
 		             <th>기간</th>
-		             <td>${classStart} - ${classEnd }</td>
+		             <td>${dto.classStart} - ${dto.classEnd }</td>
 		        </tr>
 		        <tr>
 		             <th>정원</th>
-		             <td>${classTotal }</td>
+		             <td>${dto.classTotal }</td>
 		        </tr>
 		        <tr>
 		             <th>금액</th>
-		             <td>${classPrice }</td>
+		             <td>${dto.classPrice }</td>
 		        </tr>
 		        <tr>
 		             <th>수업방식</th>
-		             <td> ${classWay }</td>
+		             <td> ${dto.classWay }</td>
 		        </tr>
 		        <tr>
 		             <th>수강생 성별</th>
-		             <td>${classGender }</td>
+		             <td>${dto.classGender }</td>
 		        </tr>
 		        <tr>
 		             <th>강의설명</th>
-		             <td>${classIntroduce}</td>
+		             <td>${dto.classIntroduce}</td>
 		        </tr>
 		        <tr>
                    <th colspan="2"><div class="allbtn" style="padding-right: 65px;">

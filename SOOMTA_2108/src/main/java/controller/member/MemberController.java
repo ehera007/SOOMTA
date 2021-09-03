@@ -15,10 +15,13 @@ import command.BandCommand;
 import command.ClassCommand;
 import command.MemberCommand;
 import command.PurchaseCommand;
+import command.ReviewCommand;
 import service.band.BandListService;
 import service.band.BandNumberService;
 import service.band.BandWriteService;
 import service.class1.ClassCartService;
+import service.member.MemberClassConService;
+import service.member.MemberClassOrderList;
 import service.member.MemberInfoSuJungService;
 import service.member.MemberOutService;
 import service.member.MemberPerDataService;
@@ -26,6 +29,7 @@ import service.member.MemberPurchaseOkService;
 import service.member.MemberPwChangeConService;
 import service.member.MemberPwUpdateService;
 import service.member.MemberSuJungService;
+import service.member.ReviewWriteService;
 import validator.MemberPasswordValidator;
 
 
@@ -115,17 +119,37 @@ public class MemberController {
 		return path;
 	}
 
+	@Autowired
+	MemberClassOrderList memberClassOrderList;
 	@RequestMapping("myClassList")//내 강의목록
-	public String myClass() {
+	public String myClass(HttpSession session, Model model) {
+		memberClassOrderList.classOrderList(session, model);
 		return "member/myClassList";
 	}
+	
+	@Autowired
+	MemberClassConService memberClassConService;
 	@RequestMapping("classCon")//강의 확인
-	public String classCon() {
+	public String classCon(String classNo, Model model) {
+		memberClassConService.classCon(classNo, model);
 		return "member/classCon";
 	}
 	
-	@RequestMapping("classReview")//강의 후기작성
-	public String classReview() {
+	@Autowired
+	ReviewWriteService reviewWriteService;
+	@RequestMapping(value = "classReview", method = RequestMethod.POST)
+	public String classReview(ReviewCommand reviewCommand,HttpSession session) {
+		reviewWriteService.reviewWrite(reviewCommand,session);
+		return "redirect:myClassList";
+	}
+	
+	@RequestMapping(value= "classReview", method = RequestMethod.GET)//강의 후기작성
+	public String classReview(
+			@ModelAttribute(value="purchaseNo") String purchaseNo,
+			@ModelAttribute(value="classNo") String classNo,
+			@ModelAttribute(value="tutorId") String tutorId,
+			Model model) {
+		memberClassConService.classCon(classNo, model);
 		return "member/classReview";
 	}
 	
@@ -143,8 +167,8 @@ public class MemberController {
 	@Autowired
 	BandListService BandListService;
 	@RequestMapping("bandList")//내 모임 목록
-	public String bandList(Model model) {
-		BandListService.bandList(model);
+	public String bandList(Model model,HttpSession session) {
+		BandListService.bandList(model, session);
 		return "member/bandList";
 	}
 	
@@ -167,7 +191,6 @@ public class MemberController {
 	
 	@Autowired
 	ClassCartService classCartService;
-	
 	@RequestMapping("classCart")//강의결제페이지
 	public String classCart(@RequestParam(value="classNo") String classNo, Model model) {
 		classCartService.classCart(classNo, model);

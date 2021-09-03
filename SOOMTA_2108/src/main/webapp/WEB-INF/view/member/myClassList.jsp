@@ -308,44 +308,43 @@ td a:active {
 		</div>
 		<!-- 타이틀 -->
 	<table><thead>
+	
       <tr style="padding-bottom:20px; height:40px;">
       	<th width="4%" style="background-color: white;"></th>
          <th width="10%">No.</th>
          <th width="15%">대분류/소분류</th>
          <th width="20%">강의명</th>
-         <th width="13%">기간</th>
+         <th width="15%">기간</th>
          <th width="8%">수강생</th>
-         <th width="10%">상태</th>
+         <th width="8%">상태</th>
          <th width="8%">만족도</th>
          <th width="8%">후기</th>
          <th width="4%" style="background-color: white;"></th>
         
       </tr></thead>
       <tbody>
-      <tr>
-      	<td style="background-color: white; border-style: none;"></td>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td><a href="classInfo" class="classInfo">강의명</a></td>
-         <td>기간</td>
-         <td>수강생</td>
-         <td>상태</td>
-         <td>만족도</td>
-         <td>후기</td>
-         <td style="background-color: white; border-style: none;"></td>
-      </tr>
-      <tr>
-      	<td style="background-color: white; border-style: none;"></td>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td><a href="classInfo" class="classInfo">강의명</a></td>
-         <td>기간</td>
-         <td>수강생</td>
-         <td>상태</td>
-         <td>만족도</td>
-         <td>후기</td>
-         <td style="background-color: white; border-style: none;"></td>
-      </tr>
+      <c:forEach items="${list }" var="dto">
+	      <tr>
+	      	<td style="background-color: white; border-style: none;"></td>
+	         <td>${dto.classNo }</td>
+	         <td>${dto.classCategoryL }/${dto.classCategoryS }</td>
+	         <td><a href="classCon?classNo=${dto.classNo }" class="classCon">${dto.className }</a></td>
+	         <td><fmt:formatDate value="${dto.classStart}" 
+		             pattern="yy-MM-dd"/> -
+		          <fmt:formatDate value="${dto.classEnd }" 
+		             pattern="yy-MM-dd"/></td>
+	         <td>${dto.classTotal }</td>
+	         <td>${dto.classState }</td>
+	         <td>${dto.classSatisfy }</td>
+	         <td>
+	          <c:if test="${dto.reviewContents == null }">
+					<a href="classReview?purchaseNo=${dto.purchaseNo }&classNo=${dto.classNo }&tutorId=${dto.tutorId }">리뷰작성</a>
+			  </c:if>	
+	         	
+	         </td>
+	         <td style="background-color: white; border-style: none;"></td>
+	      </tr>
+      </c:forEach></tbody>
       </table>
 
 <a href="<c:url value='/member/classCon'/>">강의확인</a>

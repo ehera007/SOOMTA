@@ -1,10 +1,15 @@
 package repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import Model.ClassDTO;
+import Model.ClassOrderDTO;
 import Model.MemberDTO;
 import Model.PurchaseDTO;
+import Model.ReviewDTO;
 
 public class MemberRepository {
 	@Autowired
@@ -12,6 +17,21 @@ public class MemberRepository {
 	String namespace="mappers.memberMapper";
 	String statement;
 	
+	public void reviewWrite(ReviewDTO dto) {
+		System.out.println("dto.getTutorId() : " + dto.getTutorId());
+		statement = namespace + ".reviewWrite";
+		int i = sqlSession.insert(statement,dto);
+		System.out.println(i+"개 리뷰 작성.");
+	}
+	
+	public ClassDTO classCon(String classNo) {//클래스 정보
+		statement = namespace + ".classCon";
+		return sqlSession.selectOne(statement,classNo);
+	}
+	public List<ClassOrderDTO> classOrderList(String memId){//내 클래스 리스트
+		statement = namespace + ".classOrderList";
+		return sqlSession.selectList(statement, memId);
+	}
 	public void memOut(String memId) {//회원 탈퇴
 		statement = namespace + ".memOut";
 		sqlSession.delete(statement, memId);

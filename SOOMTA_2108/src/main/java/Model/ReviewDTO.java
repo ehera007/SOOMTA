@@ -2,6 +2,7 @@ package Model;
 
 import java.util.Date;
 
+
 public class ReviewDTO {
 	String classSatisfy; //클래스 만족도
 	String tutorSatisfy; //튜터 만족도
@@ -10,7 +11,36 @@ public class ReviewDTO {
     String purchaseNo; //구매번호
     String classNo; //클래스번호
     String tutorId; //튜터아이디
+    String memId;//회원아이디
+    String className;
+    Date classStart;
+	Date classEnd;
     
+	
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
+	public Date getClassStart() {
+		return classStart;
+	}
+	public void setClassStart(Date classStart) {
+		this.classStart = classStart;
+	}
+	public Date getClassEnd() {
+		return classEnd;
+	}
+	public void setClassEnd(Date classEnd) {
+		this.classEnd = classEnd;
+	}
+	public String getMemId() {
+		return memId;
+	}
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
 	public String getClassSatisfy() {
 		return classSatisfy;
 	}

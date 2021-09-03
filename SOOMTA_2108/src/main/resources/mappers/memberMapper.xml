@@ -2,6 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.memberMapper">
+
+
+
+<select id="classCon" parameterType="string" resultType="Model.ClassDTO">
+	select class_Category_L classCategoryL,class_Category_S classCategoryS,
+		   class_Name className,class_Start classStart,class_End classEnd,
+		   class_Total classTotal,class_Price classPrice,class_Way classWay,
+		   class_Gender classGender,class_Introduce classIntroduce
+	from Soomta_Class
+	where class_No = #{classNo}
+</select>
+
+<insert id="reviewWrite" parameterType="Model.ReviewDTO">
+	insert into review
+		(Purchase_No,class_No,tutor_Satisfy,class_Satisfy,
+		review_Contents,review_RegiDay,tutor_Id)
+	values(#{purchaseNo},#{classNo},#{tutorSatisfy},
+			#{classSatisfy},#{reviewContents},sysdate,#{tutorId})
+</insert>
+
+<select id="classOrderList" parameterType="string" resultType="Model.ClassOrderDTO">
+	select sc.class_No classNo, sc.class_Name className,class_Category_L classCategoryL,
+		class_Category_S classCategoryS,class_Start classStart,class_End classEnd,
+		class_Total classTotal,class_State classState,class_Satisfy classSatisfy,
+		r.review_Contents reviewContents, p.Purchase_No PurchaseNo,p.purchase_Date purchaseDate
+		,t.tutor_Id tutorId 
+	from Soomta_Class sc,purchase p,review r,tutor t
+	where sc.class_No = p.class_No 
+	and   t.tutor_Id = sc.tutor_Id
+	and   p.Purchase_No = r.Purchase_No(+)
+	and   p.class_No = r.class_No(+)
+	and   p.mem_Id = #{memId}
+	order by PurchaseNo desc
+			 
+</select>
+
 <!-- 내정보 보기 -->
 <select id="perData" parameterType="string" resultType="Model.MemberDTO">
 	select mem_Id memId,mem_Name memName,mem_Pw memPw, mem_Since memSince, mem_Dob memDob, mem_Gender memGender, 
