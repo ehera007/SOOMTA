@@ -535,7 +535,9 @@ a:hover {
 					<td><input type="checkbox" name="classMethod" value="n" />비대면</td>
 				</tr>
 				<tr>
-					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">>더보기</td>
+					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">>더보기
+						<button onclick="DetailTag()">선택완료</button>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -557,7 +559,7 @@ a:hover {
 				${dto.className}<br/>
 				${dto.classPrice}원
 				</a>
-				</td>
+				</td> 
 				<c:if test="${cnt.count % 4 == 0 }">
 				</tr><tr>
 				</c:if>

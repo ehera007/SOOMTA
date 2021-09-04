@@ -3,9 +3,11 @@ package repository;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import Model.ClassDTO;
+import Model.ReviewDTO;
 
 
 public class ClassRepository {
@@ -56,9 +58,24 @@ public class ClassRepository {
 		statement = namespace + ".classDetailPage";
 		return sqlSession.selectOne(statement, classNo);
 	}
-	
-	/*public ClassCartDTO classDetailPage(ClassDTO dto) {
-		statement = namespace + ".classDetailPage";
-		return sqlSession.selectOne(statement, dto);
-	}*/
+	public List<ReviewDTO> reviewViewList(String classNo) {
+		statement = namespace + ".reviewViewList";
+		return sqlSession.selectList(statement, classNo);
+	}
+	public int reviewCount(String classNo) {
+		statement = namespace + ".reviewCount";
+		return sqlSession.selectOne(statement, classNo);
+	}
+	public double classSatisfyCount(String classNo) {
+		statement = namespace + ".classSatisfyCount";
+		return sqlSession.selectOne(statement, classNo);
+	}
+	public double tutorSatisfyCount(String classNo) {
+		statement = namespace + ".tutorSatisfyCount";
+		return sqlSession.selectOne(statement, classNo);
+	}
+	public double tutorSatisTfyAllCount(String tutorId) {
+		statement = namespace + ".tutorSatisTfyAllCount";
+		return sqlSession.selectOne(statement, tutorId);
+	}
 }

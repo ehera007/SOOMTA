@@ -1,10 +1,13 @@
 package service.class1;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import Model.ClassDTO;
+import Model.ReviewDTO;
 import Model.TutorDTO;
 import repository.ClassRepository;
 import repository.TutorRepository;
@@ -23,5 +26,12 @@ public class ClassDetailPageService {
 		
 		int classCount = classRepository.classCount(tutorId);
 		model.addAttribute("classCount",classCount);
+		
+		List<ReviewDTO> list = classRepository.reviewViewList(classNo);
+		model.addAttribute("list", list);
+		
+		double tutorSatisTfyAllCount = classRepository.tutorSatisTfyAllCount(tutorId);
+		model.addAttribute("tutorSatisTfyAllCount", tutorSatisTfyAllCount);
+				
 	}
 }

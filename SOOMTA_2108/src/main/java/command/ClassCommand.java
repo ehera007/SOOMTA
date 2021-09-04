@@ -25,14 +25,21 @@ public class ClassCommand {
 	String classState;
 	String classIntroduce;
 	String fileDel;
-	//String classArea;
+	String classArea;
+	String classCity;
 	
-	/*public String getClassArea() {
+	public String getClassCity() {
+		return classCity;
+	}
+	public void setClassCity(String classCity) {
+		this.classCity = classCity;
+	}
+	public String getClassArea() {
 		return classArea;
 	}
 	public void setClassArea(String classArea) {
 		this.classArea = classArea;
-	}*/
+	}
 	public String getFileDel() {
 		return fileDel;
 	}

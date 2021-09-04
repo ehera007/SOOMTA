@@ -28,6 +28,8 @@ public class ClassRetouchService {
 		dto.setClassGender(classCommand.getClassGender());
 		dto.setClassIntroduce(classCommand.getClassIntroduce());
 		dto.setClassNo(classCommand.getClassNo());
+		dto.setClassArea(classCommand.getClassArea());
+		dto.setClassCity(classCommand.getClassCity());
 		
 		ClassDTO dto1 = classRepository.classDetail(classCommand.getClassNo().toString());
 		dto.setClassImg(dto1.getClassImg());

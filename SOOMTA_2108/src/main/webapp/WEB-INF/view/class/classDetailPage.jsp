@@ -259,7 +259,6 @@ a:hover {
 
 .middle-button {
 	height: 30px;
-	padding: 20px 0 0 0;
 	padding-bottom: 3px;
 }
 
@@ -351,6 +350,10 @@ a:hover {
 }
 
 #subbtn{
+	text-align: center;
+	background: #0F4C81;
+	color: #fff;
+	font-size:16px;
 	border:none;
 	border-right:0px;
 	border-top:0px;
@@ -371,8 +374,9 @@ a:hover {
 }
 
 .satisfyreview {
-	height: 300px;
-	border: solid 1px;
+	height: 500px;
+	width:999px;
+
 }
 
 .bottom-button {
@@ -492,6 +496,11 @@ a:hover {
 	background: #0F4C81;
 	color: #fff;
 	font-size:16px;
+	border:none;
+	border-right:0px;
+	border-top:0px;
+	boder-left:0px;
+	boder-bottom:0px;
 }
 
 header a:visited {
@@ -500,6 +509,34 @@ header a:visited {
 
 header a:hover {
 	text-decoration: none !important
+}
+/*후기 테이블*/
+.reviewTable{
+	width:250px;
+	height: 250px;
+	border:2px solid #0F4C81;
+	box-shadow: 5px 5px 5px 5px #D5D5D5;
+	display:inline-block;
+	float: left;
+	margin-right: 30px;
+	position: relative;
+	right: 50px;
+	top:40px;
+}
+
+.reviewTable td, th{
+	padding:1px;
+	vertical-align:top;
+}
+
+.reviewTable table th{
+	width:40px;
+}
+.moreReview{
+	position: relative;
+	float: right;
+	bottom: -60px;
+	right: 120px;
 }
 </style>
 <script type="text/javascript">
@@ -731,7 +768,7 @@ header a:hover {
 						<c:if test="${dto.classWay.trim() == 'n'}">비대면</c:if>
 						<br />
 						<div class="subButton" style="margin-top:10px;">
-							<input class="subButton" id ="subbtn" type="button" value="가입하기" onclick="classJoin()" />
+							<input class="subButton" type="button" value="가입하기" onclick="classJoin()" />
 							<!-- <input type="submit" value="가입하기"/> -->
 						</div>
 						<div class="TopButton" >
@@ -759,7 +796,7 @@ header a:hover {
 					<div class="classdetail">강의 설명</div>
 				</a><br /> <a name="tutorDetail"></a>
 				<!-- 강사소개위치 이동 -->
-				<hr color="black" size="1px"/>
+				<hr color="black" />
 				<div class="tutordetail">
 					<div class="tutordetail-content">
 					<div class="tutorImg">
@@ -770,7 +807,7 @@ header a:hover {
    						<table >
    							<tr style="font-size:23px;"><td colspan=3><a href="#">${dto1.tutorId}</a></td></tr>
    							<tr><td>총 강의 수</td><td>&nbsp;|&nbsp;</td><td>만족도</td><td>&nbsp;|&nbsp;</td><td>연락 가능 시간</td></tr>
-   							<tr align="center"><td>${classCount }개</td><td>&nbsp;|&nbsp;</td><td>n점</td><td>&nbsp;|&nbsp;</td><td>${dto1.tutorRespond }</td></tr>
+   							<tr align="center"><td>${classCount }개</td><td>&nbsp;|&nbsp;</td><td>${tutorSatisTfyAllCount }점</td><td>&nbsp;|&nbsp;</td><td>${dto1.tutorRespond }</td></tr>
    						</table>
    					</div>
 					</div>
@@ -781,9 +818,40 @@ header a:hover {
 				</div>
 				<br /> <a name="satisfyreView"></a>
 				<!-- 후기위치 이동 -->
-				<hr color="black" size="1px"/>
+				<hr color="black" />
 				<div class="satisfyreview">
-					<a href="../tutor/reviewView">만족도/후기</a>
+		
+		<c:if test="${!empty list }" >
+		<c:forEach items="${list }" var="dto2"  begin="0" end="2">
+		<table class="reviewTable">
+			<tr>
+				<th>강의 만족도 </th>
+				<td>${dto2.classSatisfy }</td>
+			</tr>
+			<tr>
+				<th>강사 만족도</th>
+				<td>${dto2.tutorSatisfy }</td>
+			</tr>
+			<tr>
+				<th>후기 내용</th>
+				<td>${dto2.reviewContents }</td>	
+			</tr>
+		</table>
+		</c:forEach>
+		<div class="moreReview">
+		<br/>
+		<a href="../tutor/reviewView?classNo=${dto.classNo }">> 더보기</a>
+		</div>
+	</c:if>
+		
+		<c:if test="${empty list }">
+		<div class="main">
+			<h2>
+				등록된 후기가 없습니다 !<br/>
+				지금 바로 가입해보세요 :)
+			</h2>
+			</div>
+			</c:if>
 				</div>
 			</div>
 		</div>
@@ -797,7 +865,8 @@ header a:hover {
 	<header>
 		<div class="bottomFixButton"
 			style="position: fixed; bottom: 3px; right: 170px;">
-			<a href="../member/classCart">등록하기</a>
+			<input id ="subbtn" type="button" value="가입하기" onclick="classJoin()" />
+			
 		</div>
 		<div class="bottomFixButton"
 			style="position: fixed; bottom: 3px; right: 60px;">

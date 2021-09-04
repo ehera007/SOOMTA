@@ -308,7 +308,7 @@ td a:active {
          <th width="15%">대분류/소분류</th>
          <th width="25%">강의명</th>
          <th width="20%">기간</th>
-         <th width="10%">상태</th>
+         <th width="10%">지역</th>
          <th width="10%">상세</th>
          <th width="10%">후기</th>
       </tr>
@@ -331,9 +331,12 @@ td a:active {
          	~
          	<fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd"/>
          </td>
-         <td>상태</td>
+         <td>
+         <c:if test="${dto.classCity == 'SEOUL' }">서울</c:if>
+         <c:if test="${dto.classCity == 'GYEONGGIDO' }">경기도</c:if>
+         /${dto.classArea }</td>
          <td><a href="classCheck?classNo=${dto.classNo}">상세</a></td>
-         <td><a href="reviewView">후기</a></td>
+         <td><a href="reviewView?classNo=${dto.classNo}">후기</a></td>
       </tr>
       </tbody>
       </c:forEach>
