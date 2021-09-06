@@ -13,9 +13,14 @@ public class BandRepository {
 	String namespace = "mappers.bandMapper";
 	String statement;
 	
-	public List<BandDTO> bandList() {
+	public void bandWish(BandDTO dto) {
+		statement = namespace + ".bandWish";
+		sqlSession.insert(statement,dto);
+	}
+	
+	public List<BandDTO> bandList(String memId) {
 		statement = namespace + ".bandList";
-		return sqlSession.selectList(statement);
+		return sqlSession.selectList(statement,memId);
 	}
 	
 	public void bandWrite(BandDTO dto) {
