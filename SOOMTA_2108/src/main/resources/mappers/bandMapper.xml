@@ -23,6 +23,7 @@
 			band_Introduce bandIntroduce, band_Gender bandGender, band_Way bandWay,
 			band_Total bandTotal, band_Public bandPublic, band_Age bandAge, mem_Id memId
 	from band
+	where mem_Id = #{memId}
 </select>
 
 <insert id="bandWrite" parameterType="Model.BandDTO">
