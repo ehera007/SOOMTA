@@ -122,9 +122,8 @@ function funcCon(){
 					<input class="btn" type="button" value="PW변경"
 						onclick="location.href='memPwCon?memId=${mem.memId}'" /> 
 				<input class="btn" type="button" value="수정"
-					onclick="location.href='memMod?memId=${mem.memId}'" /> <input class="btn"
-					type="button" class="btn" value="삭제"
-					onclick="funcCon()"/></th>
+					onclick="location.href='memMod?memId=${mem.memId}'" /> 
+					<input class="btn" type="button" class="btn" value="삭제" onclick="funcCon()"/></th>
 			</tr></tfoot>
 		</table>
 	</div>

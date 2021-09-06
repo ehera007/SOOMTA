@@ -150,9 +150,10 @@ td a:active {
 		<c:set var="i" value="${i+1 }"/>
 			<tr>
 				<td>${i }<input type="hidden" value="${dto.faqNo }"/></td>
-				<td><a href="memQnA/${dto.faqNo }">${dto.faqTitle }</a></td>
+				<td><a href="memQnA?faqNo=${dto.faqNo }">${dto.faqTitle }</a></td>
 				<td><fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${dto.faqDate}"/></td>
-				<td>${dto.faqHit }</td>
+				<td><c:if test="${dto.faqHit==null}">0</c:if>
+				<c:if test="${dto.faqHit!=null}">${dto.faqHit }</c:if></td>
 			</tr></c:forEach></c:if>
 	<c:if test="${empty mQ }"><tr><th colspan="4">등록된 자주묻는질문이 없습니다.</th></tr></c:if></tbody>
 	</table>

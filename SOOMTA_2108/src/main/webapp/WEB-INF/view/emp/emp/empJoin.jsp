@@ -176,6 +176,26 @@ function funcCon(){
 	}
 }
 </script>
+<!-- ID중복 체크 //선생님 ajax 물어보기...ㅜ -->
+<script>
+var idCk = 0;
+	$(#empId).blur(function(){
+		var empId = $('#empId').val();
+		$ajax({
+			url : '${pageContext.request.contextPath}/idCk',
+			type : 'post',
+			success : function(data){
+				if(data != 0) {
+					$("#idCk").text("사용중인 아이디입니다.");
+					$("#idCk").css("color", "red");
+				}, error: function(){
+					console.log("실패");
+				}
+			}
+					
+		});
+	});
+</script>
 <meta charset="UTF-8">
 <title>관리자 등록</title>
 </head>
@@ -207,9 +227,11 @@ function funcCon(){
 					<tbody>
 						<tr class="first_tr">
 							<th>아이디</th>
-							<td><input type="text" name="empId" value="${empId }"
+							<td><input type="text" name="empId" id="empId" value="${empId }"
 								autofocus required pattern="^([a-z0-9]){4,15}$" size="30" />
-								<div class="detail">* 4~15자 영문/숫자 사용</div></td>
+								<div id="idCk"></div>
+								<div class="detail">* 4~15자 영문/숫자 사용</div>
+								</td>
 						</tr>
 						<tr>
 							<th>비밀번호</th>

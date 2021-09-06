@@ -58,8 +58,8 @@
 }
 /*이미지 사이즈 관련 스타일*/
 img {
-	width: auto;
-	height: 100%;
+	width: 90%;
+	height: auto;
 }
 /* 테이블 스타일 */
 table {
@@ -123,17 +123,16 @@ td a {
 		</div>
 		<table>
 			<tr style="font-size: 20px; padding: 5px;">
-				<th colspan="3">${ tNo.faqTitle}<input type="hidden" value="${tNo.faqNo }"/></th>
+				<th colspan="3">${ dto.faqTitle}</th>
 			</tr>
 			<tr>
 				<td colspan="3" rowspan="2"><br /> 
-				<c:if test="${tNo.faqImg != null}">
-				<!------------- 선생님 에러 ---------------ㄴ-->
-				<c:forTokens items="${tNo.faqImag }" delims="," var="faqImg">
-				<img src="<c:url value='/board/upload/${faqImg }'/>"/><br />
-				</c:forTokens></c:if>
-				<c:if test="${tNo.faqIng == null}"> </c:if>
-				${tNo.faqContents }<br /> 
+				<c:if test="${dto.faqImg != null}">
+				<c:forEach items="${dto.faqImg }" var="faqImg">
+				<img src="<c:url value='/emp/board/uploadImg/${faqImg }'/>"/><br />
+				</c:forEach></c:if>
+				<c:if test="${dto.faqImg == null}"> </c:if>
+				<p>${fn:replace(dto.faqContents, br , "<br />") }</p><br/>
 				</td>
 			</tr>
 		</table>

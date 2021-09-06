@@ -111,6 +111,7 @@ public class EmployeeController {
 		infoService.memInfo(memId,model);
 		return "emp/mem/memPwCon";
 	}
+	
 	@RequestMapping(value="memPwChange", method=RequestMethod.POST)//회원 pw 확인 및 수정
 	public String memPwChange(@RequestParam(value="memId") String memId, @RequestParam(value="empPw") String empPw, Model model, 
 			HttpSession session, @ModelAttribute(value = "memberCommand") MemberCommand memberCommand) {
@@ -156,6 +157,7 @@ public class EmployeeController {
 		infoService.tutorInfo(tutorId, model);
 		return "emp/tutor/tutorInfo";
 	}
+	
 	@RequestMapping("tutorMod")//튜터 수정
 	public String tutorMod(@RequestParam(value="tutorId") String tutorId, Model model) {
 		infoService.tutorInfo(tutorId, model);
@@ -167,7 +169,6 @@ public class EmployeeController {
 		String tutorId = tutorCommand.getTutorId();
 		return "redirect:tutorInfo?tutorId="+tutorId;
 	}
-
 	@RequestMapping("tutorProfile")//튜터 프로필정보
 	public String tutorProfile(@RequestParam(value="tutorId") String tutorId, Model model) {
 		infoService.tutorProfile(tutorId, model);

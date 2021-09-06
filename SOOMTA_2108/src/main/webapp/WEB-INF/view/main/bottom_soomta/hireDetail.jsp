@@ -58,8 +58,8 @@
 }
 /*이미지 사이즈 관련 스타일*/
 img {
-	width: auto;
-	height: 100%;
+	width: 90%;
+	height: auto;
 }
 /* 테이블 스타일 */
 table {
@@ -121,12 +121,18 @@ td a {
 				 <a href="<c:url value='/about/hire'/>">인재채용</a>
 			</p>
 		</div>
-		<table>
+	<table>
 			<tr style="font-size: 20px; padding: 5px;">
-				<th colspan="3">제목 ${ faqTitle}</th>
+				<th colspan="3">${ dto.faqTitle}</th>
 			</tr>
 			<tr>
-				<td colspan="3" rowspan="2">${faqContents }<br /> ${faqImg }
+				<td colspan="3" rowspan="2"><br /> 
+				<c:if test="${dto.faqImg != null}">
+				<c:forEach items="${dto.faqImg }" var="faqImg">
+				<img src="<c:url value='/emp/board/uploadImg/${faqImg }'/>"/><br />
+				</c:forEach></c:if>
+				<c:if test="${dto.faqImg == null}"> </c:if>
+				<p>${fn:replace(dto.faqContents, br , "<br />") }</p><br/>
 				</td>
 			</tr>
 		</table>

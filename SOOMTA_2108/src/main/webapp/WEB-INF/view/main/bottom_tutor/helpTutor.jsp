@@ -134,7 +134,7 @@ td a:active {
 			<p>
 				<a href="<c:url value='/help/tutorNotice'/>">공지사항</a> <a
 					href="<c:url value='/help/tutor'/>">이용안내</a> <a
-					href="<c:url value='/help/tutorQ'/>">자주묻는 질문</a>
+					href="<c:url value='/help/tutorQ'/>">자주 묻는 질문</a>
 			</p>
 		</div>
 	<div class="table">
@@ -151,7 +151,7 @@ td a:active {
 		<c:set var="i" value="${i+1 }"/>
 			<tr>
 				<td>${i }<input type="hidden" value="${dto.faqNo }"/></td>
-				<td><a href="tutorSupport?${dto.faqNo }">${dto.faqTitle }</a></td>
+				<td><a href="tutorSupport?faqNo=${dto.faqNo }">${dto.faqTitle }</a></td>
 <td><fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${dto.faqDate}"/></td>
 				<td>${dto.faqHit }</td>
 			</tr></c:forEach></c:if>

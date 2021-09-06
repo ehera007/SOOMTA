@@ -52,30 +52,34 @@ public class FaqController {
 		return "main/bottom_tutor/tutorNotice";
 	}
 	@RequestMapping("memSupport")//회원 이용안내 게시글보기
-	public String memSupport() {
+	public String memSupport(@RequestParam(value="faqNo") String faqNo, Model model) {
+		faqViewService.tView(faqNo,model);
 		return "main/bottom_mem/memSupport";
 	}
-	@RequestMapping(value="memNoticeC", method=RequestMethod.POST)//회원 공지사항 게시글 보기
-	public String memNoticeC() {
+	@RequestMapping("memNoticeC")//회원 공지사항 게시글 보기
+	public String memNoticeC(@RequestParam(value="faqNo") String faqNo, Model model) {
+		faqViewService.tView(faqNo,model);
 		return "main/bottom_mem/memNoticeC";
 	}
 	@RequestMapping("memQnA")//회원 자주묻는질문 게시글 보기
-	public String memQnA() {
+	public String memQnA(@RequestParam(value="faqNo") String faqNo, Model model) {
+		faqViewService.tView(faqNo,model);
 		return "main/bottom_mem/memQnA";
 	}
 
 	@RequestMapping("tutorNoticeC")//튜터 공지사항 게시글 보기
 	public String tutorNoticeC(@RequestParam(value="faqNo") String faqNo, Model model) {
-		faqViewService.tNoticeC(faqNo, model);
+		faqViewService.tView(faqNo, model);
 		return "main/bottom_tutor/tutorNoticeC";
 	}
 	@RequestMapping("tutorSupport")//튜터 이용안내 게시글보기
 	public String tutorSupport(@RequestParam(value="faqNo") String faqNo, Model model) {
-		faqViewService.tSupport(faqNo, model);
+		faqViewService.tView(faqNo, model);
 		return "main/bottom_tutor/tutorSupport";
 	}
 	@RequestMapping("tutorQnA")//튜터 자주묻는질문 게시글 보기
-	public String tutorQnA() {
+	public String tutorQnA(@RequestParam(value="faqNo") String faqNo, Model model) {
+		faqViewService.tView(faqNo, model);
 		return "main/bottom_tutor/tutorQnA";
 	}
 }

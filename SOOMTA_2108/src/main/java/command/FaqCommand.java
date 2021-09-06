@@ -16,9 +16,16 @@ public class FaqCommand {
 	Date faqDate;
 	String faqCtgrS;
 	String fileDel1;
+	String faqHit;
 	
 	
 	
+	public String getFaqHit() {
+		return faqHit;
+	}
+	public void setFaqHit(String faqHit) {
+		this.faqHit = faqHit;
+	}
 	public String getFileDel1() {
 		return fileDel1;
 	}

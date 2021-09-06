@@ -11,43 +11,37 @@
 	order by faq_Date desc
 </select>
 <select id="tQList" resultType="Model.FaqDTO">
-	select faq_Category faqCategory, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit  
+	select faq_no faqNo, faq_Category faqCategory, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit  
 	from faq 
 	where faq_Category = 'tutor' and faq_Ctgr_S = '자주묻는질문'
 	order by faq_Date desc
 </select>
 <select id="tHelpList" resultType="Model.FaqDTO">
-	select faq_Category faqCategory, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit   
+	select faq_no faqNo, faq_Category faqCategory, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit   
 	from faq 
 	where faq_Category = 'tutor' and faq_Ctgr_S = '이용안내'
 	order by faq_Date desc
 </select>
-<select id="tNoticeC" parameterType="string" resultType="Model.FaqDTO">
-	select faq_Title faqTitle, faq_Contents faqContents, faq_Img faqImg
-	from faq
+<select id="tView" parameterType="string" resultType="Model.FaqDTO">
+	select faq_Title faqTitle, faq_Contents faqContents, faq_Img faqImg 
+	from faq 
 	where faq_No = #{faqNo}
 </select>
-<select id="tSupport" parameterType="string" resultType="Model.FaqDTO">
-	select faq_Title faqTitle, faq_Contents faqContents, faq_Img faqImg
-	from faq
-	where faq_No = #{faqNo}
-</select>
-
 <!-- 회원 -->
 <select id="mNoticeList" resultType="Model.FaqDTO">
-	select faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit 
+	select faq_No faqNo, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit 
 	from faq 
 	where faq_Category = 'member' and faq_Ctgr_S = '공지사항'
 	order by faq_Date desc
 </select>
 <select id="mQList" resultType="Model.FaqDTO">
-	select faq_Category faqCategory, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit  
+	select faq_No faqNo, faq_Category faqCategory, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit  
 	from faq 
 	where faq_Category = 'member' and faq_Ctgr_S = '자주묻는질문'
 	order by faq_Date desc
 </select>
 <select id="mHelpList" resultType="Model.FaqDTO">
-	select faq_Category faqCategory, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit   
+	select faq_No faqNo, faq_Category faqCategory, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit   
 	from faq 
 	where faq_Category = 'member' and faq_Ctgr_S = '이용안내'
 	order by faq_Date desc
@@ -55,10 +49,16 @@
 
 <!-- 숨타 -->
 <select id="hire" resultType="Model.FaqDTO">
-	select faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit 
+	select faq_No faqNo, faq_Title faqTitle, faq_Date faqDate, faq_Hit faqHit 
 	from faq 
 	where faq_Category = 'soomta' and faq_Ctgr_S = '인재채용'
 	order by faq_Date desc
 </select>
 
+<!-- 조회수 -->
+<update id="hitCnt" parameterType="string">
+	update faq
+	set faq_hit = nvl(faq_hit,0) + 1
+	where faq_no = #{faqNo} 
+</update>
 </mapper>

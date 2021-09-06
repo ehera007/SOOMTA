@@ -76,8 +76,10 @@ text-align:center;
 	color: #0F4C81;
 	font-weight: bold;
 	border: none;
-	margin: 0 0 0 15px;
-	float: right;
+/*	margin: 0 0 0 15px;
+	float: right; */
+	height: 30px;
+	margin: 30px 0px 30px 10px;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -164,7 +166,10 @@ $(document)
 				<td>${dto.faqCtgrS }</td>
 				<td>${dto.faqTitle }</td>
 				<td>${dto.empId  }</td>
-				<td>조회수</td>
+				<td>
+				<c:if test="${dto.faqHit==null}">0</c:if>
+				<c:if test="${dto.faqHit!=null}">${dto.faqHit }</c:if>
+				</td>
 			</tr>
 		</c:forEach></tbody>
 	</table></c:if>
@@ -176,18 +181,19 @@ $(document)
 			<div class="search">
 				<form>
 				<select name="ctgr">
-				<option value="no">번호</option>
+				<option value="title">제목</option>
+				<option value="no">No.</option>
 				<option value="ctgrL">대분류</option>
 				<option value="ctgrS">소분류</option>
 				<option value="id">작성자</option>
 				</select>
 				<input type = "text" name="searchBar" value=""/>
 				<input type="submit" class="btn" value="검색"/>
+				<input class="joinbtn" type="button" value="게시글 등록"
+					onclick="location.href='boardWrite'" />
 				</form>
 				
 			</div>
-<input class="joinbtn" type="button" value="게시글 등록"
-					onclick="location.href='boardWrite'" />
 					</div>
 	</div>
 	<!-- TOP이동 -->

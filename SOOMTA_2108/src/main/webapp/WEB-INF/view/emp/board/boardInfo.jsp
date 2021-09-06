@@ -100,8 +100,11 @@ function funcCon(){
 			<tr><td width="35%"><span class="th">분류 :</span> ${faq.faqCategory } | ${faq.faqCtgrS }</td>
 			<td width="30%"><span class="th">작성일 :</span> 
 			<fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${faq.faqDate }"/></td>
+			<td width="35%" style="padding-right: 50px;"><span class="th">조회수 :</span> 
+			<c:if test="${faq.faqHit==null}">0</c:if>
+			<c:if test="${faq.faqHit!=null}">${faq.faqHit}</c:if></td></tr>
+			<tr><td colspan="2" width="65%"><span class="th">제목 :</span> ${faq.faqTitle }</td>
 			<td width="35%" style="padding-right: 50px;"><span class="th">작성자 :</span> ${faq.empId }</td></tr>
-			<tr><td colspan="3" style="padding-right: 50px;"><span class="th">제목 :</span> ${faq.faqTitle }</td></tr>
 			<tr><td colspan="3" style="padding-right: 50px;">
 			<span class="th">내용 </span><br/><br/>${fn:replace(faq.faqContents, br , "<br />") }</td></tr>
 			<tr><td colspan="3" style="padding-right: 50px;"><span class="th">첨부 이미지 </span> 

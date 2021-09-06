@@ -12,14 +12,19 @@ public class FaqRepository {
 	SqlSession sqlSession;
 	String namespace = "mappers.faqMapper";
 	String statement;
-
+	
+	//조회수
+	public void hitCnt(String faqNo) {
+		statement = namespace + ".hitCnt";
+		sqlSession.update(statement, faqNo);
+	}
 	// 튜터안내
 	public List<FaqDTO> tNoticeList() {// 튜터-공지
 		statement = namespace + ".tNoticeList";
 		return sqlSession.selectList(statement);
 	}
-	public FaqDTO tNoticeC(String faqNo) {//공지보기
-		statement = namespace + ".tNoticeC";
+	public FaqDTO tView(String faqNo) {//게시글 보기
+		statement = namespace + ".tView";
 		return sqlSession.selectOne(statement,faqNo);
 	}
 
@@ -32,11 +37,6 @@ public class FaqRepository {
 		statement = namespace + ".tHelpList";
 		return sqlSession.selectList(statement);
 	}
-	public FaqDTO tSupport(String faqNo) {//이용안내보기
-		statement = namespace + ".tSupport";
-		return sqlSession.selectOne(statement,faqNo);
-	}
-
 	//회원안내
 	public List<FaqDTO> mNoticeList() {// 회원-공지
 		statement = namespace + ".mNoticeList";

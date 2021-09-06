@@ -58,7 +58,7 @@
 	tutor_Email tutorEmail, tutor_Since tutorSince, tutor_Email_Ck tutorEmailCk, tutor_Email_Ok tutorEmailOk
 </sql>
 <sql id="profile">
-	tutor_Certification tutorCertification, tutor_Career tutorCareer, tutor_Image tutorImage, tutor_Introduce tutorIntroduce, tutor_Likearea tutorLikearea
+	tutor_Certification tutorCertification, tutor_Career tutorCareer, tutor_Image tutorImage, tutor_Introduce tutorIntroduce, tutor_Likearea tutorLikeArea 
 </sql>
 
 <select id="tutorList" resultType="Model.TutorDTO">
@@ -73,7 +73,7 @@
 </select>
 
 <select id="tutorProfile" resultType="Model.TutorDTO" parameterType="string">
-	select  <include refid="profile"/>, tutor_id tutorId
+	select  <include refid="profile"/>, tutor_Id tutorId 
 	from tutor
 	where tutor_id = #{tutorId}
 </select>
@@ -139,7 +139,7 @@
 
 <!-- 게시판 관리 -->
 <select id="boardList" resultType="Model.FaqDTO">
-	select faq_No faqNo, emp_Id empId, faq_Category faqCategory, faq_Ctgr_S faqCtgrS , faq_Date faqDate, faq_Title faqTitle 
+	select faq_No faqNo, emp_Id empId, faq_Category faqCategory, faq_Ctgr_S faqCtgrS , faq_Date faqDate, faq_Title faqTitle, faq_Hit faqHit  
 	from faq order by faq_Date desc
 </select>
 
@@ -148,16 +148,16 @@
 </select>
 
 <insert id="faqInsert" parameterType="Model.FaqDTO">
-	insert into faq(FAQ_NO, EMP_ID, FAQ_CATEGORY, FAQ_CONTENTS, FAQ_IMG, FAQ_TITLE, FAQ_DATE, FAQ_CTGR_S) 
+	insert into faq(FAQ_NO, EMP_ID, FAQ_CATEGORY, FAQ_CONTENTS, FAQ_IMG, FAQ_TITLE, FAQ_DATE, FAQ_CTGR_S, faq_hit) 
 	values (#{faqNo}, #{empId}, #{faqCategory}, #{faqContents}, 
 	<if test="faqImg != null">#{faqImg}</if>
 	<if test="faqImg == null">null</if>
-	, #{faqTitle}, sysdate, #{faqCtgrS}) 
+	, #{faqTitle}, sysdate, #{faqCtgrS}, 0) 
 </insert>
 
 <select id="boardInfo" parameterType="string" resultType="Model.FaqDTO">
 	select faq_No faqNo, faq_Category faqCategory, faq_Ctgr_S faqCtgrS, faq_Date faqDate, 
-	 		emp_Id empId, faq_Title faqTitle, faq_Contents faqContents, faq_Img faqImg 
+	 		emp_Id empId, faq_Title faqTitle, faq_Contents faqContents, faq_Img faqImg, faq_Hit faqHit  
 	 		from faq where faq_No = #{faqNo}
 </select>
 
@@ -169,9 +169,9 @@
 	update faq
 	set faq_Category = #{faqCategory}, faq_Ctgr_S = #{faqCtgrS}, emp_Id = #{empId}, faq_Title = #{faqTitle}, 
 	faq_Contents = #{faqContents}, faq_date = sysdate, 
-	<if test="faqImg != null">faq_Img = #{faqImg}</if>
-	<if test="faqImg == null">faq_Img = null</if>
-	where faq_No = #{faqNo}
+	<if test="faqImg != null">faq_Img = #{faqImg} </if> 
+	<if test="faqImg == null">faq_Img = null </if> 
+ 	where faq_No = #{faqNo}
 </update>
 </mapper>
 

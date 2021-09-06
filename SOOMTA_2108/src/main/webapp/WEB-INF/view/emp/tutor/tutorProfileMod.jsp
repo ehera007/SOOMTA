@@ -84,7 +84,7 @@ function funcCon(){
 }
 </script>
 <meta charset="UTF-8">
-<title>튜터 수정</title>
+<title>튜터 프로필 수정</title>
 </head>
 <body>
 <body>

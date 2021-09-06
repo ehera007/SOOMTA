@@ -9,15 +9,10 @@ import repository.FaqRepository;
 public class FaqViewService {
 	@Autowired
 	FaqRepository faqRepository;
-	public void tNoticeC(String faqNo, Model model) {
-		FaqDTO dto = faqRepository.tNoticeC(faqNo);
-		System.out.println("게시번호"+dto.getFaqNo());
-		System.out.println("게시제목"+dto.getFaqTitle());
-		model.addAttribute("tNo",dto);
-	}
-	public void tSupport(String faqNo, Model model) {
-		FaqDTO dto = faqRepository.tSupport(faqNo);
-		model.addAttribute("tSup", dto);
+	public void tView(String faqNo, Model model) {
+		faqRepository.hitCnt(faqNo);
+		FaqDTO dto = faqRepository.tView(faqNo);
+		model.addAttribute("dto",dto);
 	}
 
 }
