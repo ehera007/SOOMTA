@@ -551,7 +551,35 @@ header a:hover {
 			return false;
 		}
 	}
+	function wish(classNo){		//location.href="wish?classNo=" + classNo;
+		
+		$.ajax({
+			type : "post",
+			url : "wish",
+			dataType : "html",
+			data : "classNo=" + classNo,
+			success : function(result){
+				if(result.trim() == "0"){
+					$("#wish").html("♡");
+				} else{
+					$("#wish").html("♥");
+				}
+			},
+			error: function(){
+				alert("실패");
+				return;
+			}
+		});
+	}
 </script>
+
+<body>
+<c:if test="${dto.classWish == false }">
+<a href="javascript:wish('${dto.classNo}')"><span id="wish">♡</span></a>
+</c:if>
+<c:if test="${dto.classWish == true }">
+<a href="javascript:wish('${dto.classNo}')"><span id="wish">♥</span></a>
+</c:if>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">

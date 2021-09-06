@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -11,232 +11,232 @@
 
 /*전체 글씨꼴 설정*/
 body {
-	font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
+   font-family: '맑은 고딕', 'Malgun Gothic', 'sans-serif';
 }
 
 /*a태그 라인 삭제*/
 a:link {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 a:visited {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+   text-decoration: underline;
 }
 
 /*상단 고정 a 태그 색상 변경*/
 .nav-item a:visited {
-	color: #0F4C81;
+   color: #0F4C81;
 }
 
 .nav-item a:link {
-	color: #0F4C81;
+   color: #0F4C81;
 }
 
 .nav-item a:hover {
-	color: #0F4C81;
+   color: #0F4C81;
 }
 
 /*하단 고정 a 태그 색상 등 변경*/
 .footer-menu a:linnk {
-	color: black;
+   color: black;
 }
 
 .footer-menu a:visited {
-	color: black;
-	font-weight: bold;
+   color: black;
+   font-weight: bold;
 }
 
 .footer-menu a:hover {
-	color: black;
-	font-weight: bold;
+   color: black;
+   font-weight: bold;
 }
 
 .footer-bottom a:link {
-	color: #BEBEBE;
-	font-weight: bold;
+   color: #BEBEBE;
+   font-weight: bold;
 }
 
 .footer-bottom a:visited {
-	color: #BEBEBE;
+   color: #BEBEBE;
 }
 
 .footer-bottom a:hover {
-	color: #BEBEBE;
+   color: #BEBEBE;
 }
 
 .footer-submenu a {
-	margin-right: 10px;
+   margin-right: 10px;
 }
 
 /*상단 구역 분할, 색상 변경*/
 .header {
-	color: #0F4C81;
-	height: 70px;
-	display: flex;
-	align-items: center;
-	font-weight: bold;
+   color: #0F4C81;
+   height: 70px;
+   display: flex;
+   align-items: center;
+   font-weight: bold;
 }
 
 .nav {
-	color: #0F4C81;
-	display: flex;
-	margin-left: auto;
+   color: #0F4C81;
+   display: flex;
+   margin-left: auto;
 }
 
 .nav-item {
-	margin: 15px;
-	font-size: 15px;
+   margin: 15px;
+   font-size: 15px;
 }
 
 /*하단 구역 분할*/
 .footer {
-	width: 800px;
-	height: 70px;
-	margin: 0 auto;
+   width: 800px;
+   height: 70px;
+   margin: 0 auto;
 }
 
 .footer-top {
-	display: flex;
-	align-items: center;
+   display: flex;
+   align-items: center;
 }
 
 .footer-bottom {
-	font-size: 12px;
-	color: #BEBEBE;
+   font-size: 12px;
+   color: #BEBEBE;
 }
 
 .footer-bottommenu {
-	display: flex;
-	align-items: center;
-	margin: 5px;
+   display: flex;
+   align-items: center;
+   margin: 5px;
 }
 
 .footer-app {
-	display: flex;
-	margin-left: auto;
+   display: flex;
+   margin-left: auto;
 }
 
 .footer-leftmenu {
-	width: 800px;
-	display: flex;
-	align-items: center;
-	display: flex;
+   width: 800px;
+   display: flex;
+   align-items: center;
+   display: flex;
 }
 
 .footer-rightmenu {
-	width: 400px;
-	display: flex;
-	margin-left: auto;
+   width: 400px;
+   display: flex;
+   margin-left: auto;
 }
 
 .footer-menu {
-	margin-left: 40px;
+   margin-left: 40px;
 }
 /* 하단고정 글자 색상, 사이즈 등 */
 .footer-callNum p {
-	color: #0F4C81;
-	font-size: 18px;
-	font-weight: bolder;
+   color: #0F4C81;
+   font-size: 18px;
+   font-weight: bolder;
 }
 
 .footer-callTime p {
-	font-size: 14px;
-	font-weight: bold;
+   font-size: 14px;
+   font-weight: bold;
 }
 
 ul {
-	list-style: none;
-	padding-left: 0px;
-	font-size: 13px;
-	font-weight: bold;
+   list-style: none;
+   padding-left: 0px;
+   font-size: 13px;
+   font-weight: bold;
 }
 
 .footer-menu p {
-	color: #0F4C81;
-	font-size: 15px;
-	font-weight: bolder;
+   color: #0F4C81;
+   font-size: 15px;
+   font-weight: bolder;
 }
 /*중앙*/
 .mypageTitle {
-	background-color: #0F4C81;
-	color: white;
-	text-align: center;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	
+   background-color: #0F4C81;
+   color: white;
+   text-align: center;
+   padding-top: 30px;
+   padding-bottom: 30px;
+   
 }
 
 .dropMenu {
-	align-items: center;
-	margin: 50px 0px;
-	display: flex;
-	justify-content: space-evenly;
+   align-items: center;
+   margin: 50px 0px;
+   display: flex;
+   justify-content: space-evenly;
 }
 
 .imgBox {
-	border: 1px solid black;
-	width: 200px;
-	height: 310px;
-	background-color: #0F4C81;
+   border: 1px solid black;
+   width: 200px;
+   height: 310px;
+   background-color: #0F4C81;
 }
 
 .imgTitle {
-	border: 1px solid black;
-	width: 200px;
-	height: 200px;
+   border: 1px solid black;
+   width: 200px;
+   height: 200px;
 }
 
 .dropList li {
-	background-color: #0F4C81;
-	text-align: center;
-	margin: 10px 0px;
-	font-size: 15px;
+   background-color: #0F4C81;
+   text-align: center;
+   margin: 10px 0px;
+   font-size: 15px;
 }
 
 .dropList a:link {
-	color: white;
-	background-color: #0F4C81;
+   color: white;
+   background-color: #0F4C81;
 }
 
 .dropList a:visited {
-	color: white;
-	background-color: #0F4C81;
+   color: white;
+   background-color: #0F4C81;
 }
 
 .dropList a:hover {
-	color: white;
+   color: white;
 }
 
 .dropMenu ul {
-	display: none;
+   display: none;
 }
 
 .imgBox:hover ul {
-	display: block;
+   display: block;
 }
 
 /*고정 외 중앙 테이블 스타일*/
 .perForm{
 
-	padding-top: 50px;
-	padding-bottom: 50px;
+   padding-top: 50px;
+   padding-bottom: 50px;
 
 }
 .perForm a:visited {
-	color: #0F4C81;
-	
+   color: #0F4C81;
+   
 }
 .perForm a:link {
-	color: #0F4C81;
-	
+   color: #0F4C81;
+   
 }
 .perForm a:hover{
 color: #0F4C81;
-	
+   
 }
 
  table {
@@ -247,8 +247,9 @@ color: #0F4C81;
     margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     margin-top: 45px;
-    margin-bottom: 35px;
+    margin-bottom: 45px;
     padding-top: 30px;
+    
     
   }
   
@@ -270,13 +271,15 @@ color: #0F4C81;
    padding-left: 20px;
 }
 th{
-	padding-left:20px;
-	width: 300px;
+   padding-left:70px;
+   
+   
 }
 td{
-	padding-right:90px;
-	padding-left:15px;
-	width: 250px;
+   padding-right:90px;
+   padding-left:30px;
+   
+   
 }
 
 
@@ -287,96 +290,96 @@ td{
 </head>
 <body>
 <!-- 상단 고정 : 로고 / 로그인,회원가입 -->
-	<div class="header">
-		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
-		<div class="nav">
-			<div class="nav-item">
-				<a href="#">마이페이지</a>
-			</div>
-			<div class="nav-item">
-				<a href="#">로그아웃</a>
-			</div>
-		</div>
-	</div>
-	<div class="main">
-		<div class="mypageTitle">
-			<h1>'${tutor.tutorId}'님의 프로필</h1>
-			<p>학생들에게 자신을 뽐내주세요!</p>
-		</div>
-	</div>
+   <div class="header">
+      <img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+      <div class="nav">
+         <div class="nav-item">
+            <a href="#">마이페이지</a>
+         </div>
+         <div class="nav-item">
+            <a href="#">로그아웃</a>
+         </div>
+      </div>
+   </div>
+   <div class="main">
+      <div class="mypageTitle">
+         <h1>'${tutor.tutorId}'님의 프로필</h1>
+         <p>학생들에게 자신을 뽐내주세요!</p>
+      </div>
+   </div>
 
-	
-	<!-- 중앙 : 개인정보 폼 -->
-	<div class="perForm">
-		<form action="perForm"name="frm">
-			<table>
-			
-			<tr>	 
-				 <th>자격증 </th><td>
-				 <c:if test = "${tutor.tutorCertification == null}" >미입력</c:if>
-				 <c:if test = "${tutor.tutorCertification != null}">${tutor.tutorCertification}</c:if>
-				 </td>
-			</tr>
-			<tr>	 
-				 <th>경력 </th><td>
-				 <c:if test = "${tutor.tutorCareer == null}" >미입력</c:if>
-				 <c:if test = "${tutor.tutorCareer != null}">${tutor.tutorCareer}</c:if>
-				 </td>
-			</tr>
-			
-			<tr>	
-				 <th>최종학력</th><td>
-				 <c:if test = "${tutor.tutorFinalEdu == null}" >미입력</c:if>
-				 <c:if test = "${tutor.tutorFinalEdu != null}">${tutor.tutorFinalEdu}</c:if>
-				 </td>
-			</tr>
-			
-			<tr>	 
-				 <th>응답가능시간 </th><td>
-				 <c:if test = "${tutor.tutorRespond == null}" >미입력</c:if>
-				 <c:if test = "${tutor.tutorRespond != null}">${tutor.tutorRespond}</c:if>
-				 </td>
-			</tr>
-			<tr>	 
-				 <th>선호방식 </th><td>
-				 <c:if test = "${tutor.tutorLikearea == null}" >미입력</c:if>
-				 <c:if test = "${tutor.tutorLikearea != null}">${tutor.tutorLikearea}</c:if>
-				 </td>
-			</tr>
-			<tr>	 
-				 <th>소개 </th><td>
-				 <c:if test = "${tutor.tutorIntroduce == null}" >미입력</c:if>
-				 <c:if test = "${tutor.tutorIntroduce != null}">${tutor.tutorIntroduce}</c:if>
-				 </td>
-			</tr>
-			<tr>	 
-				 <th>이미지 </th><td>
-				 <c:if test = "${tutor.tutorImage == null}" >미입력</c:if>
-				 <c:if test = "${tutor.tutorImage != null}">
-				 <img src="../tutor/upload/${tutor.tutorImage}" />
-				 </c:if>
-				 </td>
-			</tr>		
-					
-					
-				<tr>
+   
+   <!-- 중앙 : 개인정보 폼 -->
+   <div class="perForm">
+      <form action="perForm"name="frm">
+         <table>
+         
+         <tr>    
+             <th>자격증 </th><td width=330 style="word-break:break-all">
+             <c:if test = "${tutor.tutorCertification == null}" >미입력</c:if>
+             <c:if test = "${tutor.tutorCertification != null}">${tutor.tutorCertification}</c:if>
+             </td>
+         </tr>
+         <tr>    
+             <th>경력 </th><td width=330 style="word-break:break-all">
+             <c:if test = "${tutor.tutorCareer == null}" >미입력</c:if>
+             <c:if test = "${tutor.tutorCareer != null}">${tutor.tutorCareer}</c:if>
+             </td>
+         </tr>
+         
+         <tr>   
+             <th>최종학력</th><td>
+             <c:if test = "${tutor.tutorFinalEdu == null}" >미입력</c:if>
+             <c:if test = "${tutor.tutorFinalEdu != null}">${tutor.tutorFinalEdu}</c:if>
+             </td>
+         </tr>
+         
+         <tr>    
+             <th>응답가능시간 </th><td>
+             <c:if test = "${tutor.tutorRespond == null}" >미입력</c:if>
+             <c:if test = "${tutor.tutorRespond != null}">${tutor.tutorRespond}</c:if>
+             </td>
+         </tr>
+         <tr>    
+             <th>선호방식 </th><td>
+             <c:if test = "${tutor.tutorLikearea == null}" >미입력</c:if>
+             <c:if test = "${tutor.tutorLikearea != null}">${tutor.tutorLikearea}</c:if>
+             </td>
+         </tr>
+         <tr>    
+             <th>소개 </th><td width=330 style="word-break:break-all">
+             <c:if test = "${tutor.tutorIntroduce == null}" >미입력</c:if>
+             <c:if test = "${tutor.tutorIntroduce != null}">${tutor.tutorIntroduce}</c:if>
+             </td>
+         </tr>
+         <tr>    
+             <th>이미지 </th><td>
+             <c:if test = "${tutor.tutorImage == null}" >미입력</c:if>
+             <c:if test = "${tutor.tutorImage != null}">
+             <img src="../tutor/upload/${tutor.tutorImage}" />
+             </c:if>
+             </td>
+         </tr>      
+               
+               
+            <tr>
                    <th colspan="2" style="padding-left: 10px; ">
-                   		<div class="allbtn">
-							<a href="<c:url value='/tutor/promanageSujung'/>" 
-							style="text-decoration:none;">수정하기</a>&emsp;
-							<a href="<c:url value='/tutor/myPage'/>"
-							style="text-decoration:none;">확인</a>
-						</div>
-						
-					</th>
-         		 </tr>
-			</table>
-		</form>
-	</div>
+                         <div class="allbtn">
+                     <a href="<c:url value='/tutor/promanageSujung'/>" 
+                     style="text-decoration:none;">수정하기</a>&emsp;
+                     <a href="<c:url value='/tutor/myPage'/>"
+                     style="text-decoration:none;">확인</a>
+                  </div>
+                  
+               </th>
+                </tr>
+         </table>
+      </form>
+   </div>
 <!-- TOP이동 -->
-	<a style="position: fixed; bottom: 20px; right: 50px;"
-		href="#" class="Top"> <img src="../images/top.png" alt="topicon">
-	</a>	
+   <a style="position: fixed; bottom: 20px; right: 50px;"
+      href="#" class="Top"> <img src="../images/top.png" alt="topicon">
+   </a>   
 <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">
 

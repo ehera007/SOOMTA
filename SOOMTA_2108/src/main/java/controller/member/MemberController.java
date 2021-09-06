@@ -20,6 +20,7 @@ import service.band.BandListService;
 import service.band.BandNumberService;
 import service.band.BandWriteService;
 import service.class1.ClassCartService;
+import service.class1.ClassWishListService;
 import service.member.MemberClassConService;
 import service.member.MemberClassOrderList;
 import service.member.MemberInfoSuJungService;
@@ -153,8 +154,11 @@ public class MemberController {
 		return "member/classReview";
 	}
 	
+	@Autowired
+	ClassWishListService classWishListService;
 	@RequestMapping("wishClass")//찜한강의
-	public String wishClass() {
+	public String wishClass(HttpSession session, Model model) {
+		classWishListService.wishClass(session, model);
 		return "member/wishClass";
 	}
 		

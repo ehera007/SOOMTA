@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import Model.ClassDTO;
 import Model.ReviewDTO;
+import Model.WishDTO;
 
 
 public class ClassRepository {
@@ -58,6 +59,23 @@ public class ClassRepository {
 		statement = namespace + ".classDetailPage";
 		return sqlSession.selectOne(statement, classNo);
 	}
+	public void classWish(WishDTO dto) {
+		statement = namespace + ".classWish";
+		sqlSession.insert(statement, dto);
+	}
+	
+	public int wishChk(WishDTO dto) {
+		statement = namespace + ".wishChk";
+		return sqlSession.selectOne(statement, dto);
+	}
+	public void wishDel(WishDTO dto) {
+		statement = namespace + ".wishDel";
+		sqlSession.delete(statement, dto);
+	}
+	public List<WishDTO> wishClass(String memId) {
+		statement = namespace + ".wishClass";
+		return sqlSession.selectList(statement, memId);
+	}
 	public List<ReviewDTO> reviewViewList(String classNo) {
 		statement = namespace + ".reviewViewList";
 		return sqlSession.selectList(statement, classNo);
@@ -78,4 +96,5 @@ public class ClassRepository {
 		statement = namespace + ".tutorSatisTfyAllCount";
 		return sqlSession.selectOne(statement, tutorId);
 	}
+	
 }

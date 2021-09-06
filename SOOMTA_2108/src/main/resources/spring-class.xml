@@ -24,4 +24,6 @@
 	<bean class="service.class1.ClassDetailPageService"/>
 	<bean class="service.class1.ClassCartService"/>
 	<bean class="service.class1.ClassReviewViewService"/>
+	<bean class="service.class1.ClassWishService"/>
+	<bean class="service.class1.ClassWishListService"/>
 </beans>

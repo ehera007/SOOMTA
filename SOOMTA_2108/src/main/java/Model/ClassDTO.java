@@ -20,7 +20,14 @@ public class ClassDTO {
 	String classTotal;
 	String classArea;
 	String classCity;
-
+	Boolean classWish;
+	
+	public Boolean getClassWish() {
+		return classWish;
+	}
+	public void setClassWish(Boolean classWish) {
+		this.classWish = classWish;
+	}
 	public String getClassArea() {
 		return classArea;
 	}

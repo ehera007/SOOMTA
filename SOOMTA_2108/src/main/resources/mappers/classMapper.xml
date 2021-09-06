@@ -67,12 +67,7 @@
 	from Soomta_Class
 	where class_Category_S = #{classCategoryS}
 </select>
- <select id="classDetailPage" parameterType="string" resultType="Model.ClassDTO">
-	select class_No classNo, tutor_Id tutorId, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, class_End classEnd, 
-	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg, class_City classCity, class_Area classArea 
-	from Soomta_Class 
-	where class_No = #{classNo}
-</select> 
+
 <select id="reviewViewList" parameterType="string" resultType="Model.ReviewDTO">
 	select class_Satisfy classSatisfy, tutor_Satisfy tutorSatisfy, review_RegiDay reviewRegiDay, review_Contents reviewContents, purchase_No purchaseNo, class_No classNo, tutor_Id tutorId
 	from review
@@ -98,4 +93,37 @@
 	from review
 	where tutor_Id = #{tutorId}
 </select>
+<select id="classDetailPage" parameterType="string" resultType="Model.ClassDTO">
+	select class_No classNo, tutor_Id tutorId, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, class_End classEnd, 
+	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg
+	from Soomta_Class 
+	where class_No = #{classNo}
+</select> 
+<insert id="classWish" parameterType="Model.WishDTO">
+	insert into class_wishlist(class_no, mem_id)
+	values (#{classNo}, #{memId})
+
+</insert>
+<select id="wishChk" parameterType="Model.WishDTO" resultType="int">
+	select count(class_no) from class_wishlist
+	where class_no = #{classNo} AND mem_id = #{memId}
+</select>
+<delete id="wishDel" parameterType="Model.WishDTO">
+	delete from class_wishlist where class_no = #{classNo} AND mem_id = #{memId}
+</delete>
+<!-- 강의 찜목록 보기 -->
+<select id="wishClass" parameterType="string" resultType="Model.ClassDTO">
+	select class_No classNo, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, 
+	class_End classEnd, class_Total classTotal, class_State classState
+	from Soomta_Class 
+	where class_No in (select class_No from CLASS_WISHLIST where mem_id = #{memId})
+</select>
+
+<!--<select id="classDetailPage" parameterType="string" resultType="Model.ClassDTO">
+	select class_No classNo, t.tutor_Id tutorId, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, class_End classEnd, 
+	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg, t.tutor_Respond tutorRespond
+	from Soomta_Class c, tutor t
+	where class_No = #{classNo} and t.tutor_Id = #{tutorId}
+</select>-->
+
 </mapper>

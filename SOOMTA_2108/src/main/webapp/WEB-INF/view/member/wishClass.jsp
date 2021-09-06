@@ -319,30 +319,20 @@ td a:active {
         
       </tr></thead>
       <tbody>
+   		<c:forEach items="${list }" var="wish">
       <tr>
       	<td style="background-color: white; border-style: none;"></td>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td><a href="classInfo" class="classInfo">강의명</a></td>
-         <td>기간</td>
-         <td>수강생</td>
-         <td>상태</td>
+         <td>${wish.classNo}</td>
+         <td>${wish.classCategoryL}/${wish.classCategoryS}</td>
+         <td>${wish.className}</td>
+         <td>${wish.classStart}-${wish.classEnd }</td>
+         <td>${wish.classTotal}</td>
+         <td>${wish.classState}</td>
          <td>만족도</td>
          <td>후기</td>
          <td style="background-color: white; border-style: none;"></td>
       </tr>
-      <tr>
-      	<td style="background-color: white; border-style: none;"></td>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td><a href="classInfo" class="classInfo">강의명</a></td>
-         <td>기간</td>
-         <td>수강생</td>
-         <td>상태</td>
-         <td>만족도</td>
-         <td>후기</td>
-         <td style="background-color: white; border-style: none;"></td>
-      </tr>
+      </c:forEach>
       </table>
    
 
