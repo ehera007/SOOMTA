@@ -280,7 +280,6 @@ a:hover {
 			<div id="ClassCheckTitle"><h2>${dto.className }</h2></div>
 			<input type="hidden" name="classNo" value="${classNo }"/>
 				<span id="title">분류</span>
-				대분류
 				<c:if test="${dto.classCategoryL == 'STUDY' }">학업</c:if>
 				<c:if test="${dto.classCategoryL == 'TEST' }">자격증&시험</c:if>
 				<c:if test="${dto.classCategoryL == 'ENT' }">예체능</c:if>
@@ -290,6 +289,14 @@ a:hover {
 				/ 
 				${dto.classCategoryS}
 				<br/>
+				
+				<span id="title">지역</span>
+				<c:if test="${dto.classCity == 'SEOUL' }">서울</c:if>
+				<c:if test="${dto.classCity == 'GYEONGGIDO' }">경기도</c:if>
+				/
+				${dto.classArea }
+				<br/>
+				
 				<span id="title">강의명</span>
 				${dto.className }<br/>
 				<span id="title">기간</span>

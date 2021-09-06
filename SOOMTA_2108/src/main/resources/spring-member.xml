@@ -16,4 +16,9 @@
 	<bean class="service.member.MemberPwUpdateService"/>
 	<bean class="service.member.MemberInfoSuJungService"/>
 	<bean class="service.member.MemberPurchaseOkService"/>
+	<bean class="service.member.MemberClassOrderList"/>
+	<bean class="service.member.ReviewWriteService"/>
+	<bean class="service.member.MemberClassConService"/>
+	
+	
 </beans>

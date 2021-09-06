@@ -259,7 +259,7 @@ td{
     </script>
 
 <meta charset="UTF-8">
-<title>정보수정</title>
+<title>강의후기 작성</title>
 </head>
 <body>
 
@@ -277,17 +277,24 @@ td{
 	</div>
 	
 	<!-- 중앙 : 강의후기 작성 폼 -->
-		<form action="review" method="post" name="frm"> 
+		<form action="classReview" method="post" name="frm"> 
+		<input type="hidden" name="purchaseNo" value="${purchaseNo }">
+		<input type="hidden" name="classNo" value="${classNo }">
+		<input type="hidden" name="tutorId" value="${tutorId }">
+		
 			<table>
 				<thead>
          <tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
             <th colspan="2" style="padding: 10px 0px 10px 10px; ">강의 후기 작성 </th>
          </tr></thead>
     			<tr><th >강의명</th>
-					<td> ${className } </td></tr>
+					<td> ${dto.className} </td></tr>
 			
 				<tr><th>기간</th>
-					<td> ${classStart } - ${classEnd} </td></tr>
+					<td><fmt:formatDate value="${dto.classStart}" 
+		             pattern="yyyy-MM-dd"/> ~
+		          <fmt:formatDate value="${dto.classEnd }" 
+		             pattern="yyyy-MM-dd"/></td>
 				
 				<tr><th>강의 만족도</th>
 	    			<td><input type="number" name="classSatisfy" 
@@ -298,7 +305,7 @@ td{
 	    			min="0.5" max="5" step="0.5" style="width:230px;"/></td></tr>
 				
 				<tr><th>리뷰작성</th>
-	    			<td><textarea rows="5" cols="30" name="reviewContent" ></textarea></td></tr>
+	    			<td><textarea rows="5" cols="30" name="reviewContents" ></textarea></td></tr>
 			
 					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 20px; ">
 						<input type="button"  value="등록 안함" style="border: none;font-size: 16px;font-weight: bold;

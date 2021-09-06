@@ -1,6 +1,7 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	<%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,9 +100,11 @@ a:hover {
 }
 
 .main {
-	width: 1000px;
+	width: 800px;
 	margin: 0 auto;
 	z-index: 2;
+	border:2px solid #0F4C81;
+	display:inline;
 }
 
 /*후기 테이블*/
@@ -110,6 +113,12 @@ table{
 	height: 400px;
 	border:2px solid #0F4C81;
 	box-shadow: 5px 5px 5px 5px #D5D5D5;
+	display:inline-block;
+	margin-right:50px;
+	margin-bottom: 50px;
+	position: relative;
+	left: 21%;
+	top: 30px;
 }
 
 table td, th{
@@ -230,41 +239,92 @@ a:hover {
 		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
 			onclick="location.href='/SOOMTA_2108/main'" />
 		<!-- 로그인 안된 경우 -->
-		<div class="nav">
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/login'/>">로그인</a>
+		<c:if test="${empty logIn }">
+			<div class="nav">
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/login'/>">로그인</a>
+				</div>
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+				</div>
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
+				</div>
 			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+		</c:if>
+
+		<!-- 로그인 된 경우 -->
+		<c:if test="${!empty logIn }">
+			<div class="nav">
+				<!-- 관리자 -->
+				<c:if test="${logIn.grade == 'emp' }">
+					<div class="nav-item">
+						<a href="<c:url value='/emp/main'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 튜터 -->
+				<c:if test="${logIn.grade == 'tutor' }">
+					<div class="nav-item">
+						<a href="<c:url value='/tutor/myPage'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 멤버 -->
+				<c:if test="${logIn.grade == 'mem' }">
+					<div class="nav-item">
+						<a href="<c:url value='/member/myPage'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 로그아웃 -->
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
+				</div>
 			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
-			</div>
-		</div>
+		</c:if>
 	</div>
 	<!-- 메인 -->
 	<div class="reviewPageTitle">
-		<h1 align="center" style="font-size:200%;">21.08~21.10 70층에 사람있어요</h1>
-		<p align="center" style="font-size:12px;">수강생 수 : 10 / 리뷰 작성자 수 1</p>
-		<p align="center" style="font-size:12px;">평균 강의 만족도 : 3 / 평균 강사 만족도 : 1</p>
+		<h1 align="center" style="font-size:160%;">${dto.className }</h1>
+		<h1 align="center" style="font-size:160%;">
+		<fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd"/>
+		~ 
+		<fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd"/>
+		</h1>
+		<p align="center" style="font-size:12px;">수강생 수 : 10 / 리뷰 작성자 수 ${reviewCount }</p>
+		<p align="center" style="font-size:12px;">평균 강의 만족도 : ${classSatisfyCount } / 평균 강사 만족도 : ${tutorSatisfyCount }</p>
 	</div>
 	<br/>
-	<div class="main">
+
+	<c:if test="${!empty list }" >
+		<c:forEach items="${list }" var="dto" varStatus="cnt">
 		<table>
 			<tr>
-				<th height=50px;>강의 만족도</th>
-				<td>3</td>
+				<th height=50px;>강의 만족도 </th>
+				<td>${dto.classSatisfy }</td>
 			</tr>
 			<tr>
 				<th height=50px;>강사 만족도</th>
-				<td>1</td>
+				<td>${dto.tutorSatisfy }</td>
 			</tr>
 			<tr>
 				<th height=200px;>후기 내용</th>
-				<td>60층에 물려서 정말 힘들었는데 70층에 물린 사람들을 보고 큰 위로가 됐어요 추천합니다</td>
+				<td>${dto.reviewContents }</td>	
 			</tr>
 		</table>
-	</div>
+		<c:if test="${cnt.count % 2 == 0 }">
+		<br/>
+		</c:if>
+		</c:forEach>
+	</c:if>
+		
+		<c:if test="${empty list }">
+		<div class="main">
+			<h2>
+			등록된 후기가 없습니다 !<br/>
+			지금 바로 가입해보세요 :)
+			</h2>
+		</div>
+		</c:if>
+	
 	<br/>
    <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">

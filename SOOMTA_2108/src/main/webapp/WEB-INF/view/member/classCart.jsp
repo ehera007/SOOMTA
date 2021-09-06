@@ -107,48 +107,18 @@ a:hover {
 	z-index: 2;
 	text-align: center;
 	padding-top: 60px;
-	padding-bottom: 60px;
+	padding-bottom: 90px;
 }
 
 .classCartForm{
 	border: 2px solid #0F4C81;
 	padding:20px;
 	width: 500px;
-	height: 300px;
+	height: 355px;
 	display: inline-block;
 }
-.className{
-	font-size:25px;
-	width:400px;
-	height:25px;
-	text-align:left;
-}
-.classPayment{
-	font-size:17px;
-	width:100px;
-	height:25px;
-	text-align:right;
-}
-.classPeriod{
-	width:140px;
-	height:25px;
-}
-.Personnel{
-	width:65px;
-	height:25px;
-}
-.classMethod{
-	width:200px;
-	height:25px;
-}
-.payment{
-	padding-top:30px;
-	width:250px;
-	height:25px;
-}
-.paymentMethodCk{
-	padding-top:30px;
-}
+
+
 .tagClassCart{
 	padding-top: 130px;
 }
@@ -251,6 +221,32 @@ a:hover {
 	color: #0F4C81;
 	text-decoration: none;
 }
+/*테이블 css*/
+table td,th{
+
+	padding: 9px;
+}
+th{
+	width: 250px;
+}
+td{
+	width: 200px;
+	text-align: left;
+}
+#cartbnt{
+	position: relative;
+	bottom: -26px;
+}
+#carbntOk{
+	border:none;
+	border-right:0px;
+	border-top:0px;
+	boder-left:0px;
+	boder-bottom:0px;
+	background:#fff;
+	color: #0F4C81;
+	font-size: 16px;
+}
 </style>
 <meta charset="UTF-8">
 <title>결제</title>
@@ -262,21 +258,21 @@ a:hover {
 		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
 			onclick="location.href='/SOOMTA_2108/main'" />
 		<!-- 로그인 안된 경우 -->
+		<!-- 멤버 -->
 		<div class="nav">
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/login'/>">로그인</a>
+					<div class="nav-item">
+						<a href="<c:url value='/member/myPage'/>">마이페이지</a>
+					</div>
+
+				<!-- 로그아웃 -->
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
-			</div>
-		</div>
+	</div>
 	</div>
 	<!-- 메인 -->
 	<div class="classCartTitle">
-		<h1 align="center" style="font-size:200%;">결제하기</h1>
+		<h1 align="center" style="font-size:200%;">클래스 가입하기</h1>
 		<p align="center" style="font-size:20px;">${dto.className }</p>
 	</div>
 	<div class="main">
@@ -286,25 +282,32 @@ a:hover {
 		<div class="classCartForm">
 			<table>
 				<tr>
-					<td>구매번호</td>
-					<td><input name="purchaseNo" value="${purchaseNo }"/></td>
+					<th>구매번호</th>
+					<td id="tdvalue"><input name="purchaseNo" value="${purchaseNo }"/></td>
 				</tr>
 				<tr>
-					<th colspan="2" class="className">${dto.className }</th>
-					<td class="classPayment">${dto.classPrice } 원</td>
+					<th>${dto.className }</th>
+					<td colspan="2">${dto.classPrice } 원</td>
 				</tr>
 				<tr>
-					<td class="classPeriod">학습 기간 : <fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd" /> | </td>
-					<td class="Personnel">인원 : ${dto.classTotal } | </td>
-					<td class="classMethod">수업 방식 : 
+					<th>학습 기간 </th>
+					<td><fmt:formatDate value="${dto.classStart }" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dto.classEnd }" pattern="yyyy-MM-dd" /></td>
+				</tr>
+				<tr>
+					<th>인원 </th>
+					<td>${dto.classTotal } 명</td>
+				</tr>
+				<tr>
+					<th>수업 방식 </th>
+					<td> 
 					<c:if test="${dto.classWay.trim() == 's'}">과외</c:if>
 					<c:if test="${dto.classWay.trim() == 'g'}">그룹</c:if>
 					<c:if test="${dto.classWay.trim() == 'n'}">비대면</c:if>
 					</td>
 				</tr>
 				<tr>
-					<td class="payment">결제 수단</td>
-					<td class="paymentMethodCk" colspan="2"><!-- 결제수단선택 옵션 -->
+					<th>결제 수단 </th>
+					<td colspan="2"><!-- 결제수단선택 옵션 -->
 						<select name="purchaseMethod">
 							<option value="">선택</option>
 							<option value="c">신용카드</option>
@@ -313,17 +316,15 @@ a:hover {
 					</td>
 				</tr>
 				<tr>
-					<td>결제 정보</td>
+					<th>결제 정보</th>
 					<td colspan="2">
 						<input type="text" name="purchaseInformation"/>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="3" class="tagClassCart">
-						<input type="submit" value="결제하기">&nbsp;&nbsp;&nbsp;<a href="javascript:history.back();">취소하기</a>
-					</td>
-				</tr>
 			</table>
+			<div id="cartbnt">
+			<input id="carbntOk" type="submit" value="결제하기">&nbsp;&nbsp;&nbsp;<a href="javascript:history.back();">취소하기</a>
+			</div>
 		</div>
 		</form>
 	</div>

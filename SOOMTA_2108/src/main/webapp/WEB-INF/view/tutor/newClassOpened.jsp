@@ -133,6 +133,7 @@ h2{
 	width:100px;
 	display:inline-block; /*span태그는 width 못주는게 맞는데 display를 이용해서 강제로 줌*/
 	padding:12px;
+	
 }
 
 #inputPrice{
@@ -280,6 +281,24 @@ a:hover {
 		    target.appendChild(opt);
 		}
 	}
+	
+	function classCity(e) {
+		var ctg1 = ["서초구","강남구","송파구","종로구","마포구"];
+		var ctg2 = ["수원","평택","안성시","용인시","성남"];
+		var target = document.getElementById("classArea");
+		
+		if(e.value == "SEOUL") var d = ctg1;
+		else if(e.value == "GYEONGGIDO") var d = ctg2;
+
+		target.options.length = 0;
+		
+		for(x in d){
+			var opt = document.createElement("option");
+		    opt.value=d[x];
+		    opt.innerHTML = d[x];
+		    target.appendChild(opt);
+		}
+	}
 </script>
 </head>
 <body>
@@ -314,6 +333,15 @@ a:hover {
 					<option value="ETC">기타</option>
 				</select>
 				<select id="classSubCategory" name="classCategoryS">
+					<option value="">소분류</option>
+				</select><br/>
+				<span id="title">지역</span>
+				<select onchange="classCity(this)" name="classCity">
+					<option>대분류</option>
+					<option value="SEOUL">서울</option>
+					<option value="GYEONGGIDO">경기도</option>
+				</select>
+				<select id="classArea" name="classArea">
 					<option value="">소분류</option>
 				</select><br/>
 				<span id="title">강의명</span>

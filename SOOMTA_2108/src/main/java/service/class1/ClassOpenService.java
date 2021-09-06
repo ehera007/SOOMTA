@@ -33,6 +33,8 @@ public class ClassOpenService {
 		dto.setClassGender(classCommand.getClassGender());
 		dto.setClassIntroduce(classCommand.getClassIntroduce());
 		dto.setClassNo(classCommand.getClassNo());
+		dto.setClassArea(classCommand.getClassArea());
+		dto.setClassCity(classCommand.getClassCity());
 			
 		String classImg= "";
 			for(MultipartFile mf : classCommand.getClassImg()) {
@@ -49,7 +51,6 @@ public class ClassOpenService {
 					e.printStackTrace();
 				}
 			dto.setClassImg(classImg);
-			System.out.println("11"+ dto.getClassImg());
 		}
 		
 		LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");

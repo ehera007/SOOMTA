@@ -63,7 +63,7 @@ values(#{tutorId}, #{tutorPw},#{tutorName}, #{tutorPhone}, #{tutorGender},#{tuto
 <select parameterType="string" id="promanage" resultType="Model.TutorDTO">
 select tutor_Id tutorId, tutor_Likearea tutorLikearea, tutor_Respond tutorRespond,
 tutor_Career tutorCareer,tutor_Certification tutorCertification,tutor_FinalEdu tutorFinalEdu, tutor_Introduce tutorIntroduce,
-tutor_Image tutorImage from tutorwhere Tutor_ID = #{tutorId} </select>
+tutor_Image tutorImage from tutor where Tutor_ID = #{tutorId} </select>
 
 <!-- 튜터 비번 수정 -->
 <update id="pwChange" parameterType="Model.TutorDTO"> 

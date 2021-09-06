@@ -535,7 +535,9 @@ a:hover {
 					<td><input type="checkbox" name="classMethod" value="n" />비대면</td>
 				</tr>
 				<tr>
-					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">>더보기</td>
+					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">>더보기
+						<button onclick="DetailTag()">선택완료</button>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -550,13 +552,14 @@ a:hover {
 		<table style="margin: auto; text-align: center;">
 			<tr style="vertical-align: bottom;">
 			<c:forEach items="${list }" var="dto" varStatus="cnt">
+
 				<td width="200" height="250" >
-				<a href="../../class/classDetailPage?classNo=${dto.classNo }"> 
+				<a href="../../class/classDetailPage?classNo=${dto.classNo }&tutorId=${dto.tutorId}"> 
 				<img width="150" height="150" src="./../class/upload/${dto.classImg.split(',')[0] }"/><br/>
 				${dto.className}<br/>
 				${dto.classPrice}원
 				</a>
-				</td>
+				</td> 
 				<c:if test="${cnt.count % 4 == 0 }">
 				</tr><tr>
 				</c:if>

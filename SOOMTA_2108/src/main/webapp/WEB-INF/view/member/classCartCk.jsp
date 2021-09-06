@@ -151,11 +151,6 @@ a:hover {
 	width:200px;
 	height:25px;
 }
-.paymentEnd{
-	padding-top:30px;
-	width:250px;
-	height:25px;
-}
 .tagClassCart{
 	padding-top: 130px;
 }
@@ -258,6 +253,15 @@ a:hover {
 	color: #0F4C81;
 	text-decoration: none;
 }
+table td{
+	text-align: center;
+	width: 500px;
+	padding-top: 20px;
+}
+.cartOkBtn{
+	position: relative;
+	bottom: -50px;
+}
 </style>
 <meta charset="UTF-8">
 <title>결제확인</title>
@@ -269,17 +273,17 @@ a:hover {
 		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
 			onclick="location.href='/SOOMTA_2108/main'" />
 		<!-- 로그인 안된 경우 -->
-		<div class="nav">
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/login'/>">로그인</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
-			</div>
-		</div>
+		<!-- 멤버 -->
+<div class="nav">
+					<div class="nav-item">
+						<a href="<c:url value='/member/myPage'/>">마이페이지</a>
+					</div>
+
+				<!-- 로그아웃 -->
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
+				</div>
+	</div>
 	</div>
 	<!-- 메인 -->
 	<div class="MylectureListTitle">
@@ -290,16 +294,16 @@ a:hover {
 		<div class="classCartForm">
 			<table>
 				<tr>
-					<td colspan="3" class="paymentEnd">숨타와 보람찬 하루 보내세요 :)</td>
+					<td><h2>숨타와 보람찬 하루 보내세요 :)</h2></td>
 				</tr>
 				<tr>
-					<td colspan="3" class="tagClassCart">
-						 <a href="javascript:history.go(-3)">돌아가기</a>&nbsp;&nbsp;<a href="myClassList">확인하기</a>
-					</td>
+					<td><h2>결제 정보 확인은 바로가기를 이용하세요</h2></td>
 				</tr>
 			</table>
+			<div class="cartOkBtn">
+			<a href="javascript:history.go(-3)">돌아가기</a>&nbsp;&nbsp;<a href="myClassList">확인하기</a>
+			</div>
 		</div>
-		</form>
 	</div>
    <!-- 하단 고정 -->
    <hr style="color: #BEBEBE;">

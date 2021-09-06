@@ -15,6 +15,7 @@ import service.class1.ClassDetailService;
 import service.class1.ClassNumberService;
 import service.class1.ClassOpenService;
 import service.class1.ClassRetouchService;
+import service.class1.ClassReviewViewService;
 import service.class1.TutorClassListService;
 //튜터 마이페이지 클래스 컨트롤러
 @Controller
@@ -32,6 +33,8 @@ public class TutorClassController {
 	ClassDeleteService classDeleteService;
 	@Autowired
 	ClassRetouchService classRetouchService;
+	@Autowired
+	ClassReviewViewService classReviewViewService;
 	
 	@RequestMapping("newClassOpened") //클래스 개설 하기
 	public String newClassCreate(Model model) {
@@ -47,15 +50,15 @@ public class TutorClassController {
 		classOpenService.classOpen(classCommand, session);
 		return "redirect:MylectureList";
 	}
-	
 	@RequestMapping("MylectureList") //개설 클래스 리스트
 	public String MylectureList(Model model, HttpSession session) {
 		tutorClassListService.tutorclassList(model, session);
 		return "tutor/MylectureList";
 	}
 	
-	@RequestMapping("reviewView") //클래스 리뷰`````
-	public String reviewView() {
+	@RequestMapping("reviewView") //클래스 리뷰
+	public String reviewViewList(@RequestParam(value="classNo") String classNo, Model model) {
+		classReviewViewService.reviewViewList(classNo, model);
 		return "tutor/reviewView";
 	}
 	@RequestMapping("classCheck") //클래스 상세보기

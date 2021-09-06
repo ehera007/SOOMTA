@@ -18,7 +18,21 @@ public class ClassDTO {
 	String classWay;//
 	String classState;
 	String classTotal;
+	String classArea;
+	String classCity;
 
+	public String getClassArea() {
+		return classArea;
+	}
+	public void setClassArea(String classArea) {
+		this.classArea = classArea;
+	}
+	public String getClassCity() {
+		return classCity;
+	}
+	public void setClassCity(String classCity) {
+		this.classCity = classCity;
+	}
 	public String getClassTotal() {
 		return classTotal;
 	}

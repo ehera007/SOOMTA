@@ -15,6 +15,14 @@ public class ClassOrderDTO {
 	String reviewContents;//후기
 	String PurchaseNo; //구매번호
 	Date purchaseDate; //구매일시
+	String tutorId;
+	
+	public String getTutorId() {
+		return tutorId;
+	}
+	public void setTutorId(String tutorId) {
+		this.tutorId = tutorId;
+	}
 	public String getClassNo() {
 		return classNo;
 	}
