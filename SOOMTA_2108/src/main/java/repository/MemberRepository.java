@@ -17,6 +17,19 @@ public class MemberRepository {
 	String namespace="mappers.memberMapper";
 	String statement;
 	
+	public void classDel(String purchaseNo) {
+		statement = namespace + ".classDel";
+		int i = sqlSession.delete(statement,purchaseNo);
+		System.out.println("번호 : "+purchaseNo);
+		System.out.println(i+"개 클래스가 삭제되었습니다.");
+	}
+	
+	
+	public int memClassCount(String memId) { //맴버 클래스 생성 수
+		statement = namespace + ".memClassCount";
+		return sqlSession.selectOne(statement, memId);
+	}
+	
 	public void reviewWrite(ReviewDTO dto) {
 		System.out.println("dto.getTutorId() : " + dto.getTutorId());
 		statement = namespace + ".reviewWrite";
@@ -24,7 +37,7 @@ public class MemberRepository {
 		System.out.println(i+"개 리뷰 작성.");
 	}
 	
-	public ClassDTO classCon(String classNo) {//클래스 정보
+	public ClassOrderDTO classCon(String classNo) {//클래스 정보
 		statement = namespace + ".classCon";
 		return sqlSession.selectOne(statement,classNo);
 	}
@@ -35,6 +48,17 @@ public class MemberRepository {
 	public void memOut(String memId) {//회원 탈퇴
 		statement = namespace + ".memOut";
 		sqlSession.delete(statement, memId);
+	}
+	
+	public ReviewDTO reviewCon(String purchaseNo) {
+		statement = namespace + ".reviewCon";
+		System.out.println(purchaseNo);
+		return sqlSession.selectOne(statement, purchaseNo);
+	}
+	public void memUpdate(MemberDTO dto) {//회원 수정
+		statement = namespace +".memUpdate"; 
+		int i = sqlSession.update(statement,dto);
+		System.out.println(i+"개 수정");
 	}
 	
 	public MemberDTO perData(String memId) {//회원 상세정보/수정
@@ -54,11 +78,6 @@ public class MemberRepository {
 		System.out.println(i+"명의 비밀번호가 변경되었습니다");
 	}
 	
-	public void memUpdate(MemberDTO dto) {//회원 수정
-		statement = namespace +".memUpdate"; 
-		int i = sqlSession.update(statement,dto);
-		System.out.println(i+"개 수정");
-	}
 	
 	public String purchaseNo() { //구매번호 생성
 		statement = namespace + ".purchaseNo";

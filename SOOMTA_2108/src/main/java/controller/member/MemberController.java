@@ -22,6 +22,7 @@ import service.band.BandWriteService;
 import service.class1.ClassCartService;
 import service.class1.ClassWishListService;
 import service.member.MemberClassConService;
+import service.member.MemberClassDeleteService;
 import service.member.MemberClassOrderList;
 import service.member.MemberInfoSuJungService;
 import service.member.MemberOutService;
@@ -29,6 +30,7 @@ import service.member.MemberPerDataService;
 import service.member.MemberPurchaseOkService;
 import service.member.MemberPwChangeConService;
 import service.member.MemberPwUpdateService;
+import service.member.MemberReviewConService;
 import service.member.MemberSuJungService;
 import service.member.ReviewWriteService;
 import validator.MemberPasswordValidator;
@@ -125,15 +127,37 @@ public class MemberController {
 	@RequestMapping("myClassList")//내 강의목록
 	public String myClass(HttpSession session, Model model) {
 		memberClassOrderList.classOrderList(session, model);
+		memberPerDataService.perData(model,session);
 		return "member/myClassList";
 	}
 	
 	@Autowired
 	MemberClassConService memberClassConService;
 	@RequestMapping("classCon")//강의 확인
-	public String classCon(String classNo, Model model) {
+	public String classCon(
+			@ModelAttribute(value="purchaseNo") String purchaseNo,
+			@ModelAttribute(value="classNo") String classNo,
+			Model model) {
 		memberClassConService.classCon(classNo, model);
 		return "member/classCon";
+	}
+	
+	
+	@Autowired
+	MemberClassDeleteService memberClassDeleteService;
+	@RequestMapping("classDel")//강의 삭제
+	public String classDel(@RequestParam(value="purchaseNo")String purchaseNo) {
+		memberClassDeleteService.classDel(purchaseNo);
+		return "redirect:myClassList";
+	}
+	
+	@Autowired
+	MemberReviewConService memberReviewConService;
+	@RequestMapping("classReviewCon")//강의 후기확인
+	public String classReviewCon(String classNo,Model model,String purchaseNo) {
+		memberClassConService.classCon(classNo, model);
+		memberReviewConService.reviewCon(purchaseNo,model);
+		return "member/classReviewCon";
 	}
 	
 	@Autowired

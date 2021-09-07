@@ -225,15 +225,16 @@ ul {
 }
 .ClassInfoForm a:hover{
 color: #0F4C81;}
+ 
  table {
     border: 2px solid #0F4C81;
     border-radius: 12px;
     width: 350px;
     height:500px;
-    margin:20px auto;
+    margin-top : 50px;
+    margin-bottom:80px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
-    margin-bottom: 40px;
   }
   thead th {
    height: 50px;
@@ -259,7 +260,7 @@ color: #0F4C81;}
    border-radius:4px;*/
 }
 th{
-	padding-left: 80px;
+	padding-left: 70px;
 }
 td{
 	padding-left: 30px;
@@ -280,7 +281,7 @@ td{
 <script type="text/javascript">
 	function cancel(){
 		if(confirm("정말로 취소하시겠습니까? ")){
-			document.frm.submit();
+			location.href='classDel?purchaseNo=${purchaseNo}';
 		}else{
 			return false;
 		}
@@ -307,9 +308,9 @@ td{
 	<!-- 중앙 : 강의정보 폼 -->
 	
 	<div class="ClassInfoForm">
-		<form action="myClassList" onsubmit="return cancel()" name="frm">
-			<table>
-		         <input type="hidden" name="classNo" value="${dto.classNo}"/>
+			<table align="center">
+		         <input type="hidden" name="classNo" value="${classNo}"/>
+		         <input type="hidden" name="purchaseNo" value="${purchaseNo}"/>
 			<thead>
 		         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
 		            <th colspan="2" style="padding-right: 60px;">강의정보</th>
@@ -325,7 +326,10 @@ td{
 		        </tr>
 		        <tr>
 		             <th>기간</th>
-		             <td>${dto.classStart} - ${dto.classEnd }</td>
+		             <td><fmt:formatDate value="${dto.classStart}" 
+		             pattern="yy-MM-dd"/> ~
+		          <fmt:formatDate value="${dto.classEnd }" 
+		             pattern="yy-MM-dd"/></td>
 		        </tr>
 		        <tr>
 		             <th>정원</th>
@@ -337,11 +341,19 @@ td{
 		        </tr>
 		        <tr>
 		             <th>수업방식</th>
-		             <td> ${dto.classWay }</td>
+		             <td>
+		             	<c:if test="${dto.classWay == 's'}">과외</c:if>
+         				<c:if test="${dto.classWay == 'g'}">그룹</c:if>
+         				<c:if test="${dto.classWay == 'n'}">비대면</c:if>
+		             </td>
 		        </tr>
 		        <tr>
 		             <th>수강생 성별</th>
-		             <td>${dto.classGender }</td>
+		             <td>
+		             	<c:if test="${dto.classGender == 'm'}">남성</c:if>
+         				<c:if test="${dto.classGender == 'w'}">여성</c:if>
+         				<c:if test="${dto.classGender == 'x'}">무관</c:if>
+		             </td>
 		        </tr>
 		        <tr>
 		             <th>강의설명</th>
@@ -350,11 +362,11 @@ td{
 		        <tr>
                    <th colspan="2"><div class="allbtn" style="padding-right: 65px;">
                    	<input type="submit" value="강의 취소" style="font-weight: bold;
-                   		font-size: 16px;padding-bottom : 25px;"
+                   		font-size: 16px;padding-bottom : 25px;"onclick="cancel()"
                     class="btn" /></div></th>
          		 </tr>
 			</table>
-		</form>
+
 	</div>
 		
 	<!-- TOP이동 -->

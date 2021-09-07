@@ -4,8 +4,26 @@
 <mapper namespace="mappers.memberMapper">
 
 
+<delete id="classDel" parameterType="string" >
+	delete from purchase 
+	where purchase_No = #{purchaseNo} 
+</delete>
 
-<select id="classCon" parameterType="string" resultType="Model.ClassDTO">
+
+<select id="memClassCount" resultType="int" parameterType="string">
+	select count(*) 
+	from purchase
+	where mem_Id = #{memId}
+</select>
+
+<select id="reviewCon" parameterType="string" resultType="Model.ReviewDTO">
+	select class_Satisfy classSatisfy,tutor_Satisfy tutorSatisfy,
+		review_Contents reviewContents,review_RegiDay reviewRegiDay
+	from review
+	where purchase_No = #{purchaseNo} 
+</select>
+
+<select id="classCon" parameterType="string" resultType="Model.ClassOrderDTO">
 	select class_Category_L classCategoryL,class_Category_S classCategoryS,
 		   class_Name className,class_Start classStart,class_End classEnd,
 		   class_Total classTotal,class_Price classPrice,class_Way classWay,
@@ -23,11 +41,12 @@
 </insert>
 
 <select id="classOrderList" parameterType="string" resultType="Model.ClassOrderDTO">
-	select sc.class_No classNo, sc.class_Name className,class_Category_L classCategoryL,
+	select sc.class_No classNo, sc.class_Name className,class_Way classWay ,class_Category_L classCategoryL,
 		class_Category_S classCategoryS,class_Start classStart,class_End classEnd,
 		class_Total classTotal,class_State classState,class_Satisfy classSatisfy,
 		r.review_Contents reviewContents, p.Purchase_No PurchaseNo,p.purchase_Date purchaseDate
-		,t.tutor_Id tutorId 
+		,t.tutor_Id tutorId ,tutor_Area tutorArea ,class_City classCity,class_Area classArea,
+		class_Price classPrice,class_Gender classGender,class_Introduce classIntroduce
 	from Soomta_Class sc,purchase p,review r,tutor t
 	where sc.class_No = p.class_No 
 	and   t.tutor_Id = sc.tutor_Id

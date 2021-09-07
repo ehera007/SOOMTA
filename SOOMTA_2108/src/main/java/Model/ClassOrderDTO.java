@@ -16,7 +16,64 @@ public class ClassOrderDTO {
 	String PurchaseNo; //구매번호
 	Date purchaseDate; //구매일시
 	String tutorId;
+	String classWay;
+	String tutorArea;
+	String classCity;
+	String classArea;
+	String memId;
+	String classPrice;
+	String classGender;
+	String classIntroduce;
 	
+	
+	public String getClassPrice() {
+		return classPrice;
+	}
+	public void setClassPrice(String classPrice) {
+		this.classPrice = classPrice;
+	}
+	public String getClassGender() {
+		return classGender;
+	}
+	public void setClassGender(String classGender) {
+		this.classGender = classGender;
+	}
+	public String getClassIntroduce() {
+		return classIntroduce;
+	}
+	public void setClassIntroduce(String classIntroduce) {
+		this.classIntroduce = classIntroduce;
+	}
+	public String getMemId() {
+		return memId;
+	}
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
+	public String getClassCity() {
+		return classCity;
+	}
+	public void setClassCity(String classCity) {
+		this.classCity = classCity;
+	}
+	public String getClassArea() {
+		return classArea;
+	}
+	public void setClassArea(String classArea) {
+		this.classArea = classArea;
+	}
+	public String getTutorArea() {
+		return tutorArea;
+	}
+	public void setTutorArea(String tutorArea) {
+		this.tutorArea = tutorArea;
+	}
+	public String getClassWay() {
+		return classWay;
+	}
+	public void setClassWay(String classWay) {
+		this.classWay = classWay;
+	}
 	public String getTutorId() {
 		return tutorId;
 	}

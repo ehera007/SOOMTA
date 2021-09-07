@@ -303,8 +303,8 @@ td a:active {
 	</div>
 	
 	<div class="myClassTitle">
-			<h1>'${ID}'님의 강의목록</h1>
-			<p>숨타와 함께 총 'n'개의 강의를 들었습니다.</p>
+			<h1>'${memPerData.memId }'님의 강의목록</h1>
+			<p>숨타와 함께 총 ${memClassCount }개의 강의를 들었습니다.</p>
 		</div>
 		<!-- 타이틀 -->
 	<table><thead>
@@ -316,8 +316,8 @@ td a:active {
          <th width="20%">강의명</th>
          <th width="15%">기간</th>
          <th width="8%">수강생</th>
-         <th width="8%">상태</th>
-         <th width="8%">만족도</th>
+         <th width="8%">지역</th>
+         <th width="8%">강의 만족도</th>
          <th width="8%">후기</th>
          <th width="4%" style="background-color: white;"></th>
         
@@ -328,27 +328,30 @@ td a:active {
 	      	<td style="background-color: white; border-style: none;"></td>
 	         <td>${dto.classNo }</td>
 	         <td>${dto.classCategoryL }/${dto.classCategoryS }</td>
-	         <td><a href="classCon?classNo=${dto.classNo }" class="classCon">${dto.className }</a></td>
+	         <td><a href="classCon?classNo=${dto.classNo }&purchaseNo=${dto.purchaseNo }" class="classCon">${dto.className }</a></td>
 	         <td><fmt:formatDate value="${dto.classStart}" 
 		             pattern="yy-MM-dd"/> -
 		          <fmt:formatDate value="${dto.classEnd }" 
 		             pattern="yy-MM-dd"/></td>
 	         <td>${dto.classTotal }</td>
-	         <td>${dto.classState }</td>
+	         <td>
+		         <c:if test="${dto.classCity == 'SEOUL' }">서울</c:if>
+		         <c:if test="${dto.classCity == 'GYEONGGIDO' }">경기도</c:if>
+		         /${dto.classArea }</td>
 	         <td>${dto.classSatisfy }</td>
 	         <td>
 	          <c:if test="${dto.reviewContents == null }">
 					<a href="classReview?purchaseNo=${dto.purchaseNo }&classNo=${dto.classNo }&tutorId=${dto.tutorId }">리뷰작성</a>
 			  </c:if>	
-	         	
+	          <c:if test="${dto.reviewContents != null }">
+					<a href="classReviewCon?purchaseNo=${dto.purchaseNo }&classNo=${dto.classNo }&tutorId=${dto.tutorId }">리뷰확인</a>
+			  </c:if>
 	         </td>
 	         <td style="background-color: white; border-style: none;"></td>
 	      </tr>
       </c:forEach></tbody>
       </table>
 
-<a href="<c:url value='/member/classCon'/>">강의확인</a>
-<a href="<c:url value='/member/classReview'/>">후기작성</a>
 <!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"
 		href="#" class="Top"> <img src="../images/top.png" alt="topicon">

@@ -19,6 +19,7 @@
 	<bean class="service.member.MemberClassOrderList"/>
 	<bean class="service.member.ReviewWriteService"/>
 	<bean class="service.member.MemberClassConService"/>
-	
+	<bean class="service.member.MemberReviewConService"/>
+	<bean class="service.member.MemberClassDeleteService"/>
 	
 </beans>

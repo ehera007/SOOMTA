@@ -222,7 +222,7 @@ ul {
     border: 2px solid #0F4C81;
     width: 500px;
     height:500px;
-     margin-top: 50px;
+    margin-top: 50px;
     margin-bottom: 80px;
     border-spacing: 0px;
     border-radius: 12px;
@@ -240,11 +240,14 @@ thead th {
 
 th{
 	padding-top:15px;
-	padding-left:45px; 
+	padding-left:30px;
+	width: 120px;
+	
 }
 td{
 	padding-top: 15px;
-	padding-left:25px;
+	padding-left:55px;
+	padding-right: 50px;
 }
 </style>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -259,7 +262,7 @@ td{
     </script>
 
 <meta charset="UTF-8">
-<title>강의후기 작성</title>
+<title>강의후기 확인</title>
 </head>
 <body>
 
@@ -285,9 +288,9 @@ td{
 			<table align="center">
 				<thead>
          <tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
-            <th colspan="2" style="padding: 10px 0px 10px 10px; ">강의 후기 작성 </th>
+            <th colspan="2" style="padding: 10px 0px 10px 10px; ">강의 후기 확인 </th>
          </tr></thead>
-    			<tr><th >강의명</th>
+    			<tr><th>강의명</th>
 					<td> ${dto.className} </td></tr>
 			
 				<tr><th>기간</th>
@@ -295,24 +298,23 @@ td{
 		             pattern="yyyy-MM-dd"/> ~
 		          <fmt:formatDate value="${dto.classEnd }" 
 		             pattern="yyyy-MM-dd"/></td>
-				
+		       
+		       <tr><th>등록일</th>
+					<td><fmt:formatDate value="${reviewCon.reviewRegiDay}" 
+		             pattern="yyyy-MM-dd"/>
 				<tr><th>강의 만족도</th>
-	    			<td><input type="number" name="classSatisfy" 
-	    			min="0.5" max="5" step="0.5" style="width:230px;" /></td></tr>
+					<td>${reviewCon.classSatisfy}</td>
 	    			
 				<tr><th>강사 만족도</th>
-	    			<td><input type="number" name="tutorSatisfy" 
-	    			min="0.5" max="5" step="0.5" style="width:230px;"/></td></tr>
-				
+	    			<td>${reviewCon.tutorSatisfy}</td>
+	    			
 				<tr><th>리뷰작성</th>
-	    			<td><textarea rows="5" cols="30" name="reviewContents" ></textarea></td></tr>
-			
+					<td>${reviewCon.reviewContents}</td>
+	    			
 					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 20px; ">
-						<input type="button"  value="등록 안함" style="border: none;font-size: 16px;font-weight: bold;
+						<input type="button"  value="확인" style="border: none;font-size: 16px;font-weight: bold;
 					 	background: transparent; color: #0F4C81;"
 						onclick="javascript:history.back();" />
-						<input type="submit" value="리뷰등록" 
-							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
 				</th></tr>
 			</table>
 		</form>		
