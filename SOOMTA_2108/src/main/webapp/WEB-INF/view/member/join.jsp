@@ -171,16 +171,17 @@ function check_pw(){
         }}};
 </script>
 <!-- emailCk null값 대신 N 보내기-->
- <script>
- $(document).ready(function emailCk(){
- 		if($("#input_ck").is(":checked")==true){
- 			document.getElementById("input_ck_hidden").value='Y';
- 		}else{
- 			document.getElementById("input_ck_hidden").value='N';
- 		}
- });
- </script>
-
+<script>
+$(document).ready(function(){
+    	$("#input_ck_hidden").change(function(){
+    		if($("#input_ck").is(":checked")){
+    			document.getElementById("input_ck_hidden").value="Y";
+    		}else{
+    			document.getElementById("input_ck_hidden").value="N";
+    		}
+    	}
+    });
+</script>
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
@@ -206,7 +207,7 @@ function check_pw(){
    <div class="main">
    <h1>숨타와 함께 숨은 시간을 찾아보세요 :)</h1>
       <form action="memJoined" method="post" name="frm">
-       <input type="hidden" name="memEmailCk" id="input_ck_hidden" onchange="emailCk()"/>
+       <input type="hidden" name="memEmailCk" id="input_ck_hidden" value="Y"/>
       <table>
   <thead>
                <tr>
@@ -227,7 +228,7 @@ function check_pw(){
             	pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$" required/>
 				&nbsp;<span id="pw_ck_msg"></span></td></tr>
          <tr><th>이름</th>
-            <td><input type="text" name="memName" value="${memName }"required minlength="2"/>
+            <td><input type="text" name="memName" value="${memName }"required minlength="2" size="30"/>
          <tr><th>생년월일</th>
             <td><input type="date" name="memDob" value="${memDob }" required/></td></tr>
          <tr><th>성별</th>

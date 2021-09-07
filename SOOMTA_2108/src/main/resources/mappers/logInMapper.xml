@@ -14,5 +14,14 @@
 	from employees where emp_id = #{userId}
 </select>
 
+<select id="mIdFind" parameterType="Model.MemberDTO" resultType="string">
+	select mem_Id memId from member
+	where mem_Name = #{memName} and mem_Dob = #{memDob} and mem_Email = #{memEmail}
+</select>
+
+<select id="tIdFind" parameterType="Model.TutorDTO" resultType="string">
+	select tutor_Id tutorId from tutor
+	where tutor_Name = #{tutorName} and tutor_Dob = #{tutorDob} and tutor_Email = #{tutorEmail}
+</select>
 
 </mapper> 

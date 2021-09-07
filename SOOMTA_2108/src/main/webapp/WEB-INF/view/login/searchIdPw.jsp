@@ -4,67 +4,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="<c:url value='/include/mainStyle.css'/>"
-	media="all" type="text/css" />
-<style type="text/css">
-/*중앙*/
+<link rel="stylesheet" href="../include/mainStyle.css" media="all"
+	type="text/css" />
+<style>
+/*중앙 구역 분할 */
 .main {
 	width: 800px;
+	margin: 50px auto 90px auto;
+	text-align:center;
+	position:relative;
+}
+  /*이미지 사이즈 관련 스타일*/
+img{
+width:auto;
+height:100%;
+}
+/*아이디 찾기*/
+.main h1{
+	color:#0F4C81;
+	text-align:center;
+	padding-bottom: 10px;
+}
+.main h2{
+	color:white;
+	height:45px;
+	position:relative;
+	margin:0;
+	padding:0;
+	top:5px;
+	left:23px;
+}
+
+table.idfindTable {
+	width: 400px;
+	height: 100px;
 	margin: 0 auto;
 }
-.main h1{
-text-align:center; 
-color:#0F4C81;
-margin:50px auto 15px auto;
-}
-table {
-    border: 2px solid #0F4C81;
-    border-radius: 12px;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    border-spacing: 0px;
-    margin: 0 auto 70px auto;
-    width: 600px;
-  }
-thead th {
-	height: 40px;
-   background-color: #0F4C81;
-   color: white;
-   font-size: 20px;
-   border-radius: 8px 8px 0px 0px;
-}
-tbody{
-	height: 140px;
-	font-size: 18px;
-	vertical-align: center;
-}
-tfoot{
-	height: 40px;
-}
-tfoot a{
-	color: #0F4C81;
-	font-weight: bold;
-	padding-left: 490px;
-}
-tfoot a:hover{
-	color: #0F4C81;
-	font-weight: bold;
-	padding-left: 490px;
-}
-tfoot a:link{
-	color: #0F4C81;
-	font-weight: bold;
-	padding-left: 490px;
-}
-tfoot a:visited{
-	color: #0F4C81;
-	font-weight: bold;
-	padding-left: 490px;
-}
-.id{
-color: #0F4C81 }
-  
-</style>
 
+table.pwfindTable {
+	width: 400px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+th{
+	text-align:center;
+}
+
+.idFind{
+	border: 2px solid #0F4C81;
+	width: 600px;
+	height: 350px;
+	margin: 10px auto;
+	text-align:center;
+	box-shadow: 3px 3px 3px 3px #D5D5D5;
+	border-radius: 12px;
+}
+
+#pwFind{
+	border: 2px solid #0F4C81;
+	width: 600px;
+	height: 300px;
+	margin: 10px auto;
+	text-align:center;
+	box-shadow: 3px 3px 3px 3px #D5D5D5;
+	border-radius: 12px;
+}
+
+#idpwFindTitle{
+	text-align:left;
+	font-size:15px;
+	background-color:#0F4C81;
+	position:relative;
+	width:602px;
+	top:-1px;
+	left:-1px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+#idFindForm{ /*id 찾기 input text위치*/
+	position:relative;
+	top:30px;
+}
+
+#pwFindForm{ /*pw 찾기 input text위치*/
+	position:relative;
+	top:30px;
+}
+
+#idpwFindInputValue{ /*input text박스 크기*/
+	border: 1px solid black;
+	width:250px;
+	height:25px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+.btn{
+	margin-top:30px;
+	border:none;
+	background:none;
+	color:#0F4C81;
+	font-weight: bold;
+	font-size : 15px;
+}
+
+</style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -76,15 +121,15 @@ color: #0F4C81 }
     });
     
     </script>
-
 <meta charset="UTF-8">
-<title>환영합니다</title>
+<title>아이디/비밀번호 찾기</title>
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-			<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
+		<img class="logo" src="<c:url value='/images/soomta_logo.png'/>"
 			alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
+		<!-- 로그인 안된 경우 -->
 		<div class="nav">
 			<div class="nav-item">
 				<a href="<c:url value='/soomta/login'/>">로그인</a>
@@ -97,29 +142,71 @@ color: #0F4C81 }
 			</div>
 		</div>
 	</div>
-	<!-- 중앙 : 회원가입 확인 -->
-		<div class="main">
-			<h1>숨타에 오신것을 환영합니다.</h1>
-			<table>
-			<thead><tr>
-               <th>회원 가입 완료</th>
-         	</tr></thead>
-         	<tbody><tr>
-				<th rowspan="2">
-				"<span class="id">${dto.memId }</span>"님  환영합니다<br/>
-				회원가입이 완료되었습니다! <br/> 로그인 후 강의/모임을 즐겨보세요 :) </th></tr>
-				<tr></tr>
-    			</tbody>
-    		<tfoot><tr>
-    			<td>
-				<a href="<c:url value='/soomta/login'/>">로그인 하기</a></td>
-			</tr></tfoot>
-			</table>
+	<!-- 중앙-->
+	<div class="main">
+		<h1>아이디 / 비밀번호 찾기</h1>
+			<div class="idFind" >
+		<div id="idpwFindTitle"><h2>아이디 찾기</h2></div>
+		
+		<div id="idFindForm">
+			<form action="findId" method="post" name="findId">
+				<table class="idfindTable">
+					<tr>
+						<th>구분</th>
+						<td><select name="type" id="idpwFindInputValue">
+							<option value="mem">일반</option>
+							<option value="tutor">튜터</option>
+						</select></td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td><input type="text" name="name" id="idpwFindInputValue" required></td>
+					</tr>
+					<tr>
+						<th>생년월일</th>
+						<td><input type="date" name="birth" id="idpwFindInputValue" required></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="email" name="email" id="idpwFindInputValue" required/></td>
+					</tr>
+				</table>
+				<input class="btn" type="submit" value="ID 찾기"/>
+			</form>
 			</div>
-  	
+		</div>
+		<br/><br/>
+			<div id="pwFind">
+		<div id="idpwFindTitle"><h2>비밀번호 찾기</h2></div>
+		<div id="pwFindForm">
+			<form action="findPw" method="post" name="findPw">
+				<table class="pwfindTable">
+				<tr>
+						<th>구분</th>
+						<td><select name="type" id="idpwFindInputValue">
+							<option value="mem">일반</option>
+							<option value="tutor">튜터</option>
+						</select></td>
+					</tr>
+					<tr>
+						<th>아이디</th>
+						<td><input type="text" name="id" id="idpwFindInputValue" required/></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="email" name="email" id="idpwFindInputValue" required/></td>
+					</tr>
+				</table>
+				<input class="btn" type="submit" value="PW 찾기"/>
+			</form>
+			</div>
+		</div>
+		</div>
+			
 	<!-- TOP이동 -->
-	<a style="position: fixed; bottom: 20px; right: 50px;" href="#" class="Top">
-		<img src="<c:url value='/images/top.png'/>" alt="topicon"/>
+	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
+		class="Top"> <img src="<c:url value='/images/top.png'/>"
+		alt="topicon" />
 	</a>
 
 	<!-- 하단 고정 -->
@@ -193,5 +280,4 @@ color: #0F4C81 }
 	</div>
 
 </body>
-
 </html>

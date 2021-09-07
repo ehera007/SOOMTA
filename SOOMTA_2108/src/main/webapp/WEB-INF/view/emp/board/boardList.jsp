@@ -76,8 +76,6 @@ text-align:center;
 	color: #0F4C81;
 	font-weight: bold;
 	border: none;
-/*	margin: 0 0 0 15px;
-	float: right; */
 	height: 30px;
 	margin: 30px 0px 30px 10px;
 }
@@ -111,7 +109,7 @@ $(document)
 $(document)
 .ready(
 		function() {
-			$('.btn')
+			$('.joinbtn')
 					.click(
 							function() {
 								alert('잠시 후 게시글 등록 페이지로 이동합니다.');
@@ -176,18 +174,19 @@ $(document)
 	<c:if test="${empty faqList }">
 	등록된 게시글이 없습니다.</c:if>
 	<!-- https://jg-han.tistory.com/38 참고해보기
+		https://developeryoung.tistory.com/39
 				https://dotheright.tistory.com/218 참고해보기(페이징 포함)
 			 -->
 			<div class="search">
 				<form>
-				<select name="ctgr">
-				<option value="title">제목</option>
-				<option value="no">No.</option>
-				<option value="ctgrL">대분류</option>
-				<option value="ctgrS">소분류</option>
-				<option value="id">작성자</option>
+				<select name="type">
+				<option ${(param.type == "title")? "selected": ""} value="title">제목</option>
+				<option ${(param.type == "no")? "selected": ""} value="no">No.</option>
+				<option ${(param.type == "ctgrL")? "selected": ""} value="ctgrL">대분류</option>
+				<option ${(param.type == "ctgrS")? "selected": ""} value="ctgrS">소분류</option>
+				<option ${(param.type == "id")? "selected": ""} value="id">작성자</option>
 				</select>
-				<input type = "text" name="searchBar" value=""/>
+				<input type = "text" name="keyWord" value="${param.keyWord }"/>
 				<input type="submit" class="btn" value="검색"/>
 				<input class="joinbtn" type="button" value="게시글 등록"
 					onclick="location.href='boardWrite'" />

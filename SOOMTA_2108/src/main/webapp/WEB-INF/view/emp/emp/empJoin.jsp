@@ -179,14 +179,14 @@ function funcCon(){
 <!-- ID중복 체크 //선생님 ajax 물어보기...ㅜ -->
 <script>
 var idCk = 0;
-	$(#empId).blur(function(){
+	$("#empId").blur(function(){
 		var empId = $('#empId').val();
 		$ajax({
 			url : '${pageContext.request.contextPath}/idCk',
 			type : 'post',
 			success : function(data){
 				if(data != 0) {
-					$("#idCk").text("사용중인 아이디입니다.");
+					$("#idCk").text(data);
 					$("#idCk").css("color", "red");
 				}, error: function(){
 					console.log("실패");

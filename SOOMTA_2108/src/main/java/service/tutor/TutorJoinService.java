@@ -2,6 +2,7 @@ package service.tutor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
 
 import Model.TutorDTO;
 import command.TutorCommand;
@@ -12,7 +13,7 @@ public class TutorJoinService {
 	TutorRepository tutorRepository;
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-	public void tutorInsert(TutorCommand tutorCommand) {
+	public void tutorInsert(TutorCommand tutorCommand, Model model) {
 		TutorDTO dto = new TutorDTO();
 		dto.setTutorId(tutorCommand.getTutorId());
 		dto.setTutorPw(bCryptPasswordEncoder.encode(tutorCommand.getTutorPw()));
@@ -26,5 +27,6 @@ public class TutorJoinService {
 		dto.setTutorSince(tutorCommand.getTutorSince());
 		System.out.println("이메일체크"+dto.getTutorEmailCk());
 		tutorRepository.tutorInsert(dto);
+		model.addAttribute("dto", dto);
 	}
 }

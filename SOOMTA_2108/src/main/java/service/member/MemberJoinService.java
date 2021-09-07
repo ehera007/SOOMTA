@@ -2,6 +2,7 @@ package service.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
 
 import Model.MemberDTO;
 import command.MemberCommand;
@@ -12,7 +13,7 @@ public class MemberJoinService {
 	MemberRepository memberRepository;
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-	public void memInsert(MemberCommand memberCommand) {
+	public void memInsert(MemberCommand memberCommand, Model model) {
 		MemberDTO dto = new MemberDTO();
 		dto.setMemArea(memberCommand.getMemArea());
 		dto.setMemDob(memberCommand.getMemDob());
@@ -25,7 +26,6 @@ public class MemberJoinService {
 		dto.setMemPw(bCryptPasswordEncoder.encode(memberCommand.getMemPw()));
 		System.out.println("이메일체크"+dto.getMemEmailCk());
 		memberRepository.memInsert(dto);
-		
-		
+		model.addAttribute("dto", dto);
 	}
 }

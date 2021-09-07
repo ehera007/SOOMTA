@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -8,80 +8,75 @@
 	type="text/css" />
 <style>
 /*중앙 구역 분할 */
-*{margin: 0; padding:0;} /*idpwFind 마진, 패딩 준것*/
-
 .main {
 	width: 800px;
-	margin: 0 auto;
+	margin: 60px auto 100px auto;
 	text-align:center;
 	position:relative;
-	top:30px;
+}
+  /*이미지 사이즈 관련 스타일*/
+img{
+width:auto;
+height:100%;
 }
 
-/*아이디 찾기*/
-
-h1{
+.main h1{
 	color:#0F4C81;
 	text-align:center;
 }
 
-h2{
+.main h2{
 	color:white;
 	height:45px;
 	position:relative;
+	margin:0;
+	padding:0;
 	top:5px;
 	left:23px;
 }
 
-.pwSearch{
+.idSearch{
 	border: 2px solid #0F4C81;
-	width: 450px;
-	height: 225px;
-	margin: 0 auto;
+	width: 470px;
+	height: 250px;
+	margin: 10px auto 90px auto;
 	text-align:center;
 	box-shadow: 5px 5px 5px 5px #D5D5D5;
-	border-radius: 1em;
+	border-radius: 12px;
 }
 
-#pwSearchTitle{
+#idSearchTitle{
 	text-align:left;
 	font-size:15px;
 	background-color:#0F4C81;
 	position:relative;
-	left:-1px;
-	width:452px;
+	width:472px;
 	top:-1px;
-	border-top-left-radius: 1em;
-	border-top-right-radius: 1em;
+	left:-1px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
-
-#pwSearchAtag{ /*id찾기 pw찾기 a태그*/
+#idFound{
 	position:relative;
-	left:110px;
-	margin-top:32px;
-	font-size:14px;
 }
-
-/*a태그 선&색바뀜 삭제*/
-a:link{
+#idSearchAtag a{
+	font-size:15px;
 	color:#0F4C81;
-	text-decoration:none;
+	font-weight: bold;
+	text-align: center;
 }
-a:visited{
-	color:#0F4C81;
-	text-decoration:none;
-}
-a:active{
-	color:#0F4C81;
-	text-decoration:none;
-}
-a:hover{
-	color:#0F4C81;
-	text-decoration:none;
-}
-
 #blank{
 	padding-top:2em;
+}
+#idFound p{
+	font-weight: bold;
+	font-size: 18px;
+	margin-top:40px;
+	margin-bottom: 40px;
+	
+}
+.pw{
+	color: #0F4C81;
 }
 </style>
 <meta charset="UTF-8">
@@ -106,22 +101,34 @@ a:hover{
 	</div>
 	<!-- 중앙 : 검색바, 선택 -->
 	<div class="main">
-	<br/>
 		<h1>아이디 / 비밀번호 찾기</h1>
-		<br/><br/>
-			<div class="pwSearch" >
-		<div id="pwSearchTitle"><h2>아이디 찾기 결과</h2></div>
-			<br/>
-				<p>'${memName }'님의 비밀번호는</p>
-				<p>입력하신 이메일을</p>
-				<p>확인해주세요.</p>
-				<div id="pwSearchAtag">
-					<a href="./login"><b>로그인</b></a>
-				</div> 
+			<div class="idSearch" >
+		<div id="idSearchTitle"><h2>비밀번호 찾기 결과</h2></div>
+			<div id="idFound">
+				<c:if test="${ Mdto == null && Tdto == null}">
+				<p>PW 찾기 실패!<br/><br/>입력한 정보가 정확하지 않습니다.<br/>정보를 다시 확인해주세요.</p>
+				<div id="idSearchAtag">
+				<a href="<c:url value='/soomta/searchIdPw#pwFind'/>">비밀번호 찾기</a>
+				</div>
+				</c:if>
+				
+				<c:if test="${!empty Mdto}">
+				<p> 안녕하세요, '<span class="pw">${Mdto.memId}</span>'님! <br/><br/>
+				회원님의 임시 비밀번호는 <span class="pw">${memPw }</span> 입니다.<br/>로그인 후 비밀번호를 변경해주세요</p>
+				<div id="idSearchAtag">
+					<a href="<c:url value='/soomta/login'/>">로그인</a>
+				</div>
+				</c:if>
+
+				<c:if test="${!empty Tdto}">
+				<p> 안녕하세요, '<span class="pw">${Tdto.tutorId }</span>'님! <br/><br/>
+				회원님의 임시 비밀번호는 <span class="pw">${tutorPw }</span> 입니다.<br/>로그인 후 비밀번호를 변경해주세요</p>
+				<div id="idSearchAtag">
+					<a href="<c:url value='/soomta/login'/>">로그인</a>
+				</div></c:if></div> 
 		</div>
 		</div>
-		<br/><br/><br/><br/>
-			
+		
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"
 		href="#" class="Top"> <img src="../images/top.png" alt="topicon">

@@ -72,13 +72,12 @@ td a:active {
 }
 /*등록 버튼 스타일*/
 .joinbtn {
-	height: 30px;
 	background-color: transparent;
 	color: #0F4C81;
 	font-weight: bold;
 	border: none;
-	margin: 0 0 0 15px;
-	float: right;
+	height: 30px;
+	margin: 30px 0px 30px 10px;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -178,10 +177,10 @@ $(document)
 				</select>
 				<input type = "text" name="search" value=""/>
 				<input type="submit" class="btn" value="검색"/>
-				</form>
-			</div>
 				<input class="joinbtn" type="button" value="관리자 등록"
 					onclick="location.href='empJoin'" />
+				</form>
+			</div>
 			</div>
 	</div>
 

@@ -7,15 +7,18 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import command.IdPwFindeCommand;
 import command.LogInCommand;
 import command.MemberCommand;
 import command.TutorCommand;
 import service.logIn.CookieService;
+import service.logIn.FindService;
 import service.logIn.LogInService;
 import service.member.MemberJoinService;
 import service.tutor.TutorJoinService;
@@ -28,6 +31,8 @@ import validator.LogInCommandValidator;
 public class LogInController {
 	@Autowired
 	CookieService cookieService;
+	@Autowired
+	FindService findService;
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String loginPage(@ModelAttribute LogInCommand logInCommand, HttpServletRequest request) {//로그인페이지
 		cookieService.getCookie(request);
@@ -61,14 +66,16 @@ public class LogInController {
 	}
 	@RequestMapping("searchIdPw") //비밀번호 아이디 찾기
 	public String searchIdPwPage() {
-		return "login/idpwFound";
+		return "login/searchIdPw";
 	}
 	@RequestMapping("findId") //id찾기
-	public String findId() {
+	public String findId(IdPwFindeCommand idPwFindeCommand, Model model) {
+		findService.idFind(idPwFindeCommand, model);
 		return "login/findId";
 	}
 	@RequestMapping("findPw") //pw찾기
-	public String findPw() {
+	public String findPw(IdPwFindeCommand idPwFindeCommand, Model model) {
+		findService.pwFind(idPwFindeCommand, model);
 		return "login/findPw";
 	}
 	
@@ -84,15 +91,15 @@ public class LogInController {
 	@Autowired
 	TutorJoinService tutorJoinService;
 	@RequestMapping(value="tutorJoined", method=RequestMethod.POST)//튜터등록 완료 후
-	public String tutorJoined(TutorCommand tutorCommand) {
-		tutorJoinService.tutorInsert(tutorCommand);
+	public String tutorJoined(TutorCommand tutorCommand, Model model) {
+		tutorJoinService.tutorInsert(tutorCommand, model);
 		return "tutor/joined";
 	}
 	@Autowired
 	MemberJoinService memberJoinService;
 	@RequestMapping(value="memJoined", method=RequestMethod.POST)//회원가입 완료 후
-	public String memJoined(MemberCommand memberCommand) {
-		memberJoinService.memInsert(memberCommand);
+	public String memJoined(MemberCommand memberCommand, Model model) {
+		memberJoinService.memInsert(memberCommand, model);
 		return "member/joined";
 	}
 	
