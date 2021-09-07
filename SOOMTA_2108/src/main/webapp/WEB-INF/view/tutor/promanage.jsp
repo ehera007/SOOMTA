@@ -356,7 +356,7 @@ td{
              <th>이미지 </th><td>
              <c:if test = "${tutor.tutorImage == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorImage != null}">
-             <img src="../tutor/upload/${tutor.tutorImage}" />
+             <img src="../tutor/upload/${tutor.tutorImage}" style="max-width: 100%; height: auto;" />
              </c:if>
              </td>
          </tr>      

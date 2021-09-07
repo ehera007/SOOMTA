@@ -196,8 +196,10 @@ thead th {
    border-radius: 8px 8px 0px 0px;
 }
 th{
-	padding-left:45px; 
+	padding-left:30px;
+	width:200px;
 }
+
 
 .detail {
 	color: grey;
@@ -293,8 +295,8 @@ input {
             	</td></tr>
 				
 				<tr><th>이미지</th>
-					<td><span id="fileName">${tutor.tutorImage}</span>
-					<input type="file" name="tutorImage"id="tutorImage" accept="image/png, image/jpeg"><span id="delFile">삭제</span>
+					<td style="word-break:break-all"><span id="fileName">${tutor.tutorImage}</span>
+					<input type="file" name="tutorImage"id="tutorImage" accept="image/png, image/jpeg" >
 					
 				
 				
@@ -312,7 +314,7 @@ input {
 				</th></tr>
 			
 			</table>
-		<input type="text" name="delFile" id = "fileDel"/>
+		<input type style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; color="white;" ="text" name="delFile" id = "fileDel"/>
 		</form>	
 		</div>	
 		
