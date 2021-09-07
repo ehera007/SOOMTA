@@ -98,7 +98,7 @@ a:hover {
 
 .nav-item {
 	margin: 15px;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 /*전체카테고리 보기*/
@@ -328,6 +328,11 @@ a:hover {
 	color: #0F4C81;
 	text-decoration: none;
 }
+.detailtagbtn{
+	border:none;
+	background:none;
+	font-size: 10px;
+}
 </style>
 <meta charset="UTF-8">
 <title>SOOMTA</title>
@@ -535,16 +540,21 @@ a:hover {
 					<td><input type="checkbox" name="classMethod" value="n" />비대면</td>
 				</tr>
 				<tr>
-					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">>더보기
-						<button onclick="DetailTag()">선택완료</button>
+					<td>지역</td>
+					<td><input type="checkbox" name="classMethod" value="s" />서울</td>
+					<td colspan="2"><input type="checkbox" name="classMethod" value="g" />경기도</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">
+						<button class="detailtagbtn" onclick="DetailTag()"> >선택완료</button>
 					</td>
 				</tr>
 			</table>
 		</div>
 		<br />
 		<form style="direction: rtl;">
-			<select name="ranking">
-				<option value="latestOrder">최신순</option>
+			<select name="ranking" onchange="sort(this.form)">
+				<option value="classNo">최신순</option>
 				<option value="viewOrder">조회순</option>
 				<option value="starOrder">별점순</option>
 			</select>
@@ -552,10 +562,9 @@ a:hover {
 		<table style="margin: auto; text-align: center;">
 			<tr style="vertical-align: bottom;">
 			<c:forEach items="${list }" var="dto" varStatus="cnt">
-
 				<td width="200" height="250" >
 				<a href="../../class/classDetailPage?classNo=${dto.classNo }&tutorId=${dto.tutorId}"> 
-				<img width="150" height="150" src="./../class/upload/${dto.classImg.split(',')[0] }"/><br/>
+				<img width="150" height="150" src="../../tutor/upload/${dto.classImg.split(',')[0] }"/><br/>
 				${dto.className}<br/>
 				${dto.classPrice}원
 				</a>
@@ -567,12 +576,15 @@ a:hover {
 			</tr>
 		</table>
 		<div class="page">
-			<ul class="pagination">
-				<li><a href="#" class="pagenum">1</a></li>
-				<li><a href="#" class="pagenum">2</a></li>
-				<li><a href="#" class="pagenum">3</a></li>
-				<li><a href="#" class="pagenum">4</a></li>
-			</ul>
+			<span onclick="alert('이전 페이지가 없습니다.');">이전</span>			
+			<c:set var = "page" value = "${(param.p==null)? 1: param.p}"/>
+			<c:set var ="startNum" value = "${page-(page-1)%5}"/>
+			<span>
+				<c:forEach var = "i" begin= "0" end = "4">
+				<a href="?p=${startNum+i}&t=&q=" >${startNum+i}</a>
+				</c:forEach>
+			</span>		
+			<span onclick="alert('다음 페이지가 없습니다.');">다음</span>	
 		</div>
 		<!-- 하단 고정 -->
 		<hr style="color: #BEBEBE;">

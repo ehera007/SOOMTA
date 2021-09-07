@@ -29,20 +29,20 @@
 	insert into Soomta_Class(
 	tutor_Id, class_Name, class_Img, class_Start, class_End, 
 	class_Introduce, class_Category_L, class_Category_S, class_Price, class_Gender, class_Way, 
-	class_Total, class_No, class_Regiday, class_City, class_Area) 
+	class_Total, class_No, class_Regiday, class_City, class_Area, class_Img2) 
 	values (
 	#{tutorId}, #{className}, #{classImg}, #{classStart}, #{classEnd}, 
 	#{classIntroduce}, #{classCategoryL}, #{classCategoryS}, #{classPrice}, #{classGender}, #{classWay}, 
-	#{classTotal}, #{classNo}, sysdate, #{classCity}, #{classArea})
+	#{classTotal}, #{classNo}, sysdate, #{classCity}, #{classArea}, #{classImg2})
 </insert>
 <select id="tutorClassList" resultType="Model.ClassDTO" parameterType="string">
-	select class_No classNo, tutor_Id tutorId, class_Name className, class_Img classImg, class_Regiday classRegiday, class_Start classStart, class_End classEnd, class_Introduce classIntroduce, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Price classPrice, class_Gender classGender, class_Way classWay, class_State classState, class_Total classTotal, class_City classCity, class_Area classArea 
+	select class_No classNo, tutor_Id tutorId, class_Name className, class_Img classImg, class_Regiday classRegiday, class_Start classStart, class_End classEnd, class_Introduce classIntroduce, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Price classPrice, class_Gender classGender, class_Way classWay, class_State classState, class_Total classTotal, class_City classCity, class_Area classArea, class_Img2 classImg2 
 	from Soomta_Class
 	where tutor_Id = #{tutorId}
 </select>
 <select id="classDetail" parameterType="string" resultType="Model.ClassDTO">
 	select class_No classNo, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, class_End classEnd, 
-	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg, class_City classCity, class_Area classArea 
+	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg, class_City classCity, class_Area classArea
 	from Soomta_Class 
 	where class_No = #{classNo}
 </select>
@@ -67,9 +67,9 @@
 <select id="classList" parameterType="string" resultType="Model.ClassDTO">
 	select class_No classNo, tutor_Id tutorId, class_Name className, class_Img classImg, class_Regiday classRegiday, class_Start classStart, class_End classEnd, class_Introduce classIntroduce, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Price classPrice, class_Gender classGender, class_Way classWay, class_State classState, class_Total classTotal, class_City classCity, class_Area classArea 
 	from Soomta_Class
-	where class_Category_S = #{classCategoryS}
+	where class_Category_S = #{classCategoryS} 
+	order by classRegiday desc
 </select>
-
 <select id="reviewViewList" parameterType="string" resultType="Model.ReviewDTO">
 	select class_Satisfy classSatisfy, tutor_Satisfy tutorSatisfy, review_RegiDay reviewRegiDay, review_Contents reviewContents, purchase_No purchaseNo, class_No classNo, tutor_Id tutorId
 	from review
@@ -97,7 +97,7 @@
 </select>
 <select id="classDetailPage" parameterType="string" resultType="Model.ClassDTO">
 	select class_No classNo, tutor_Id tutorId, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, class_End classEnd, 
-	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg
+	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg, class_Img2 classImg2
 	from Soomta_Class 
 	where class_No = #{classNo}
 </select> 

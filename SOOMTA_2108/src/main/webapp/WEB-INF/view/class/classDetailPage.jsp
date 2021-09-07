@@ -114,7 +114,7 @@ a:hover {
 
 .nav-item {
 	margin: 15px;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 /*중앙 구역 분할 */
@@ -127,8 +127,8 @@ a:hover {
 }
 
 .mainmenu {
-	padding: 8px;
-	font-size: 15px;
+	padding: 5px;
+	font-size: 14px;
 	border: none;
 	width: 130px;
 }
@@ -211,7 +211,6 @@ a:hover {
 .main_left {
 	float: left;
 	width: 20%;
-	padding-top: 10px;
 }
 
 .main_right {
@@ -221,7 +220,7 @@ a:hover {
 }
 
 .allmain {
-	height: 1500px;
+	height: 2100px;
 }
 
 .topcate {
@@ -243,7 +242,6 @@ a:hover {
 }
 
 .intro-detail1 {
-	border: solid 1px;
 	float: left;
 	width: 48%;
 	height: 300px;
@@ -259,7 +257,10 @@ a:hover {
 
 .middle-button {
 	height: 30px;
-	padding-bottom: 3px;
+	padding-bottom: 8px;
+	margin-top:55px;
+	position:relative;
+	left: 49px;
 }
 
 /*강의 간단 정보*/
@@ -276,10 +277,12 @@ a:hover {
     overflow: hidden;
 }
 .tutordetail{
-	padding-left: 10px;
 	padding-right: 100px;
 	padding-top: 50px;
-
+	text-align: center;
+	height: 200px;
+	position: relative;
+	left: 50px;
 }
 .profile {
     width: 100%;
@@ -364,17 +367,22 @@ a:hover {
 
 /*버튼 끝 */
 .classdetail {
-	height: 300px;
-	border: solid 1px;
+ 	display: inline-block;
+	height: 950px;
+	width: 920px;
+	text-align : center;
 }
 
-.tutordetail {
-	height: 200px;
-	/*border: solid 1px;*/
+.imgsize{
+   display: inline-block;
+   width: 90%;
+   height: auto;
+  object-fit: cover;
 }
+
 
 .satisfyreview {
-	height: 500px;
+	height: 400px;
 	width:999px;
 
 }
@@ -507,9 +515,11 @@ a:hover {
 	width: 100px;
 	height: 28px;
 	text-align: left;
-	
 	color: #fff;
 	padding-top: 2px;
+	position: relative;
+	bottom: -5px;
+	left: 5px;
 }
 
 header a:visited {
@@ -547,6 +557,8 @@ header a:hover {
 	bottom: -60px;
 	right: 120px;
 }
+
+
 </style>
 <script type="text/javascript">
 	function classJoin() {
@@ -569,9 +581,9 @@ header a:hover {
 			data : "classNo=" + classNo,
 			success : function(result){
 				if(result.trim() == "0"){
-					$("#wish").html("♡");
+					$("#wish").html("../images/heart_filled.png");
 				} else{
-					$("#wish").html("♥");
+					$("#wish").html("../images/hreat_empty.png");
 				}
 			},
 			error: function(){
@@ -779,7 +791,7 @@ header a:hover {
 					> ${dto.classCategoryS }</div>
 				</div>
 				<div class="introtop">
-					<div class="intro-detail1">${dto.classImg }</div>
+					<div class="intro-detail1" style="text-align : center;"><img width="300" height="300" src="./../tutor/upload/${dto.classImg.split(',')[0] }"/></div>
 					<div class="intro-detail2">
 						<span id="titleName">강의명 : </span> ${dto.className }<br /> <span
 							id="titleName">가격 : </span> ${dto.classPrice } 원<br /> <span
@@ -807,9 +819,9 @@ header a:hover {
 						</div>
 						<div class="WishButton"> 
 						<c:if test="${dto.classWish == false }">
-						<a href="javascript:wish('${dto.classNo}')"><span id="wish">♡</span></a></c:if>
+						<a href="javascript:wish('${dto.classNo}')"><img id="wish" src="../images/hreat_empty.png"/></a></c:if>
 						<c:if test="${dto.classWish == true }">
-						<a href="javascript:wish('${dto.classNo}')"><span id="wish">♥</span></a></c:if>
+						<a href="javascript:wish('${dto.classNo}')"><img id="wish" src="../images/heart_filled.png"/></a></c:if>
 						</div>
 					</div>
 				</div>
@@ -830,23 +842,21 @@ header a:hover {
 					</div>
 				</div>
 				<a name="classDetail">
-					<div class="classdetail">강의 설명</div>
+					<div class="classdetail" ><img class="imgsize" src="./../tutor/upload/${dto.classImg2.split(',')[0] }"/></div>
 				</a><br /> <a name="tutorDetail"></a>
 				<!-- 강사소개위치 이동 -->
 				<hr color="black" />
 				<div class="tutordetail">
-					<div class="tutordetail-content">
 					<div class="tutorImg">
-   						 <img class="profile" src="./../images/main_class.png"/>
+   						 <c:if test = "${dto1.tutorImage == null}"><img class="profile" src="./../images/main_class.png"/></c:if>
+   						  <c:if test = "${dto1.tutorImage != null}"><img class="profile" src="../tutor/upload/${dto1.tutorImage}" /></c:if>
    					</div>
-   					
    					<div class="tutorPro">
    						<table >
-   							<tr style="font-size:23px;"><td colspan=3><a href="#">${dto1.tutorId}</a></td></tr>
+   							<tr style="font-size:23px; float: left;"><td colspan=3><a href="#">${dto1.tutorId}</a></td></tr>
    							<tr><td>총 강의 수</td><td>&nbsp;|&nbsp;</td><td>만족도</td><td>&nbsp;|&nbsp;</td><td>연락 가능 시간</td></tr>
    							<tr align="center"><td>${classCount }개</td><td>&nbsp;|&nbsp;</td><td>${tutorSatisTfyAllCount }점</td><td>&nbsp;|&nbsp;</td><td>${dto1.tutorRespond }</td></tr>
    						</table>
-   					</div>
 					</div>
 					<div class="button-5">
 						<div class="eff-4"></div>

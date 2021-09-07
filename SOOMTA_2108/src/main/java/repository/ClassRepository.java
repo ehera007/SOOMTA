@@ -96,5 +96,4 @@ public class ClassRepository {
 		statement = namespace + ".tutorSatisTfyAllCount";
 		return sqlSession.selectOne(statement, tutorId);
 	}
-	
 }

@@ -7,6 +7,7 @@ public class ClassDTO {
 	String tutorId;
 	String className;//
 	String classImg;
+	String classImg2;
 	Date classRegiday;
 	Date classStart;//
 	Date classEnd;
@@ -23,6 +24,12 @@ public class ClassDTO {
 	Boolean classWish;
 	String classSatisfy;
 	
+	public String getClassImg2() {
+		return classImg2;
+	}
+	public void setClassImg2(String classImg2) {
+		this.classImg2 = classImg2;
+	}
 	public String getClassSatisfy() {
 		return classSatisfy;
 	}

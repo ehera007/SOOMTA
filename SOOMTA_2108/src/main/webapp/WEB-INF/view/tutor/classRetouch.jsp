@@ -281,13 +281,13 @@ a:hover {
 		}
 	}
 
-	function classCity(e) {
+	function classCityCategory(c) {
 		var ctg1 = ["서초구","강남구","송파구","종로구","마포구"];
 		var ctg2 = ["수원","평택","안성시","용인시","성남"];
-		var target = document.getElementById("classArea");
+		var target = document.getElementById("classAreaCategory");
 		
-		if(e.value == "SEOUL") var d = ctg1;
-		else if(e.value == "GYEONGGIDO") var d = ctg2;
+		if(c.value == "SEOUL") var d = ctg1;
+		else if(c.value == "GYEONGGIDO") var d = ctg2;
 
 		target.options.length = 0;
 		
@@ -343,14 +343,14 @@ a:hover {
 					<option value="">소분류</option>
 				</select><br/>
 				<span id="title">지역</span>
-				<select onchange="classCity(this)" name="classCity">
+				<select onchange="classCityCategory(this)" name="classCity">
 					<option>대분류</option>
 					<option value="SEOUL"
 					<c:if test="${dto.classCity == 'SEOUL'}">selected</c:if> >서울</option>
 					<option value="GYEONGGIDO"
 					<c:if test="${dto.classCity == 'GYEONGGIDO'}">selected</c:if>>경기도</option>
 				</select>
-				<select id="classArea" name="classArea">
+				<select id="classAreaCategory" name="classArea">
 					<option value="">소분류</option>
 				</select><br/>
 				
@@ -462,7 +462,7 @@ a:hover {
    </div>
 
 </body>
-</html>
+
 <script>
 	function classMainCategory1() {
 		var ctg1 = ["유아","초등","중등","입시/편입","기타"];
@@ -491,22 +491,23 @@ a:hover {
 	}
 	classMainCategory1();
 	
-	function classCity1() {
+	function classCityCategory1() {
 		var ctg1 = ["서초구","강남구","송파구","종로구","마포구"];
 		var ctg2 = ["수원","평택","안성시","용인시","성남"];
-		var target = document.getElementById("classArea");
+		var target = document.getElementById("classAreaCategory");
 		
-		if('${dto.classCity}'== "SEOUL") var d = ctg1;
-		else if('${dto.classCity}' == "GYEONGGIDO") var d = ctg2;
+		if('${dto.classCity}'== "SEOUL") var c = ctg1;
+		else if('${dto.classCity}' == "GYEONGGIDO") var c = ctg2;
 
 		target.options.length = 0;
 		
-		for(x in d){
+		for(x in c){
 			var opt = document.createElement("option");
-		    opt.value=d[x];
-		    opt.innerHTML = d[x];
+		    opt.value=c[x];
+		    opt.innerHTML = c[x];
 		    target.appendChild(opt);
 		}
 	}
-	classCity1();
+	classCityCategory1();
 </script>
+</html>

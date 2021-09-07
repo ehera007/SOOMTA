@@ -26,6 +26,18 @@ public class ClassDeleteService {
 				}
 			}
 		}
+		if(dto.getClassImg2() != null) {
+			String [] fileNames = dto.getClassImg2().split(",");
+			String realPath = session.getServletContext().getRealPath("WEB-INF/view/tutor/upload");
+			if(fileNames != null  && !fileNames[0].equals("")) {
+				for(String fileName : fileNames) {
+					File file = new File(realPath + "/" + fileName);
+					if(file.exists()) {
+						file.delete();
+					}
+				}
+			}
+		}
 		classRepository.classDelete(classNo);
 	}
 }

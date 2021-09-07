@@ -10,11 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import Model.ClassDTO;
 import Model.LogInDTO;
-import Model.TutorAuthInfoDTO;
-import Model.TutorDTO;
 import command.ClassCommand;
 import repository.ClassRepository;
-import repository.TutorRepository;
 
 
 public class ClassOpenService {
@@ -51,6 +48,23 @@ public class ClassOpenService {
 					e.printStackTrace();
 				}
 			dto.setClassImg(classImg);
+		}
+			
+		String classImg2= "";
+			for(MultipartFile mf : classCommand.getClassImg2()) {
+				String original = mf.getOriginalFilename();
+				String originalExt = original.substring(original.lastIndexOf("."));
+				String store = UUID.randomUUID().toString().replace("-","") + originalExt;
+				classImg2 += store + ",";
+				String realPath = session.getServletContext().getRealPath("WEB-INF/view/tutor/upload");
+				File file = new File(realPath + "/" + store);
+				try {
+					mf.transferTo(file);
+				} 
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			dto.setClassImg2(classImg2);
 		}
 		
 		LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");

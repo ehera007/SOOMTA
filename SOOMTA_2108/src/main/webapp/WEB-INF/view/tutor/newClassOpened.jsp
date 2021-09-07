@@ -282,13 +282,13 @@ a:hover {
 		}
 	}
 	
-	function classCity(e) {
+	function classCityCategory(c) {
 		var ctg1 = ["서초구","강남구","송파구","종로구","마포구"];
 		var ctg2 = ["수원","평택","안성시","용인시","성남"];
-		var target = document.getElementById("classArea");
+		var target = document.getElementById("classAreaCategory");
 		
-		if(e.value == "SEOUL") var d = ctg1;
-		else if(e.value == "GYEONGGIDO") var d = ctg2;
+		if(c.value == "SEOUL") var d = ctg1;
+		else if(c.value == "GYEONGGIDO") var d = ctg2;
 
 		target.options.length = 0;
 		
@@ -299,6 +299,29 @@ a:hover {
 		    target.appendChild(opt);
 		}
 	}
+	
+	function leadingZeros(n, digits) {
+	    var zero = '';
+	    n = n.toString();
+
+	    if (n.length < digits) {
+	        for (i = 0; i < digits - n.length; i++)
+	            zero += '0';
+	    }
+	    return zero + n;
+	}
+
+		var rsvDate = document.getElementById("classStart");
+		var now = new Date();
+	if(rsvDate){
+  	now = 
+    	leadingZeros(now.getFullYear(), 4) + '-' +
+    	leadingZeros(now.getMonth() + 1, 2) + '-' +
+    	leadingZeros(now.getDate(), 2);
+  	if(rsvDate > now){
+  		alert("클래스 시작 날짜를 확인해주세요.");
+  }
+}
 </script>
 </head>
 <body>
@@ -336,18 +359,18 @@ a:hover {
 					<option value="">소분류</option>
 				</select><br/>
 				<span id="title">지역</span>
-				<select onchange="classCity(this)" name="classCity">
+				<select onchange="classCityCategory(this)" name="classCity">
 					<option>대분류</option>
 					<option value="SEOUL">서울</option>
 					<option value="GYEONGGIDO">경기도</option>
 				</select>
-				<select id="classArea" name="classArea">
+				<select id="classAreaCategory" name="classArea">
 					<option value="">소분류</option>
 				</select><br/>
 				<span id="title">강의명</span>
 				<input type="text" name="className" placeholder="강의명 입력"><br/>
 				<span id="title">기간</span>
-				<input type="date" name="classStart" required pattern="yyyy-MM-dd"/> ~ <input type="date" name="classEnd" required pattern="yyyy-MM-dd"/><br/>
+				<input type="date" onchange="leadingZeros(n, digits)" name="classStart" required pattern="yyyy-MM-dd"/> ~ <input type="date" name="classEnd" required pattern="yyyy-MM-dd"/><br/>
 				<span id="title">정원</span>
 				<input type="number" name="classTotal" min="1" max="30"/>명<br/>
 				<span id="title">금액</span>
@@ -365,8 +388,10 @@ a:hover {
 				<input type="radio" name="classGender" value="x">무관<br/>
 				<span id="title">강의 내용</span>
 				<input type="text" name="classIntroduce"><br/>
-				<span id="title">첨부파일</span>
+				<span id="title">클래스이미지</span>
 				<input type="file" name="classImg" multiple="multiple"/><br/>
+				<span id="title">클래스상세이미지</span>
+				<input type="file" name="classImg2" multiple="multiple"/><br/>
 				<div class="submitlocation">
 					<input id="submitClass" type="submit" value="완료"/>
 				</div>

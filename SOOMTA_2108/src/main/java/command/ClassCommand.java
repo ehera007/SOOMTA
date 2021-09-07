@@ -10,6 +10,7 @@ public class ClassCommand {
 	String tutorId;
 	String className;
 	MultipartFile [] classImg;
+	MultipartFile [] classImg2;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date classRegiday;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -28,6 +29,12 @@ public class ClassCommand {
 	String classArea;
 	String classCity;
 	
+	public MultipartFile[] getClassImg2() {
+		return classImg2;
+	}
+	public void setClassImg2(MultipartFile[] classImg2) {
+		this.classImg2 = classImg2;
+	}
 	public String getClassCity() {
 		return classCity;
 	}
