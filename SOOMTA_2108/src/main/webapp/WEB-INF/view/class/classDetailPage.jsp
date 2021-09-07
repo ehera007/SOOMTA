@@ -502,6 +502,15 @@ a:hover {
 	boder-left:0px;
 	boder-bottom:0px;
 }
+.WishButton {
+	display:inline-block;
+	width: 100px;
+	height: 28px;
+	text-align: left;
+	
+	color: #fff;
+	padding-top: 2px;
+}
 
 header a:visited {
 	color: #fff;
@@ -574,12 +583,6 @@ header a:hover {
 </script>
 
 <body>
-<c:if test="${dto.classWish == false }">
-<a href="javascript:wish('${dto.classNo}')"><span id="wish">♡</span></a>
-</c:if>
-<c:if test="${dto.classWish == true }">
-<a href="javascript:wish('${dto.classNo}')"><span id="wish">♥</span></a>
-</c:if>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
@@ -801,6 +804,12 @@ header a:hover {
 						</div>
 						<div class="TopButton" >
 							<a class="TopButton" href="#"> 문의하기 </a>
+						</div>
+						<div class="WishButton"> 
+						<c:if test="${dto.classWish == false }">
+						<a href="javascript:wish('${dto.classNo}')"><span id="wish">♡</span></a></c:if>
+						<c:if test="${dto.classWish == true }">
+						<a href="javascript:wish('${dto.classNo}')"><span id="wish">♥</span></a></c:if>
 						</div>
 					</div>
 				</div>

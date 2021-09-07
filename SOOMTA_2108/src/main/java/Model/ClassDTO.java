@@ -21,7 +21,14 @@ public class ClassDTO {
 	String classArea;
 	String classCity;
 	Boolean classWish;
+	String classSatisfy;
 	
+	public String getClassSatisfy() {
+		return classSatisfy;
+	}
+	public void setClassSatisfy(String classSatisfy) {
+		this.classSatisfy = classSatisfy;
+	}
 	public Boolean getClassWish() {
 		return classWish;
 	}

@@ -32,7 +32,7 @@ public class TutorUpdateService {
 	}
 	
 	
-	public void promanageSujung(TutorCommand tutorCommand, HttpSession session) {
+public void promanageSujung(TutorCommand tutorCommand, HttpSession session) {
 		
 		
 		String realPath = session.getServletContext().getRealPath("WEB-INF/view/tutor/upload");

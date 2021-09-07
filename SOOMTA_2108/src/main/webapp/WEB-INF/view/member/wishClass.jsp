@@ -300,7 +300,7 @@ td a:active {
 		</div>
 	</div>
 	<div class="myClassWish">
-			<h1>'${ID}'님의 클래스 찜 목록</h1>
+			<h1>'${memPerData.memId }'님의 클래스 찜 목록</h1>
 			<p>숨타의 강의와 함께 숨은 시간을 채워봐요!</p>
 		</div>
 	<!-- 타이틀 -->
@@ -310,9 +310,9 @@ td a:active {
          <th width="10%">No.</th>
          <th width="15%">대분류/소분류</th>
          <th width="20%">강의명</th>
-         <th width="13%">기간</th>
+         <th width="15%">기간</th>
          <th width="8%">수강생</th>
-         <th width="10%">상태</th>
+         <th width="8%">상태</th>
          <th width="8%">만족도</th>
          <th width="8%">후기</th>
          <th width="4%" style="background-color: white;"></th>
@@ -324,12 +324,14 @@ td a:active {
       	<td style="background-color: white; border-style: none;"></td>
          <td>${wish.classNo}</td>
          <td>${wish.classCategoryL}/${wish.classCategoryS}</td>
-         <td>${wish.className}</td>
-         <td>${wish.classStart}-${wish.classEnd }</td>
+         <td><a href="classCon?classNo=${wish.classNo}" class="classCon">${wish.className }</a></td>
+         <td><fmt:formatDate value="${wish.classStart}" 
+		             pattern="yy.MM.dd"/> - <fmt:formatDate value="${wish.classEnd}" 
+		             pattern="yy.MM.dd"/></td>
          <td>${wish.classTotal}</td>
          <td>${wish.classState}</td>
-         <td>만족도</td>
-         <td>후기</td>
+         <td>${wish.classSatisfy}</td>
+         <td><a href="classReviewCon?classNo=${wish.classNo}">후기</a></td>
          <td style="background-color: white; border-style: none;"></td>
       </tr>
       </c:forEach>

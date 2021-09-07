@@ -182,7 +182,9 @@ public class MemberController {
 	ClassWishListService classWishListService;
 	@RequestMapping("wishClass")//찜한강의
 	public String wishClass(HttpSession session, Model model) {
+		memberPerDataService.perData(model, session);
 		classWishListService.wishClass(session, model);
+		
 		return "member/wishClass";
 	}
 		

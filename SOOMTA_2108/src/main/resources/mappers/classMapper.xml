@@ -18,6 +18,8 @@
 	<result column="tutor_Id" property="tutorId"/>
 	<result column="class_Regiday" property="classRegiday"/>
 	<result column="class_State" property="classState"/>
+	<result column="class_Satisfy" property="classSatisfy"/>
+
 </resultMap>
 <select id="classNo" resultType="string">
 	select class_num.nextval
