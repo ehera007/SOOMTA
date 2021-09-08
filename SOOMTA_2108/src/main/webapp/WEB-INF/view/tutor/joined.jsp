@@ -107,7 +107,7 @@ tfoot a:visited{
          	</tr></thead>
          	<tbody><tr>
 				<th rowspan="2">
-			"<span class="id">${dto.tutorId }</span>"님  환영합니다<br/>
+			'<span class="id">${dto.tutorId }</span>'님  환영합니다<br/>
 				튜터 등록이 완료되었습니다! <br/> 강의 등록은 이메일 인증 후 할 수 있어요 :) </th></tr>
 				<tr></tr>
     			</tbody>

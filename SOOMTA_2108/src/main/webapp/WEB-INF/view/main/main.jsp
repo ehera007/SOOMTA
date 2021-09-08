@@ -12,13 +12,7 @@
 /*중앙 구역 분할 */
 .main {
 	width: 800px;
-	margin: 0 auto;
-}
-
-.search {
-	border: 1px solid black;
-	height: 40px;
-	margin: 30px;
+	margin: 0px auto 50px auto;
 }
 
 .item {
@@ -36,6 +30,36 @@ img{
 width:auto;
 height:100%;
 }
+/*검색*/
+.search {
+	/*border: 1px solid black;*/
+	height: 40px;
+	margin: 30px;
+	 position: relative;
+}
+
+.searchBar {
+    width: 700px;
+    height:25px;
+    border-radius: 30px;
+    border: 2px solid #bbb;
+    margin: 10px 0;
+    padding: 10px 15px 10px 30px;
+    outline-style: none; 
+    font-family: inherit;
+}
+
+.btn{
+	position:absolute;
+	top: 25px;
+	right: 20px;
+	text-align:center;
+	background-color: transparent;
+	color: #6D6D6D;
+	font-weight: bold;
+	border: none;
+}
+
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -95,7 +119,12 @@ height:100%;
 	</div>
 	<!-- 중앙 : 검색바, 선택(마우스오버 시 이미지 변경) -->
 	<div class="main">
-		<div class="search">검색바</div>
+		<div class="search">
+			<form>
+				<input type = "text" name="keyWord" value="" placeholder="검색어를 입력해주세요." class="searchBar"/>
+				<input type="submit" class="btn" value="검색"/>
+			</form>
+		</div>
 		<div class="item">
 			<div class="main-item">
 			<a href="class/mainCtgr">

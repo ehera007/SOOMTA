@@ -106,7 +106,7 @@ color: #0F4C81 }
          	</tr></thead>
          	<tbody><tr>
 				<th rowspan="2">
-				"<span class="id">${dto.memId }</span>"님  환영합니다<br/>
+				'<span class="id">${dto.memId }</span>'님  환영합니다<br/>
 				회원가입이 완료되었습니다! <br/> 로그인 후 강의/모임을 즐겨보세요 :) </th></tr>
 				<tr></tr>
     			</tbody>
