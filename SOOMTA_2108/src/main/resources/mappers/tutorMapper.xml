@@ -3,11 +3,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.tutorMapper">
 
+<!-- 튜터등록-지연 -->
 <insert id="tutorInsert" parameterType="Model.TutorDTO">
 	insert into tutor (tutor_Id, tutor_Pw, tutor_Name , tutor_Phone , tutor_Gender , 
 	tutor_Dob , tutor_Email , tutor_Email_Ck , tutor_Area , tutor_Since) 
 	values(#{tutorId}, #{tutorPw}, #{tutorName}, #{tutorPhone}, #{tutorGender}, 
-	#{tutorDob}, #{tutorEmail}, #{tutorEmailCk}, #{tutorArea}, sysdate)
+	#{tutorDob}, #{tutorEmail}, 
+	<if test="tutorEmailCk != null"> #{tutorEmailCk} </if> 
+	<if test="tutorEmailCk == null"> 'N' </if>
+	, #{tutorArea}, sysdate)
 </insert>
 <!-- 튜터탈퇴 -->
 <delete id="tutorOut" parameterType="string">

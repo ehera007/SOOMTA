@@ -170,17 +170,20 @@ function check_pw(){
             document.getElementById('pw_ck_msg').style.fontWeight='900';
         }}};
 </script>
-<!-- emailCk null값 대신 N 보내기-->
-<script>
-$(document).ready(function(){
-    	$("#input_ck_hidden").change(function(){
-    		if($("#input_ck").is(":checked")){
-    			document.getElementById("input_ck_hidden").value="Y";
-    		}else{
-    			document.getElementById("input_ck_hidden").value="N";
-    		}
-    	}
-    });
+<!-- 필수체크 확인 알림창 & 이메일체크 값 넘기기 -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#frm").submit(function(){
+			if(!$("#agree").is(":checked")){
+				alert('필수 항목입니다.', {title:'경고!'});
+				return false;
+			}else if($("#memEmailCk").is(":checked")==true){
+				$("#memEmailCk").val('Y');	
+			}else if($("#memEmailCk").is(":checked")==false){
+				$("#memEmailCk").val('N');
+			}	
+		});
+	});
 </script>
 <meta charset="UTF-8">
 <title>회원가입</title>
@@ -206,8 +209,7 @@ $(document).ready(function(){
    <!-- 중앙 -->
    <div class="main">
    <h1>숨타와 함께 숨은 시간을 찾아보세요 :)</h1>
-      <form action="memJoined" method="post" name="frm">
-       <input type="hidden" name="memEmailCk" id="input_ck_hidden" value="Y"/>
+      <form action="memJoined" method="post" id="frm">
       <table>
   <thead>
                <tr>
@@ -251,7 +253,7 @@ $(document).ready(function(){
             <input type="checkbox" id="agree" value="Y" checked>
             	<span class="ck">서비스 <a href="<c:url value='/policy/service'/>" target="_blank">이용약관</a>에 동의합니다. 
            		<span class="required"> (필수)</span></span><br/>
-           <input type="checkbox" id="input_ck" checked><span class="ck">이벤트, 할인 등 이메일 수신에 동의  (선택)</span><br/>
+           <input type="checkbox" id="memEmailCk" name="memEmailCk" checked><span class="ck">이벤트, 할인 등 이메일 수신에 동의  (선택)</span><br/>
             <span style="text-align:right; font-size:10px;"><a href="<c:url value='/soomta/tutorJoin'/>">튜터 등록</a>을 원하시나요?</span></td></tr>
             <tr><th></th></tr><tr><th></th></tr></tbody>
          <tfoot>

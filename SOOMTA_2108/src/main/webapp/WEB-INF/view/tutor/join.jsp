@@ -192,17 +192,21 @@ function check_mail(){
             document.getElementById('mail_ck_msg').style.fontWeight='900';
         }}};
 </script>
-<!-- 이메일ck -->
-<script>
-$(document).ready(function(){
-    	$("#input_ck").change(function(){
-    		if($("#input_ck").is(":checked")){
-    			document.getElementById("input_ck_hidden").value='Y';
-    		}else{
-    			document.getElementById("input_ck_hidden").value='N';
-    		}
-    	}
-    });
+<!-- 선생님 이메일 체크 -->
+<!-- 필수체크 확인 알림창 & 이메일체크 값 넘기기 -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#frm").submit(function(){
+			if(!$("#agree").is(":checked")){
+				alert('필수 항목입니다.', {title:'경고!'});
+				return false;
+			}else if($("#tutorEmailCk").prop("checked")){
+				$("#tutorEmailCk").val('Y');	
+			}else if(!$("#tutorEmailCk").is(":checked")){
+				$("#tutorEmailCk").val('N');
+			}	
+		});
+	});
 </script>
 <meta charset="UTF-8">
 <title>튜터등록</title>
@@ -228,9 +232,8 @@ $(document).ready(function(){
    <!-- 중앙 -->
    <div class="main">
    <h1>튜터 등록하고 숨타와 함께 하세요!</h1>
-      <form action="tutorJoined" method="post" name="frm">
+      <form action="tutorJoined" method="post" id="frm">
       <input type="hidden" name="tutorSince" value="${tutorSince }"/>
-   <input type="hidden" name="tutorEmailCk" value="N" id="input_ck_hidden" />
       <table>
          <thead>
                <tr>
@@ -238,20 +241,20 @@ $(document).ready(function(){
          </tr></thead>
          <tbody>
          <tr><th>ID</th>
-             <td><input type="text" name="tutorId" value="${tutorId }" autofocus size="30" pattern="^([a-z0-9]){4,15}$" required/>
+             <td><input type="text" name="tutorId" minlength="4" maxlength="15" autofocus size="30" pattern="^([a-z0-9]){4,15}$" required/>
              <input type="button" value="중복확인" style="align:left;">
 				 <div class="detail">* 4~15자 영문/숫자 사용</div>
                </td></tr>      
          <tr><th>PW</th>
-            <td><input type="password" name="tutorPw" value="${tutorPw }"size="30" id="pw1"
+            <td><input type="password" name="tutorPw" size="30" id="pw1" minlength="8" maxlength="15"
             	pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$" required/>
 				<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td></tr>
          <tr><th>PW확인</th>
-            <td><input type="password" name="tutorPwCon" size="30" id="pw2" onkeyup="check_pw()" 
+            <td><input type="password" name="tutorPwCon" size="30" id="pw2" onkeyup="check_pw()"  minlength="8" maxlength="15"
             	pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$" required/>
 				&nbsp;<span id="pw_ck_msg"></span></td></tr>
          <tr><th>이름</th>
-            <td><input type="text" name="tutorName" value="${tutorName }" required minlength="2"/>
+            <td><input type="text" name="tutorName" value="${tutorName }" required minlength="2" size="30"/>
          <tr><th>생년월일</th>
             <td><input type="date" name="tutorDob" required/></td></tr>
          <tr><th>성별</th>
@@ -276,16 +279,16 @@ $(document).ready(function(){
 			<a href="javascript:sample4_execDaumPostcode();">주소검색</a>
 			<div class="detail">* 활동할 지역의 주소를 입력해주세요.</div></td></tr>
          <tr><th>약관 동의</th>
-            <td rowspan="3">
-            <input type="checkbox" id="agree" value="Y" checked>
+            <td rowspan="2">
+            <input type="checkbox" id="agree" checked>
             	<span class="ck">서비스 <a href="<c:url value='/policy/service'/>" target="_blank">이용약관</a>에 동의합니다. 
            		<span class="required"> (필수)</span></span><br/>
-           <input type="checkbox" id="input_ck" checked><span class="ck">이벤트, 할인 등 이메일 수신에 동의  (선택)</span><br/>
+           <input type="checkbox" id="tutorEmailCk" name="tutorEmailCk" checked><span class="ck">이벤트, 할인 등 이메일 수신에 동의  (선택)</span><br/>
             <span style="text-align:right; font-size:10px;"><a href="<c:url value='/soomta/memJoin'/>">회원 가입</a>을 원하시나요?</span></td></tr>
             <tr><th></th></tr><tr><th></th></tr></tbody>
          <tfoot>
          <tr><th colspan="2"><div class="allbtn">
-               <input type="submit" value="튜터등록" class="btn"/>
+               <input type="submit" value="튜터등록" class="btn" onclick="emailCk()"/>
                <input type="reset"  value="취소" onclick="javascript:history.back();" class="btn"/></div>
             </th></tr></tfoot>
          </table> 
