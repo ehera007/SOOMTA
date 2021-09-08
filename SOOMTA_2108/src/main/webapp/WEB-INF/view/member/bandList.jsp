@@ -320,7 +320,14 @@ td a:active {
 			<tr>
 			<td style="background-color: white; border-style: none;"></td>
 				<td>${dto.bandNo}</td>
-				<td>${dto.bandCategoryL}/${dto.bandCategoryS}</td>
+				<td>
+					<c:if test="${dto.bandCategoryL == 'STUDY' }">학업</c:if>
+					<c:if test="${dto.bandCategoryL == 'TEST' }">자격증&시험</c:if>
+					<c:if test="${dto.bandCategoryL == 'ENT' }">예체능</c:if>
+					<c:if test="${dto.bandCategoryL == 'ECONOMY' }">재태크</c:if>
+					<c:if test="${dto.bandCategoryL == 'EMP' }">취업</c:if>
+					<c:if test="${dto.bandCategoryL == 'ETC' }">기타</c:if> / 
+					${dto.bandCategoryS}</td>
 				<td>${dto.bandName}</td>
 				<td>${dto.bandTotal}</td>
 				<td>

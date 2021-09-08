@@ -270,12 +270,12 @@ function ctgrChange(e){
    var other = ["기타"];
    var target=document.getElementById("ctgrS");
    
-   if(e.value=="학업") var d = study;
-   else if(e.value == "자격증/시험") var d = test;
-   else if(e.value == "예체능") var d = art;
-   else if(e.value == "재테크") var d = tech;
-   else if(e.value == "취업") var d = job;
-   else if(e.value == "기타") var d = other;
+   if(e.value=="STUDY") var d = study;
+   else if(e.value == "TEST") var d = test;
+   else if(e.value == "ENT") var d = art;
+   else if(e.value == "ECONOMY") var d = tech;
+   else if(e.value == "EMP") var d = job;
+   else if(e.value == "ETC") var d = other;
    
    target.options.length = 0;
    
@@ -346,12 +346,12 @@ function ctgrChange(e){
          <tr><th>카테고리</th>
            <td>
             <select id="ctgrL" onchange="ctgrChange(this)" name="bandCategoryL">
-                  <option value="학업" >학업</option>
-                  <option value="자격증/시험" >자격증/시험</option>
-                  <option value="예체능" >예체능</option>
-                  <option value="재테크" >재테크</option>
-                  <option value="취업" >취업</option>
-                  <option value="기타" >기타</option>
+                  <option value="STUDY">학업</option>
+					<option value="TEST">자격증/시험</option>
+					<option value="ENT">예체능</option>
+					<option value="ECONOMY">재태크</option>
+					<option value="EMP">취업</option>
+					<option value="ETC">기타</option>
             </select>
             <select id="ctgrS" style="margin-left:5px;" name="bandCategoryS">
                   <option value="option2">--세부--</option>            
