@@ -86,7 +86,7 @@ a:hover {
 
 .nav-item {
 	margin: 15px;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 
@@ -140,17 +140,14 @@ h2{
 	text-align:right;
 }
 
-.submitlocation{
-	padding-left:350px;
-}
-
 #submitClass{
 	margin-top: 40px;
 	border:0;
-	outline:0;
 	border:none;
 	background:none;
 	color:#0F4C81;
+	font-size: 15px;
+	padding-left:210px;
 }
 
 /*하단 구역 분할*/
@@ -255,7 +252,7 @@ a:hover {
 <meta charset="UTF-8">
 <title>클래스 생성</title>
 <!-- 분류 옵션주는 script -->
-<script>
+<script type="text/javascript">
 	function classMainCategory(e) {
 		var ctg1 = ["유아","초등","중등","입시/편입","기타"];
 		var ctg2 = ["공무원","NCS","세무/회계","외국어","디자인"];
@@ -299,29 +296,9 @@ a:hover {
 		    target.appendChild(opt);
 		}
 	}
-	
-	function leadingZeros(n, digits) {
-	    var zero = '';
-	    n = n.toString();
-
-	    if (n.length < digits) {
-	        for (i = 0; i < digits - n.length; i++)
-	            zero += '0';
-	    }
-	    return zero + n;
+	function classJoin() {
+		alert("등록하시겠습니까?");
 	}
-
-		var rsvDate = document.getElementById("classStart");
-		var now = new Date();
-	if(rsvDate){
-  	now = 
-    	leadingZeros(now.getFullYear(), 4) + '-' +
-    	leadingZeros(now.getMonth() + 1, 2) + '-' +
-    	leadingZeros(now.getDate(), 2);
-  	if(rsvDate > now){
-  		alert("클래스 시작 날짜를 확인해주세요.");
-  }
-}
 </script>
 </head>
 <body>
@@ -370,7 +347,7 @@ a:hover {
 				<span id="title">강의명</span>
 				<input type="text" name="className" placeholder="강의명 입력"><br/>
 				<span id="title">기간</span>
-				<input type="date" onchange="leadingZeros(n, digits)" name="classStart" required pattern="yyyy-MM-dd"/> ~ <input type="date" name="classEnd" required pattern="yyyy-MM-dd"/><br/>
+				<input type="date" onchange="leadingZeros()" name="classStart" required pattern="yyyy-MM-dd"/> ~ <input type="date" name="classEnd" required pattern="yyyy-MM-dd"/><br/>
 				<span id="title">정원</span>
 				<input type="number" name="classTotal" min="1" max="30"/>명<br/>
 				<span id="title">금액</span>
@@ -392,9 +369,8 @@ a:hover {
 				<input type="file" name="classImg" multiple="multiple"/><br/>
 				<span id="title">클래스상세이미지</span>
 				<input type="file" name="classImg2" multiple="multiple"/><br/>
-				<div class="submitlocation">
-					<input id="submitClass" type="submit" value="완료"/>
-				</div>
+				<input id="submitClass" type="submit" value="등록" onclick="classJoin()"/>
+				<a href="javascript:history.back()" style="font-size:15px;">취소</a>
 			</form>
 		</section>
 	</div>

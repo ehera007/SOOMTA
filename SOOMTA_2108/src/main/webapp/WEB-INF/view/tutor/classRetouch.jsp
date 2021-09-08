@@ -382,6 +382,8 @@ a:hover {
 				<input type="text" name="classIntroduce" value="${dto.classIntroduce }"><br/>
 				<span id="title">첨부파일</span>
 				<span id="fileName">${dto.classImg }</span>
+				<span id="title">첨부파일2</span>
+				<span id="fileName">${dto.classImg2 }</span>
 				<div class="submitlocation">
 					<input id="submitClass" type="submit" value="수정하기"/> / 
 					<a id="submitClass" href="MylectureList">취소하기</a>

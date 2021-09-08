@@ -42,7 +42,7 @@
 </select>
 <select id="classDetail" parameterType="string" resultType="Model.ClassDTO">
 	select class_No classNo, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, class_End classEnd, 
-	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg, class_City classCity, class_Area classArea
+	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg, class_City classCity, class_Area classArea, class_Img2 classImg2
 	from Soomta_Class 
 	where class_No = #{classNo}
 </select>
@@ -56,7 +56,7 @@
 	class_Start = #{classStart}, class_End = #{classEnd}, 
 	class_Total = #{classTotal}, class_Price = #{classPrice}, class_Way = #{classWay}, 
 	class_Gender = #{classGender}, class_Introduce = #{classIntroduce}, class_Img = #{classImg},
-	class_City = #{classCity}, class_Area = #{classArea}  
+	class_City = #{classCity}, class_Area = #{classArea}  , class_Img2 = #{classImg2}
 	where class_No = #{classNo}
 </update>
 <select id="classCount" resultType="int" parameterType="string">

@@ -138,7 +138,7 @@ h2{
 }
 
 .Taglocation{ /*버튼 위치*/
-	padding-left:180px;
+	padding-left:150px;
 	padding-top:30px;
 }
 
@@ -322,9 +322,11 @@ a:hover {
 				${dto.classIntroduce }<br/>
 				<span id="title">첨부파일</span>
 				${dto.classImg }<br/>
+				<span id="title">첨부파일2</span>
+				${dto.classImg2 }<br/>
 				<div class="Taglocation">
 					<a id="btncolor" href="classRetouch?classNo=${dto.classNo }">수정하기</a>  
-					<input id="btncolor" type="button" value="삭제하기" onclick="classDel()" /> 
+					<input id="btncolor" type="button" value="삭제하기" onclick="classDel()" style="font-size:15px;"/> 
 					<a id="btncolor" href="javascript:history.back()">취소</a>
 				</div>
 		</section>

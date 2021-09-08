@@ -329,14 +329,48 @@ a:hover {
 	text-decoration: none;
 }
 .detailtagbtn{
-	border:none;
-	background:none;
+	/*border:none;
+	background:none;*/
 	font-size: 10px;
 }
 </style>
 <meta charset="UTF-8">
 <title>SOOMTA</title>
-
+<script>
+/*
+	function DetailTag(){
+		var chk = document.getElementsByName("detailChk");
+		var tutorGender = document.getElementsByName("tutorGender");
+		var memGender = document.getElementsByName("memGender");
+		var classMethod = document.getElementsByName("classMethod");
+		var classCity = document.getElementsByName("classCity");
+		var ctg = 0;
+		for(var i = 0; i < chk.length ; i ++){
+			if(chk[i].checked){
+				prodTot += Number(hddchk[i].value);
+				ctg++;
+			}
+		}
+		document.getElementById("totalPrice").innerHTML=prodTot;
+		document.getElementById("prodCnt").innerHTML= cnt ;
+	}
+	function DetailTag() {
+		if($(":checkbox[name='ckTag']:checked").length == 0){
+			alert("적어도 하나 이상 체크 해주세요.");
+			return;
+		}
+	}
+	function get_chded_values() {
+		var ck_val = "";
+		$(":checkbox[name='ckTag']:checked").each(function(pi, po)){
+			ck_val += "," + po.value;
+		});
+		if(ck_val != ""){
+			ck_val = ck_val.substring(1);
+			return ck_val;
+		}
+	}*/
+</script>
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
@@ -373,10 +407,10 @@ a:hover {
 	<!-- 멤버 -->
 	<c:if test="${logIn.grade == 'mem' }">
 	<div class="nav-item">
-	<a href="<c:url value='/member/myPage'/>">마이페이지</a></div></c:if>
+	<a href="<c:url value='../member/myPage'/>">마이페이지</a></div></c:if>
 	<!-- 로그아웃 -->
 	<div class="nav-item">
-		<a href="<c:url value='/soomta/logOut'/>">로그아웃</a></div>	
+		<a href="<c:url value='../soomta/logOut'/>">로그아웃</a></div>	
 	</div>
 	</c:if>
 	</div>
@@ -523,30 +557,30 @@ a:hover {
 			<table class="DetailTag">
 				<tr>
 					<td width="130px">강사 성별</td>
-					<td><input type="checkbox" name="thGender" value="tutorGender" />남자</td>
-					<td><input type="checkbox" name="thGender" value="tutorGender" />여자</td>
-					<td><input type="checkbox" name="thGender" value="tutorGender" />무관</td>
+					<td><input type="checkbox" name="ckTag" value="tutorGender"/>남자</td>
+					<td><input type="checkbox" name="ckTag" value="tutorGender"/>여자</td>
+					<td><input type="checkbox" name="ckTag" value="tutorGender"/>무관</td>
 				</tr>
 				<tr>
 					<td>수강생 성별</td>
-					<td><input type="checkbox" name="stGender" value="memGender" />남자</td>
-					<td><input type="checkbox" name="stGender" value="memGender" />여자</td>
-					<td><input type="checkbox" name="stGender" value="memGender" />무관</td>
+					<td><input type="checkbox" name="ckTag" value="memGender"/>남자</td>
+					<td><input type="checkbox" name="ckTag" value="memGender"/>여자</td>
+					<td><input type="checkbox" name="ckTag" value="memGender"/>무관</td>
 				</tr>
 				<tr>
 					<td>수업방식</td>
-					<td><input type="checkbox" name="classMethod" value="s" />과외</td>
-					<td><input type="checkbox" name="classMethod" value="g" />그룹</td>
-					<td><input type="checkbox" name="classMethod" value="n" />비대면</td>
+					<td><input type="checkbox" name="ckTag" value="s"/>과외</td>
+					<td><input type="checkbox" name="ckTag" value="g"/>그룹</td>
+					<td><input type="checkbox" name="ckTag" value="n"/>비대면</td>
 				</tr>
 				<tr>
 					<td>지역</td>
-					<td><input type="checkbox" name="classMethod" value="s" />서울</td>
-					<td colspan="2"><input type="checkbox" name="classMethod" value="g" />경기도</td>
+					<td><input type="checkbox" name="classCity" value="SEOUL" onchange="detailChk();"/>서울</td>
+					<td colspan="2"><input type="checkbox" name="classCity" value="GYEONGGIDO" onchange="detailChk();"/>경기도</td>
 				</tr>
 				<tr>
 					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">
-						<button class="detailtagbtn" onclick="DetailTag()"> >선택완료</button>
+						<input type="button" class="detailtagbtn" onclick="DetailTag();" value=">선택완료"/>
 					</td>
 				</tr>
 			</table>

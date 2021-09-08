@@ -187,11 +187,6 @@ ul {
    background-color: #0F4C81;
 }
 
-.imgTitle {
-   border: 1px solid black;
-   width: 200px;
-   height: 200px;
-}
 
 .dropList li {
    background-color: #0F4C81;
@@ -265,18 +260,6 @@ td a:visited {
 td a:active {
    font-weight:bold;
    color:black;
-}
-/*버튼 스타일*/
-.btn {
-   height: 30px;
-   background-color: white;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 10px 10px;
-   border: none;
-   float:right;
-   /*border:1px solid #0F4C81;
-   border-radius:4px;*/
 }
 </style>
 <meta charset="UTF-8">

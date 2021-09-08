@@ -34,6 +34,8 @@ public class ClassRetouchService {
 		ClassDTO dto1 = classRepository.classDetail(classCommand.getClassNo().toString());
 		dto.setClassImg(dto1.getClassImg());
 		
+		ClassDTO dto2 = classRepository.classDetail(classCommand.getClassNo().toString());
+		dto.setClassImg2(dto2.getClassImg2());
 		/* 이미지 수정 보류
 		String [] fileName = classCommand.getFileDel().split(",");
 		ClassDTO dto1 = classRepository.classDetail(classCommand.getClassNo().toString());
