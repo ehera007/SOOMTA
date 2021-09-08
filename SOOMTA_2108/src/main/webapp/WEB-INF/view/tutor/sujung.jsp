@@ -289,7 +289,7 @@ td{
 				<a href="<c:url value='/tutor/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>
@@ -331,7 +331,7 @@ td{
 						<div class="detail"style="display: inline-block;"style="display: inline-block;">* ex) soomta@email.com</div></td></tr>
 			
 			
-					<div><td><th style="font-size:13px; text-align:left; padding-left:20px;"><a href="/SOOMTA_2108/tutor/pwChange">비밀번호 변경</a>은 이 곳을 눌러주세요!</th></td></div>
+					
 			
 			
 					<tr><th colspan="3"align="center" style="padding-right: 10px; padding-bottom: 15px; ">

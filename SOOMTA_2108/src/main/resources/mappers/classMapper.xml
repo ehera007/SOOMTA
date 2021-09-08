@@ -18,7 +18,7 @@
 	<result column="tutor_Id" property="tutorId"/>
 	<result column="class_Regiday" property="classRegiday"/>
 	<result column="class_State" property="classState"/>
-	<result column="class_Satisfy" property="classSatisfy"/>
+	
 
 </resultMap>
 <select id="classNo" resultType="string">
@@ -116,7 +116,7 @@
 <!-- 강의 찜목록 보기 -->
 <select id="wishClass" parameterType="string" resultType="Model.ClassDTO">
 	select class_No classNo, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, 
-	class_End classEnd, class_Total classTotal, class_State classState
+	class_End classEnd, class_Total classTotal, class_Area classArea
 	from Soomta_Class 
 	where class_No in (select class_No from CLASS_WISHLIST where mem_id = #{memId})
 </select>

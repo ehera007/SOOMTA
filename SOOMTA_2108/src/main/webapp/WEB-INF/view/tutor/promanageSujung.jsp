@@ -181,12 +181,13 @@ ul {
 table {
     border: 2px solid #0F4C81;
     width: 650px;
-    height:550px;
+    height:600px;
     margin:20px auto;
     border-spacing: 0px;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     margin-bottom: 35px;
+    margin-top:40px;
   }
 thead th {
    height: 50px;
@@ -253,7 +254,7 @@ input {
 				<a href="<c:url value='/tutor/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>

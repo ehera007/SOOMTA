@@ -241,17 +241,7 @@ ul {
   
 </style>
 
-<!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-    $(document).ready(function(){
-    	$( '.Top' ).click( function() {
-        	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-        	return false;
-        } );
-    });
-    
-    </script>
+
 
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -262,15 +252,16 @@ ul {
         	return false;
         } );
     });
-<script type="text/javascript">
-	function outConfirm(){
-		if(confirm("정말로 탈퇴하시겠습니까? ")){
-			document.frm.submit();
-		}else{
-			return false;
-		}
-	}
 </script>
+    <script type="text/javascript">
+  	function outConfirm(){
+  		if(confirm("정말로 탈퇴하시겠습니까? ")){
+  			document.frm.submit();
+  		}else{
+  			return false;
+  		}
+  	}
+  </script>
 
 <meta charset="UTF-8">
 <title>PwCon</title>
@@ -282,10 +273,10 @@ ul {
 		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="<c:url value='/tutor/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>

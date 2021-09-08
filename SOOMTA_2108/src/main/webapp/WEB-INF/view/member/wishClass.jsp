@@ -312,9 +312,7 @@ td a:active {
          <th width="20%">강의명</th>
          <th width="15%">기간</th>
          <th width="8%">수강생</th>
-         <th width="8%">상태</th>
-         <th width="8%">만족도</th>
-         <th width="8%">후기</th>
+         <th width="8%">지역</th>
          <th width="4%" style="background-color: white;"></th>
         
       </tr></thead>
@@ -323,15 +321,21 @@ td a:active {
       <tr>
       	<td style="background-color: white; border-style: none;"></td>
          <td>${wish.classNo}</td>
-         <td>${wish.classCategoryL}/${wish.classCategoryS}</td>
-         <td><a href="classCon?classNo=${wish.classNo}" class="classCon">${wish.className }</a></td>
+         <td>
+         	<c:if test="${wish.classCategoryL == 'STUDY' }">학업</c:if>
+			<c:if test="${wish.classCategoryL == 'TEST' }">자격증&시험</c:if>
+			<c:if test="${wish.classCategoryL == 'ENT' }">예체능</c:if>
+			<c:if test="${wish.classCategoryL == 'ECONOMY' }">재태크</c:if>
+			<c:if test="${wish.classCategoryL == 'EMP' }">취업</c:if>
+			<c:if test="${wish.classCategoryL == 'ETC' }">기타</c:if> / 
+			${wish.classCategoryS }</td>
+         <td><a href="../class/classDetailPage?classNo=${wish.classNo}">${wish.className }</a></td>
          <td><fmt:formatDate value="${wish.classStart}" 
 		             pattern="yy.MM.dd"/> - <fmt:formatDate value="${wish.classEnd}" 
 		             pattern="yy.MM.dd"/></td>
          <td>${wish.classTotal}</td>
-         <td>${wish.classState}</td>
-         <td>${wish.classSatisfy}</td>
-         <td><a href="classReviewCon?classNo=${wish.classNo}">후기</a></td>
+         <td>${wish.classArea}</td>
+         
          <td style="background-color: white; border-style: none;"></td>
       </tr>
       </c:forEach>
