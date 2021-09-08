@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ include file="../include/tags.jsp"%>
 	<!DOCTYPE html>
 	<html>
 
@@ -255,10 +256,10 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 			<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="#">마이페이지</a>
+				<a href="/member/myPage">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="#">로그아웃</a>
+				<a href="/soomta/logOut'/">로그아웃</a>
 			</div>
 		</div>
 	</div>
@@ -266,8 +267,8 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 	<div class="main">
 	<!-- 중앙 상단부 -->
 		<div class="bandTitle">
-			<h1>BAND NAME</h1>
-			<div class="bandMenu"><a href="bandDetail">Home</a><a onclick="javascript:btn()">전체 게시글</a><a onclick="javascript:btn()">멤버</a><a onclick="javascript:btn()">내가 쓴 게시글</a>
+			<h1>${bandDTO.bandName}</h1>
+			<div class="bandMenu"><a href="bandDetail?bandNo=${bandDTO.bandNo}">Home</a><a onclick="javascript:btn()">전체 게시글</a><a onclick="javascript:btn()">멤버</a><a onclick="javascript:btn()">내가 쓴 게시글</a>
 		</div></div>
 		<!-- 중앙 하단부 -->
 		<div class="banddetail"> 
@@ -279,48 +280,64 @@ pageEncoding="UTF-8" isELIgnored="false"%>
       <table class="bandhomeTable">
       <thead class="bandhometitle">
       <tr>
-        <th colspan="4">img</th>
+        <th colspan="4"><img width="490" height="295" src="${bandDTO.bandImg}"/></th>
       </tr>
     </thead>
     <tbody>
     <tr>
-    <th class="bandcafename" colspan="4">모임명</td>
+    <th class="bandcafename" colspan="4">${bandDTO.bandName}</td>
     </tr>
     <tr>
     <td class ="bandcafemenu" colspan="1">모임장</td>
-    <td colspan="3">higoonggi </td>
+    <td colspan="3">${bandDTO.memId}</td>
     </tr>
     <tr>
+    <td class ="bandcafemenu" colspan="1">공개여부</td>
+    <td colspan="3">
+    	<c:if test="${bandDTO.bandPublic == 'O'}">공개</c:if>
+    	<c:if test="${bandDTO.bandPublic == 'P'}">비공개</c:if>
+    </td>
+    </tr>
+    
+    <tr>
+    <td class ="bandcafemenu" colspan="1">모임방식</td>
+    <td colspan="3">
+    	<c:if test="${bandDTO.bandWay == 'C'}">대면</c:if>
+    	<c:if test="${bandDTO.bandWay == 'N'}">비대면</c:if>
+    	<c:if test="${bandDTO.bandWay == 'U'}">무관</c:if>
+    </td>
+    </tr>
+   
+    <tr>
     <td class ="bandcafemenu" colspan="1">시작일</td>
-    <td colspan="3">(2000.01.01) </td>
+    <td colspan="3"><fmt:formatDate value="${bandDTO.bandRegiDay}" 
+		             pattern="yyyy-MM-dd"/></td>
     </tr>
     <tr>
     <td class ="bandcafemenu" colspan="1">성별</td>
-    <td colspan="3">무관</td>
+    <td colspan="3"><c:if test="${bandDTO.bandGender == 'M'}">남성</c:if>
+					<c:if test="${bandDTO.bandGender == 'F'}">여성</c:if>
+					<c:if test="${bandDTO.bandGender == 'U'}">무관</c:if></td>
     </tr>
      <tr>
     <td class ="bandcafemenu" colspan="1">나이대</td>
-    <td colspan="3">20대 </td>
+    <td colspan="3">${bandDTO.bandAge} </td>
     </tr>
     <tr>
-    <td  class ="bandcafemenu" colspan="1">현재 참여 인원 : </td>
-    <td  colspan="3">(x)명</td>
+    <td  class ="bandcafemenu" colspan="1">참여/최대</td>
+    <td  colspan="3">(#명/${bandDTO.bandTotal}명)</td>
   </tr>
   <tr>
-    <td class ="bandcafemenu" colspan="1">성별비율</td>
-    <td colspan="3">남 25 % 여 75 % </td>
+    <td  class ="bandcafemenu" colspan="1">소개</td>
+    <td  colspan="3">${bandDTO.bandIntroduce}</td>
   </tr>
   <tr>
-    <td class="bandjoinbutton" colspan="4" style="text-align:right; font-weight:bold"><a href="#">가입하기</a></td>
+    <td class="bandjoinbutton" colspan="4" style="text-align:right; font-weight:bold"><a href="bandDetailJoin?bandNo=${bandDTO.bandNo}" style="text-decoration: none; color:#0F4C81; padding-right:20px;">가입하기</a></td>
   </tr>
-  <tr>
-  	<td colspan="4" style="text-align:right; font-weight:bold"><a href="bandDetailHome">공개</a>       <a href="bandDetailjoin">  비공개</a></td>
-  	</tr>
+
 </tbody>
 </table>
-</table>
-<a href="bandDetailHomeMgr">밴드관리자페이지</a>
-<a href="tutorDetail">튜터디테일</a>
+
 			</div>
 			<!-- 중앙 우측 빈공간(공간잡기) -->
 			<div class="empty"></div>

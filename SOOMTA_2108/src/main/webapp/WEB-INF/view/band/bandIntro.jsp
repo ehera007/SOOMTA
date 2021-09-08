@@ -391,7 +391,7 @@ header a:hover {
             <div class="button-4" >
             <div class="eff-4">
             </div>
-            <a href="bandDetail"> 밴드홈 </a>
+            <a href="bandDetail?bandNo=100640"> 밴드홈 </a>
             </div>
             <div class="button-4" >
             <div class="eff-4">
@@ -433,7 +433,7 @@ header a:hover {
             <div class="button-4" >
             <div class="eff-4">
             </div>
-            <a href="bandDetail"> 밴드홈 </a>
+            <a href="bandDetail?bandNo=100640"> 밴드홈 </a>
           </div>
             <div class="button-4">
             <div class="eff-4">

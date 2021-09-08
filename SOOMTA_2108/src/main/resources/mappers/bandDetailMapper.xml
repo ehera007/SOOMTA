@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.bandDetailMapper">
+
+<!-- 개설자 확인 -->
+<select id="bandDetail"  parameterType="Model.BandDTO" resultType="Model.BandDTO">
+	select BAND_NO bandNo, MEM_ID memId, BAND_NAME bandName, BAND_CATEGORY_L bandCategoryL, BAND_CATEGORY_S bandCategoryS,
+	BAND_IMG bandImg, BAND_REGIDAY bandRegiDay, BAND_INTRODUCE bandIntroduce, BAND_GENDER bandGender, BAND_WAY bandWay, BAND_TOTAL bandTotal,
+	BAND_PUBLIC bandPublic, BAND_AGE bandAge
+	from band
+	where BAND_NO = #{bandNo} and MEM_ID = #{memId}
+</select>
+
+<select id="bandWish" parameterType="Model.BandDTO" resultType="Model.BandWishDTO">
+	select BAND_NO bandNo, MEM_ID memId, MEM_ID2 memId2
+	from band_Wishlist
+    where BAND_NO = #{bandNo} and MEM_ID2 = #{memId}
+</select>
+
+<select id="band"  parameterType="long" resultType="Model.BandDTO">
+	select BAND_NO bandNo, MEM_ID memId, BAND_NAME bandName, BAND_CATEGORY_L bandCategoryL, BAND_CATEGORY_S bandCategoryS,
+	BAND_IMG bandImg, BAND_REGIDAY bandRegiDay, BAND_INTRODUCE bandIntroduce, BAND_GENDER bandGender, BAND_WAY bandWay, BAND_TOTAL bandTotal,
+	BAND_PUBLIC bandPublic, BAND_AGE bandAge
+	from band
+	where BAND_NO = #{bandNo}
+</select>
+</mapper>

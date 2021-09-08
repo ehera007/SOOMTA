@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+    pageEncoding="UTF-8"  isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -249,10 +243,10 @@ color: #0F4C81;
    border-radius: 8px 8px 0px 0px;
 }
 th{
-	padding-left: 70px;
+	padding-left: 40px;
 }
 td{
-	padding-left: 40px;
+	padding-left: 20px;
 }
   
 </style>
@@ -263,19 +257,16 @@ td{
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
-		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
-		<!-- 로그인 안된 경우 -->
+
+			<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="soomta/login">로그인</a>
+				<a href="/member/myPage">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="soomta/tutorJoin">튜터등록</a>
+				<a href="/soomta/logOut'/">로그아웃</a>
 			</div>
-			<div class="nav-item">
-				<a href="soomta/memJoin">무료회원가입</a>
-			</div>
-		</div>
+		</div> 
 	</div>
   <!---------------------------------------------------------------------------------------->
 	<div class="bandjoinForm">
@@ -286,29 +277,23 @@ td{
          		<tr style="background-color: #0F4C81; color: white; font-size: 25px;" > 
             	<th  colspan="2" style="padding: 10px 0px 10px 10px; "> 밴드 가입 </th>
          </tr></thead>
-					
-			<tr><th style="padding-top : 15px;">PW확인</th>
-				<td style="padding-top : 15px;"><input type="password" value="${mem_pw}" name="bandmemPw"style="width:150px;" /></td></tr>
+
 			<tr><th>이름</th>
-				<td><input type="text" name="bandmemName" value="${mem_name}" style="width:150px;"/></td></tr>
+				<td>${mem_name}</td></tr>
 			<tr><th>생년월일</th>
-				<td><input type="date" name="bandmemDob" value="${mem_Dob}" style="width:150px;"/></td></tr>
+				<td>${mem_Dob}</td></tr>
 			<tr><th>성별</th>
-				<td>
-					<input type="radio" name="bandmemGender" value="M" checked/>남
-					<input type="radio" name="bandmemGender" value="F"/>여
+				<td>${mem_Jender}
 				</td></tr>
-			<tr><th>핸드폰</th>
-				<td><input type="text" name="bandmemPhone" value="${mem_phone}"style="width:150px;"/></td></tr>
-			<tr><th>이메일</th>
-				<td><input type="text" name="bandmemEmail" value="${mem_email}"style="width:150px;"/></td></tr>
+			<tr><th style="height:180px;">자기 소개</th>
+				<td><input type="text" name="bandIntroduce" value="${band_introduce}"style="width:270px; height:150px;"/></td></tr>
 			
-			<tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px;">
+			<tr><th colspan="3"align="center" style="padding-left: 0px;padding-right: 20px;">
 					<input type="submit" value="밴드가입" 
 						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
             
 					<input type="button"  value="취소" style="border: none;font-size: 16px;font-weight: bold;
-					 	background: transparent; color: #0F4C81;"
+					 	background: transparent; color: #0F4C81; padding-left: 30px;"
 						onclick="javascript:history.back();" />
 				</th></tr>
 				
