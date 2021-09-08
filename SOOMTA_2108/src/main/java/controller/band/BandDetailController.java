@@ -85,7 +85,7 @@ public class BandDetailController {
 	@RequestMapping("bandDetailjoinOk")
 	public String bandDetailjoinOk() {
 		//bendJoinService.//
-		return "band/bandDetailjoinOk";
+		return "band/bandDetailjoinOk"; 
 	}
 	//bandDetailcontentjoin
 	@RequestMapping("bandDetailcontentjoin")
