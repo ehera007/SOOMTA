@@ -79,17 +79,32 @@ a:hover {
 	align-items: center;
 	font-weight: bold;
 }
-
+/*검색창*/
 .search {
-	border: 1px solid black;
 	height: 40px;
-	width: 600px;
-	margin: 0 auto;
-	position: relative; /*본인 위치에서 175px만큼 왼쪽이동*/
-	left: 175px;
-	border-radius: 2em;
+	position: relative;
+	left: 130px;
 }
-
+.searchBar {
+    width: 700px;
+    height:20px;
+    border-radius: 30px;
+    border: 2px solid #bbb;
+    margin: 10px 0;
+    padding: 10px 15px 10px 30px;
+    outline-style: none; 
+    font-family: inherit;
+}
+.btn{
+	position:absolute;
+	top: 20px;
+	right: 20px;
+	text-align:center;
+	background-color: transparent;
+	color: #6D6D6D;
+	font-weight: bold;
+	border: none;
+}
 .nav {
 	color: #0F4C81;
 	display: flex;
@@ -107,11 +122,12 @@ a:hover {
 	position: relative;
 	display: inline;
 	z-index: 1;
+	top: 27px;
 }
 
 .mainmenu {
 	padding: 8px;
-	font-size: 15px;
+	font-size: 14px;
 	border: none;
 	width: 130px;
 }
@@ -126,7 +142,7 @@ a:hover {
 }
 
 .ctgr {
-	border: 3px solid #0F4C81;
+	border: 2px solid #0F4C81;
 	margin-bottom: 5px;
 	list-style: none;
 }
@@ -171,7 +187,7 @@ a:hover {
 }
 
 #titleSubLine{
-	border: 3px solid #0F4C81;
+	border: 2px solid #0F4C81;
 	width: 100px;
 	margin: 3px;
 }
@@ -329,8 +345,8 @@ a:hover {
 	text-decoration: none;
 }
 .detailtagbtn{
-	/*border:none;
-	background:none;*/
+	border:none;
+	background:none;
 	font-size: 10px;
 }
 </style>
@@ -376,7 +392,12 @@ a:hover {
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img class="logo" src="../../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
-		<div class="search">검색바</div>
+		<div class="search">
+			<form>
+				<input type = "text" name="keyWord" value="" placeholder="검색어를 입력해주세요." class="searchBar"/>
+				<input type="submit" class="btn" value="검색"/>
+			</form>
+		</div>
 		<!-- 로그인 안된 경우 -->
 				<!-- 로그인 안된 경우 -->
 		<c:if test="${empty logIn }">
@@ -534,11 +555,10 @@ a:hover {
 						</div>
 					</div>
 				</div>
-			</div>
 
 	<div class="main">
-		<table>
-			<tr style="color: #0F4C81;">
+		<table style="margin-top: 25px;">
+			<tr style="color: #0F4C81;" >
 				<td><a href="./../../class/mainCtgr">Class </a>></td>
 				<td><a href="./../../../SOOMTA_2108/class/education">
 					<c:if test="${list[0].classCategoryL == 'STUDY' }">학업</c:if>
@@ -553,7 +573,7 @@ a:hover {
 		</table>
 		<br />
 
-		<div style="border: 3px solid #0F4C81; border-radius: 2em;">
+		<div style="border: 2px solid #0F4C81; border-radius: 2em;">
 			<table class="DetailTag">
 				<tr>
 					<td width="130px">강사 성별</td>

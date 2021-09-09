@@ -109,8 +109,8 @@ height:100%;
 		<h1 align="center" style="font-size:200%;">학업</h1>
 		<p align="center"  style="font-size:20px;">숨타와 함께 시작해보세요</p>
 		<div class="search">
-			<input onkeyup="filter()" type="text" id="value"
-				placeholder="Type to Search">
+			<!--<input onkeyup="filter()" type="text" id="value"
+				placeholder="Type to Search">  -->
 			<!-- https://thisisspear.tistory.com/40 요런식으로 자동완성 만들며녀 될거 같습니당 -->
 		</div>
 	</div>

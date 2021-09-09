@@ -150,6 +150,7 @@ h2{
 	border:none;
 	background:none;
 	color:#0F4C81;
+	font-size: 15px;
 }
 
 /*하단 구역 분할*/
@@ -256,8 +257,8 @@ a:hover {
 <!-- 분류 옵션주는 script -->
 <script>
 	function classMainCategory(e) {
-		var ctg1 = ["유아","초등","중등","입시/편입","기타"];
-		var ctg2 = ["공무원","NCS","세무/회계","외국어","디자인"];
+		var ctg1 = ["유아","초등","중등","입시&편입","기타"];
+		var ctg2 = ["공무원","NCS","세무&회계","외국어","디자인"];
 		var ctg3 = ["미술","스포츠","요리","음악","기타"];
 		var ctg4 = ["부동산","주식","펀드"];
 		var ctg5 = ["이력서","면접","인적성","기타"];
@@ -280,7 +281,7 @@ a:hover {
 		    target.appendChild(opt);
 		}
 	}
-
+	/*
 	function classCityCategory(c) {
 		var ctg1 = ["서초구","강남구","송파구","종로구","마포구"];
 		var ctg2 = ["수원","평택","안성시","용인시","성남"];
@@ -297,7 +298,7 @@ a:hover {
 		    opt.innerHTML = d[x];
 		    target.appendChild(opt);
 		}
-	}
+	}*/
 </script>
 </head>
 <body>
@@ -325,7 +326,7 @@ a:hover {
 			<form:form name="classRetouch" action="classRetouchOk" method="post" modelAttribute="classCommand" enctype="multipart/form-data">
 			<input type="hidden" name="classNo"value="${dto.classNo}"/>
 				<span id="title">분류</span>
-				<select onchange="classMainCategory(this)" name="classCategoryL">
+				<select onchange="classMainCategory(this)" name="classCategoryL" style="width:95px; height: 23px;">
 					<option value="STUDY"
 					<c:if test="${dto.classCategoryL == 'STUDY'}">selected</c:if> >학업</option>
 					<option value="TEST"
@@ -339,21 +340,18 @@ a:hover {
 					<option value="ETC"
 					<c:if test="${dto.classCategoryL == 'ETC'}">selected</c:if> >기타</option>
 				</select>
-				<select id="classSubCategory" name="classCategoryS">
+				<select id="classSubCategory" name="classCategoryS" style="width:95px; height: 23px;">
 					<option value="">소분류</option>
 				</select><br/>
 				<span id="title">지역</span>
-				<select onchange="classCityCategory(this)" name="classCity">
+				<select onchange="classCityCategory(this)" name="classCity" style="width:95px; height: 23px;">
 					<option>대분류</option>
 					<option value="SEOUL"
 					<c:if test="${dto.classCity == 'SEOUL'}">selected</c:if> >서울</option>
 					<option value="GYEONGGIDO"
 					<c:if test="${dto.classCity == 'GYEONGGIDO'}">selected</c:if>>경기도</option>
 				</select>
-				<select id="classAreaCategory" name="classArea">
-					<option value="">소분류</option>
-				</select><br/>
-				
+				<input type="text" name="classArea" value="${dto.classArea }"/><br/>
 				<span id="title">강의명</span>
 				<input type="text" name="className" placeholder="강의명 입력" value="${dto.className }"><br/>
 				<span id="title">기간</span>
@@ -363,7 +361,7 @@ a:hover {
 				<span id="title">금액</span>
 				<input id="inputPrice" type="text" name="classPrice" value="${dto.classPrice }"/>원<br/>
 				<span id="title">수업방식</span>
-				<select name="classWay">
+				<select name="classWay" style="width:95px; height: 23px;">
         			<option value="s"
         			<c:if test="${dto.classWay.trim() == 's'}">selected</c:if>>과외</option>
         			<option value="g"
@@ -385,7 +383,7 @@ a:hover {
 				<span id="title">첨부파일2</span>
 				<span id="fileName">${dto.classImg2 }</span>
 				<div class="submitlocation">
-					<input id="submitClass" type="submit" value="수정하기"/> / 
+					<input id="submitClass" type="submit" value="수정하기"/>  
 					<a id="submitClass" href="MylectureList">취소하기</a>
 				</div>
 			</form:form>
@@ -467,8 +465,8 @@ a:hover {
 
 <script>
 	function classMainCategory1() {
-		var ctg1 = ["유아","초등","중등","입시/편입","기타"];
-		var ctg2 = ["공무원","NCS","세무/회계","외국어","디자인"];
+		var ctg1 = ["유아","초등","중등","입시&편입","기타"];
+		var ctg2 = ["공무원","NCS","세무&회계","외국어","디자인"];
 		var ctg3 = ["미술","스포츠","요리","음악","기타"];
 		var ctg4 = ["부동산","주식","펀드"];
 		var ctg5 = ["이력서","면접","인적성","기타"];
@@ -492,7 +490,7 @@ a:hover {
 		}
 	}
 	classMainCategory1();
-	
+	/*
 	function classCityCategory1() {
 		var ctg1 = ["서초구","강남구","송파구","종로구","마포구"];
 		var ctg2 = ["수원","평택","안성시","용인시","성남"];
@@ -511,5 +509,6 @@ a:hover {
 		}
 	}
 	classCityCategory1();
+	*/
 </script>
 </html>

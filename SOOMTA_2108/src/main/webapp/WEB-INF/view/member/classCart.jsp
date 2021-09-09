@@ -283,7 +283,7 @@ td{
 			<table>
 				<tr>
 					<th>구매번호</th>
-					<td id="tdvalue"><input name="purchaseNo" value="${purchaseNo }"/></td>
+					<td id="tdvalue"><input style="border:none;" name="purchaseNo" value="${purchaseNo }"/></td>
 				</tr>
 				<tr>
 					<th>${dto.className }</th>

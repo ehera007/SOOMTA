@@ -18,8 +18,6 @@
 	<result column="tutor_Id" property="tutorId"/>
 	<result column="class_Regiday" property="classRegiday"/>
 	<result column="class_State" property="classState"/>
-	
-
 </resultMap>
 <select id="classNo" resultType="string">
 	select class_num.nextval
@@ -39,6 +37,7 @@
 	select class_No classNo, tutor_Id tutorId, class_Name className, class_Img classImg, class_Regiday classRegiday, class_Start classStart, class_End classEnd, class_Introduce classIntroduce, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Price classPrice, class_Gender classGender, class_Way classWay, class_State classState, class_Total classTotal, class_City classCity, class_Area classArea, class_Img2 classImg2 
 	from Soomta_Class
 	where tutor_Id = #{tutorId}
+	order by classNo DESC
 </select>
 <select id="classDetail" parameterType="string" resultType="Model.ClassDTO">
 	select class_No classNo, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, class_End classEnd, 

@@ -150,6 +150,9 @@ h2{
 	padding-left:210px;
 }
 
+.selectOption{
+	width:95px;
+}
 /*하단 구역 분할*/
 .footer {
 	width: 800px;
@@ -254,8 +257,8 @@ a:hover {
 <!-- 분류 옵션주는 script -->
 <script type="text/javascript">
 	function classMainCategory(e) {
-		var ctg1 = ["유아","초등","중등","입시/편입","기타"];
-		var ctg2 = ["공무원","NCS","세무/회계","외국어","디자인"];
+		var ctg1 = ["유아","초등","중등","입시&편입","기타"];
+		var ctg2 = ["공무원","NCS","세무&회계","외국어","디자인"];
 		var ctg3 = ["미술","스포츠","요리","음악","기타"];
 		var ctg4 = ["부동산","주식","펀드"];
 		var ctg5 = ["이력서","면접","인적성","기타"];
@@ -278,7 +281,7 @@ a:hover {
 		    target.appendChild(opt);
 		}
 	}
-	
+	/*
 	function classCityCategory(c) {
 		var ctg1 = ["서초구","강남구","송파구","종로구","마포구"];
 		var ctg2 = ["수원","평택","안성시","용인시","성남"];
@@ -295,7 +298,7 @@ a:hover {
 		    opt.innerHTML = d[x];
 		    target.appendChild(opt);
 		}
-	}
+	}*/
 	function classJoin() {
 		alert("등록하시겠습니까?");
 	}
@@ -321,9 +324,9 @@ a:hover {
 			<div id="newClassTitle"><h2>강의 개설</h2></div>
 			<form name="newClassOpened" action="newClassOpenedOk" enctype="multipart/form-data" method="post">
 				<span id="title">클래스 번호</span>
-           		<input name="classNo" value="${classNo}" readonly="readonly"/><br/>
+           		<input style="border:none;" name="classNo" value="${classNo}" readonly="readonly"/><br/>
 				<span id="title">분류</span>
-				<select onchange="classMainCategory(this)" name="classCategoryL">
+				<select onchange="classMainCategory(this)" name="classCategoryL" required>
 					<option>대분류</option>
 					<option value="STUDY">학업</option>
 					<option value="TEST">자격증/시험</option>
@@ -332,42 +335,40 @@ a:hover {
 					<option value="EMP">취업</option>
 					<option value="ETC">기타</option>
 				</select>
-				<select id="classSubCategory" name="classCategoryS">
+				<select id="classSubCategory" name="classCategoryS" style="width:95px;">
 					<option value="">소분류</option>
 				</select><br/>
 				<span id="title">지역</span>
-				<select onchange="classCityCategory(this)" name="classCity">
+				<select class="selectOption" onchange="classCityCategory(this)" name="classCity" required>
 					<option>대분류</option>
 					<option value="SEOUL">서울</option>
 					<option value="GYEONGGIDO">경기도</option>
 				</select>
-				<select id="classAreaCategory" name="classArea">
-					<option value="">소분류</option>
-				</select><br/>
+				<input type="text" name="classArea" placeholder="상세 지역명" required/><br/>
 				<span id="title">강의명</span>
-				<input type="text" name="className" placeholder="강의명 입력"><br/>
+				<input type="text" name="className" placeholder="강의명 입력" required><br/>
 				<span id="title">기간</span>
 				<input type="date" onchange="leadingZeros()" name="classStart" required pattern="yyyy-MM-dd"/> ~ <input type="date" name="classEnd" required pattern="yyyy-MM-dd"/><br/>
 				<span id="title">정원</span>
-				<input type="number" name="classTotal" min="1" max="30"/>명<br/>
+				<input type="number" name="classTotal" min="1" max="30" required/>명<br/>
 				<span id="title">금액</span>
-				<input id="inputPrice" type="text" name="classPrice"/>원<br/>
+				<input id="inputPrice" type="text" name="classPrice" required/>원<br/>
 				<span id="title">수업방식</span>
-				<select name="classWay">
+				<select name="classWay" required>
 					<option>선택</option>
         			<option value="s">과외</option>
         			<option value="g">그룹</option>
         			<option value="n">비대면</option>
 				</select><br/>
 				<span id="title">수강생 성별</span>
-				<input type="radio" name="classGender" value="m">남자
+				<input type="radio" name="classGender" value="m" required>남자
 				<input type="radio" name="classGender" value="w">여자
 				<input type="radio" name="classGender" value="x">무관<br/>
 				<span id="title">강의 내용</span>
-				<input type="text" name="classIntroduce"><br/>
+				<input type="text" name="classIntroduce" placeholder="15자 이내로 입력해주세요." required><br/>
 				<span id="title">클래스이미지</span>
 				<input type="file" name="classImg" multiple="multiple"/><br/>
-				<span id="title">클래스상세이미지</span>
+				<span id="title">클래스상세<br/>이미지</span>
 				<input type="file" name="classImg2" multiple="multiple"/><br/>
 				<input id="submitClass" type="submit" value="등록" onclick="classJoin()"/>
 				<a href="javascript:history.back()" style="font-size:15px;">취소</a>

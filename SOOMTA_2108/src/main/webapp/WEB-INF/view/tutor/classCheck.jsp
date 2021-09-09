@@ -89,7 +89,7 @@ a:hover {
 
 .nav-item {
 	margin: 15px;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 
@@ -321,9 +321,13 @@ a:hover {
 				<span id="title">강의 소개</span>
 				${dto.classIntroduce }<br/>
 				<span id="title">첨부파일</span>
-				${dto.classImg }<br/>
+				<c:if test="${dto.classImg == null }">등록된 이미지가 없습니다.</c:if>
+				<c:if test="${dto.classImg != null }">${dto.classImg }</c:if>
+				<br/>
 				<span id="title">첨부파일2</span>
-				${dto.classImg2 }<br/>
+				<c:if test="${dto.classImg2 == null }">등록된 이미지가 없습니다.</c:if>
+				<c:if test="${dto.classImg2 != null }">${dto.classImg2 }</c:if>
+				<br/>
 				<div class="Taglocation">
 					<a id="btncolor" href="classRetouch?classNo=${dto.classNo }">수정하기</a>  
 					<input id="btncolor" type="button" value="삭제하기" onclick="classDel()" style="font-size:15px;"/> 

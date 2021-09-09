@@ -1,6 +1,9 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -531,11 +534,19 @@ a:hover {
 			</select>
 		</form>
 		<table style="margin: auto; text-align: center;">
-			<tr>
-				<td width="150" height="150"><a href="../bandIntro"> <img width="150"
-						height="150" src="#"/></a><br /> 자바동아리 </td>
+			<tr style="vertical-align: bottom;">
+			<c:forEach items="${list }" var="dto" varStatus="cnt">
+				<td width="200" height="250" >
+				<a href="../../band/bandIntro?bandNo=${dto.bandNo }"> 
+				<img width="150" height="150" src="../../tutor/upload/${dto.bandImg.split(',')[0] }"/><br/>
+				${dto.bandName}
+				</a>
+				</td> 
+				<c:if test="${cnt.count % 4 == 0 }">
+				</tr><tr>
+				</c:if>
+			</c:forEach>
 			</tr>
-			<!-- 쇼핑물 페이지처럼 c:if문 돌려서 4개 가져오시면 될거 같습니다 -->
 		</table>
 		<p style="text-align: center;">여기에 페이징 넣어주시면 됩니다 !!</p>
 		<!----------------------------------------------------- 하단 고정------------------------------------------------- -->

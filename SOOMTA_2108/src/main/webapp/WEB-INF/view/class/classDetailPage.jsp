@@ -124,10 +124,11 @@ a:hover {
 	position: relative;
 	display: inline;
 	z-index: 1;
+	bottom: 3px;
 }
 
 .mainmenu {
-	padding: 5px;
+	padding: 8px;
 	font-size: 14px;
 	border: none;
 	width: 130px;
@@ -204,7 +205,7 @@ a:hover {
 
 /*수정한부분 */
 .main {
-	width: 100vw;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -213,6 +214,7 @@ a:hover {
 	width: 20%;
 }
 
+
 .main_right {
 	float: right;
 	width: 60%;
@@ -220,11 +222,13 @@ a:hover {
 }
 
 .allmain {
-	height: 2100px;
+	height: 2250px;
 }
 
 .topcate {
 	height: 30px;
+	padding-bottom: 5px;
+	padding-left: 50px;
 }
 
 .topcate-left {
@@ -382,9 +386,8 @@ a:hover {
 
 
 .satisfyreview {
-	height: 400px;
+	height: 280px;
 	width:999px;
-
 }
 
 .bottom-button {
@@ -529,7 +532,25 @@ header a:visited {
 header a:hover {
 	text-decoration: none !important
 }
-/*후기 테이블*/
+
+.reviewTable{
+	position: relative;
+	left:105px;
+	width:770px;
+	height: 220px;
+	margin-top: 20px;
+	border-collapse:collapse;
+}
+.reviewTable th{
+	background-color: #0F4C81;
+	color: #fff;
+}
+.reviewTable td{
+	
+	border-bottom: 1px solid #0F4C81;
+	height: 53px;
+}
+/*후기 테이블
 .reviewTable{
 	width:250px;
 	height: 250px;
@@ -550,15 +571,18 @@ header a:hover {
 
 .reviewTable table th{
 	width:40px;
-}
+}*/
 .moreReview{
 	position: relative;
-	float: right;
-	bottom: -60px;
-	right: 120px;
+	right: -790px;
+	bottom: -10px;
 }
-
-
+a:link {
+	color: black;
+	}
+a:visited {
+	color: black;
+}
 </style>
 <script type="text/javascript">
 	function classJoin() {
@@ -778,8 +802,8 @@ header a:hover {
 			
 			<div class="main_right">
 			<form action="../member/classCart" method="post">
-			<input type="hidden" name="classNo" value="${dto.classNo }"/>
-			<input type="hidden" name="tutorId" value="${dto.tutorId }"/>
+					<input type="hidden" name="classNo" value="${dto.classNo }"/>
+					<input type="hidden" name="tutorId" value="${dto.tutorId }"/>
 				<div class="topcate">
 					<div class="topcate-left" style="color: #0F4C81;">
 					<c:if test="${dto.classCategoryL == 'STUDY' }">학업</c:if>
@@ -815,7 +839,7 @@ header a:hover {
 							<!-- <input type="submit" value="가입하기"/> -->
 						</div>
 						<div class="TopButton" >
-							<a class="TopButton" href="#"> 문의하기 </a>
+							<a style="color: #fff;" class="TopButton" href="#"> 문의하기 </a>
 						</div>
 						<div class="WishButton"> 
 						<c:if test="${dto.classWish == false }">
@@ -842,7 +866,9 @@ header a:hover {
 					</div>
 				</div>
 				<a name="classDetail">
-					<div class="classdetail" ><img class="imgsize" src="./../tutor/upload/${dto.classImg2.split(',')[0] }"/></div>
+					<div class="classdetail" >
+					<img class="imgsize" src="./../tutor/upload/${dto.classImg2.split(',')[0] }"/>
+					</div>
 				</a><br /> <a name="tutorDetail"></a>
 				<!-- 강사소개위치 이동 -->
 				<hr color="black" />
@@ -866,34 +892,29 @@ header a:hover {
 				<br /> <a name="satisfyreView"></a>
 				<!-- 후기위치 이동 -->
 				<hr color="black" />
+				<h2>클래스 후기</h2>
 				<div class="satisfyreview">
-		
 		<c:if test="${!empty list }" >
-		<c:forEach items="${list }" var="dto2"  begin="0" end="2">
 		<table class="reviewTable">
 			<tr>
-				<th>강의 만족도 </th>
-				<td>${dto2.classSatisfy }</td>
+				<th style="width: 20%;">강의 만족도</th>
+				<th style="width: 20%;">강사 만족도</th>
+				<th style="width: 50%;">후기</th>
 			</tr>
+			<c:forEach items="${list }" var="dto2"  begin="0" end="2">
 			<tr>
-				<th>강사 만족도</th>
-				<td>${dto2.tutorSatisfy }</td>
-			</tr>
-			<tr>
-				<th>후기 내용</th>
+				<td style="text-align: center;">${dto2.classSatisfy }</td>
+				<td style="text-align: center;">${dto2.tutorSatisfy }</td>
 				<td>${dto2.reviewContents }</td>	
 			</tr>
+			</c:forEach>
 		</table>
-		</c:forEach>
-		<div class="moreReview">
-		<br/>
-		<a href="../tutor/reviewView?classNo=${dto.classNo }">> 더보기</a>
-		</div>
+			<a  class="moreReview" href="../tutor/reviewView?classNo=${dto.classNo }">> 더보기</a>
 	</c:if>
 		
 		<c:if test="${empty list }">
 		<div class="main">
-			<h2>
+			<h2><br/>
 				등록된 후기가 없습니다 !<br/>
 				지금 바로 가입해보세요 :)
 			</h2>
@@ -917,7 +938,7 @@ header a:hover {
 		</div>
 		<div class="bottomFixButton"
 			style="position: fixed; bottom: 3px; right: 60px;">
-			<a href="#">문의하기</a>
+			<a style="color: #fff;" href="#">문의하기</a>
 		</div>
 	</header>
 	<!-- 하단 고정 -->

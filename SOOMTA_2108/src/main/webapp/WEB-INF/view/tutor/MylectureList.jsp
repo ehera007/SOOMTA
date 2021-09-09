@@ -261,6 +261,13 @@ td a:active {
    font-weight:bold;
    color:black;
 }
+.ranking{
+	position: relative;
+	right: -1270px;
+	bottom: -11px;
+	font-size:15px;
+	color: #0F4C81;
+}
 </style>
 <meta charset="UTF-8">
 <title>My Class List</title>
@@ -279,11 +286,22 @@ td a:active {
       </div>
    </div>
    
+   <!-- list에 담아온 tutorId를 출력, classCount를 이용해 개설 강의 수 카운트 -->
    <div class="myClassTitle">
          <h1>'${list[0].tutorId }'님의 강의 목록</h1>
          <p>숨타에서 총 ${classCount }개의 강의를 개설하셨습니다 :)</p>
       </div>
+      
       <!-- 타이틀 -->
+      		
+      		<form>
+      		<a class="ranking" href="newClassOpened">클래스 생성</a>
+			<select class="ranking" name="ranking" onchange="sort(this.form)">
+				<option value="classNo">최신순</option>
+				<option value="viewOrder">조회순</option>
+				<option value="starOrder">별점순</option>
+			</select>
+		</form>
    <table>
    <thead>
       <tr id="title">

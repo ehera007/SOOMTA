@@ -39,8 +39,6 @@ public class ClassDetailPageService {
 		} catch (Exception e) {
 	}
 
-		
-		
 		model.addAttribute("dto", dto);
 		
 		TutorDTO dto1 = tutorRepository.promanage(tutorId);

@@ -17,6 +17,7 @@
 	<bean class="service.band.BandWriteService" />
 	<bean class="service.band.BandListService" />
 	<bean class="repository.BandRepository"/>
+	<bean class="service.band.BandAllListService"/>
 	
 	<bean class="service.band.BandWishService" />
 

@@ -33,4 +33,9 @@ public class BandRepository {
 		statement = namespace + ".bandNo";
 		return sqlSession.selectOne(statement);
 	}
+	
+	public List<BandDTO> bandAllList(String bandCategoryS){
+		statement = namespace + ".bandAllList";
+		return sqlSession.selectList(statement, bandCategoryS);
+	}
 }
