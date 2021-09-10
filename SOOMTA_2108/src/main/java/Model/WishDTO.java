@@ -4,7 +4,14 @@ public class WishDTO {
 	String classNo;
 	String memId;
 	String bandNo;
+	String tutorId;
 	
+	public String getTutorId() {
+		return tutorId;
+	}
+	public void setTutorId(String tutorId) {
+		this.tutorId = tutorId;
+	}
 	public String getBandNo() {
 		return bandNo;
 	}

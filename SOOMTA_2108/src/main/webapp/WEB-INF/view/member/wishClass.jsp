@@ -300,7 +300,7 @@ td a:active {
 		</div>
 	</div>
 	<div class="myClassWish">
-			<h1>'${memPerData.memId }'님의 클래스 찜 목록</h1>
+			<h1>${memPerData.memId }님의 클래스 찜 목록</h1>
 			<p>숨타의 강의와 함께 숨은 시간을 채워봐요!</p>
 		</div>
 	<!-- 타이틀 -->
@@ -309,10 +309,10 @@ td a:active {
       	<th width="4%" style="background-color: white;"></th>
          <th width="10%">No.</th>
          <th width="15%">대분류/소분류</th>
-         <th width="20%">강의명</th>
+         <th width="15%">강의명</th>
          <th width="15%">기간</th>
-         <th width="8%">수강생</th>
-         <th width="8%">지역</th>
+         <th width="4%">수강생</th>
+         <th width="10%">지역</th>
          <th width="4%" style="background-color: white;"></th>
         
       </tr></thead>
@@ -329,12 +329,14 @@ td a:active {
 			<c:if test="${wish.classCategoryL == 'EMP' }">취업</c:if>
 			<c:if test="${wish.classCategoryL == 'ETC' }">기타</c:if> / 
 			${wish.classCategoryS }</td>
-         <td><a href="../class/classDetailPage?classNo=${wish.classNo}">${wish.className }</a></td>
+         <td><a href="../class/classDetailPage?classNo=${wish.classNo }&tutorId=${wish.tutorId}">${wish.className }</a></td>
          <td><fmt:formatDate value="${wish.classStart}" 
 		             pattern="yy.MM.dd"/> - <fmt:formatDate value="${wish.classEnd}" 
 		             pattern="yy.MM.dd"/></td>
          <td>${wish.classTotal}</td>
-         <td>${wish.classArea}</td>
+         <td> <c:if test="${wish.classCity == 'SEOUL'}">서울</c:if>
+         	  <c:if test="${wish.classCity == 'GYEONGGIDO'}">경기도</c:if>
+         	  /${wish.classArea}</td>
          
          <td style="background-color: white; border-style: none;"></td>
       </tr>

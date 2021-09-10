@@ -18,6 +18,7 @@
 	<result column="tutor_Id" property="tutorId"/>
 	<result column="class_Regiday" property="classRegiday"/>
 	<result column="class_State" property="classState"/>
+	<result column="class_City" property="classCity"/>
 </resultMap>
 <select id="classNo" resultType="string">
 	select class_num.nextval
@@ -101,8 +102,8 @@
 	where class_No = #{classNo}
 </select> 
 <insert id="classWish" parameterType="Model.WishDTO">
-	insert into class_wishlist(class_no, mem_id)
-	values (#{classNo}, #{memId})
+	insert into class_wishlist(class_no, mem_id, tutor_id)
+	values (#{classNo}, #{memId}, #{tutorId})
 
 </insert>
 <select id="wishChk" parameterType="Model.WishDTO" resultType="int">
@@ -115,7 +116,7 @@
 <!-- 강의 찜목록 보기 -->
 <select id="wishClass" parameterType="string" resultType="Model.ClassDTO">
 	select class_No classNo, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, 
-	class_End classEnd, class_Total classTotal, class_Area classArea
+	class_End classEnd, class_Total classTotal, class_Area classArea , class_City classCity, tutor_Id tutorId
 	from Soomta_Class 
 	where class_No in (select class_No from CLASS_WISHLIST where mem_id = #{memId})
 </select>

@@ -15,19 +15,20 @@ public class ClassWishService {
 	@Autowired
 	ClassRepository classRepository;
 	
-	public void classWish(String classNo, HttpSession session, Model model) {
+	public void classWish(String classNo, String tutorId,  HttpSession session, Model model) {
 		LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");
 		String memId =logIn.getUserId();
 		WishDTO dto = new WishDTO();
 		dto.setClassNo(classNo);
-		dto.setMemId(memId);		
+		dto.setMemId(memId);
+		dto.setTutorId(tutorId);
 		int wish = classRepository.wishChk(dto);
-		if(wish == 1) {
-			classRepository.wishDel(dto);
-			model.addAttribute("num", 0);
-		} else {
+		if(wish == 0 ) {
 			classRepository.classWish(dto);
 			model.addAttribute("num", 1);
+		} else {
+			classRepository.wishDel(dto);
+			model.addAttribute("num", 0);
 		}
 	}
 	

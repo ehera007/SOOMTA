@@ -596,22 +596,28 @@ a:visited {
 			return false;
 		}
 	}
-	function wish(classNo){		//location.href="wish?classNo=" + classNo;
-		
+	function wish1(){		
+		//location.href="wish?classNo=${dto.classNo}&tutorId=${dto.tutorId}";
+			var id ='${logIn.grade}';
 		$.ajax({
 			type : "post",
 			url : "wish",
 			dataType : "html",
-			data : "classNo=" + classNo,
+			data : "classNo=${dto.classNo}&tutorId=${dto.tutorId}" ,
 			success : function(result){
-				if(result.trim() == "0"){
-					$("#wish").html("../images/heart_filled.png");
-				} else{
-					$("#wish").html("../images/hreat_empty.png");
+				if(id == 'mem'){
+					if(result.trim() == "1"){
+						$("#wish1").attr("src","../images/heart_filled.png");
+					} else{
+						$("#wish1").attr("src","../images/hreat_empty.png");
+					}
+				}else{
+					alert("일반 회원으로 로그인해주세요.");
+					return false;
 				}
 			},
 			error: function(){
-				alert("실패");
+				alert("일반 회원으로 로그인해주세요.");
 				return;
 			}
 		});
@@ -841,12 +847,13 @@ a:visited {
 						<div class="TopButton" >
 							<a style="color: #fff;" class="TopButton" href="#"> 문의하기 </a>
 						</div>
-						<div class="WishButton"> 
+						<div class="WishButton">
 						<c:if test="${dto.classWish == false }">
-						<a href="javascript:wish('${dto.classNo}')"><img id="wish" src="../images/hreat_empty.png"/></a></c:if>
+						<a href="javascript:wish1();"><img id="wish1" src="../images/hreat_empty.png"/></a></c:if>
 						<c:if test="${dto.classWish == true }">
-						<a href="javascript:wish('${dto.classNo}')"><img id="wish" src="../images/heart_filled.png"/></a></c:if>
+						<a href="javascript:wish1();"><img id="wish1" src="../images/heart_filled.png"/></a></c:if>
 						</div>
+
 					</div>
 				</div>
 				</form>

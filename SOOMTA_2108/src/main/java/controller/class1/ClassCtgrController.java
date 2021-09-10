@@ -49,16 +49,14 @@ public class ClassCtgrController {
 		return "class/ectCrgr";
 	}
 	@RequestMapping("classDetailPage") //클래스 상세보기 페이지
-	public String classDetailPage(@RequestParam(value="classNo") String classNo, @RequestParam(value="tutorId") String tutorId, 
-			Model model, HttpSession session) {
+	public String classDetailPage(@RequestParam(value="classNo") String classNo, @RequestParam(value="tutorId")  String tutorId, Model model, HttpSession session) {
 		classDetailPageService.classDetailPage(classNo, tutorId, model, session);
 		return "class/classDetailPage";
 	}
 	@RequestMapping("wish")
-	public String wish(@RequestParam(value="classNo") String classNo , HttpSession session, Model model) {
-		classWishService.classWish(classNo, session, model);
+	public String wish(@RequestParam(value="classNo")String classNo, @RequestParam(value="tutorId") String tutorId, Model model, HttpSession session) {
+		classWishService.classWish(classNo, tutorId,  session, model);
 		return "class/wishOk";
 	}
-		
 	
 }

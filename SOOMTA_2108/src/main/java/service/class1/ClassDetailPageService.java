@@ -23,21 +23,27 @@ public class ClassDetailPageService {
 	TutorRepository tutorRepository;
 	public void classDetailPage(String classNo, String tutorId, Model model, HttpSession session) {
 		ClassDTO dto = classRepository.classDetailPage(classNo);
-	
-		try {
+		
 		LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");
-		String memId =logIn.getUserId();
+		String memId = "";
+		
+		if(logIn != null)
+			memId = logIn.getUserId();
+		
 		WishDTO wishDTO = new WishDTO();
 		wishDTO.setClassNo(classNo);
 		wishDTO.setMemId(memId);
+		wishDTO.setTutorId(tutorId);
 		int wish = classRepository.wishChk(wishDTO);
 		if(wish == 1) {
 			dto.setClassWish(true);
 		} else {
 			dto.setClassWish(false);
 		}
-		} catch (Exception e) {
-	}
+
+		System.out.println(dto.getClassWish());
+		
+		
 
 		model.addAttribute("dto", dto);
 		
