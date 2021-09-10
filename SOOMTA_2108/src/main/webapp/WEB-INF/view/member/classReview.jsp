@@ -239,12 +239,23 @@ thead th {
 }
 
 th{
-	padding-top:15px;
+	padding-top:35px;
 	padding-left:45px; 
 }
 td{
-	padding-top: 15px;
+	padding-top: 35px;
 	padding-left:25px;
+}
+.btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 5px 5px;
+   border: none;
+   font-size: 16px;
+   padding-top: 5px;
+
 }
 </style>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -308,11 +319,9 @@ td{
 	    			<td><textarea rows="5" cols="30" name="reviewContents" ></textarea></td></tr>
 			
 					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 20px; ">
-						<input type="button"  value="등록 안함" style="border: none;font-size: 16px;font-weight: bold;
-					 	background: transparent; color: #0F4C81;"
+						<input type="submit" value="리뷰등록" class="btn" />
+						<input type="button"  value="취소" class="btn"
 						onclick="javascript:history.back();" />
-						<input type="submit" value="리뷰등록" 
-							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
 				</th></tr>
 			</table>
 		</form>		

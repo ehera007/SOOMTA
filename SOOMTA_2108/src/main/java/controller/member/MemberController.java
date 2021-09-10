@@ -199,6 +199,8 @@ public class MemberController {
 	@RequestMapping("bandList")//내 모임 목록
 	public String bandList(Model model,HttpSession session) {
 		BandListService.bandList(model, session);
+		BandListService.joinBandList(model, session);
+		memberPerDataService.perData(model,session);
 		return "member/bandList";
 	}
 	
@@ -213,7 +215,7 @@ public class MemberController {
 	
 	@Autowired
 	BandNumberService bandNumberService;//밴드 시퀀스 
-	@RequestMapping("bandOpen")//모임 개설
+	@RequestMapping("bandOpen")//모임 개설 주소
 	public String bandOpen(Model model) {
 		bandNumberService.bandNo(model);
 		return "member/bandJoin";

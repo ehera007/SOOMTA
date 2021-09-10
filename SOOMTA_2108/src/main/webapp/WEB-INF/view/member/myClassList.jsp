@@ -214,14 +214,19 @@ ul {
 .imgBox:hover ul {
 	display: block;
 }
+#title{
+	padding-bottom:20px;
+	height:40px;
+}
 
 /* 테이블 스타일 */
 table {
-    width: 100%;
-    /*border-top: 2px solid #0F4C81;*/
+    width: 90%;
     border-collapse: collapse;
     margin-top: 30px;
     margin-bottom: 60px;
+    margin-left:auto;
+	margin-right:auto;
   }
   
 thead{
@@ -258,18 +263,7 @@ td a:active {
    font-weight:bold;
    color:black;
 }
-/*버튼 스타일*/
-.btn {
-   height: 30px;
-   background-color: white;
-   color: #0F4C81;
-   font-weight: bold;
-   margin: 10px 10px;
-   border: none;
-   float:right;
-   /*border:1px solid #0F4C81;
-   border-radius:4px;*/
-}
+
 </style>
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -303,55 +297,67 @@ td a:active {
 	</div>
 	
 	<div class="myClassTitle">
-			<h1>'${memPerData.memId }'님의 강의목록</h1>
+			<h1>${memPerData.memId }님의 강의목록</h1>
 			<p>숨타와 함께 총 ${memClassCount }개의 강의를 들었습니다.</p>
 		</div>
 		<!-- 타이틀 -->
+		
 	<table><thead>
 	
-      <tr style="padding-bottom:20px; height:40px;">
-      	<th width="4%" style="background-color: white;"></th>
+      <tr id="title">
          <th width="10%">No.</th>
          <th width="15%">대분류/소분류</th>
          <th width="20%">강의명</th>
          <th width="15%">기간</th>
-         <th width="8%">수강생</th>
-         <th width="8%">지역</th>
-         <th width="8%">강의 만족도</th>
-         <th width="8%">후기</th>
-         <th width="4%" style="background-color: white;"></th>
+         <th width="10%">수강생</th>
+         <th width="10%">지역</th>
+         <th width="10%">강의 만족도</th>
+         <th width="10%">후기</th>
         
-      </tr></thead>
+      </tr>
+      </thead>
       <tbody>
       <c:forEach items="${list }" var="dto">
 	      <tr>
-	      	<td style="background-color: white; border-style: none;"></td>
 	         <td>${dto.classNo }</td>
-	         <td>${dto.classCategoryL }/${dto.classCategoryS }</td>
+	         <td><c:if test="${dto.classCategoryL == 'STUDY' }">학업</c:if>
+			<c:if test="${dto.classCategoryL == 'TEST' }">자격증&시험</c:if>
+			<c:if test="${dto.classCategoryL == 'ENT' }">예체능</c:if>
+			<c:if test="${dto.classCategoryL == 'ECONOMY' }">재태크</c:if>
+			<c:if test="${dto.classCategoryL == 'EMP' }">취업</c:if>
+			<c:if test="${dto.classCategoryL == 'ETC' }">기타</c:if> / ${dto.classCategoryS }</td>
 	         <td><a href="classCon?classNo=${dto.classNo }&purchaseNo=${dto.purchaseNo }" class="classCon">${dto.className }</a></td>
 	         <td><fmt:formatDate value="${dto.classStart}" 
 		             pattern="yy-MM-dd"/> -
 		          <fmt:formatDate value="${dto.classEnd }" 
 		             pattern="yy-MM-dd"/></td>
-	         <td>${dto.classTotal }</td>
+	         <td>${dto.classTotal } / ${dto.countClassNo}</td>
 	         <td>
 		         <c:if test="${dto.classCity == 'SEOUL' }">서울</c:if>
 		         <c:if test="${dto.classCity == 'GYEONGGIDO' }">경기도</c:if>
-		         /${dto.classArea }</td>
-	         <td>${dto.classSatisfy }</td>
+		     / ${dto.classArea }
+		     </td>
+	         <td>
+	         	<c:if test="${dto.classSatisfy == null }">
+					<span>-</span>
+			  	</c:if>
+			  	<c:if test="${dto.classSatisfy != null }">
+					<span>${dto.classSatisfy}</span>
+			  	</c:if>
+			  </td>
 	         <td>
 	          <c:if test="${dto.reviewContents == null }">
 					<a href="classReview?purchaseNo=${dto.purchaseNo }&classNo=${dto.classNo }&tutorId=${dto.tutorId }">리뷰작성</a>
 			  </c:if>	
 	          <c:if test="${dto.reviewContents != null }">
-					<a href="classReviewCon?purchaseNo=${dto.purchaseNo }&classNo=${dto.classNo }&tutorId=${dto.tutorId }">리뷰확인</a>
+					<a href="classReviewCon?purchaseNo=${dto.purchaseNo }&classNo=${dto.classNo }&tutorId=${dto.tutorId }"
+					style="font-style: italic;">리뷰확인</a>
 			  </c:if>
 	         </td>
-	         <td style="background-color: white; border-style: none;"></td>
 	      </tr>
-      </c:forEach></tbody>
+      </c:forEach>
+      </tbody>
       </table>
-
 <!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"
 		href="#" class="Top"> <img src="../images/top.png" alt="topicon">

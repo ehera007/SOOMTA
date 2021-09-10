@@ -221,7 +221,7 @@ ul {
  table {
     border: 2px solid #0F4C81;
     width: 500px;
-    height:500px;
+    height:480px;
     margin-top: 50px;
     margin-bottom: 80px;
     border-spacing: 0px;
@@ -239,15 +239,26 @@ thead th {
 }
 
 th{
-	padding-top:15px;
+	padding-top:35px;
 	padding-left:30px;
-	width: 120px;
+	width: 160px;
 	
 }
 td{
-	padding-top: 15px;
-	padding-left:55px;
+	padding-top: 35px;
+	padding-left:40px;
 	padding-right: 50px;
+}
+.btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 5px 5px;
+   border: none;
+   font-size: 16px;
+   /*border:1px solid #0F4C81;
+   border-radius:4px;*/
 }
 </style>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -290,8 +301,8 @@ td{
          <tr style="background-color: #0F4C81; color: white; font-size: 25px;" >
             <th colspan="2" style="padding: 10px 0px 10px 10px; ">강의 후기 확인 </th>
          </tr></thead>
-    			<tr><th>강의명</th>
-					<td> ${dto.className} </td></tr>
+    			<tr><th style="padding-top: 30px;">강의명</th>
+					<td style="padding-top: 30px;"> ${dto.className} </td></tr>
 			
 				<tr><th>기간</th>
 					<td><fmt:formatDate value="${dto.classStart}" 
@@ -299,7 +310,7 @@ td{
 		          <fmt:formatDate value="${dto.classEnd }" 
 		             pattern="yyyy-MM-dd"/></td>
 		       
-		       <tr><th>등록일</th>
+		       <tr><th>리뷰 등록일</th>
 					<td><fmt:formatDate value="${reviewCon.reviewRegiDay}" 
 		             pattern="yyyy-MM-dd"/>
 				<tr><th>강의 만족도</th>
@@ -312,8 +323,7 @@ td{
 					<td>${reviewCon.reviewContents}</td>
 	    			
 					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 20px; ">
-						<input type="button"  value="확인" style="border: none;font-size: 16px;font-weight: bold;
-					 	background: transparent; color: #0F4C81;"
+						<input type="button"  value="확인" class="btn"
 						onclick="javascript:history.back();" />
 				</th></tr>
 			</table>

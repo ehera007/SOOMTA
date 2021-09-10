@@ -26,6 +26,16 @@
 	where mem_Id = #{memId}
 </select>
 
+<select id="joinBandList" resultType="Model.BandDTO">
+	select bj.band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
+			band_Category_S bandCategoryS,band_Img bandImg, band_RegiDay bandRegiDay,
+			band_Introduce bandIntroduce, band_Gender bandGender, band_Way bandWay,
+			band_Total bandTotal, band_Public bandPublic, band_Age bandAge, bj.mem_Id memId
+	from band_join bj ,band b
+	where bj.band_No = b.band_No
+	and   bj.mem_Id = #{memId}
+</select>
+
 <insert id="bandWrite" parameterType="Model.BandDTO">
 	insert into band(band_No, band_Name, band_Category_L, band_Category_S,
 			band_Img, band_RegiDay, band_Introduce, band_Gender, band_Way,

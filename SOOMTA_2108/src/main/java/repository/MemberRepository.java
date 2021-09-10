@@ -25,6 +25,7 @@ public class MemberRepository {
 	}
 	
 	
+
 	public int memClassCount(String memId) { //맴버 클래스 생성 수
 		statement = namespace + ".memClassCount";
 		return sqlSession.selectOne(statement, memId);

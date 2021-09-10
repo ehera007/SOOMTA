@@ -16,6 +16,7 @@
 	where mem_Id = #{memId}
 </select>
 
+
 <select id="reviewCon" parameterType="string" resultType="Model.ReviewDTO">
 	select class_Satisfy classSatisfy,tutor_Satisfy tutorSatisfy,
 		review_Contents reviewContents,review_RegiDay reviewRegiDay
@@ -46,21 +47,23 @@
 		class_Total classTotal,class_State classState,class_Satisfy classSatisfy,
 		r.review_Contents reviewContents, p.Purchase_No PurchaseNo,p.purchase_Date purchaseDate
 		,t.tutor_Id tutorId ,tutor_Area tutorArea ,class_City classCity,class_Area classArea,
-		class_Price classPrice,class_Gender classGender,class_Introduce classIntroduce
-	from Soomta_Class sc,purchase p,review r,tutor t
+		class_Price classPrice,class_Gender classGender,class_Introduce classIntroduce, cp.cnt countClassNo
+        
+	from Soomta_Class sc,purchase p,review r,tutor t , 
+         (select class_No, count(*) cnt from purchase group by class_No) cp
 	where sc.class_No = p.class_No 
+    and sc.class_No = cp.class_No
 	and   t.tutor_Id = sc.tutor_Id
 	and   p.Purchase_No = r.Purchase_No(+)
 	and   p.class_No = r.class_No(+)
 	and   p.mem_Id = #{memId}
 	order by PurchaseNo desc
-			 
 </select>
 
 <!-- 내정보 보기 -->
 <select id="perData" parameterType="string" resultType="Model.MemberDTO">
 	select mem_Id memId,mem_Name memName,mem_Pw memPw, mem_Since memSince, mem_Dob memDob, mem_Gender memGender, 
-			mem_Phone memPhone, mem_Email memEmail ,mem_Area memArea
+			mem_Phone memPhone, mem_Email memEmail ,mem_Area memArea,mem_Email_Ck memEmailCk
 	from member 
 	where mem_Id = #{memId} 
 </select>
@@ -84,7 +87,8 @@
 	set mem_Name = #{memName},
 		mem_Phone = #{memPhone},
 		mem_Email = #{memEmail},
-		mem_Area = #{memArea}
+		mem_Area = #{memArea},
+		mem_Email_Ck = #{memEmailCk}
 	where mem_Id = #{memId}
 </update>
 

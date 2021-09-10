@@ -19,4 +19,9 @@ public class BandListService {
       List<BandDTO> list = bandRepository.bandList(logIn.getUserId());
       model.addAttribute("lists",list);
    }
+   public void joinBandList(Model model,HttpSession session) {
+	      LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");
+	      List<BandDTO> list = bandRepository.joinBandList(logIn.getUserId());
+	      model.addAttribute("joinLists",list);
+	   }
 }

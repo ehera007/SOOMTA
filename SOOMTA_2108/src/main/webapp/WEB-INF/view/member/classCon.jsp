@@ -230,7 +230,7 @@ color: #0F4C81;}
     border: 2px solid #0F4C81;
     border-radius: 12px;
     width: 350px;
-    height:500px;
+    height:550px;
     margin-top : 50px;
     margin-bottom:80px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
@@ -256,8 +256,9 @@ color: #0F4C81;}
    font-weight: bold;
    margin: 5px 5px;
    border: none;
-   /*border:1px solid #0F4C81;
-   border-radius:4px;*/
+   font-size: 16px;
+   padding-top: 5px;
+
 }
 th{
 	padding-left: 70px;
@@ -318,7 +319,13 @@ td{
 		         
 				<tr>
 		             <th style="padding-top: 20px;">분류</th>
-		             <td style="padding-top: 20px;">${dto.classCategoryL }/${dto.classCategoryS}</td>
+		             <td style="padding-top: 20px;"><c:if test="${dto.classCategoryL == 'STUDY' }">학업</c:if>
+						<c:if test="${dto.classCategoryL == 'TEST' }">자격증&시험</c:if>
+						<c:if test="${dto.classCategoryL == 'ENT' }">예체능</c:if>
+						<c:if test="${dto.classCategoryL == 'ECONOMY' }">재태크</c:if>
+						<c:if test="${dto.classCategoryL == 'EMP' }">취업</c:if>
+						<c:if test="${dto.classCategoryL == 'ETC' }">기타</c:if> 
+						/${dto.classCategoryS}</td>
 		        </tr>
 		        <tr>
 		             <th>강의명</th>
@@ -328,8 +335,8 @@ td{
 		             <th>기간</th>
 		             <td><fmt:formatDate value="${dto.classStart}" 
 		             pattern="yy-MM-dd"/> ~
-		          <fmt:formatDate value="${dto.classEnd }" 
-		             pattern="yy-MM-dd"/></td>
+			          <fmt:formatDate value="${dto.classEnd }" 
+			             pattern="yy-MM-dd"/></td>
 		        </tr>
 		        <tr>
 		             <th>정원</th>
@@ -342,9 +349,9 @@ td{
 		        <tr>
 		             <th>수업방식</th>
 		             <td>
-		             	<c:if test="${dto.classWay == 's'}">과외</c:if>
-         				<c:if test="${dto.classWay == 'g'}">그룹</c:if>
-         				<c:if test="${dto.classWay == 'n'}">비대면</c:if>
+		             	<c:if test="${dto.classWay.trim() == 's'}">과외</c:if>
+         				<c:if test="${dto.classWay.trim() == 'g'}">그룹</c:if>
+         				<c:if test="${dto.classWay.trim() == 'n'}">비대면</c:if>
 		             </td>
 		        </tr>
 		        <tr>
@@ -361,9 +368,10 @@ td{
 		        </tr>
 		        <tr>
                    <th colspan="2"><div class="allbtn" style="padding-right: 65px;">
-                   	<input type="submit" value="강의 취소" style="font-weight: bold;
-                   		font-size: 16px;padding-bottom : 25px;"onclick="cancel()"
-                    class="btn" /></div></th>
+                   	<input type="submit" value="강의 취소" onclick="cancel()"
+                    class="btn" />
+                    <input type="button"  value="뒤로가기"  class="btn"
+						onclick="javascript:history.back();" /></div></th>
          		 </tr>
 			</table>
 

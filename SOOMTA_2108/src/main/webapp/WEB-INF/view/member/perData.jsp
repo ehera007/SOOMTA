@@ -231,7 +231,6 @@ color: #0F4C81;
     border: 2px solid #0F4C81;
     border-radius: 12px;
     width: 500px;
-    height:470px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     text-align: center;
     margin-top: 50px;
@@ -255,9 +254,12 @@ color: #0F4C81;
    margin: 0 auto;
    padding-bottom: 0px;
    padding-right: 35px;
-}
+   position: relative;
+   top: 15px;
+   }
 th{
-	padding-left:50px;
+	width: 110px;
+	padding-left:40px;
 }
 td{
 	padding-left:50px;
@@ -313,11 +315,6 @@ td{
 		             <th>이름</th>
 		             <td align="left">${memPerData.memName}</td>
 		         </tr>
-		         <tr>
-		             <th>가입일</th>
-		             <td align="left"><fmt:formatDate value="${memPerData.memSince}" 
-		             pattern="yyyy-MM-dd"/></td>
-		         </tr>
 		         <tr>    
 		             <th>생년월일</th>
 		             <td align="left"><fmt:formatDate value="${memPerData.memDob}" 
@@ -342,14 +339,21 @@ td{
 		             <th>이메일</th>
 		             <td align="left">${memPerData.memEmail} </td>
 		         </tr>
+		         <tr>
+		             <th>이메일 수신</th>
+		             <td align="left">
+		             	<c:if test="${memPerData.memEmailCk == 'Y'}">수신</c:if>
+						<c:if test="${memPerData.memEmailCk == 'N'}">거부</c:if>
+					</td>
+		         </tr>
 		         
 		         <tr>
-                   <th colspan="2" style="padding-right: 15px; padding-top: 30px;">
+                   <th colspan="2" style="padding-right: 15px;">
                    		<div class="allbtn">
 		                   <a href="<c:url value='/member/suJung'/>" 
 							style="text-decoration:none;">수정하기</a>&emsp;&emsp;
 							<a href="<c:url value='/member/myPage'/>" 
-							style="text-decoration:none;">취소</a>
+							style="text-decoration:none;">확인</a>
 						</div>
 					</th>
          		 </tr>

@@ -221,7 +221,7 @@ ul {
     border: 2px solid #0F4C81;
     width: 470px;
     height:150px;
-    margin:40px auto;
+    margin-top: 70px;
     border-radius: 12px;
     margin-bottom:80px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
@@ -240,7 +240,19 @@ ul {
 	font-size: 12px;
 	font-weight:bold;
 }
-  
+.btn {
+   border: none;
+   background: transparent;
+   color: #0F4C81;
+   font-weight: bold;
+   font-size: 16px;
+   padding-bottom: 20px;
+}
+h1{
+	color:#0F4C81;
+	position: relative;
+   	top: 43px;
+} 
 </style>
 <script type="text/javascript">
 	function outConfirm(){
@@ -287,21 +299,18 @@ ul {
 		<form action="memOutOk" method="post" 
 				onsubmit="return outConfirm()" name="frm">
 			<table align="center">
-				<h1 align ="center" style="color:#0F4C81">탈퇴 전 비밀번호를 다시 입력해 주세요.</h1>
+				<h1 align ="center">탈퇴 전 비밀번호를 다시 입력해 주세요.</h1>
 			<thead>
 				<tr><td style="padding-left: 40px; font-weight: bold;">비밀번호</td>
-					<td style="padding-top: 70px; "><input type="password" name="memPw" style="width:250px;"required/>
+					<td style="padding-top: 55px; "><input type="password" name="memPw" style="width:250px;"required/>
 						<br />
 						<div class="err">
 						<span>${pwFail }</span></div>
 						</td></tr></thead>
 				<tr><td colspan="2" align="center">
-					<input type="submit" value="탈퇴" 
-					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
-					font-size: 16px; padding-bottom: 20px"/>
+					<input type="submit" value="탈퇴" class="btn"/>
 					<input type="button" value="취소"
-					onclick="javascript:history.back()"
-					style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;"/>
+					onclick="javascript:history.back()" class="btn"/>
 				</td></tr>
 			</table>
 		</form>	

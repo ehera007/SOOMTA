@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import Model.BandDTO;
+import Model.BandJoinDTO;
 
 public class BandRepository {
 	@Autowired
@@ -20,6 +21,10 @@ public class BandRepository {
 	
 	public List<BandDTO> bandList(String memId) {
 		statement = namespace + ".bandList";
+		return sqlSession.selectList(statement,memId);
+	}
+	public List<BandDTO> joinBandList(String memId) {
+		statement = namespace + ".joinBandList";
 		return sqlSession.selectList(statement,memId);
 	}
 	

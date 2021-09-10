@@ -24,8 +24,15 @@ public class ClassOrderDTO {
 	String classPrice;
 	String classGender;
 	String classIntroduce;
+	String countClassNo;
 	
 	
+	public String getCountClassNo() {
+		return countClassNo;
+	}
+	public void setCountClassNo(String countClassNo) {
+		this.countClassNo = countClassNo;
+	}
 	public String getClassPrice() {
 		return classPrice;
 	}

@@ -240,6 +240,19 @@ ul {
 	font-style: italic;
 	text-align: left;
 }
+.btn {
+   border: none;
+   background: transparent;
+   color: #0F4C81;
+   font-weight: bold;
+   font-size: 16px;
+   padding-bottom: 20px;
+}
+h1{
+	color:#0F4C81;
+	position: relative;
+   	top: 43px;
+}
 </style>
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -289,34 +302,31 @@ function check_pw(){
 	</div>
 	
 	<!-- 중앙 : 비밀번호 변경 폼 -->
-				<h1 align ="center" style="color:#0F4C81">${memPerData.memId } 님!</h1>
-				 <h1 align ="center" style="color:#0F4C81;">변경 비밀번호를 입력해 주세요!</h1>
+				<h1 align ="center">${memPerData.memId } 님!</h1>
+				 <h1 align ="center">변경 비밀번호를 입력해 주세요!</h1>
 				
 		<form action="pwChangeCon" method="post" name="frm"> 
 			<table align="center">
 				<tr><td><input type="hidden" name="memId"/></td></tr>
 				
-				<tr><th align ="center" style="padding-top: 10px;">변경 비밀번호</th>
-					<td style="padding-top: 14px;">
+				<tr><th align ="center" style="padding-top: 10px; padding-left: 20px;">변경 비밀번호</th>
+					<td style="padding-top: 14px;padding-left: 30px;">
 						<input type="password" name="memPw" required
 						pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
 						class="pw" id="pw" onchange="check_pw()"/>
 						<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td></tr> <br />
 				
-				<tr><th align ="center" style="padding-bottom : 20px;">변경 비밀번호 확인</th>
-					<td style="padding-bottom: 20px;">
+				<tr><th align ="center" style="padding-bottom : 20px;padding-left: 20px;">변경 비밀번호 확인</th>
+					<td style="padding-bottom: 20px;padding-left: 30px;">
 					<input type="password" name="memPwCon" required
 						class="pw" id="pw2" onkeyup="check_pw()"/>
 						<span id="check"></span>
 						</td></tr> <br/>
 					
 				<tr><td colspan="2" align="center" >
-					<input type="submit" value="변경" id="btn" 
-					style="border: none; background: transparent; color: #0F4C81;
-					font-weight: bold; font-size: 16px;"/>
+					<input type="submit" value="변경" class="btn"/>
 					<input type="button" value="취소"
-					onclick="javascript:history.back()"
-					style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;"/>
+					onclick="javascript:history.go(-2)" class="btn"/>
 						</td></tr>
 					
 				

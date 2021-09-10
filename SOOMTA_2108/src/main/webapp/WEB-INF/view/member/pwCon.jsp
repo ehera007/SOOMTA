@@ -221,8 +221,8 @@ ul {
     border: 2px solid #0F4C81;
     width: 470px;
     height:170px;
-    margin-top:50px;
-    margin-bottom:70px;
+    margin-bottom: 100px;
+    margin-top : 70px;
     border-radius: 12px;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     border-spacing: 0px;
@@ -230,10 +230,23 @@ ul {
   }
  thead tr,td {
  	margin: 50px 0px 0px 0px;
- 	padding-top: 50px;
+ 	padding-top: 60px;
  	padding-right:20px;
   	align-content: center;
   	vertical-align: middle;
+}
+.btn {
+   border: none;
+   background: transparent;
+   color: #0F4C81;
+   font-weight: bold;
+   font-size: 16px;
+   padding-bottom: 20px;
+}
+h1{
+	color:#0F4C81;
+	position: relative;
+   	top: 43px;
 }
 .err{
 	color: red;
@@ -273,8 +286,8 @@ ul {
 	</div>
 	
 	<!-- 중앙 : 비밀번호 확인 폼 -->
-		<h1 align ="center" style="color:#0F4C81">${memPerData.memId } 님!</h1>
-		<h1 align ="center" style="color:#0F4C81">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
+		<h1 align ="center">${memPerData.memId } 님!</h1>
+		<h1 align ="center">보안을 위해 비밀번호를 한번 더 입력해 주세요!</h1>
 		<form action="pwChange" method="post" name="frm"> 
 			<table align="center">
 				<thead>
@@ -286,12 +299,10 @@ ul {
 					</div>
 						</td></tr></thead>
 				<tr><td colspan="2" align="center">
-					<input type="submit" value="확인" 
-					style="border: none; background: transparent; color: #0F4C81; font-weight: bold;
-					font-size: 16px; padding-bottom: 20px "/>
-					<input type="button" value="취소"
+					<input type="submit" value="확인" class="btn"/>
+					<input type="button" value="취소" class="btn"
 					onclick="javascript:history.back()"
-					style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;"/>
+					/>
 						</td></tr>
 			</table>
 		</form>		

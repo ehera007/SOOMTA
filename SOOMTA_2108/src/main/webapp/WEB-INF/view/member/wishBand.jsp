@@ -300,7 +300,7 @@ td a:active {
 		</div>
 	</div>
 	<div class="myBandWish">
-			<h1>'${ID}'님의 소모임 찜 목록</h1>
+			<h1>${ID}님의 소모임 찜 목록</h1>
 			<p>숨타와 함께 숨은 시간을 채워봐요!</p>
 		</div>
 	<!-- 타이틀 -->

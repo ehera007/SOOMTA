@@ -221,7 +221,7 @@ ul {
  table {
     border: 2px solid #0F4C81;
     width: 550px;
-    height:700px;
+    height:670px;
     margin-top: 35px;
     margin-bottom: 80px;
     border-spacing: 0px;
@@ -249,6 +249,16 @@ td{
 	font-size: 12px;
 	font-style: italic;
 	text-align: left;
+}
+.btn {
+   height: 30px;
+   background-color: white;
+   color: #0F4C81;
+   font-weight: bold;
+   margin: 5px 5px;
+   border: none;
+   font-size: 16px;
+  
 }
 </style>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -360,10 +370,6 @@ td{
 					<input type="text" name="memName" minlength="2" required
 					style="width:200px;" value="${memPerData.memName}"></td></tr>
 			
-				<tr><th style="padding-bottom: 10px;">가입일</th>
-					<td style="padding-bottom: 10px;">
-					<fmt:formatDate value="${memPerData.memSince}" 
-		             pattern="yyyy-MM-dd"/></td></tr>
 			
 				<tr ><th style="padding-bottom: 10px;">생년월일</th>
 					<td style="padding-bottom: 10px;"><fmt:formatDate value="${memPerData.memDob}" 
@@ -377,7 +383,7 @@ td{
 				
 				<tr><th>주소</th><td>
 		             <input type="text" name="memArea" value="${memPerData.memArea }" id="sample4_roadAddress" style="width:200px;"/>
-					<a href="javascript:sample4_execDaumPostcode();">주소검색</a>
+					<a href="javascript:sample4_execDaumPostcode();" style=" color:#0F4C81; font-weight: bold; ">주소검색</a>
 					</td>
 		         </tr>
 				<tr><th style="padding-bottom: 12px;">핸드폰</th>
@@ -389,12 +395,16 @@ td{
 					<td ><input type="text" name="memEmail"
 						style="width:200px;" value="${memPerData.memEmail }">
 						<div class="detail">* ex) soomta@email.com</div></td></tr>
-			
-					<tr><th colspan="3"align="center" style="padding-right: 40px; padding-bottom: 10px;  padding-top: 20px;">
-						<input type="submit" value="수정 완료"
-							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						<input type="button"  value="취소" style="border: none;font-size: 16px;font-weight: bold;
-					 	background: transparent; color: #0F4C81;"
+						
+				<tr><th style="padding-bottom: 10px;">이메일 수신</th>
+					<td style="padding-bottom: 10px;">
+						<input type="radio" name="memEmailCk" value="Y" <c:if test="${memPerData.memEmailCk == 'Y'}">checked</c:if>/>수신
+						<input type="radio" name="memEmailCk" value="N" <c:if test="${memPerData.memEmailCk == 'N'}">checked</c:if>/>거부
+					</td></tr>
+		             
+					<tr><th colspan="3"align="center" style="padding-right: 40px;">
+						<input type="submit" value="수정 완료" class="btn" />
+						<input type="button"  value="취소" class="btn"
 						onclick="javascript:history.back();" />
 				</th></tr>
 			</table>
