@@ -20,4 +20,5 @@
 	<bean class="service.employee.FaqNumService"/>
 	<bean class="service.employee.FaqInsertService"/>
 	<bean class="service.employee.UpdateService"/>
+	<bean class="controller.employees.Page"/>
 </beans>

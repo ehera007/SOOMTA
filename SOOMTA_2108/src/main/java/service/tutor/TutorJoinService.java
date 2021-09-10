@@ -7,12 +7,15 @@ import org.springframework.ui.Model;
 import Model.TutorDTO;
 import command.TutorCommand;
 import repository.TutorRepository;
+import service.logIn.LogInService;
 
 public class TutorJoinService {
 	@Autowired
 	TutorRepository tutorRepository;
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	LogInService logInService;
 	public void tutorInsert(TutorCommand tutorCommand, Model model) {
 		TutorDTO dto = new TutorDTO();
 		dto.setTutorId(tutorCommand.getTutorId());
@@ -28,5 +31,5 @@ public class TutorJoinService {
 		System.out.println("이메일체크"+dto.getTutorEmailCk());
 		tutorRepository.tutorInsert(dto);
 		model.addAttribute("dto", dto);
+		}
 	}
-}

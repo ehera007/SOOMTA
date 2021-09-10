@@ -116,7 +116,35 @@ $(document)
 							});
 		});
 </script>
-
+<!-- 모두 체크/해제 -->
+<script type="text/javascript">
+function allCheck(){
+	if($("#allCk").is(":checked")){
+		$("input[name=rowCk]").prop("checked",true);
+	}else{
+		$("input[name=rowCk]").prop("checked",false);
+	}
+}
+</script>
+<!-- 체크한 직원 일괄 삭제 -->
+<script type="text/javascript">
+function ckDel(){
+  var rowCk = "";
+  $( "input[name='rowCk']:checked" ).each (function (){
+	  rowCk = rowCk + $(this).val()+"," ;
+  });
+  rowCk = rowCk.substring(0,rowCk.lastIndexOf( ","));
+  if(rowCk == ''){
+    alert("삭제할 대상을 선택하세요.");
+    return false;
+  }
+  if(confirm("모두 삭제 하시겠습니까?\n삭제 후 복구 할 수 없습니다.")){
+		location.href='empCkDel';
+	}else{
+		return false;
+  }
+}
+</script>
 <meta charset="UTF-8">
 <title>관리자 리스트</title>
 </head>
@@ -143,9 +171,10 @@ $(document)
 	<c:if test="${!empty empList }">
 	<table><thead>
 	<tr style="font-size: 25px; padding: 10px; height:80px;">
-				<th colspan="5">등록 된 관리자 리스트</th></tr>
+				<th colspan="6">등록 된 관리자 리스트</th></tr>
 		<tr style="padding-bottom:20px; height:40px;">
-			<th width="10%">No.</th>
+			<th width="3%"><input type="checkbox" id="allCk" onclick="allCheck();"></th>
+			<th width="7%" style="text-align:left; margin-left:5px;">No.</th>
 			<th width="30%">아이디</th>
 			<th width="20%">이름</th>
 			<th width="20%">담당 파트</th>
@@ -154,7 +183,8 @@ $(document)
 		<c:forEach items="${empList }" var="dto">
 		<c:set var="i" value="${i+1 }"/>
 			<tr>
-				<td>${i}</td>
+				<td><input type="checkbox" name="rowCk" id="rowCk" value="${dto.empId }"/></td>
+				<td style="text-align:left; margin-left:5px;">${i}</td>
 				<td><a href="empInfo?empId=${dto.empId }" class="empInfo">${dto.empId }</a></td>
 				<td>${dto.empName }</td>
 				<td>${dto.empJob}</td>
@@ -164,7 +194,7 @@ $(document)
 	</table></c:if>
 	<c:if test="${empty empList }">
 	등록된 직원 없습니다.</c:if>
-	
+	<input type="button" class="btn" onclick="ckDel();" value="일괄 삭제"/>
 	<!-- https://jg-han.tistory.com/38 참고해보기
 				https://dotheright.tistory.com/218 참고해보기(페이징 포함)
 			 -->

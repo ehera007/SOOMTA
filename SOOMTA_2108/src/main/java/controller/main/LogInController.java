@@ -17,12 +17,14 @@ import command.IdPwFindeCommand;
 import command.LogInCommand;
 import command.MemberCommand;
 import command.TutorCommand;
+import repository.LogInRepository;
 import service.logIn.CookieService;
 import service.logIn.FindService;
 import service.logIn.LogInService;
 import service.member.MemberJoinService;
 import service.tutor.TutorJoinService;
 import validator.LogInCommandValidator;
+import validator.TutorJoinValidator;
 
 
 
@@ -79,19 +81,48 @@ public class LogInController {
 		return "login/findPw";
 	}
 	
-	@RequestMapping("tutorJoin")//튜터등록
+	@RequestMapping(value="tutorJoin")//튜터등록
 	public String tutorJoin() {
 		return "tutor/join";
+	}
+	//아이디 중복 검사
+	@RequestMapping(value="idcheck")
+	public String idCheck(String id, Model model) {
+		int count = 0;
+		count = logInService.idCheck(id);
+		model.addAttribute("num", count);
+		return "tutor/idCheck";
+	}
+	//메일 중복 검사_튜터
+	@RequestMapping("emailCheck")
+	public String emailCheck(String email, Model model) {
+		int count = 0;
+		count = logInService.emailCheck(email);
+		model.addAttribute("num", count);
+		return "tutor/mailCheck";
 	}
 	@RequestMapping("memJoin")//회원가입
 	public String memJoin() {
 		return "member/join";
 	}
-	
+	//메일 중복 검사_회원
+	@RequestMapping("emailCheckM")
+	public String emailCheckM(String email, Model model) {
+		int count = 0;
+		count = logInService.emailCheckM(email);
+		model.addAttribute("num", count);
+		return "member/mailCheck";
+	}
 	@Autowired
 	TutorJoinService tutorJoinService;
+	@Autowired
+	LogInRepository logInRepository;
 	@RequestMapping(value="tutorJoined", method=RequestMethod.POST)//튜터등록 완료 후
-	public String tutorJoined(TutorCommand tutorCommand, Model model) {
+	public String tutorJoined(TutorCommand tutorCommand, Errors errors, Model model) {
+		new TutorJoinValidator().validate(tutorCommand, errors);
+		if(errors.hasErrors()) {
+			return "tutor/join";
+		}
 		tutorJoinService.tutorInsert(tutorCommand, model);
 		return "tutor/joined";
 	}

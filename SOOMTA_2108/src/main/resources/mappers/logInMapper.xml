@@ -24,4 +24,20 @@
 	where tutor_Name = #{tutorName} and tutor_Dob = #{tutorDob} and tutor_Email = #{tutorEmail}
 </select>
 
+<select id="idCheck" parameterType="string" resultType="int">
+    select sum(cnt) from 
+    (select count(*)cnt from tutor where tutor_id = #{id}
+    union
+    select count(*)cnt from member where mem_id = #{id}
+    union
+    select count(*)cnt from employees where emp_id = #{id})
+</select>
+
+<select id="emailCheck" parameterType="string" resultType="int">
+	select count(*) from tutor where tutor_email = #{email}
+</select>
+
+<select id="emailCheckM" parameterType="string" resultType="int">
+	select count(*) from member where mem_email = #{email}
+</select>
 </mapper> 

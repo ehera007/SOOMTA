@@ -17,7 +17,16 @@ public class EmployeeCommand {
 	String empAddr;
 	String oldPw;
 	
+	String rowCk;
 	
+	
+	
+	public String getRowCk() {
+		return rowCk;
+	}
+	public void setRowCk(String rowCk) {
+		this.rowCk = rowCk;
+	}
 	public String getOldPw() {
 		return oldPw;
 	}

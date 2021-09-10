@@ -66,7 +66,7 @@ tbody td a:visted{
 	font-size:15px;
 	font-weight: bold;
 	border:none;
-	margin: 30px 10px 10px 10px;
+	margin: 10px;
 }
 .ck{
 	font-size:13px;
@@ -170,18 +170,102 @@ function check_pw(){
             document.getElementById('pw_ck_msg').style.fontWeight='900';
         }}};
 </script>
-<!-- 필수체크 확인 알림창 & 이메일체크 값 넘기기 -->
+<!-- id 중복 확인 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	var idCk = 0;
+	function ck(){
+		
+		var id = $("#memId").val();
+		
+		$.ajax({
+			type : 'POST',
+			data : {"id": id} ,
+			url : "idcheck",
+			dataType : "html",
+			success : function(data){
+				if (Number(data.trim()) > 0){
+					document.getElementById('idCkMsg').innerHTML='중복된 ID';
+					document.getElementById('idCkMsg').style.color='red';
+			        document.getElementById('idCkMsg').style.fontSize='15px';
+			        document.getElementById('idCkMsg').style.fontWeight='900';
+					alert("이미 사용중인 ID입니다. \n 다른 ID를 입력해주세요");
+				}else{
+			        idCk = 1;
+					document.getElementById('idCkMsg').innerHTML='사용 가능 ID';
+					document.getElementById('idCkMsg').style.color='#0F4C81';
+			        document.getElementById('idCkMsg').style.fontSize='15px';
+			        document.getElementById('idCkMsg').style.fontWeight='900';
+				}
+			},
+			error : function(error){
+				alert("error : " + error);
+			}
+		});
+	}
+</script>
+<!-- email 중복 확인 -->
+<script type="text/javascript">
+	function emailCk(){
+		var email = $("#memEmail").val();
+		$.ajax({
+			type : 'POST',
+			data : {"email": email} ,
+			url : "emailCheckM",
+			dataType : "html",
+			success : function(data){
+				if (Number(data.trim()) > 0){
+					document.getElementById('emailCkMsg').innerHTML='중복된 메일';
+					document.getElementById('emailCkMsg').style.color='red';
+			        document.getElementById('emailCkMsg').style.fontSize='15px';
+			        document.getElementById('emailCkMsg').style.fontWeight='900';
+					alert("이미 사용중인 메일입니다. \n 다른 메일을 입력해주세요");
+				}else{
+			        idCk = 1;
+					document.getElementById('emailCkMsg').innerHTML='사용 가능 메일';
+					document.getElementById('emailCkMsg').style.color='#0F4C81';
+			        document.getElementById('emailCkMsg').style.fontSize='15px';
+			        document.getElementById('emailCkMsg').style.fontWeight='900';
+				}
+			},
+			error : function(error){
+				alert("error : " + error);
+			}
+		});
+	}
+</script>
+<!-- 필수체크/불일치 정보 확인 알림창 & 이메일체크 값 넘기기 -->
 <script type="text/javascript">
 	$(document).ready(function(){
+		var str1 = '사용 가능 ID';
+		var str2 = '사용 가능 메일';
 		$("#frm").submit(function(){
-			if(!$("#agree").is(":checked")){
-				alert('필수 항목입니다.', {title:'경고!'});
-				return false;
-			}else if($("#memEmailCk").is(":checked")==true){
+			if($("#memEmailCk").prop("checked")){
 				$("#memEmailCk").val('Y');	
-			}else if($("#memEmailCk").is(":checked")==false){
-				$("#memEmailCk").val('N');
-			}	
+			}
+			if(!$("#agree").is(":checked")){
+				alert('이용약관필수 항목입니다.');
+				var offset = $('#agree').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}if(document.getElementById('idCkMsg').innerHTML != str1){
+				alert('사용할 수 없는 아이디입니다. \n ID를 확인해주세요');
+				var offset = $('#idCkMsg').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}if(document.getElementById('emailCkMsg').innerHTML != str2){
+				alert('사용할 수 없는 이메일입니다. \n 이메일을 확인해주세요');
+				var offset = $('#emailCkMsg').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}
+			if(document.getElementById('pw1').value!=document.getElementById('pw2').value){
+				alert('일치하지 않거나 사용할 수 없는 정보가 있습니다. \n PW 확인을 확인 해주세요');
+				var offset = $('#pw1').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			
+			}
 		});
 	});
 </script>
@@ -217,8 +301,9 @@ function check_pw(){
          </tr></thead>
          <tbody>
          <tr><th>ID</th>
-             <td><input type="text" name="memId" value="${memId }" autofocus size="30" pattern="^([a-z0-9]){4,15}$" required/>
-             <input type="button" value="중복확인" style="align:left;">
+             <td><input type="text" name="memId" value="${memId }" autofocus size="30" pattern="^([a-z0-9]){4,15}$" required
+              id="memId"  onblur="ck();"/>
+              &nbsp;<span id="idCkMsg"></span>
 				 <div class="detail">* 4~15자 영문/숫자 사용</div>
                </td></tr>      
          <tr><th>PW</th>
@@ -243,10 +328,10 @@ function check_pw(){
             <td><input type="text" name="memPhone" value="${memPhone }" size="30" minlength="11" maxlength="11" required />
 				<div class="detail">* ex) 01012341234</div></td></tr>
          <tr><th>이메일</th>
-            <td><input type="email" name="memEmail" value="${memEmail }" size="30" required/></td></tr>
+            <td><input type="email" name="memEmail" value="${memEmail }" size="30" id="memEmail" onblur="emailCk();" required/>&nbsp;<span id="emailCkMsg"></span></td></tr>
              <tr><th>주소</th><td>
 			<input type="text" name="memArea" value="${memArea }" id="sample4_roadAddress" size="30" required/>
-			<a href="javascript:sample4_execDaumPostcode();">주소검색</a>
+			&nbsp;<a href="javascript:sample4_execDaumPostcode();"  style="font-size:15px;">주소검색</a>
 			<div class="detail">* 활동할 지역의 주소를 입력해주세요.</div></td></tr>
      <tr><th>약관 동의</th>
             <td rowspan="2">

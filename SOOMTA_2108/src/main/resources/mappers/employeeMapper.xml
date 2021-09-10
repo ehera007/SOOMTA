@@ -109,10 +109,15 @@
 	mem_Email memEmail, mem_Email_Ck memEmailCk
 </sql>
 
-<select id="memList" resultType="Model.MemberDTO">
-	select mem_Id memId, mem_Name memName, mem_Since memSince
-	from member order by mem_Since desc
+<select id="memList" resultType="Model.MemberDTO" parameterType="Model.MemberDTO">
+	select rn, memId, memName, memSince 
+    from (select rownum rn,memId, memName, memSince 
+    from (select mem_Id memId, mem_name memName, mem_Since memSince from member order by memSince desc) 
+    order by memSince desc) 
+    where rn between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow} 
+    order by memSince desc
 </select>
+
 
 <select id="memInfo" parameterType="string" resultType="Model.MemberDTO">
 	select <include refid="memCol"/>, substr(mem_Area,0,6) memArea 
@@ -136,6 +141,10 @@
 		mem_Name = #{memName}, mem_Phone = #{memPhone} 
 	where mem_id = #{memId}
 </update>
+
+<select id="countM" resultType="int">
+	select count(*) from member
+</select>
 
 <!-- 게시판 관리 -->
 <select id="boardList" resultType="Model.FaqDTO">

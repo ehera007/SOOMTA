@@ -66,7 +66,7 @@ tbody td a:visted{
 	font-size:15px;
 	font-weight: bold;
 	border:none;
-	margin: 30px 10px 10px 10px;
+	margin: 10px;
 }
 .ck{
 	font-size:13px;
@@ -82,9 +82,9 @@ tbody td a:visted{
 	font-style: italic;
 	text-align: left;
 }
-#emailSuc, #emailFail{
-	display: none; 
-	font-size: 15px;
+.err{
+	font-size:12px;
+	color:red;
 	font-weight:bold;
 }
 </style>
@@ -192,21 +192,110 @@ function check_mail(){
             document.getElementById('mail_ck_msg').style.fontWeight='900';
         }}};
 </script>
-<!-- 선생님 이메일 체크 -->
-<!-- 필수체크 확인 알림창 & 이메일체크 값 넘기기 -->
+<!-- 필수체크/불일치 정보 확인 알림창 & 이메일체크 값 넘기기 -->
 <script type="text/javascript">
 	$(document).ready(function(){
+		var str1 = '사용 가능 ID';
+		var str2 = '사용 가능 메일';
+		var str3 = '메일 일치';
 		$("#frm").submit(function(){
-			if(!$("#agree").is(":checked")){
-				alert('필수 항목입니다.', {title:'경고!'});
-				return false;
-			}else if($("#tutorEmailCk").prop("checked")){
+			if($("#tutorEmailCk").prop("checked")){
 				$("#tutorEmailCk").val('Y');	
-			}else if(!$("#tutorEmailCk").is(":checked")){
-				$("#tutorEmailCk").val('N');
-			}	
+			}
+			if(!$("#agree").is(":checked")){
+				alert('이용약관필수 항목입니다.');
+				var offset = $('#agree').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}if(document.getElementById('idCkMsg').innerHTML != str1){
+				alert('사용할 수 없는 아이디입니다. \n ID를 확인해주세요');
+				var offset = $('#idCkMsg').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}if(document.getElementById('emailCkMsg').innerHTML != str2){
+				alert('사용할 수 없는 이메일입니다. \n 이메일을 확인해주세요');
+				var offset = $('#emailCkMsg').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}if(document.getElementById('pw1').value!=document.getElementById('pw2').value){
+				alert('일치하지 않거나 사용할 수 없는 정보가 있습니다. \n PW 확인을 확인 해주세요');
+				var offset = $('#pw1').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}if(document.getElementById('mail_ck_msg').innerHTML != str3){
+				alert('일치하지 않거나 사용할 수 없는 정보가 있습니다. \n 이메일 확인을 확인 해주세요');
+				var offset = $('#mail1').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}
 		});
 	});
+</script>
+<!-- id 중복 확인 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	var idCk = 0;
+	function ck(){
+		
+		var id = $("#tutorId").val();
+		
+		$.ajax({
+			type : 'POST',
+			data : {"id": id} ,
+			url : "idcheck",
+			dataType : "html",
+			success : function(data){
+				if (Number(data.trim()) > 0){
+					document.getElementById('idCkMsg').innerHTML='중복된 ID';
+					document.getElementById('idCkMsg').style.color='red';
+			        document.getElementById('idCkMsg').style.fontSize='15px';
+			        document.getElementById('idCkMsg').style.fontWeight='900';
+			        alert("이미 사용중인 ID입니다. \n 다른 ID를 입력해주세요");
+				}else{
+			        idCk = 1;
+					document.getElementById('idCkMsg').innerHTML='사용 가능 ID';
+					document.getElementById('idCkMsg').style.color='#0F4C81';
+			        document.getElementById('idCkMsg').style.fontSize='15px';
+			        document.getElementById('idCkMsg').style.fontWeight='900';
+				}
+			},
+			error : function(error){
+				alert("error : " + error);
+			}
+		});
+	}
+</script>
+<!-- email 중복 확인 -->
+<script type="text/javascript">
+	function emailCk(){
+		
+		var email = $("#mail1").val();
+		
+		$.ajax({
+			type : 'POST',
+			data : {"email": email} ,
+			url : "emailCheck",
+			dataType : "html",
+			success : function(data){
+				if (Number(data.trim()) > 0){
+					document.getElementById('emailCkMsg').innerHTML='중복된 메일';
+					document.getElementById('emailCkMsg').style.color='red';
+			        document.getElementById('emailCkMsg').style.fontSize='15px';
+			        document.getElementById('emailCkMsg').style.fontWeight='900';
+					alert("이미 사용중인 메일입니다. \n 다른 메일을 입력해주세요");
+				}else{
+			        idCk = 1;
+					document.getElementById('emailCkMsg').innerHTML='사용 가능 메일';
+					document.getElementById('emailCkMsg').style.color='#0F4C81';
+			        document.getElementById('emailCkMsg').style.fontSize='15px';
+			        document.getElementById('emailCkMsg').style.fontWeight='900';
+				}
+			},
+			error : function(error){
+				alert("error : " + error);
+			}
+		});
+	}
 </script>
 <meta charset="UTF-8">
 <title>튜터등록</title>
@@ -232,7 +321,7 @@ function check_mail(){
    <!-- 중앙 -->
    <div class="main">
    <h1>튜터 등록하고 숨타와 함께 하세요!</h1>
-      <form action="tutorJoined" method="post" id="frm">
+      <form:form action="tutorJoined" method="post" id="frm" modelAttribute="tutorCommand">
       <input type="hidden" name="tutorSince" value="${tutorSince }"/>
       <table>
          <thead>
@@ -241,42 +330,52 @@ function check_mail(){
          </tr></thead>
          <tbody>
          <tr><th>ID</th>
-             <td><input type="text" name="tutorId" minlength="4" maxlength="15" autofocus size="30" pattern="^([a-z0-9]){4,15}$" required/>
-             <input type="button" value="중복확인" style="align:left;">
-				 <div class="detail">* 4~15자 영문/숫자 사용</div>
-               </td></tr>      
+             <td>
+             <input type="text" name="tutorId" id="tutorId" value="${tutorId }" pattern="^([a-z0-9]){4,15}$" size="30" required
+             onblur="ck();"/>
+              &nbsp;<span id="idCkMsg"></span>
+             <span class="err"><form:errors path="tutorId"/></span>
+			 <div class="detail">* 4~15자 영문/숫자 사용</div>
+             </td></tr>      
          <tr><th>PW</th>
             <td><input type="password" name="tutorPw" size="30" id="pw1" minlength="8" maxlength="15"
             	pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$" required/>
+            	<span class="err"><form:errors path="tutorPw"/></span>
 				<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td></tr>
          <tr><th>PW확인</th>
             <td><input type="password" name="tutorPwCon" size="30" id="pw2" onkeyup="check_pw()"  minlength="8" maxlength="15"
             	pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$" required/>
-				&nbsp;<span id="pw_ck_msg"></span></td></tr>
+				&nbsp;<span id="pw_ck_msg"></span>&nbsp;<span class="err"><form:errors path="tutorPwCon"/></span></td></tr>
          <tr><th>이름</th>
-            <td><input type="text" name="tutorName" value="${tutorName }" required minlength="2" size="30"/>
+            <td>
+            <input type="text" name="tutorName" value="${tutorName }" required="required" minlength="2" size="30"/>
+            <span class="err"><form:errors path="tutorName"/></span>
          <tr><th>생년월일</th>
-            <td><input type="date" name="tutorDob" required/></td></tr>
+            <td><input type="date" name="tutorDob" value="${tutorDob }" required/>
+            	<span class="err"><form:errors path="tutorDob"/></span></td></tr>
          <tr><th>성별</th>
             <td>
-               <input type="radio" name="tutorGender" value="M" checked="checked"/>남자
-               <input type="radio" name="tutorGender" value="F"/>여자
+               <input type="radio" name="tutorGender" value="M" checked="checked" />남자
+               <input type="radio" name="tutorGender"  value="F" /> 여자
                <div class="detail">* 본인이 변경 할 수 없으니 정확히 체크해주세요.</div>
             </td></tr>
          <tr><th>핸드폰</th>
-            <td><input type="text" name="tutorPhone" value="${tutorPhone }" size="30" minlength="11" maxlength="11" required />
+            <td>
+            <input type="text" name="tutorPhone" value="${tutorPhone }" size="30" minlength="11" maxlength="11" required="required" />
+            <form:errors path="tutorPhone"/>
 				<div class="detail">* ex) 01012341234</div></td></tr>
          <tr><th>이메일</th>
-            <td><input type="email" name="tutorEmail" value="${tutorEmail }" size="30" class="email" id="mail1" required/>
-				<div class="detail">* 이메일 인증에 필요하니 정확히 입력해주세요. ex) email@email.com</div></td></tr>
+            <td>
+            <input type="email" name="tutorEmail" value="${tutorEmail }" size="30" class="email" id="mail1" required="required" onblur="emailCk();"/>
+&nbsp;<span id="emailCkMsg"></span>&nbsp;<span class="err"><form:errors path="tutorEmail"/></span>
+			<div class="detail">* 이메일 인증에 필요하니 정확히 입력해주세요. ex) email@email.com</div></td></tr>
              <tr><th>이메일 확인</th>
-            <td><input type="email" name="tutorEmailCon" value="${tutorEmailCon }" size="30" class="email" id="mail2" onkeyup="check_mail()" required/>
-				&nbsp;<span id="mail_ck_msg"></span>
+            <td><input type="email" name="tutorEmailCon" size="30" class="email" id="mail2" onkeyup="check_mail()" required="required"/>
+				&nbsp;<span id="mail_ck_msg"></span>&nbsp;<span class="err"><form:errors path="tutorEmailCon"/></span>
             	</td></tr>
-
           <tr><th>주소</th><td>
-			<input type="text" name="tutorArea" value="${tutorArea}" id="sample4_roadAddress" size="30" required/>
-			<a href="javascript:sample4_execDaumPostcode();">주소검색</a>
+			<input type="text" name="tutorArea" value="${tutorArea }" id="sample4_roadAddress" size="30" required="required"/>
+			&nbsp;<a href="javascript:sample4_execDaumPostcode();" style="font-size:15px;">주소검색</a>
 			<div class="detail">* 활동할 지역의 주소를 입력해주세요.</div></td></tr>
          <tr><th>약관 동의</th>
             <td rowspan="2">
@@ -293,7 +392,7 @@ function check_mail(){
             </th></tr></tfoot>
          </table> 
         
-      </form>
+      </form:form>
    </div>
   
 

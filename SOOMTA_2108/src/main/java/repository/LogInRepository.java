@@ -24,6 +24,18 @@ public class LogInRepository {
 		statement = namespace + ".tIdFind";
 		return sqlSession.selectOne(statement, dto1);
 	}
+	public Integer idCheck(String id) {
+		statement = namespace + ".idCheck";
+		return sqlSession.selectOne(statement, id); 
+	}
+	public Integer emailCheck(String email) {
+		statement = namespace + ".emailCheck";
+		return sqlSession.selectOne(statement, email);
+	}
+	public Integer emailCheckM(String emailM) {
+		statement = namespace + ".emailCheckM";
+		return sqlSession.selectOne(statement, emailM);
+	}
 	
 
 }

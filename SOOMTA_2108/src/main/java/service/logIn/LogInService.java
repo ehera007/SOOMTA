@@ -53,4 +53,20 @@ public class LogInService {
 			}
 		}
 	}
+	public LogInDTO duplicateCk(String userId) {
+		LogInDTO logIn = logInRepository.logIn(userId); 
+		return logIn;
+	}
+	public int idCheck(String id) {
+		int count = logInRepository.idCheck(id);
+		return count;
+	}
+	public int emailCheck(String email) {
+		int count = logInRepository.emailCheck(email);
+		return count;
+	}
+	public int emailCheckM(String email) {
+		int count = logInRepository.emailCheckM(email);
+		return count;
+	}
 }

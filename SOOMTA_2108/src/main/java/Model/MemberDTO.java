@@ -13,6 +13,16 @@ public class MemberDTO {
 	String memEmail;
 	String memArea;
 	String memEmailCk;
+	
+	StartEndPageDTO startEndPageDTO;
+	
+	
+	public StartEndPageDTO getStartEndPageDTO() {
+		return startEndPageDTO;
+	}
+	public void setStartEndPageDTO(StartEndPageDTO startEndPageDTO) {
+		this.startEndPageDTO = startEndPageDTO;
+	}
 	public String getMemId() {
 		return memId;
 	}
