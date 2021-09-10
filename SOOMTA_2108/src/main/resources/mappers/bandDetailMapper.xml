@@ -25,4 +25,13 @@
 	from band
 	where BAND_NO = #{bandNo}
 </select>
+
+<insert id="bandJoin" parameterType="Model.BandJoinDTO">
+	insert into band_join(MEM_ID,BAND_NO,BANDJOIN_INTRO, BAND_ALLOW)
+	values(#{memId},#{bandNo},#{bandJoinIntro},#{bandAllow})
+</insert>
+<select id="countBank" parameterType="Model.BandDTO" resultType="int">
+	select count(*) from band_join where MEM_ID = #{memId} and  BAND_NO = #{bandNo}     
+</select> 
 </mapper>
+

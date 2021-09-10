@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ include file="../include/tags.jsp"%>
 	<!DOCTYPE html>
 	<html>
 
@@ -272,7 +273,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 		<div class="banddetail"> 
       <div class="bandleft">
 		  </div>
-			<!-- 중앙 메뉴밑 -->
+
       <div class="bandcenter">
       
       <table class="bandhomeTable">
@@ -289,6 +290,23 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     <td class ="bandcafemenu" colspan="1">모임장</td>
     <td colspan="3">${bandDTO.memId}</td>
     </tr>
+    <tr>
+    <td class ="bandcafemenu" colspan="1">공개여부</td>
+    <td colspan="3">
+    	<c:if test="${bandDTO.bandPublic == 'O'}">공개</c:if>
+    	<c:if test="${bandDTO.bandPublic == 'P'}">비공개</c:if>
+    </td>
+    </tr>
+    
+    <tr>
+    <td class ="bandcafemenu" colspan="1">모임방식</td>
+    <td colspan="3">
+    	<c:if test="${bandDTO.bandWay == 'C'}">대면</c:if>
+    	<c:if test="${bandDTO.bandWay == 'N'}">비대면</c:if>
+    	<c:if test="${bandDTO.bandWay == 'U'}">무관</c:if>
+    </td>
+    </tr>
+   
     <tr>
     <td class ="bandcafemenu" colspan="1">시작일</td>
     <td colspan="3"><fmt:formatDate value="${bandDTO.bandRegiDay}" 
@@ -307,6 +325,10 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     <tr>
     <td  class ="bandcafemenu" colspan="1">참여/최대</td>
     <td  colspan="3">(#명/${bandDTO.bandTotal}명)</td>
+  </tr>
+  <tr>
+    <td  class ="bandcafemenu" colspan="1">소개</td>
+    <td  colspan="3">${bandDTO.bandIntroduce}</td>
   </tr>
   <tr>
     <td class="bandjoinbutton" colspan="4" style="text-align:right; font-weight:bold"><a href="bandDetail">탈퇴하기</a></td>

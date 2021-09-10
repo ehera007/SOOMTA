@@ -9,4 +9,6 @@
 	<bean class="service.band.BandDetailService" />
 	<bean class="repository.BandDetailRepository"/>
 	<bean class="service.band.BandHomeService" />
+	<bean class="service.band.BandDetailJoinService" />
+	
 </beans>

@@ -25,14 +25,17 @@ public class BandDetailService {
 		/// 로그인사용자가 화원
 		BandWishDTO bandWishDTO = bandDetailRepository.bandDetail1(dto);
 		BandDTO bandDTO = bandDetailRepository.band(bandNo);
+		int count = bandDetailRepository.countBank(dto);
 		model.addAttribute("bandDTO", bandDTO);
-		
+
 		if (dto1 != null ) return "band/bandDetailHomeMgr"; //관리자
 		if (bandWishDTO != null)return "band/bandDetailHome"; //일반회원
 		if (bandWishDTO == null && bandDTO == null) return "band/bandDetail"; //비회원
+		if(count == 1) return "band/bandDetailHome";
 		return null;
-		
-		
-		
+	}
+	public void  bandDetail(Long bandNo,Model model) {
+		BandDTO bandDTO = bandDetailRepository.band(bandNo);
+		model.addAttribute("dto", bandDTO);
 	}
 }

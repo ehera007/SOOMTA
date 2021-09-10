@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -279,16 +279,13 @@ ul {
 			<table align="center">
 				 <thead>
          			<tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
-            		<th colspan="2" style="padding-right: 45px;">밴드 가입 신청 완료 </th>
+            		<th colspan="2" style="padding-right: 45px;">밴드 가입 신청 완료</th>
          		</tr></thead>
 				<tr align ="center">
-					<td style="color:#0F4C81; font-size: 20px;"><strong>""님  환영합니다</strong></td>
+					<td style="color:#0F4C81; font-size: 20px;"><strong>"${memId}"님  환영합니다</strong></td>
     			</tr>
     			<tr align ="center">
-					<p><td style="color:#0F4C81; font-size: 20px;"><strong>밴드장의 승인을 기다리는 중입니다!</strong></td></p>
-    			</tr>
-    			<tr align ="center">
-    				<p><td style="color:#0F4C81; font-size: 17px;"><strong><a href="bandDetail" >밴드 HOME으로</a></strong></td></p>
+    				<p><td style="color:#0F4C81; font-size: 17px;"><strong><a href="bandDetail?bandNo=${bandDTO.bandNo}" style="text-decoration: none; color:#0F4C81;" >밴드 HOME으로</a></strong></td></p>
 			</table>
 			</br>
 			</br>

@@ -252,14 +252,14 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 
 	<body>
 		<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
-		<div class="header">
-			<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
+	<div class="header">
+		<img src="../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'"/>
 		<div class="nav">
 			<div class="nav-item">
-				<a href="/member/myPage">마이페이지</a>
+				<a href="<c:url value='/member/myPage'/>">마이페이지</a>
 			</div>
 			<div class="nav-item">
-				<a href="/soomta/logOut'/">로그아웃</a>
+				<a href="<c:url value='/soomta/logOut'/>">로그아웃</a>
 			</div>
 		</div>
 	</div>

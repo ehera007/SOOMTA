@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  isELIgnored="false"%>
+    <%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -270,8 +271,14 @@ td{
 	</div>
   <!---------------------------------------------------------------------------------------->
 	<div class="bandjoinForm">
-		<form action="bandjoinOk" method="get" name="bandfrm" 
-					enctype="multipart/form-data">
+		<form action="bandDetailJoinOk?bandNo=${dto.bandNo}" method="post" name="bandfrm" >
+		<input type="hidden" name="bandNo" value="${dto.bandNo}" />
+		<input type="hidden" name="bandPublic" value="${dto.bandPublic}" />
+		<input type="hidden" name="memId" value="${memPerData.memId}" />
+		<input type="hidden" name="memDob" value="<fmt:formatDate value='${memPerData.memDob}' 
+		             pattern="yyyy-MM-dd"/>" />
+		<input type="hidden" name="memGender" value="${memPerData.memGender}" />
+		
 		<table>
 			<thead>
          		<tr style="background-color: #0F4C81; color: white; font-size: 25px;" > 
@@ -279,14 +286,16 @@ td{
          </tr></thead>
 
 			<tr><th>이름</th>
-				<td>${mem_name}</td></tr>
+				<td>${memPerData.memName}</td></tr>
 			<tr><th>생년월일</th>
-				<td>${mem_Dob}</td></tr>
+				<td><fmt:formatDate value="${memPerData.memDob}" 
+		             pattern="yyyy-MM-dd"/></td></tr>
 			<tr><th>성별</th>
-				<td>${mem_Jender}
+				<td><c:if test="${memPerData.memGender == 'M'}">남성</c:if>
+         			<c:if test="${memPerData.memGender == 'F'}">여성</c:if>
 				</td></tr>
 			<tr><th style="height:180px;">자기 소개</th>
-				<td><input type="text" name="bandIntroduce" value="${band_introduce}"style="width:270px; height:150px;"/></td></tr>
+				<td><input type="text" name="bandJoinIntro" style="width:270px; height:150px;"/></td></tr>
 			
 			<tr><th colspan="3"align="center" style="padding-left: 0px;padding-right: 20px;">
 					<input type="submit" value="밴드가입" 
@@ -300,7 +309,7 @@ td{
 			</table> 
 		</form>
 	</div>
-	<a href="bandDetailjoinOk">회원 가입 완료 후 확인페이지</a>
+	<a href="bandDetailJoinOk?bandNo=${dto.bandNo}">비공개페이지</a>
 <!-- --------------------------------------------------->
 	<hr style="color: #BEBEBE;">
 
