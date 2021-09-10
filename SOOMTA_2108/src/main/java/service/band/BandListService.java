@@ -12,11 +12,11 @@ import Model.LogInDTO;
 import repository.BandRepository;
 
 public class BandListService {
-	@Autowired
-	BandRepository bandRepository;
-	public void bandList(Model model,HttpSession session) {
-		LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");
-		List<BandDTO> list = bandRepository.bandList(logIn.getUserId());
-		model.addAttribute("lists",list);
-	}
+   @Autowired
+   BandRepository bandRepository;
+   public void bandList(Model model,HttpSession session) {
+      LogInDTO logIn = (LogInDTO)session.getAttribute("logIn");
+      List<BandDTO> list = bandRepository.bandList(logIn.getUserId());
+      model.addAttribute("lists",list);
+   }
 }

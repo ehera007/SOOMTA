@@ -258,7 +258,13 @@ td{
 	font-style: italic;
 	text-align: left;
 }
- 
+ .btn {
+	  border: none;
+	  font-size: 16px;
+	  background: transparent;
+	  color: #0F4C81;
+	  font-weight: bold;
+}
 </style>
 <script type="text/javascript">
 function ctgrChange(e){
@@ -341,7 +347,8 @@ function ctgrChange(e){
          
          <tr><th style="padding-top: 35px;">소모임 번호</th>
             <td style="padding-top: 35px;">
-            <input name="bandNo" value="${bandNo}" readonly="readonly"/></td>
+            <input name="bandNo" value="${bandNo}" readonly="readonly"
+            	style="border:none; font-size: 16px;"/></td>
                
          <tr><th>카테고리</th>
            <td>
@@ -359,7 +366,7 @@ function ctgrChange(e){
          </tr>
 
        <tr><th>소모임 이름</th>
-            <td><input type="text" name="bandName"style="width:200px;" required
+            <td><input type="text" name="bandName"style="width:230px;" required
             	minlength="2" maxlength="35"/></td></tr>
          
          <tr><th>선호 성별</th>
@@ -370,7 +377,7 @@ function ctgrChange(e){
             </td></tr>
 
          <tr><th>선호 나이</th>
-            <td><input type="text" name="bandAge"style="width:200px;"required/></td></tr>
+            <td><input type="text" name="bandAge"style="width:230px;"required/></td></tr>
          
          <tr><th>모임방식</th>
             <td>
@@ -380,7 +387,7 @@ function ctgrChange(e){
              </td></tr>
          
          <tr><th>총 인원 수</th>
-            <td><input type="text" name="bandTotal"style="width:200px;"required/></td></tr>
+            <td><input type="text" name="bandTotal"style="width:230px;"required/></td></tr>
         
          <tr><th>공개 비공개</th>
          <td >
@@ -388,9 +395,9 @@ function ctgrChange(e){
                <input type="radio" name="bandPublic" value="P"/>비공개
             </td></tr>
       
-         <tr><th style="padding-bottom: 110px;">소모임 소개</th>
-            <td style="padding-bottom: 10px;"><textarea id="test"rows="6" cols="30" name="bandIntroduce" 
-            	required minlength="10"></textarea><div class="detail">* 10자 이상 입력하세요.</div>
+         <tr><th style="padding-bottom : 120px;">소모임 소개</th>
+            <td style="padding-top: 10px;"><textarea id="test"rows="6" cols="30" name="bandIntroduce" 
+            	required minlength="10"placeholder="* 10자 이상 입력하세요."></textarea>
             	 <div id="test_cnt">(0 / 2000)</div>
             </td></tr>
             
@@ -399,13 +406,9 @@ function ctgrChange(e){
          <input type="file" name="bandImg" multiple="multiple"/>
                </td></tr>
          <tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px;">
-               <input type="reset" class="btn" value="내용 지우기"
-               style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-               <input type="submit" value="밴드 등록" 
-                  style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-            	<input type="button" value="취소"
-					onclick="javascript:history.back()"
-					style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;"/>
+               <input type="reset" class="btn" value="내용 지우기"/>
+               <input type="submit" value="밴드 등록" class="btn" />
+               <input type="button" value="취소" onclick="javascript:history.back()" class="btn"/>
             </th></tr>
             
          </table> 

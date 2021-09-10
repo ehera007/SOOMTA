@@ -17,20 +17,19 @@ import repository.BandRepository;
 public class BandWriteService {
 	@Autowired
 	BandRepository bandRepository;
-	public void bandWrite(BandCommand bandCommand,
-			HttpSession session) {
+	public void bandWrite(BandCommand bandCommand,HttpSession session) {
 		BandDTO dto = new BandDTO();
-		dto.setBandNo(bandCommand.getBandNo());
+		dto.setBandNo(bandCommand.getBandNo());//밴드 시퀀스
 		
-		dto.setBandCategoryL(bandCommand.getBandCategoryL());
-		dto.setBandCategoryS(bandCommand.getBandCategoryS());
-		dto.setBandName(bandCommand.getBandName());
-		dto.setBandGender(bandCommand.getBandGender());
-		dto.setBandAge(bandCommand.getBandAge());
-		dto.setBandWay(bandCommand.getBandWay());
-		dto.setBandTotal(bandCommand.getBandTotal());
-		dto.setBandPublic(bandCommand.getBandPublic());
-		dto.setBandIntroduce(bandCommand.getBandIntroduce());
+		dto.setBandCategoryL(bandCommand.getBandCategoryL());//밴드 카테고리 대
+		dto.setBandCategoryS(bandCommand.getBandCategoryS());//소
+		dto.setBandName(bandCommand.getBandName());//밴드 이름
+		dto.setBandGender(bandCommand.getBandGender());//성별
+		dto.setBandAge(bandCommand.getBandAge());//나이
+		dto.setBandWay(bandCommand.getBandWay());//밴드 모임방식
+		dto.setBandTotal(bandCommand.getBandTotal());//밴드 최대인원
+		dto.setBandPublic(bandCommand.getBandPublic());//밴드 공개여부
+		dto.setBandIntroduce(bandCommand.getBandIntroduce());//밴드 소개
 		dto.setBandRegiDay(bandCommand.getBandRegiDay());//수정 전 작성x
 		System.out.println("등록날짜"+bandCommand.getBandRegiDay());
 		
