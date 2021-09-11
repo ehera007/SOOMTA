@@ -217,6 +217,7 @@ ul {
 
 /*고정 외 중앙 테이블 스타일*/
 
+
 table {
     border: 2px solid #0F4C81;
     width: 650px;
@@ -227,9 +228,8 @@ table {
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     margin-bottom: 100px;
     margin-top: 70px;
-    
+   
   }
-
 thead th {
    height: 50px;
    background-color: #0F4C81;
@@ -237,12 +237,16 @@ thead th {
    font-size: 25px;
    border-radius: 8px 8px 0px 0px;
 }
-
 th{
 	padding-left:100px; 
+	 
 }
 td{
   padding-left: 50px;
+}
+tr{
+position: relative;
+   top: 0px;
 }
 .detail {
 	color: grey;
@@ -250,16 +254,12 @@ td{
 	font-style: italic;
 	text-align: left;
 }
-
 .perForm{
 	width: 800px;
 	margin: 0 auto;
 	padding-top: 50px;
 	padding-bottom: 50px;
-
 }
-
-
 
 
 
@@ -299,33 +299,34 @@ td{
 	<input type="hidden" name="tutorId" value="${tutor.tutorId}"/>
 			<table>
 				<thead>
-         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px;" >
-            <th colspan="2" style="padding-right: 100px;">튜터 정보 수정 </th>
+         <tr style="background-color: #0F4C81; color: white; font-size: 25px; padding-bottom: 30px;" >
+            <th colspan="2" style="padding-right: 120px;">튜터 정보 수정 </th>
          </tr></thead>
-    			<tr><th style="padding-top: 15px;">아이디</th>
-					<td style="padding-top: 15px;"> ${tutor.tutorId} </td></tr>
+        
+    			<tr style="position: relative; top: 25px;"><th>아이디</th>
+					<td> ${tutor.tutorId} </td></tr>
 			
-				<tr><th style="padding-bottom: 5px;">이름</th>
+				<tr style="position: relative; top: 15px;"><th>이름</th>
 					<td><input type="text" name="tutorName" required
 						style="width:200px;" value="${tutor.tutorName}">
 		         </tr>
-				<tr><th>가입일</th>
+				<tr style="position: relative; top: 15px;"><th>가입일</th>
 					<td><fmt:formatDate value="${tutor.tutorSince}" type="date" pattern="yyyy-MM-dd"/> </td></tr>
 			
-				<tr><th>생년월일</th>
+				<tr style="position: relative; top: 15px;"><th>생년월일</th>
 					<td><fmt:formatDate value="${tutor.tutorDob}" type="date" pattern="yyyy-MM-dd"/> </td></tr>
 		
-				 <tr><th>성별</th><td>
+				 <tr style="position: relative; top: 15px;"><th>성별</th><td>
 					<c:if test="${tutor.tutorGender == 'M'}">남자</c:if>
 					<c:if test="${tutor.tutorGender == 'F'}">여자</c:if>
 				</td></tr>
 			
-				<tr><th>핸드폰</th>
+				<tr style="position: relative; top: 10px;"><th>핸드폰</th>
 					<td><input type="text" name="tutorPhone" required
 						style="width:200px;" value="${tutor.tutorPhone}">
 						<div class="detail" style="display: inline-block;">* ex) 01012341234</div></td></tr>
 			
-				<tr><th style="padding-bottom: 10px;">이메일</th>
+				<tr style="position: relative; bottom: 10px;"><th>이메일</th>
 					<td><input type="text" name="tutorEmail"
 						style="width:200px;" value="${tutor.tutorEmail}">
 						<div class="detail"style="display: inline-block;"style="display: inline-block;">* ex) soomta@email.com</div></td></tr>
@@ -333,13 +334,14 @@ td{
 			
 					
 			
-			
-					<tr><th colspan="3"align="center" style="padding-right: 10px; padding-bottom: 15px; ">
+					
+					<tr><th colspan="3"align="center" style="padding-left: 60px; position: relative; top: 10px; ">
 						<input type="submit" value="수정 완료" 
 							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
 						<input type="button"  value="취소" style="border: none;font-size: 16px;font-weight: bold; padding-right: 100px;
 					 	background: transparent; color: #0F4C81;"
 						onclick="javascript:history.back();" />
+						
 				</th></tr>
 			</table>
 		</form>

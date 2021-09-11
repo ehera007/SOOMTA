@@ -179,16 +179,15 @@ ul {
 }
 /*고정 외 중앙 테이블 스타일*/
 table {
-    border: 2px solid #0F4C81;
-    width: 650px;
-    height:600px;
-    margin:20px auto;
-    border-spacing: 0px;
-    border-radius: 12px;
-    box-shadow: 3px 3px 3px 3px #D5D5D5;
-    margin-bottom: 35px;
-    margin-top:40px;
-  }
+	border: 2px solid #0F4C81;
+	border-radius: 12px;
+	box-shadow: 3px 3px 3px 3px #D5D5D5;
+	border-spacing: 0px;
+	margin: 50px auto 70px auto;
+	width:650px;
+	height:600px;
+	
+}
 thead th {
    height: 50px;
    background-color: #0F4C81;
@@ -204,7 +203,7 @@ th{
 
 .detail {
 	color: grey;
-	font-size: 8px;
+	font-size: 5px;
 	font-style: italic;
 	text-align: left;
 }
@@ -268,35 +267,31 @@ input {
             <th colspan="2" style="padding-right: 45px;">정보 수정 </th>
          </tr></thead>
     			
-				<tr><th>자격증</th>
-				<td><input type="text" name="tutorCertification" minlength="2" required
-					style="width:200px;" value="${tutor.tutorCertification}">
-					<div class="detail">* ex) 컴퓨터활용능력2급</div></td></tr>
+				<tr style="position: relative; top: 25px; white-space: pre-line;"><th>자격증</th>
+				<td><textarea rows="1" cols="26" name="tutorCertification">${tutor.tutorCertification}</textarea></td></tr>
 					
-				<tr><th>경력</th>
-					<td><input type="text" name="tutorCareer" minlength="2" required
-					style="width:200px;" value="${tutor.tutorCareer}">
-					<div class="detail">* ex) 이젠아이티학원 3년차 강사</div></td></tr>
+				<tr style="position: relative; top: 25px; white-space: pre-line;"><th>경력</th>
+					<td><textarea rows="1" cols="26" name="tutorCareer">${tutor.tutorCareer}</textarea></td></tr>
 				
-				<tr><th>최종학력</th>
+				<tr style="position: relative; top: 25px;"><th>최종학력</th>
 				<td><input type="text" name="tutorFinalEdu" minlength="2" required
 					style="width:200px;" value="${tutor.tutorFinalEdu}">
 					<div class="detail">* ex) 한국대학교 경영학과</div></td></tr>	
-				<tr><th>응답가능시간</th>
+				<tr style="position: relative; top: 25px;"><th>응답가능시간</th>
 					<td><input type="text" name="tutorRespond" minlength="2" required
 					style="width:200px;" value="${tutor.tutorRespond}">
 					<div class="detail">* ex) 평일 오후 12시~5시</div></td></tr>
-				<tr><th>선호방식</th>
+				<tr style="position: relative; top: 25px;"><th>선호방식</th>
 					<td><input type="text" name="tutorLikearea" minlength="2" required
 					style="width:200px;" value="${tutor.tutorLikearea}">
-					<div class="detail">* ex) 비대면, 대면, 과외</div></td></tr>
+					<div class="detail">* 비대면, 대면, 과외 中 택 1</div></td></tr>
 					
-				<tr><th>소개</th>
+				<tr style="position: relative; top: 8px; white-space: pre-line;"><th>소개</th>
             	<td><textarea rows="3" cols="26" name="tutorIntroduce" >${tutor.tutorIntroduce}</textarea>
             	</td></tr>
 				
-				<tr><th>이미지</th>
-					<td style="word-break:break-all"><span id="fileName">${tutor.tutorImage}</span>
+				<tr style="position: relative; bottom: 10px;"><th>이미지</th>
+					<td style="word-break:break-all">${tutor.tutorImage}
 					<input type="file" name="tutorImage"id="tutorImage" accept="image/png, image/jpeg" >
 					
 				
@@ -306,7 +301,7 @@ input {
 			
 			
 			
-					<tr><th colspan="3"align="center" style="padding-left: 250px; padding-bottom: 15px; ">
+					<tr><th colspan="3"align="center" style="padding-left: 235px; position: relative; top: 3px;  ">
 						<input type="submit" value="수정 완료" 
 							style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
 						<input type="button"  value="수정 안함" style="border: none;font-size: 16px;font-weight: bold;

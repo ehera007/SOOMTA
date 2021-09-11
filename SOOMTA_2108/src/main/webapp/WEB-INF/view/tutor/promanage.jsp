@@ -243,13 +243,14 @@ color: #0F4C81;
     border: 2px solid #0F4C81;
     border-radius: 12px;
     width: 650px;
-    height:550px;
+    height:600px;
     margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     margin-top: 45px;
     margin-bottom: 45px;
     padding-top: 30px;
-    
+    overflow:hidden;
+      
     
   }
   
@@ -269,6 +270,8 @@ color: #0F4C81;
    padding-bottom: 0px;
    padding-right: 50px;
    padding-left: 20px;
+   position: relative;
+   top: 15px; 
 }
 th{
    padding-left:70px;
@@ -314,14 +317,14 @@ td{
       <form action="perForm"name="frm">
          <table>
          
-         <tr>    
-             <th>자격증 </th><td width=330 style="word-break:break-all">
+         <tr>   
+             <th>자격증 </th><td>
              <c:if test = "${tutor.tutorCertification == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorCertification != null}">${tutor.tutorCertification}</c:if>
              </td>
          </tr>
-         <tr>    
-             <th>경력 </th><td width=330 style="word-break:break-all">
+         <tr>   
+             <th>경력 </th><td>
              <c:if test = "${tutor.tutorCareer == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorCareer != null}">${tutor.tutorCareer}</c:if>
              </td>
@@ -346,17 +349,17 @@ td{
              <c:if test = "${tutor.tutorLikearea != null}">${tutor.tutorLikearea}</c:if>
              </td>
          </tr>
-         <tr>    
+         <tr>     
              <th>소개 </th><td width=330 style="word-break:break-all">
              <c:if test = "${tutor.tutorIntroduce == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorIntroduce != null}">${tutor.tutorIntroduce}</c:if>
              </td>
          </tr>
-         <tr>    
+         <tr style="position: relative; top: 15px;">  
              <th>이미지 </th><td>
              <c:if test = "${tutor.tutorImage == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorImage != null}">
-             <img src="../tutor/upload/${tutor.tutorImage}" style="max-width: 100%; height: auto;" />
+             <img src="../tutor/upload/${tutor.tutorImage}" style="max-width: 70px; height: 50px;" />
              </c:if>
              </td>
          </tr>      
