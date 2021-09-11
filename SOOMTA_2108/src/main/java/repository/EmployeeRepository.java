@@ -1,6 +1,7 @@
 package repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,13 @@ public EmployeeDTO empInfo(String empId) {//관리자 정보, 내정보
 	statement = namespace + ".empInfo";
 	return sqlSession.selectOne(statement,empId);
 }
-public List<EmployeeDTO> empList() {//관리자 리스트
+public List<EmployeeDTO> empList(EmployeeDTO dto) {//관리자 리스트
 	statement = namespace + ".empList";
-	return sqlSession.selectList(statement);
+	return sqlSession.selectList(statement,dto);
+}
+public void empCkDel(Map<String, Object> condition) {//관리자 일괄 삭제
+	statement = namespace + ".empCkDel";
+	sqlSession.delete(statement,condition);
 }
 public void empInsert(EmployeeDTO dto) {//관리자 등록
 	statement = namespace + ".empInsert";
@@ -49,6 +54,10 @@ public void myInfoUpdate(EmployeeDTO dto) {//내 정보 수정
 	statement = namespace + ".myInfoUpdate";
 	int i = sqlSession.update(statement, dto);
 	System.out.println(i+"_내 정보를 수정하였습니다.");
+}
+public int countE() {//관리자 페이지
+	statement = namespace + ".countE";
+	return sqlSession.selectOne(statement);
 }
 
 //튜터
@@ -115,9 +124,17 @@ public int countM() {//회원 페이지
 }
 
 //게시판
-public List<FaqDTO> boardList(){//게시판리스트
+public List<FaqDTO> boardList(FaqDTO dto){//게시판리스트
 	statement = namespace + ".boardList";
-	return sqlSession.selectList(statement);
+	return sqlSession.selectList(statement,dto);
+}
+public void faqCkDel(Map<String, Object> condition) {//게시판 일괄 삭제
+	statement = namespace + ".faqCkDel";
+	sqlSession.delete(statement,condition);
+}
+public int countB() {//게시판 페이지
+	statement = namespace + ".countB";
+	return sqlSession.selectOne(statement);
 }
 public Long faqNo(){//게시판작성_번호
 	statement = namespace + ".faqNo";

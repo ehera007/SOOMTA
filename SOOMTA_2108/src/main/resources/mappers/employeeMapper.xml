@@ -15,10 +15,31 @@
 	where emp_Id = #{empId}
 </select>
 
-<select id="empList" resultType="Model.EmployeeDTO">
-	select emp_Id empId, emp_Name empName, emp_Job empJob, hire_Date hireDate 
-	from employees order by hire_Date desc
+<select id="empList" resultType="Model.EmployeeDTO" parameterType="Model.EmployeeDTO">
+	select rn, empId, empName, empJob, hireDate 
+    from (select rownum rn, empId, empName, empJob, hireDate 
+    from (select emp_Id empId, emp_Name empName, emp_Job empJob, hire_Date hireDate from employees order by hireDate desc) 
+    order by hireDate desc) 
+    where rn between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow} 
+    order by hireDate desc
 </select>
+
+<select id="countE" resultType="int">
+	select count(*) from employees
+</select>
+
+<delete id="empCkDel" parameterType="hashMap">
+	delete from employees
+	<where>
+		<if test="empIds != null">
+			emp_id in 
+			<foreach collection="empIds" item="empId" index="index" 
+				open="(" close=")" separator=",">
+				#{empId}
+			</foreach>
+		</if>
+	</where>
+</delete>
 
 <insert id="empInsert" parameterType="Model.EmployeeDTO">
 	insert into employees(emp_Id, emp_Pw, emp_Name, emp_Job, hire_Date, 
@@ -118,7 +139,6 @@
     order by memSince desc
 </select>
 
-
 <select id="memInfo" parameterType="string" resultType="Model.MemberDTO">
 	select <include refid="memCol"/>, substr(mem_Area,0,6) memArea 
 	from member
@@ -147,9 +167,17 @@
 </select>
 
 <!-- 게시판 관리 -->
-<select id="boardList" resultType="Model.FaqDTO">
-	select faq_No faqNo, emp_Id empId, faq_Category faqCategory, faq_Ctgr_S faqCtgrS , faq_Date faqDate, faq_Title faqTitle, faq_Hit faqHit  
-	from faq order by faq_Date desc
+<select id="boardList" resultType="Model.FaqDTO" parameterType="Model.FaqDTO">
+	select rn, faqNo, empId, faqCategory, faqCtgrS, faqDate, faqTitle, faqHit 
+    from (select rownum rn, faqNo, empId, faqCategory, faqCtgrS, faqDate, faqTitle, faqHit 
+    from (select faq_No faqNo, emp_Id empId, faq_Category faqCategory, faq_Ctgr_S faqCtgrS , faq_Date faqDate, faq_Title faqTitle, faq_Hit faqHit from faq order by faqDate desc) 
+    order by faqDate desc) 
+    where rn between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow} 
+    order by faqDate desc
+</select>
+
+<select id="countB" resultType="int">
+	select count(*) from faq
 </select>
 
 <select id="faqNo" resultType="long">
@@ -182,6 +210,19 @@
 	<if test="faqImg == null">faq_Img = null </if> 
  	where faq_No = #{faqNo}
 </update>
+
+<delete id="faqCkDel" parameterType="hashMap">
+	delete from faq
+	<where>
+		<if test="faqNums != null">
+			faq_No in 
+			<foreach collection="faqNums" item="faqNum" index="index" 
+				open="(" close=")" separator=",">
+				#{faqNo}
+			</foreach>
+		</if>
+	</where>
+</delete>
 </mapper>
 
 

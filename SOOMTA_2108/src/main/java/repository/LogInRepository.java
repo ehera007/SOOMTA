@@ -36,6 +36,10 @@ public class LogInRepository {
 		statement = namespace + ".emailCheckM";
 		return sqlSession.selectOne(statement, emailM);
 	}
+	public Integer emailCheckE(String email) {
+		statement = namespace + ".emailCheckE";
+		return sqlSession.selectOne(statement, email);
+	} 
 	
 
 }

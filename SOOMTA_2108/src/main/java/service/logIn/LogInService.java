@@ -69,4 +69,8 @@ public class LogInService {
 		int count = logInRepository.emailCheckM(email);
 		return count;
 	}
+	public int emailCheckE(String email) {
+		int count = logInRepository.emailCheckE(email);
+		return count;
+	}
 }

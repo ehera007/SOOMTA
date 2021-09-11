@@ -154,7 +154,7 @@ input {
     if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
         if(document.getElementById('pw').value==document.getElementById('pw2').value){
             document.getElementById('check').innerHTML='PW 일치';
-            document.getElementById('check').style.color='blue';
+            document.getElementById('check').style.color='#0F4C81';
             document.getElementById('check').style.fontSize='15px';
             document.getElementById('check').style.fontWeight='900';
         }
@@ -165,34 +165,99 @@ input {
             document.getElementById('check').style.fontWeight='900';
         }}}
 </script>
-<!-- 등록 완료 시 알림창 -->
+<!-- id 중복 확인 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-function funcCon(){
-	var cfm = confirm('정말 등록하시겠습니까?\n*기존 페이지로 돌아가시려면 취소를 눌러주세요.');
-	if(cfm){
-		document.getElementById('frm').submit();
-	}else{
-		return false;
-	}
-}
-</script>
-<!-- ID중복 체크 //선생님 ajax 물어보기...ㅜ -->
-<script>
-var idCk = 0;
-	$("#empId").blur(function(){
-		var empId = $('#empId').val();
-		$ajax({
-			url : '${pageContext.request.contextPath}/idCk',
-			type : 'post',
+	var idCk = 0;
+	function ck(){
+		var id = $("#empId").val();
+		$.ajax({
+			type : 'POST',
+			data : {"id": id} ,
+			url : "idcheck",
+			dataType : "html",
 			success : function(data){
-				if(data != 0) {
-					$("#idCk").text(data);
-					$("#idCk").css("color", "red");
-				}, error: function(){
-					console.log("실패");
+				if (Number(data.trim()) > 0){
+					document.getElementById('idCkMsg').innerHTML='중복된 ID';
+					document.getElementById('idCkMsg').style.color='red';
+			        document.getElementById('idCkMsg').style.fontSize='15px';
+			        document.getElementById('idCkMsg').style.fontWeight='900';
+					alert("이미 사용중인 ID입니다. \n 다른 ID를 입력해주세요");
+				}else{
+			        idCk = 1;
+					document.getElementById('idCkMsg').innerHTML='사용 가능 ID';
+					document.getElementById('idCkMsg').style.color='#0F4C81';
+			        document.getElementById('idCkMsg').style.fontSize='15px';
+			        document.getElementById('idCkMsg').style.fontWeight='900';
+				}
+			},
+			error : function(error){
+				alert("error : " + error);
+			}
+		});
+	}
+</script>
+<!-- email 중복 확인 -->
+<script type="text/javascript">
+	function emailCk(){
+		var email = $("#empEmail").val();
+		$.ajax({
+			type : 'POST',
+			data : {"email": email} ,
+			url : "emailCheckE",
+			dataType : "html",
+			success : function(data){
+				if (Number(data.trim()) > 0){
+					document.getElementById('emailCkMsg').innerHTML='중복된 메일';
+					document.getElementById('emailCkMsg').style.color='red';
+			        document.getElementById('emailCkMsg').style.fontSize='15px';
+			        document.getElementById('emailCkMsg').style.fontWeight='900';
+					alert("이미 사용중인 메일입니다. \n 다른 메일을 입력해주세요");
+				}else{
+			        idCk = 1;
+					document.getElementById('emailCkMsg').innerHTML='사용 가능 메일';
+					document.getElementById('emailCkMsg').style.color='#0F4C81';
+			        document.getElementById('emailCkMsg').style.fontSize='15px';
+			        document.getElementById('emailCkMsg').style.fontWeight='900';
+				}
+			},
+			error : function(error){
+				alert("error : " + error);
+			}
+		});
+	}
+</script>
+<!-- 불일치 정보/등록 확인 알림창 -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		var str1 = '사용 가능 ID';
+		var str2 = '사용 가능 메일';
+		$("#frm").submit(function(){
+		if(document.getElementById('idCkMsg').innerHTML != str1){
+				alert('사용할 수 없는 아이디입니다. \n ID를 확인해주세요');
+				var offset = $('#empId').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}
+			if(document.getElementById('pw').value!=document.getElementById('pw2').value){
+			alert('일치하지 않거나 사용할 수 없는 정보가 있습니다. \n PW 확인을 확인 해주세요');
+			var offset = $('#pw').offset();
+			$('html').animate({scrollTop : offset.top}, 400);
+			return false;
+			}
+			if(document.getElementById('emailCkMsg').innerHTML != str2){
+				alert('사용할 수 없는 이메일입니다. \n 이메일을 확인해주세요');
+				var offset = $('#empEmail').offset();
+				$('html').animate({scrollTop : offset.top}, 400);
+				return false;
+			}if(document.getElementById('idCkMsg').innerHTML == str1 && document.getElementById('emailCkMsg').innerHTML == str2 && document.getElementById('pw').value==document.getElementById('pw2').value){
+				var cfm = confirm('정말 등록하시겠습니까?\n*기존 페이지로 돌아가시려면 취소를 눌러주세요.');
+				if(cfm){
+					document.getElementById('frm').submit();
+				}else{
+					return false;
 				}
 			}
-					
 		});
 	});
 </script>
@@ -216,7 +281,7 @@ var idCk = 0;
 
 	<!-- 중앙 -->
 	<div class="main">
-		<form action="empJoinOk" method="post" name="frm" onsubmit="return funcCon(this)">
+		<form action="empJoinOk" method="post" name="frm" id="frm">
 			<div class="table">
 				<table>
 					<thead>
@@ -228,8 +293,8 @@ var idCk = 0;
 						<tr class="first_tr">
 							<th>아이디</th>
 							<td><input type="text" name="empId" id="empId" value="${empId }"
-								autofocus required pattern="^([a-z0-9]){4,15}$" size="30" />
-								<div id="idCk"></div>
+								autofocus required pattern="^([a-z0-9]){4,15}$" size="30" onblur="ck();" />
+								 &nbsp;<span id="idCkMsg"></span>
 								<div class="detail">* 4~15자 영문/숫자 사용</div>
 								</td>
 						</tr>
@@ -238,7 +303,7 @@ var idCk = 0;
 							<td><input type="password" name="empPw" value="${empPw }"
 								size="30" required
 								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
-								class="pw" id="pw" onchange="check_pw()"/>
+								class="pw" id="pw"/>
 								<div class="detail">* 8~15자 영문/숫자/특수문자 포함</div></td>
 						</tr>
 						<tr>
@@ -246,7 +311,7 @@ var idCk = 0;
 							<td><input type="password" name="empPwCon" value="${empPwCon }" required
 								size="30"
 								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&^])[A-Za-z\d$@$!%*#?&^]{8,15}$"
-								class="pw" id="pw2" onchange="check_pw()"/>
+								class="pw" id="pw2" onkeyup="check_pw()"/>
 	&nbsp;<span id="check"></span></td>
 
 						<tr>
@@ -274,8 +339,8 @@ var idCk = 0;
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td><input type="email" name="empEmail" value="${empEmail }"
-								required size="30"/>
+							<td><input type="email" name="empEmail" value="${empEmail }" id="empEmail"
+								size="30" onblur="emailCk();" required/>&nbsp;<span id="emailCkMsg"></span>
 								<div class="detail">* ex) email@email.com</div></td>
 						</tr>
 						<tr>
@@ -289,7 +354,7 @@ var idCk = 0;
 						<tr>
 							<th colspan="2"><div class="allbtn">
 									<input type="reset" class="btn" value="내용 지우기" />
-									<input class="btn" id="finish" type="submit" class="btn" value="관리자 등록" />
+									<input class="btn" type="submit" class="btn" value="관리자 등록" />
 									<input class="btn" type="button" value="등록 취소" onclick="javascript:history.back()" /> 
 								</div></th>
 						</tr>

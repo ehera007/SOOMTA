@@ -27,6 +27,7 @@ import service.employee.FaqNumService;
 import service.employee.InfoService;
 import service.employee.ListService;
 import service.employee.UpdateService;
+import service.logIn.LogInService;
 
 @Controller
 @RequestMapping("emp")
@@ -55,14 +56,21 @@ public class EmployeeController {
 	FaqInsertService faqInsertService;
 	@Autowired
 	UpdateService updateService;
+	@Autowired
+	LogInService logInService;
 	@RequestMapping("main")
 	public String empPage() {
 		return "emp/empmain";
 	}
 	@RequestMapping("boardList")//게시글 보기
-	public String boardList(Model model) {
-		listService.boardList(model);
+	public String boardList(Model model, @RequestParam(value="page", defaultValue="1") Integer page) {
+		listService.boardList(model,page);
 		return "emp/board/boardList";
+	}
+	@RequestMapping(value="faqCkDel")//관리자 일괄 삭제
+	public String faqCkDel(@RequestParam(value="faqNums") String faqNums) {
+		delService.faqCkDel(faqNums);
+		return "redirect:boardList";
 	}
 	@RequestMapping("boardInfo")//게시글 상세 보기
 	public String boardInfo(@RequestParam(value="faqNo") String faqNo, Model model) {
@@ -215,14 +223,14 @@ public class EmployeeController {
 		return "redirect:tutorList";
 	}
 	@RequestMapping("empList")//관리자 리스트 보기
-	public String empList(Model model) {
-		employeeListService.empList(model);
+	public String empList(Model model, @RequestParam(value="page", defaultValue="1") Integer page) {
+		employeeListService.empList(model, page);
 		return "emp/emp/empList";
 	}
-	//확인 필요
-	@RequestMapping("empCkDel")//관리자 일괄 삭제
-	public String empCkDel(EmployeeCommand employeeCommand) {
-		employeeDelService.empCkDel(employeeCommand);
+	@RequestMapping(value="empCkDel")//관리자 일괄 삭제
+	public String empCkDel(@RequestParam(value="empIds") String empIds) {
+		System.out.println("controlloer"+empIds);
+		employeeDelService.empCkDel(empIds);
 		return "redirect:empList";
 	}
 	@RequestMapping("empInfo")//관리자 상세 보기
@@ -273,6 +281,20 @@ public class EmployeeController {
 	@RequestMapping("empJoin")//관리자 등록폼
 	public String empJoin() {
 		return "emp/emp/empJoin";
+	}
+	@RequestMapping(value="idcheck")
+	public String idCheck(String id, Model model) {//관리자 id 중복 체크
+		int count = 0;
+		count = logInService.idCheck(id);
+		model.addAttribute("num", count);
+		return "tutor/idCheck";
+	}
+	@RequestMapping("emailCheckE")
+	public String emailCheckE(String email, Model model) {//메일 중복 검사
+		int count = 0;
+		count = logInService.emailCheckE(email);
+		model.addAttribute("num", count);
+		return "tutor/mailCheck";
 	}
 	@RequestMapping(value="empJoinOk", method=RequestMethod.POST)//관리자 등록 완료
 	public String empJoinOk(EmployeeCommand employeeCommand) {

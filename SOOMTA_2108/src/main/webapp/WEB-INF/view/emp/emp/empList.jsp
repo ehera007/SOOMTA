@@ -67,7 +67,7 @@ td a:active {
 }
 /*검색 부분*/
 .search{
-	margin: 30px auto;
+	margin: 0px auto;
 	text-align: center;
 }
 /*등록 버튼 스타일*/
@@ -77,8 +77,50 @@ td a:active {
 	font-weight: bold;
 	border: none;
 	height: 30px;
-	margin: 30px 0px 30px 10px;
+	margin: 0px 0px 30px 10px;
 }
+
+/*페이지 부분*/
+.page{
+margin-top:10px;
+}
+/*페이지 스타일*/
+.page_wrap {
+	text-align:center;
+	font-size:0;
+ }
+.page_nation {
+	display:inline-block;
+}
+.page_nation a {
+	display:block;
+	margin:0 3px;
+	float:left;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	font-size:15px;
+	color:#42454c;
+	text-decoration:none;
+}
+.page_nation span {
+	display:block;
+	margin:5px 3px 3px 3px;
+	float:left;
+	width:28px;
+	height:28px;
+	line-height:28px;
+}
+.page_nation a.active {
+	color:#0F4C81;
+	font-weight: bold;
+	font-size:16px;
+}
+.page_nation a:hover:not(.active) {
+	background-color: #F4F7F8;
+	color: #0F4C81;
+}
+
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -129,20 +171,23 @@ function allCheck(){
 <!-- 체크한 직원 일괄 삭제 -->
 <script type="text/javascript">
 function ckDel(){
-  var rowCk = "";
-  $( "input[name='rowCk']:checked" ).each (function (){
-	  rowCk = rowCk + $(this).val()+"," ;
-  });
-  rowCk = rowCk.substring(0,rowCk.lastIndexOf( ","));
-  if(rowCk == ''){
-    alert("삭제할 대상을 선택하세요.");
-    return false;
-  }
-  if(confirm("모두 삭제 하시겠습니까?\n삭제 후 복구 할 수 없습니다.")){
-		location.href='empCkDel';
+	var empIds = '';
+	var ck = $("input[name='rowCk']");
+	for(var i=0; i<ck.length; i++){
+		if(ck[i].checked){
+			empIds += ck[i].value+",";
+		}
+	}
+	if(empIds.length == 0){
+		alert('선택된 관리자가 없습니다.\n삭제할 관리자를 선택하세요.');
 	}else{
-		return false;
-  }
+		var delCk = confirm("정말 삭제하시겠습니까?\n삭제 후 복구 할 수 없습니다.");
+		if(delCk){
+			location.href="empCkDel?empIds="+empIds;
+		}else{
+			return false;
+		}
+	}
 }
 </script>
 <meta charset="UTF-8">
@@ -181,10 +226,10 @@ function ckDel(){
 			<th width="20%">입사일</th>
 		</tr></thead><tbody>
 		<c:forEach items="${empList }" var="dto">
-		<c:set var="i" value="${i+1 }"/>
+		<c:set var="i" value="${i+1}"/>
 			<tr>
 				<td><input type="checkbox" name="rowCk" id="rowCk" value="${dto.empId }"/></td>
-				<td style="text-align:left; margin-left:5px;">${i}</td>
+				<td style="text-align:left; margin-left:5px;">${i+no-1 }</td>
 				<td><a href="empInfo?empId=${dto.empId }" class="empInfo">${dto.empId }</a></td>
 				<td>${dto.empName }</td>
 				<td>${dto.empJob}</td>
@@ -194,7 +239,10 @@ function ckDel(){
 	</table></c:if>
 	<c:if test="${empty empList }">
 	등록된 직원 없습니다.</c:if>
-	<input type="button" class="btn" onclick="ckDel();" value="일괄 삭제"/>
+	<input type="button" class="btn" onclick="ckDel();" value="선택 삭제"/>
+	<div style="float:right; color:#0F4C81; font-size:14px; font-weight:bolder; margin-top:5px;">총 ${count }명</div>
+	<div class="page">
+			 <%@ include file="../../include/page.jsp" %></div>
 	<!-- https://jg-han.tistory.com/38 참고해보기
 				https://dotheright.tistory.com/218 참고해보기(페이징 포함)
 			 -->

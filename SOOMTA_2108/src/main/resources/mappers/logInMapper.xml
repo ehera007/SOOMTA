@@ -40,4 +40,8 @@
 <select id="emailCheckM" parameterType="string" resultType="int">
 	select count(*) from member where mem_email = #{email}
 </select>
+
+<select id="emailCheckE" parameterType="string" resultType="int">
+	select count(*) from employees where emp_email = #{email}
+</select>
 </mapper> 

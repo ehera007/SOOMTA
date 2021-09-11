@@ -13,6 +13,14 @@ public class FaqDTO {
 	String faqCtgrS;
 	String faqHit;
 	
+	StartEndPageDTO startEndPageDTO;
+	
+	public StartEndPageDTO getStartEndPageDTO() {
+		return startEndPageDTO;
+	}
+	public void setStartEndPageDTO(StartEndPageDTO startEndPageDTO) {
+		this.startEndPageDTO = startEndPageDTO;
+	}
 	
 	public String getFaqHit() {
 		return faqHit;
