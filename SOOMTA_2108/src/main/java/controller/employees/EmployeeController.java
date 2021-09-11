@@ -97,8 +97,8 @@ public class EmployeeController {
 		return "redirect:boardInfo?faqNo="+faqNo;
 	}
 	@RequestMapping("memList")//일반 회원 보기
-	public String memList(Model model) {
-		listService.memList(model);
+	public String memList(Model model, @RequestParam(value="page", defaultValue="1") Integer page) {
+		listService.memList(model, page);
 		return "emp/mem/memList";
 	}
 	@RequestMapping("memInfo")//일반 회원 상세 보기
@@ -218,6 +218,12 @@ public class EmployeeController {
 	public String empList(Model model) {
 		employeeListService.empList(model);
 		return "emp/emp/empList";
+	}
+	//확인 필요
+	@RequestMapping("empCkDel")//관리자 일괄 삭제
+	public String empCkDel(EmployeeCommand employeeCommand) {
+		employeeDelService.empCkDel(employeeCommand);
+		return "redirect:empList";
 	}
 	@RequestMapping("empInfo")//관리자 상세 보기
 	public String empInfo(@RequestParam(value="empId") String empId, Model model) {

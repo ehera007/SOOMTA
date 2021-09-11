@@ -86,9 +86,9 @@ public void tutorProfileUpdate(TutorDTO dto) {//튜터 프로필 수정
 }
 
 //멤버
-public List<MemberDTO> memList(){//멤버리스트
+public List<MemberDTO> memList(MemberDTO dto){//멤버리스트
 	statement = namespace + ".memList";
-	return sqlSession.selectList(statement);
+	return sqlSession.selectList(statement,dto);
 }
 public MemberDTO memInfo(String memId) {//회원정보
 	statement = namespace + ".memInfo";
@@ -108,6 +108,10 @@ public void memUpdate(MemberDTO dto) {//회원수정
 	statement = namespace + ".memUpdate";
 	int i = sqlSession.update(statement, dto);
 	System.out.println(i+"개의 회원 정보 수정.");
+}
+public int countM() {//회원 페이지
+	statement = namespace + ".countM";
+	return sqlSession.selectOne(statement);
 }
 
 //게시판
