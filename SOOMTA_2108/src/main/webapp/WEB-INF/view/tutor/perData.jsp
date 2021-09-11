@@ -239,15 +239,16 @@ color: #0F4C81;
  table {
     border: 2px solid #0F4C81;
     border-radius: 12px;
-    width: 500px;
-    height:550px;
+    width: 400px;
+    height:480px;
     margin:20px auto;
     box-shadow: 3px 3px 3px 3px #D5D5D5;
     text-align: center;
-    margin-top: 45px;
+    margin-top: 35px;
     margin-bottom: 35px;
     padding-top: 30px;
     
+      position: relative;
   }
   
 .btn {
@@ -257,18 +258,22 @@ color: #0F4C81;
    font-weight: bold;
    margin: 10px 10px;
    border: none;
+   top:70px;
    
 }
 .allbtn {
    height: 30px;
    width: 300px;
-   margin: 0 auto;
-   padding-bottom: 0px;
-   padding-right: 50px;
+   
+   
+   padding-right: 70px;
    padding-left: 20px;
+   position: relative;
+   top:25px;
+   right:26px;
 }
 th{
-	padding-left:85px;
+	padding-left:90px;
 }
 td{
 	padding-right:90px;
@@ -315,34 +320,34 @@ td{
 	<div class="perForm">
 		<form action="perForm"name="frm" >
 			  <table>
-		         <tr>
+		         <tr style="position: relative; top: 5px;">
 		             <th>이름</th>
 		             <td>${tutor.tutorName}</td>
 		         </tr>
-		         <tr>
+		         <tr style="position: relative; top: 5px;">
 		             <th>가입일</th>
 		             <td><fmt:formatDate value="${tutor.tutorSince}" type="date" pattern="yyyy-MM-dd"/> </td>
 		         </tr>
-		         <tr>    
+		         <tr style="position: relative; top: 5px;">   
 		             <th>생년월일</th>
 		             <td><fmt:formatDate value="${tutor.tutorDob}" type="date" pattern="yyyy-MM-dd"/> </td>
 		         </tr>
-		          <tr><th>성별</th><td>
+		          <tr style="position: relative; top: 5px;"><th>성별</th><td>
 					<c:if test="${tutor.tutorGender == 'M'}">남자</c:if>
 					<c:if test="${tutor.tutorGender == 'F'}">여자</c:if>
 			</td></tr>
-		         <tr>    
+		         <tr style="position: relative; top: 5px;">    
 		             <th>핸드폰</th>
 		             <td>${tutor.tutorPhone} </td>
 		         </tr>
-		         <tr>    
+		         <tr style="position: relative; top: 5px;">   
 		             <th>이메일</th>
 		             <td>${tutor.tutorEmail} </td>
 		         </tr>
 		        
 		         <tr>
 		        
-                   <th colspan="2" style="padding-right: 60px;">
+                   <th colspan="2">
                    		<div class ="allbtn" >
                    			<a href="<c:url value='/tutor/pwChange'/>"
 							style="text-decoration:none;">PW변경</a>&emsp;
