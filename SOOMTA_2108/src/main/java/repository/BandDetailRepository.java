@@ -33,7 +33,7 @@ public class BandDetailRepository {
 		return sqlSession.selectOne(statement, dto);
 	}
 	
-	public BandDTO bandIntro(String bandNo) {
+	public BandDTO bandIntro(Long bandNo) {
 		statement = namespace + ".bandIntro";
 		return sqlSession.selectOne(statement, bandNo);
 	}

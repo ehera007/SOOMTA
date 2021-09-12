@@ -29,7 +29,7 @@ public class BandDetailController {
 	@Autowired
 	BandIntroService bandIntroService;
 	@RequestMapping("bandIntro")
-	public String bandIntro(@RequestParam(value="bandNo") String bandNo, Model model) {
+	public String bandIntro(@RequestParam(value="bandNo") Long bandNo, Model model) {
 		bandIntroService.bandIntro(bandNo, model);
 		return "band/bandIntro";
 	}

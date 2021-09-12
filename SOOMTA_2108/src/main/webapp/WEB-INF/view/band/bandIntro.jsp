@@ -642,7 +642,7 @@ header a:hover {
             <div class="button-4" >
             <div class="eff-4">
             </div>
-            <a href="bandDetail?bandNo=${dto.bandNo }"> 밴드홈 </a>
+            <a href="bandDetail?bandNo=${dto.bandNo}"> 밴드홈 </a> <!-- 섹셔으로 멤버 아이디 넘기는 법 -->
             </div>
             <div class="button-4" >
             <div class="eff-4">
