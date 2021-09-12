@@ -61,9 +61,13 @@ public int countE() {//관리자 페이지
 }
 
 //튜터
-public List<TutorDTO> tutorList(){//튜터리스트
+public List<TutorDTO> tutorList(TutorDTO dto){//튜터리스트
 	statement = namespace + ".tutorList";
-	return sqlSession.selectList(statement);
+	return sqlSession.selectList(statement,dto);
+}
+public int countT() {//튜터 페이지
+	statement = namespace + ".countT";
+	return sqlSession.selectOne(statement);
 }
 public TutorDTO tutorInfo(String tutorId) {//튜터정보
 	statement = namespace + ".tutorInfo";

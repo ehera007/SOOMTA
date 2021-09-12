@@ -131,7 +131,7 @@ function funcCon(){
 <table align="center"><thead>
 			<tr>
 				<th colspan="2"
-					style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px">관리자
+					style="background-color: #0F4C81; color: white; font-size: 25px; padding: 10px; vertical-align:middle;">관리자
 					게시글 수정</th>
 			</tr></thead>
 			<tr>

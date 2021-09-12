@@ -77,12 +77,12 @@ td a:active {
 	font-weight: bold;
 	border: none;
 	height: 30px;
-	margin: 0px 0px 30px 10px;
+	margin-left: 10px;
 }
 
 /*페이지 부분*/
 .page{
-margin-top:10px;
+margin-top:40px;
 }
 /*페이지 스타일*/
 .page_wrap {
@@ -215,8 +215,10 @@ function ckDel(){
 	<div class="table">
 	<c:if test="${!empty empList }">
 	<table><thead>
-	<tr style="font-size: 25px; padding: 10px; height:80px;">
-				<th colspan="6">등록 된 관리자 리스트</th></tr>
+	<tr style="height:80px;">
+				<th colspan="5" style="font-size: 25px; padding-right:100px; text-align:right; ">등록 된 관리자 리스트</th>
+		<th style="text-align:right; color:#ffff; font-size:14px; font-weight:bolder; padding-right: 5px; padding-top:50px;">
+		( 총 ${count }명 )</th></tr>		
 		<tr style="padding-bottom:20px; height:40px;">
 			<th width="3%"><input type="checkbox" id="allCk" onclick="allCheck();"></th>
 			<th width="7%" style="text-align:left; margin-left:5px;">No.</th>
@@ -239,8 +241,9 @@ function ckDel(){
 	</table></c:if>
 	<c:if test="${empty empList }">
 	등록된 직원 없습니다.</c:if>
+	<div style="float:right; margin-bottom:10px;">
 	<input type="button" class="btn" onclick="ckDel();" value="선택 삭제"/>
-	<div style="float:right; color:#0F4C81; font-size:14px; font-weight:bolder; margin-top:5px;">총 ${count }명</div>
+	<input type="button" class="joinbtn" value="관리자 등록" onclick="location.href='empJoin'" /></div>
 	<div class="page">
 			 <%@ include file="../../include/page.jsp" %></div>
 	<!-- https://jg-han.tistory.com/38 참고해보기
@@ -255,8 +258,6 @@ function ckDel(){
 				</select>
 				<input type = "text" name="search" value=""/>
 				<input type="submit" class="btn" value="검색"/>
-				<input class="joinbtn" type="button" value="관리자 등록"
-					onclick="location.href='empJoin'" />
 				</form>
 			</div>
 			</div>

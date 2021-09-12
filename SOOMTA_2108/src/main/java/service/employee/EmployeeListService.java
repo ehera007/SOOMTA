@@ -14,7 +14,7 @@ public class EmployeeListService {
 	@Autowired
 	EmployeeRepository employeeRepository;
 	public void empList(Model model, Integer page) {
-		int limit = 15;
+		int limit = 10;
 		int limitPage = 10;
 
 		Long startRow = ((long)page -1) * limit +1;
@@ -33,6 +33,6 @@ public class EmployeeListService {
 		model.addAttribute("no", startRow);
 		
 		Page pageAction = new Page();
-		pageAction.pageAction(count, limit, page, limitPage, model, "memList");
+		pageAction.pageAction(count, limit, page, limitPage, model, "empList");
 	}
 }

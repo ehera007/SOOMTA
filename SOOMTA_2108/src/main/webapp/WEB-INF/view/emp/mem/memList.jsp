@@ -15,13 +15,6 @@
 	justify-content: space-evenly;
 }
 
-.chart {
-	border: 1px solid black;
-	width: 450px;
-	height: 450px;
-	margin-top: 20px;
-	padding-top: 20px;
-}
 .list{
 position:relative;
 text-align:center;}
@@ -138,7 +131,12 @@ margin-top:30px;
 	background-color: #F4F7F8;
 	color: #0F4C81;
 }
-
+/*차트 부분*/
+#columnchart_material{
+	width:500px;
+	height:480px;
+	margin-top: 10px;
+}
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -164,7 +162,9 @@ margin-top:30px;
 										});
 					});
 </script>
-
+<!-- 구글차트API -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
 
 <meta charset="UTF-8">
 <title>회원 현황</title>
@@ -189,7 +189,7 @@ margin-top:30px;
 	<!-- 중앙 -->
 
 	<div class="main">
-		<div class="chart">google api 차트_수강생 수, 가입자 수, 탈퇴자, 소모임 생성 수</div>
+		<div id="columnchart_material"></div>
 		<div class="list">
 			<span class="title">가입 회원 리스트</span><br/>
 			<span class="sub"> 총 ${count } 명</span>
@@ -310,4 +310,29 @@ margin-top:30px;
 	</div>
 
 </body>
+<!-- 구글차트 -->
+ <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', '가입자', '탈퇴자', '수강생', '소모임'],
+          ['7월', 50, 10, 90, 25],
+          ['8월', 60, 30, 80, 10],
+          ['9월', 40, 5, 30, 15]
+        ]);
+
+        var options = {
+          chart: {
+            title: '월별 회원 현황',
+            subtitle: '',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
 </html>

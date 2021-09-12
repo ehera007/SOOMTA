@@ -14,26 +14,29 @@
 	display: flex;
 	justify-content: space-evenly;
 }
-
-.chart {
-	border: 1px solid black;
-	width: 400px;
-	height: 400px;
-}
 .list{
+position:relative;
 text-align:center;}
 .table {
 	width: 600px;
 	margin: 0 auto;
 }
-/* 테이블 스타일 */
-span {
+.title {
 	color: #0F4C81;
 	font-size: 30px;
 	display:inline-block;
-	margin-bottom:20px;
 	font-weight:bolder;
+	margin-bottom:20px;
 }
+.sub{
+	position: absolute;
+	color: #0F4C81;
+	font-size: 14px;
+	font-weight:bolder;
+	top: 40px;
+	right:3px;
+}
+/* 테이블 스타일 */
 table {
     width: 100%;
     border-top: 2px solid #0F4C81;
@@ -56,23 +59,23 @@ tbody  th, td {
   }
 td a {
 	font-weight:bold;
-	color:black;
+	color: black; 
 }
 td a:hover {
 	font-weight:bold;
-	color:black;
+	color: black; 
 }
 td a:link {
 	font-weight:bold;
-	color:black;
+	color: black;
 }
 td a:visited {
 	font-weight:bold;
-	color:black;
+	color: black; 
 }
 td a:active {
 	font-weight:bold;
-	color:black;
+	color: black; 
 }
 /*버튼 스타일*/
 .btn {
@@ -84,8 +87,54 @@ td a:active {
 }
 /*검색 부분*/
 .search{
-margin:20px auto;
+margin:5px auto 20px auto;
 text-align:center;
+}
+/*페이지 부분*/
+.page{
+margin-top:30px;
+}
+/*페이지 스타일*/
+.page_wrap {
+	text-align:center;
+	font-size:0;
+ }
+.page_nation {
+	display:inline-block;
+}
+.page_nation a {
+	display:block;
+	margin:0 3px;
+	float:left;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	font-size:15px;
+	color:#42454c;
+	text-decoration:none;
+}
+.page_nation span {
+	display:block;
+	margin:5px 3px 3px 3px;
+	float:left;
+	width:28px;
+	height:28px;
+	line-height:28px;
+}
+.page_nation a.active {
+	color:#0F4C81;
+	font-weight: bold;
+	font-size:16px;
+}
+.page_nation a:hover:not(.active) {
+	background-color: #F4F7F8;
+	color: #0F4C81;
+}
+/*차트 부분*/
+#columnchart_material{
+	width:500px;
+	height:480px;
+	margin-top: 10px;
 }
 </style>
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -100,7 +149,7 @@ text-align:center;
 		});
 	});
 </script>
-<!-- 회원 ID 클릭 시 회원 정보 페이지로 이동 알림창 -->
+<!-- 회원 ID 클릭 시 튜터 정보 페이지로 이동 알림창 -->
 <script>
 	$(document)
 			.ready(
@@ -112,8 +161,9 @@ text-align:center;
 										});
 					});
 </script>
-
-
+<!-- 구글차트API -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
 <meta charset="UTF-8">
 <title>튜터 현황</title>
 </head>
@@ -135,33 +185,37 @@ text-align:center;
 
 
 	<!-- 중앙 -->
-
 	<div class="main">
-		<div class="chart">google api 차트_ 가입자 수, 탈퇴자, 강의 생성 수</div>
+		<div id="columnchart_material"></div>
 		<div class="list">
-			<span>등록된 튜터 리스트</span>
+			<span class="title">등록된 튜터 리스트</span><br/>
+			<span class="sub"> 총 ${count } 명</span>
 			<div class="table">
-			<c:if test="${!empty tutorList }">
-				<table><thead>
+				<table>
+				<thead>
 					<tr style="padding:10px; height:30px;">
-					<th width="10%">No.</th>
-						<th width="35%">ID</th>
+						<th width="10%">No.</th>
+						<th width="35%">아이디</th>
 						<th width="25%">이름</th>
 						<th width="30%">가입일</th>
-					</tr></thead><tbody>
+					</tr></thead>
+					<c:if test="${!empty tutorList }">
+					<tbody>
 					<c:forEach items="${tutorList }" var="dto">
-					<c:set var="i" value="${i+1 }"/>
+					<c:set var="i" value="${i+1}"/>
 						<tr>
-							<td>${i }</td>
-							<td><a href="tutorInfo?tutorId=${dto.tutorId}" class="tutorInfo">${dto.tutorId }</a></td>
+							<td>${i+no-1 }</td>
+						<td><a href="tutorInfo?tutorId=${dto.tutorId}" class="tutorInfo">${dto.tutorId }</a></td>
 							<td>${dto.tutorName }</td>
 							<td><fmt:formatDate value="${dto.tutorSince}" type="date" pattern="yyyy-MM-dd"/></td>
 						</tr>
-					</c:forEach></tbody>
-				</table></c:if>
-				<c:if test="${empty tutorList }">등록된 튜터가 없습니다.</c:if>
+					</c:forEach></tbody></c:if>
+					<c:if test="${empty tutorList }">등록된 튜터가 없습니다.</c:if>
+				</table>
 			</div>
-			<!-- https://jg-han.tistory.com/38 참고해보기
+			<div class="page">
+			 <%@ include file="../../include/page.jsp" %></div>
+			 	<!-- https://jg-han.tistory.com/38 참고해보기
 				https://dotheright.tistory.com/218 참고해보기(페이징 포함)
 			 -->
 			<div class="search">
@@ -174,14 +228,13 @@ text-align:center;
 				<input type = "text" name="searchBar" value=""/>
 				<input type="submit" class="btn" value="검색"/>
 				</form>
+				
 			</div>
 		</div>
-		
 	</div>
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;" href="#"
-		class="Top"> <img src="<c:url value='/images/top.png'/>"
-		alt="topicon" />
+		class="Top"> <img src="../images/top.png" alt="topicon">
 	</a>
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">
@@ -254,4 +307,29 @@ text-align:center;
 	</div>
 
 </body>
+<!-- 구글차트 -->
+ <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', '가입자', '탈퇴자', '강의생성'],
+          ['7월', 50, 10, 50],
+          ['8월', 60, 30, 80],
+          ['9월', 40, 5, 30]
+        ]);
+
+        var options = {
+          chart: {
+            title: '월별 Tutor 현황',
+            subtitle: '',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
 </html>

@@ -15,9 +15,27 @@ import repository.EmployeeRepository;
 public class ListService {
 	@Autowired
 	EmployeeRepository employeeRepository;
-	public void tutorList(Model model) {
-		List<TutorDTO> list = employeeRepository.tutorList();
+	public void tutorList(Model model, Integer page) {
+		int limit = 10;
+		int limitPage = 10;
+		
+		Long startRow = ((long)page -1) * limit +1;
+		Long endRow = startRow + limit -1;
+		StartEndPageDTO pages = new StartEndPageDTO();
+		pages.setStartRow(startRow);
+		pages.setEndRow(endRow);
+		
+		TutorDTO dto = new TutorDTO();
+		dto.setStartEndPageDTO(pages);
+		
+		List<TutorDTO> list = employeeRepository.tutorList(dto);
+		int count = employeeRepository.countT();
 		model.addAttribute("tutorList",list);
+		model.addAttribute("count", count);
+		model.addAttribute("no", startRow);
+		
+		Page pageAction = new Page();
+		pageAction.pageAction(count, limit, page, limitPage, model, "tutorList");
 	}
 	public void memList(Model model, Integer page) {
 		int limit = 10;
@@ -61,6 +79,6 @@ public class ListService {
 		model.addAttribute("no", startRow);
 		
 		Page pageAction = new Page();
-		pageAction.pageAction(count, limit, page, limitPage, model, "memList");
+		pageAction.pageAction(count, limit, page, limitPage, model, "faqList");
 	}
 }

@@ -131,25 +131,12 @@ ul {
 	
 }
 /*중앙*/
-.mypage{
-	padding-top: 80px;
-	padding-bottom: 80px;
-}
 .item{
-display:flex;
-justify-content: space-evenly;
-margin: 10px;
-table-layout: fixed;
-}
-.main-item {
-   border: 1px solid black;
-   width: 380px;
-   height: 350px;
-   margin-left: 250px;
-   table-layout: fixed;
-   margin-right: 100px;
-  table-layout: fixed;
-    
+	display:flex;
+	justify-content: space-evenly;
+    margin: 10px;
+    padding: 90px auto;
+    align-items: center;
 }
 .mypageTitle {
 	background-color: #0F4C81;
@@ -157,21 +144,6 @@ table-layout: fixed;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 15px;
-}
-.dropMenu {
-   align-items: center;
-   display:flex;
-  
-   
-   margin-right :100px;
-}
-.dropMenu1 {
-   align-items: center;
-   display:flex;
-  
-   
-   margin-left :50px;
-   margin-right :100px;
 }
 .imgBox {
    width: 240px;
@@ -182,15 +154,6 @@ table-layout: fixed;
    text-align:center;
    font-size: 30px;
    padding-top : 30px;
-   
-}
-
-
-.imgTitle {
-	border: 1px solid black;
-	width: 200px;
-	height: 200px;
-  
 }
 .dropList li {
    text-align: center;
@@ -238,6 +201,14 @@ table-layout: fixed;
 .imgBox ul {
 	display: block;
 }
+
+/*차트 부분*/
+#columnchart_material{
+	width:400px;
+	height:260px;
+	padding-top: 10px;
+	font-size: 12px;
+}
 </style>
 
 <!-- TOP아이콘 클릭 시 부드럽게 위로 올라가기 -->
@@ -251,6 +222,9 @@ table-layout: fixed;
     });
     
     </script>
+    <!-- 구글차트API -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ 
 <meta charset="UTF-8">
 <title>tutorMypage</title>
 
@@ -274,12 +248,8 @@ table-layout: fixed;
 			<h1>안녕하세요, '${tutor.tutorId}'님!</h1>
 			<p>숨타와 함께 즐거운 하루 되세요 :)</p>
 		</div>
-	 <div class=mypage>
       <div class="item">
-      <div class="main-item">그래프</div>
-      
-		
-			<div class="dropMenu">
+		<div id="columnchart_material"></div>
 				<div class="imgBox">
 					<div class="dropList">
 						<ul>
@@ -290,8 +260,6 @@ table-layout: fixed;
 						</ul>
 					</div>
 				</div>
-
-				<div class="dropMenu1">
 					<div class="imgBox" >
 					<div class="dropList1">
 						<ul>
@@ -303,8 +271,6 @@ table-layout: fixed;
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 	
 	<!-- TOP이동 -->
 	<a style="position: fixed; bottom: 20px; right: 50px;"
@@ -381,4 +347,29 @@ table-layout: fixed;
    </div>
 
 </body>
+<!-- 구글차트 -->
+ <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['월별 현황', '강의개설', '수강생', '수입(만원)'],
+          ['7월', 2, 4, 45],
+          ['8월', 1, 1, 30],
+          ['9월', 1, 0, 0]
+        ]);
+
+        var options = {
+          chart: {
+            title: '',
+            subtitle: '',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
 </html>

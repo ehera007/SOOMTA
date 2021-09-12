@@ -23,6 +23,15 @@ public class TutorDTO {
 	String tutorEmailCk;
 	String tutorEmailOk;
 	
+	StartEndPageDTO startEndPageDTO;
+	
+	
+	public StartEndPageDTO getStartEndPageDTO() {
+		return startEndPageDTO;
+	}
+	public void setStartEndPageDTO(StartEndPageDTO startEndPageDTO) {
+		this.startEndPageDTO = startEndPageDTO;
+	}
 	
 	public String getTutorEmailOk() {
 		return tutorEmailOk;

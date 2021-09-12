@@ -25,10 +25,10 @@ public class DelService {
 	}
 	public void faqCkDel(String faqNums) {
 		String[] delFaq = faqNums.split(",");
-		
 		List<String> list = new ArrayList<String>();
-		for(String faqNum : delFaq) {
-			list.add(faqNum);
+		for(String faqNo :delFaq) {
+			list.add(faqNo);
+			System.out.println("faqNo"+faqNo);
 		}
 		Map<String, Object> condition= new HashMap<String, Object>();
 		condition.put("faqNums", list);

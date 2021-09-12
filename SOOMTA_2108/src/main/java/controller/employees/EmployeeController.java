@@ -67,7 +67,7 @@ public class EmployeeController {
 		listService.boardList(model,page);
 		return "emp/board/boardList";
 	}
-	@RequestMapping(value="faqCkDel")//관리자 일괄 삭제
+	@RequestMapping(value="faqCkDel")//게시글 일괄 삭제
 	public String faqCkDel(@RequestParam(value="faqNums") String faqNums) {
 		delService.faqCkDel(faqNums);
 		return "redirect:boardList";
@@ -156,8 +156,8 @@ public class EmployeeController {
 		return "redirect:memList";
 	}
 	@RequestMapping("tutorList")//튜터 회원보기
-	public String tutorList(Model model) {
-		listService.tutorList(model);
+	public String tutorList(Model model, @RequestParam(value="page", defaultValue="1") Integer page) {
+		listService.tutorList(model, page);
 		return "emp/tutor/tutorList";
 	}
 	@RequestMapping("tutorInfo")//튜터 상세 보기(기본정보)
@@ -165,7 +165,6 @@ public class EmployeeController {
 		infoService.tutorInfo(tutorId, model);
 		return "emp/tutor/tutorInfo";
 	}
-	
 	@RequestMapping("tutorMod")//튜터 수정
 	public String tutorMod(@RequestParam(value="tutorId") String tutorId, Model model) {
 		infoService.tutorInfo(tutorId, model);

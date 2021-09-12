@@ -174,10 +174,10 @@ input {
             document.getElementById('check').style.fontWeight='900';
         }}}
 </script>
-<!-- 수정 전 확인 알림창 -->
+<!-- pw변경 전 확인 알림창 -->
 <script type="text/javascript">
 function funcCon(){
-	var cfm = confirm('정말 수정하시겠습니까?\n*수정을 원하지 않으시면 취소를 눌러주세요.');
+	var cfm = confirm('정말 변경하시겠습니까?\n*변경을 원하지 않으시면 취소를 눌러주세요.');
 	if(cfm){
 		document.getElementById('frm').submit();
 	}else{

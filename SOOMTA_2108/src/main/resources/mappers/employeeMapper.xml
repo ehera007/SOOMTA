@@ -82,9 +82,13 @@
 	tutor_Certification tutorCertification, tutor_Career tutorCareer, tutor_Image tutorImage, tutor_Introduce tutorIntroduce, tutor_Likearea tutorLikeArea 
 </sql>
 
-<select id="tutorList" resultType="Model.TutorDTO">
-	select tutor_Id tutorId, tutor_Name tutorName, tutor_Since tutorSince 
-	from tutor order by tutor_Since desc
+<select id="tutorList" resultType="Model.TutorDTO" parameterType="Model.TutorDTO">
+	select rn, tutorId, tutorName, tutorSince 
+    from (select rownum rn, tutorId, tutorName, tutorSince 
+    from (select tutor_Id tutorId, tutor_Name tutorName, tutor_Since tutorSince from tutor order by tutorSince desc) 
+    order by tutorSince desc) 
+    where rn between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow} 
+    order by tutorSince desc
 </select>
 
 <select id="tutorInfo" resultType="Model.TutorDTO" parameterType="string">
@@ -122,6 +126,10 @@
 		tutor_Introduce = #{tutorIntroduce} 
 	where tutor_id = #{tutorId}
 </update>
+
+<select id="countT" resultType="int">
+	select count(*) from tutor
+</select>
 
 
 <!-- 회원 관리 -->
@@ -216,7 +224,7 @@
 	<where>
 		<if test="faqNums != null">
 			faq_No in 
-			<foreach collection="faqNums" item="faqNum" index="index" 
+			<foreach collection="faqNums" item="faqNo" index="index" 
 				open="(" close=")" separator=",">
 				#{faqNo}
 			</foreach>
