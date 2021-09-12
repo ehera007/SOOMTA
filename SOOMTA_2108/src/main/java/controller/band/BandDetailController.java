@@ -14,6 +14,7 @@ import command.MemberCommand;
 import service.band.BandDetailJoinService;
 import service.band.BandDetailService;
 import service.band.BandHomeService;
+import service.band.BandIntroService;
 import service.member.MemberJoinService;
 import service.member.MemberPerDataService;
 
@@ -24,9 +25,12 @@ public class BandDetailController {
 	public String bandDetailHome() {
 		return "band/bandDetailHome";
 	}
-
+	
+	@Autowired
+	BandIntroService bandIntroService;
 	@RequestMapping("bandIntro")
-	public String bandIntro() {
+	public String bandIntro(@RequestParam(value="bandNo") String bandNo, Model model) {
+		bandIntroService.bandIntro(bandNo, model);
 		return "band/bandIntro";
 	}
 

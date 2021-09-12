@@ -33,5 +33,13 @@
 <select id="countBank" parameterType="Model.BandDTO" resultType="int">
 	select count(*) from band_join where MEM_ID = #{memId} and  BAND_NO = #{bandNo}     
 </select> 
+<select id="bandIntro" parameterType="string" resultType="Model.BandDTO">
+	select band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
+			band_Category_S bandCategoryS,band_Img bandImg,band_Img2 bandImg2,
+			band_Introduce bandIntroduce, band_Gender bandGender, band_Way bandWay,
+			band_Total bandTotal, band_Public bandPublic, band_Age bandAge
+	from band
+	where band_No = #{bandNo}
+</select>
 </mapper>
 

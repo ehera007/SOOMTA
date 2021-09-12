@@ -1,18 +1,20 @@
 package service.band;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import Model.BandDTO;
+import repository.BandDetailRepository;
 import repository.BandRepository;
 
 public class BandIntroService {
 	@Autowired
-	BandRepository bandRepository;
+	BandDetailRepository bandDetailRepository;
 	public void bandIntro(String bandNo, Model model) {
-		BandDTO dto = bandRepository.bandIntro(bandNo);
-		System.out.println("흠냐"+dto.getBandCategoryL());
+		BandDTO dto = bandDetailRepository.bandIntro(bandNo);
 		model.addAttribute("dto", dto);
 		
 	}
