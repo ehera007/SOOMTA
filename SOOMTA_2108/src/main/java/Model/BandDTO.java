@@ -16,6 +16,14 @@ public class BandDTO {
 	String bandPublic; 
 	String bandAge;
 	String bandImg;
+	String bandImg2;
+	
+	public String getBandImg2() {
+		return bandImg2;
+	}
+	public void setBandImg2(String bandImg2) {
+		this.bandImg2 = bandImg2;
+	}
 	public Long getBandNo() {
 		return bandNo;
 	}

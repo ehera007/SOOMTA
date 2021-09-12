@@ -14,16 +14,19 @@ public class ArtCtgrController {
 	@Autowired
 	BandAllListService bandAllListService;
 	@RequestMapping("art")
-	public String art() {
+	public String art(Model model) {
+		bandAllListService.bandAllList(model, "미술");
 		return "band/bandList";
 	}
 	@RequestMapping("cook")
-	public String cook() {
+	public String cook(Model model) {
+		bandAllListService.bandAllList(model, "요리");
 		return "band/bandList";
 	}
 
 	@RequestMapping("music")
-	public String music() {
+	public String music(Model model) {
+		bandAllListService.bandAllList(model, "음악");
 		return "band/bandList";
 	}
 
@@ -34,7 +37,8 @@ public class ArtCtgrController {
 	}
 	
 	@RequestMapping("etc")
-	public String etc() {
+	public String etc(Model model) {
+		bandAllListService.bandAllList(model, "기타");
 		return "band/bandList";
 	}
 	

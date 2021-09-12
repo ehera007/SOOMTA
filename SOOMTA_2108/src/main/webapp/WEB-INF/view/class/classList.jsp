@@ -221,6 +221,7 @@ a:hover {
 	text-align:center;
 	width:50%;
 	margin: 0 auto;
+	padding-top: 15px;
 }
 
 .pagination{

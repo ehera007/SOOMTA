@@ -20,5 +20,5 @@
 	<bean class="service.band.BandAllListService"/>
 	
 	<bean class="service.band.BandWishService" />
-
+	<bean class="service.band.BandIntroService"/>
 </beans>

@@ -401,9 +401,13 @@ function ctgrChange(e){
             	 <div id="test_cnt">(0 / 2000)</div>
             </td></tr>
             
-      <tr><th style="padding-bottom: 30px;">소모임 이미지</th>
-         <td style="padding-bottom: 30px;">
+      <tr><th style="padding-bottom: 10px;">소모임 이미지</th>
+         <td style="padding-bottom: 10px;">
          <input type="file" name="bandImg" multiple="multiple"/>
+               </td></tr>
+                     <tr><th style="padding-bottom: 30px;">소모임 이미지</th>
+         <td style="padding-bottom: 30px;">
+         <input type="file" name="bandImg2" multiple="multiple"/>
                </td></tr>
          <tr><th colspan="3"align="center" style="padding-right: 70px; padding-bottom: 15px;">
                <input type="reset" class="btn" value="내용 지우기"/>

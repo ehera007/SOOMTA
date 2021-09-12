@@ -236,10 +236,6 @@ a:hover {
 	width: 12%;
 }
 
-.topcate-right {
-	float: right;
-	width: 88%;
-}
 
 .introtop {
 	height: 300px;
@@ -823,9 +819,9 @@ a:visited {
 				<div class="introtop">
 					<div class="intro-detail1" style="text-align : center;"><img width="300" height="300" src="./../tutor/upload/${dto.classImg.split(',')[0] }"/></div>
 					<div class="intro-detail2">
-						<span id="titleName">강의명 : </span> ${dto.className }<br /> <span
-							id="titleName">가격 : </span> ${dto.classPrice } 원<br /> <span
-							id="titleName">성별 : </span>
+						<span id="titleName">강의명 : </span> ${dto.className }<br />
+						<span id="titleName">가격 : </span> ${dto.classPrice } 원<br />
+						<span id="titleName">성별 : </span>
 						<c:if test="${dto.classGender == 'm' }">남자</c:if>
 						<c:if test="${dto.classGender == 'w' }">여자</c:if>
 						<c:if test="${dto.classGender == 'x' }">무관</c:if>
@@ -888,7 +884,20 @@ a:visited {
    						<table >
    							<tr style="font-size:23px; float: left;"><td colspan=3><a href="#">${dto1.tutorId}</a></td></tr>
    							<tr><td>총 강의 수</td><td>&nbsp;|&nbsp;</td><td>만족도</td><td>&nbsp;|&nbsp;</td><td>연락 가능 시간</td></tr>
-   							<tr align="center"><td>${classCount }개</td><td>&nbsp;|&nbsp;</td><td>${tutorSatisTfyAllCount }점</td><td>&nbsp;|&nbsp;</td><td>${dto1.tutorRespond }</td></tr>
+   							<tr align="center">
+   							<td>
+   							<c:if test = "${classCount != null}">${classCount }개</c:if>
+   							<c:if test = "${classCount == null}">-</c:if>
+   							
+   							</td>
+   							<td>&nbsp;|&nbsp;</td>
+   							<td>
+   							<c:if test = "${tutorSatisTfyAllCount != null}">${tutorSatisTfyAllCount }개</c:if>
+   							<c:if test = "${tutorSatisTfyAllCount == null}">-</c:if>
+   							</td>
+   							<td>&nbsp;|&nbsp;</td>
+   							<td>${dto1.tutorRespond }</td>
+   							</tr>
    						</table>
 					</div>
 					<div class="button-5">

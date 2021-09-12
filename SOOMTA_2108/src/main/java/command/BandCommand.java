@@ -19,7 +19,14 @@ public class BandCommand {
 	String bandPublic; 
 	String bandAge;
 	MultipartFile [] bandImg;
-
+	MultipartFile [] bandImg2;
+	
+	public MultipartFile[] getBandImg2() {
+		return bandImg2;
+	}
+	public void setBandImg2(MultipartFile[] bandImg2) {
+		this.bandImg2 = bandImg2;
+	}
 	public Long getBandNo() {
 		return bandNo;
 	}

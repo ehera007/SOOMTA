@@ -53,6 +53,23 @@ public class BandWriteService {
 			}
 			dto.setBandImg(BandImg);
 		}
+		String BandImg2= "";
+		for(MultipartFile mf : bandCommand.getBandImg2()) {
+			String original = mf.getOriginalFilename();
+			String originalExt = original.substring(original.lastIndexOf("."));
+			String store = UUID.randomUUID().toString().replace("-","") + originalExt;
+			BandImg2 += store + ",";
+			String realPath = session.getServletContext().getRealPath("WEB-INF/view/member/upload");
+			File file = new File(realPath + "/" + store);
+			try {
+				mf.transferTo(file);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			dto.setBandImg2(BandImg2);
+	}
+		
 		bandRepository.bandWrite(dto);
 		System.out.println("파일"+bandCommand.getBandImg());
 		

@@ -19,19 +19,23 @@ public class EducationCtgrController {
 			return "band/bandList";
 		}
 		@RequestMapping("elementary")
-		public String elementary(){
+		public String elementary(Model model){
+			bandAllListService.bandAllList(model, "초등");
 			return "band/bandList";
 		}
 		@RequestMapping("medium")
-		public String medium(){
+		public String medium(Model model){
+			bandAllListService.bandAllList(model, "중등");
 			return "band/bandList";
 		}
 		@RequestMapping("employeement")
-		public String employeement(){
+		public String employeement(Model model){
+			bandAllListService.bandAllList(model, "입시/편입");
 			return "band/bandList";
 		}
 		@RequestMapping("etc")
-		public String ect(){
+		public String ect(Model model){
+			bandAllListService.bandAllList(model, "기타");
 			return "band/bandList";
 		}
 		

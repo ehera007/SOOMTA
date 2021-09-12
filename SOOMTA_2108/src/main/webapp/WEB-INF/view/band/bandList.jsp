@@ -1,9 +1,9 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,14 +80,31 @@ a:hover {
 	font-weight: bold;
 }
 
+/*검색창*/
 .search {
-	border: 1px solid black;
 	height: 40px;
-	width: 600px;
-	margin: 0 auto;
-	position: relative; /*본인 위치에서 175px만큼 왼쪽이동*/
-	left: 175px;
-	border-radius: 2em;
+	position: relative;
+	left: 130px;
+}
+.searchBar {
+    width: 700px;
+    height:20px;
+    border-radius: 30px;
+    border: 2px solid #bbb;
+    margin: 10px 0;
+    padding: 10px 15px 10px 30px;
+    outline-style: none; 
+    font-family: inherit;
+}
+.btn{
+	position:absolute;
+	top: 20px;
+	right: 20px;
+	text-align:center;
+	background-color: transparent;
+	color: #6D6D6D;
+	font-weight: bold;
+	border: none;
 }
 
 .nav {
@@ -98,7 +115,7 @@ a:hover {
 
 .nav-item {
 	margin: 15px;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 /*전체카테고리 보기*/
@@ -126,7 +143,7 @@ a:hover {
 }
 
 .ctgr {
-	border: 3px solid #0F4C81;
+	border: 2px solid #0F4C81;
 	margin-bottom: 5px;
 	list-style: none;
 }
@@ -170,19 +187,19 @@ a:hover {
 	color: #085820;
 }
 
-#titleSubLine{
-	border: 3px solid #0F4C81;
+#titleSubLine {
+	border: 2px solid #0F4C81;
 	width: 100px;
 	margin: 3px;
 }
 
-.titleSubLineIcon{
+.titleSubLineIcon {
 	list-style-image: url("../../images/ctgricon.png");
 	position: absolute;
-    left: 14px;
-    top: 5px;
-    width:18px;
-    height:18px
+	left: 14px;
+	top: 5px;
+	width: 18px;
+	height: 18px
 }
 
 /*중앙 구역 분할 */
@@ -195,38 +212,39 @@ a:hover {
 .DetailTag {
 	position: relative;
 	left: 100px;
-	width:700px;
-	height:200px;
+	width: 700px;
+	height: 200px;
 	align-items: center;
 }
 
 /*페이징*/
-.page{
-	text-align:center;
-	width:50%;
+.page {
+	text-align: center;
+	width: 50%;
 	margin: 0 auto;
+	padding-top: 15px;
 }
 
-.pagination{
-	list-style:none;
-	display:inline-block;
-	padding:0;
-	margin-top:20px;
+.pagination {
+	list-style: none;
+	display: inline-block;
+	padding: 0;
+	margin-top: 20px;
 }
 
-.pagination li{
-	display:inline;
-	text-align:center;
+.pagination li {
+	display: inline;
+	text-align: center;
 }
 
-.pagination a{
-	float:left;
-	display:block;
-	font-size:14px;
-	text-decoration:none;
-	padding : 5px 12px;
-	color:#0F4C81;
-	line-height:1.5;
+.pagination a {
+	float: left;
+	display: block;
+	font-size: 14px;
+	text-decoration: none;
+	padding: 5px 12px;
+	color: #0F4C81;
+	line-height: 1.5;
 }
 /*하단 구역 분할*/
 .footer {
@@ -272,7 +290,6 @@ a:hover {
 .footer-menu {
 	margin-left: 40px;
 }
-
 
 /* 하단고정 글자 색상, 사이즈 등 */
 .footer-callNum p {
@@ -328,6 +345,11 @@ a:hover {
 	color: #0F4C81;
 	text-decoration: none;
 }
+.detailtagbtn{
+	border:none;
+	background:none;
+	font-size: 10px;
+}
 </style>
 <meta charset="UTF-8">
 <title>SOOMTA</title>
@@ -338,83 +360,121 @@ a:hover {
 	<div class="header">
 		<img class="logo" src="../../images/soomta_logo.png" alt="SOOMTA"
 			onclick="location.href='/SOOMTA_2108/main'" />
-		<div class="search">검색바</div>
-		<!-- 로그인 안된 경우 -->
-		<div class="nav">
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/login'/>">로그인</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
-			</div>
-			<div class="nav-item">
-				<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
-			</div>
+		<div class="search">
+			<form>
+				<input type="text" name="keyWord" value=""
+					placeholder="검색어를 입력해주세요." class="searchBar" /> <input
+					type="submit" class="btn" value="검색" />
+			</form>
 		</div>
+		<!-- 로그인 안된 경우 -->
+		<!-- 로그인 안된 경우 -->
+		<c:if test="${empty logIn }">
+			<div class="nav">
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/login'/>">로그인</a>
+				</div>
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/tutorJoin'/>">튜터등록</a>
+				</div>
+				<div class="nav-item">
+					<a href="<c:url value='/soomta/memJoin'/>">무료회원가입</a>
+				</div>
+			</div>
+		</c:if>
+
+		<!-- 로그인 된 경우 -->
+		<c:if test="${!empty logIn }">
+			<div class="nav">
+				<!-- 관리자 -->
+				<c:if test="${logIn.grade == 'emp' }">
+					<div class="nav-item">
+						<a href="<c:url value='/emp/main'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 튜터 -->
+				<c:if test="${logIn.grade == 'tutor' }">
+					<div class="nav-item">
+						<a href="<c:url value='/tutor/myPage'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 멤버 -->
+				<c:if test="${logIn.grade == 'mem' }">
+					<div class="nav-item">
+						<a href="<c:url value='../member/myPage'/>">마이페이지</a>
+					</div>
+				</c:if>
+				<!-- 로그아웃 -->
+				<div class="nav-item">
+					<a href="<c:url value='../soomta/logOut'/>">로그아웃</a>
+				</div>
+			</div>
+		</c:if>
 	</div>
 	<!---------------------------------------------------------- 중앙 : 검색바, 선택----------------------------------------------------- -->
-
 	<div class="allCtgr">
 		<button class="mainmenu">전체카테고리</button>
 		<div class="submenu">
-		<b class="titlemainmenu">CLASS</b>
+			<b class="titlemainmenu">CLASS</b>
 			<div class="ctgr">
 				<li><a href="#">학업</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
 						<li id="titleSubLine"><a href="../../class/education/child">유아</a></li>
-						<li id="titleSubLine"><a href="../../class/education/elementary">초딩</a></li>
+						<li id="titleSubLine"><a
+							href="../../class/education/elementary">초딩</a></li>
 						<li id="titleSubLine"><a href="../../class/education/medium">중등</a></li>
-						<li id="titleSubLine"><a href="../../class/education/employeement">입시/편입</a></li>
+						<li id="titleSubLine"><a
+							href="../../class/education/employeement">입시/편입</a></li>
 						<li id="titleSubLine"><a href="../../class/education/ect">기타</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">자격증/시험</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
-						<li id="titleSubLine"><a href="../../class/ctificate/publicOfficer">공무원</a></li>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
+						<li id="titleSubLine"><a
+							href="../../class/ctificate/publicOfficer">공무원</a></li>
 						<li id="titleSubLine"><a href="../../class/ctificate/NCS">NCS</a></li>
-						<li id="titleSubLine"><a href="../../class/ctificate/taxation">세무/회계</a></li>
+						<li id="titleSubLine"><a
+							href="../../class/ctificate/taxation">세무/회계</a></li>
 						<li id="titleSubLine"><a href="../../class/ctificate/foreign">외국어</a></li>
 						<li id="titleSubLine"><a href="../../class/ctificate/design">디자인</a></li>
 						<li id="titleSubLine"><a href="../../class/ctificate/ect">기타</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">예체능</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
 						<li id="titleSubLine"><a href="../../class/art/art">미술</a></li>
 						<li id="titleSubLine"><a href="../../class/art/sports">스포츠</a></li>
 						<li id="titleSubLine"><a href="../../class/art/cook">요리</a></li>
 						<li id="titleSubLine"><a href="../../class/art/music">음악</a></li>
 						<li id="titleSubLine"><a href="../../class/art/ect">기타</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">재태크</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
 						<li id="titleSubLine"><a href="../../class/retack/estate">부동산</a></li>
 						<li id="titleSubLine"><a href="../../class/retack/stock">주식</a></li>
 						<li id="titleSubLine"><a href="../../class/retack/fund">펀드</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">취업</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
-						<li id="titleSubLine"><a href="../../class/employement/intertview">이력서</a></li>
-						<li id="titleSubLine"><a href="../../class/employement/resume">면접</a></li>
-						<li id="titleSubLine"><a href="../../class/employement/personality">인적성</a></li>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
+						<li id="titleSubLine"><a
+							href="../../class/employement/intertview">이력서</a></li>
+						<li id="titleSubLine"><a
+							href="../../class/employement/resume">면접</a></li>
+						<li id="titleSubLine"><a
+							href="../../class/employement/personality">인적성</a></li>
 						<li id="titleSubLine"><a href="../../class/employement/ect">기타</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<a href="#">기타</a>
@@ -423,75 +483,76 @@ a:hover {
 			<div class="ctgr">
 				<li><a href="#">학업</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
 						<li id="titleSubLine"><a href="../education/child">유아</a></li>
 						<li id="titleSubLine"><a href="../education/elementary">초딩</a></li>
 						<li id="titleSubLine"><a href="../education/medium">중등</a></li>
 						<li id="titleSubLine"><a href="../education/employeement">입시/편입</a></li>
 						<li id="titleSubLine"><a href="../education/ect">기타</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">자격증/시험</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
 						<li id="titleSubLine"><a href="../ctificate/publicOfficer">공무원</a></li>
 						<li id="titleSubLine"><a href="../ctificate/NCS">NCS</a></li>
 						<li id="titleSubLine"><a href="../ctificate/taxation">세무/회계</a></li>
 						<li id="titleSubLine"><a href="../ctificate/foreign">외국어</a></li>
 						<li id="titleSubLine"><a href="../ctificate/design">디자인</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">예체능</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
 						<li id="titleSubLine"><a href="../art/art">미술</a></li>
 						<li id="titleSubLine"><a href="../art/sports">스포츠</a></li>
 						<li id="titleSubLine"><a href="../art/cook">요리</a></li>
 						<li id="titleSubLine"><a href="../art/music">음악</a></li>
 						<li id="titleSubLine"><a href="../art/ect">기타</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">재태크</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
 						<li id="titleSubLine"><a href="../retack/estate">부동산</a></li>
 						<li id="titleSubLine"><a href="../retack/stock">주식</a></li>
 						<li id="titleSubLine"><a href="../retack/fund">펀드</a></li>
 						<li id="titleSubLine"><a href="../retack/ect">기타</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<li><a href="#">취업</a>
 					<ul class="titleSubmenu">
-					<img src="../../images/ctgricon.png" class="titleSubLineIcon"/>
+						<img src="../../images/ctgricon.png" class="titleSubLineIcon" />
 						<li id="titleSubLine"><a href="../employement/intertview">이력서</a></li>
 						<li id="titleSubLine"><a href="../employement/resume">면접</a></li>
 						<li id="titleSubLine"><a href="../employement/personality">인적성</a></li>
 						<li id="titleSubLine"><a href="../employement/ect">기타</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</div>
 			<div class="ctgr">
 				<a href="#">기타</a>
 			</div>
 		</div>
 	</div>
-<!-- -------------------------------------------------------------------------------------------------------------------- -->
+	<!-- -------------------------------------------------------------------------------------------------------------------- -->
 
 	<div class="main">
-		<table>
+		<table style="margin-top: 25px;">
 			<tr style="color: #0F4C81;">
 				<td><a href="./../../band/mainCtgr">Band </a>></td>
-				<td><a href="./../../../SOOMTA_2108/band/education">메인카테고리
+				<td><a href="./../../../SOOMTA_2108/band/education">
+					<c:if test="${list[0].bandCategoryL == 'STUDY' }">학업</c:if>
+					<c:if test="${list[0].bandCategoryL == 'TEST' }">자격증</c:if>
+					<c:if test="${list[0].bandCategoryL == 'ENT' }">예체능</c:if>
+					<c:if test="${list[0].bandCategoryL == 'ECONOMY' }">재태크</c:if>
+					<c:if test="${list[0].bandCategoryL == 'EMP' }">취업</c:if>
+					<c:if test="${list[0].bandCategoryL == 'ETC' }">기타</c:if>
 				</a>></td>
-				<td>세부카테고리</td>
+				<td>${list[0].bandCategoryS }</td>
 			</tr>
 		</table>
 		<br />
@@ -499,56 +560,68 @@ a:hover {
 		<div style="border: 3px solid #0F4C81; border-radius: 2em;">
 			<table class="DetailTag" width="700px">
 				<tr>
-					<td width="100px">관심 분야</td>
-					<td><input type="checkbox" name="interest_ck"
-						value="economy_ck" />경제</td>
-					<td><input type="checkbox" name="interest_ck"
-						value="Science_ck" />과학</td>
+					<td width="130px">강사 성별</td>
+					<td><input type="checkbox" name="ckTag" value="tutorGender"/>남자</td>
+					<td><input type="checkbox" name="ckTag" value="tutorGender"/>여자</td>
+					<td><input type="checkbox" name="ckTag" value="tutorGender"/>무관</td>
 				</tr>
 				<tr>
-					<td>강사 성별</td>
-					<td><input type="checkbox" name="interest_ck"
-						value="economy_ck" />남자</td>
-					<td><input type="checkbox" name="interest_ck"
-						value="Science_ck" />여</td>
+					<td>수강생 성별</td>
+					<td><input type="checkbox" name="ckTag" value="memGender"/>남자</td>
+					<td><input type="checkbox" name="ckTag" value="memGender"/>여자</td>
+					<td><input type="checkbox" name="ckTag" value="memGender"/>무관</td>
+				</tr>
+				<tr>
+					<td>수업방식</td>
+					<td><input type="checkbox" name="ckTag" value="s"/>과외</td>
+					<td><input type="checkbox" name="ckTag" value="g"/>그룹</td>
+					<td><input type="checkbox" name="ckTag" value="n"/>비대면</td>
 				</tr>
 				<tr>
 					<td>지역</td>
-					<td><input type="checkbox" name="interest_ck"
-						value="economy_ck" />서울</td>
-					<td><input type="checkbox" name="interest_ck"
-						value="Science_ck" />경기도</td>
+					<td><input type="checkbox" name="classCity" value="SEOUL" onchange="detailChk();"/>서울</td>
+					<td colspan="2"><input type="checkbox" name="classCity" value="GYEONGGIDO" onchange="detailChk();"/>경기도</td>
 				</tr>
 				<tr>
-					<td colspan="3"
-						style="color: #BEBEBE; font-size: 10px; text-align: right;">더보기</td>
+					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">
+						<input type="button" class="detailtagbtn" onclick="DetailTag();" value=">선택완료"/>
+					</td>
 				</tr>
 			</table>
 		</div>
 		<br />
 		<form style="direction: rtl;">
-			<select name="ranking">
-				<option value="one">별점</option>
-				<option value="two">조회수</option>
-				<option value="three">즐찾</option>
+			<select name="ranking" onchange="sort(this.form)">
+				<option value="classNo">최신순</option>
+				<option value="viewOrder">조회순</option>
+				<option value="starOrder">별점순</option>
 			</select>
 		</form>
 		<table style="margin: auto; text-align: center;">
 			<tr style="vertical-align: bottom;">
-			<c:forEach items="${list }" var="dto" varStatus="cnt">
-				<td width="200" height="250" >
-				<a href="../../band/bandIntro?bandNo=${dto.bandNo }"> 
-				<img width="150" height="150" src="../../tutor/upload/${dto.bandImg.split(',')[0] }"/><br/>
-				${dto.bandName}
-				</a>
-				</td> 
-				<c:if test="${cnt.count % 4 == 0 }">
-				</tr><tr>
+				<c:forEach items="${list }" var="dto" varStatus="cnt">
+					<td width="200" height="250"><a href="../../band/bandIntro?bandNo=${dto.bandNo }">
+					<img width="150" height="150" src="../../member/upload/${dto.bandImg.split(',')[0] }" /><br />
+					${dto.bandName}
+					</a></td>
+					<c:if test="${cnt.count % 4 == 0 }">
+			</tr>
+			<tr>
 				</c:if>
-			</c:forEach>
+				</c:forEach>
 			</tr>
 		</table>
-		<p style="text-align: center;">여기에 페이징 넣어주시면 됩니다 !!</p>
+		<div class="page">
+			<span onclick="alert('이전 페이지가 없습니다.');">이전</span>			
+			<c:set var = "page" value = "${(param.p==null)? 1: param.p}"/>
+			<c:set var ="startNum" value = "${page-(page-1)%5}"/>
+			<span>
+				<c:forEach var = "i" begin= "0" end = "4">
+				<a href="?p=${startNum+i}&t=&q=" >${startNum+i}</a>
+				</c:forEach>
+			</span>		
+			<span onclick="alert('다음 페이지가 없습니다.');">다음</span>	
+		</div>
 		<!----------------------------------------------------- 하단 고정------------------------------------------------- -->
 		<hr style="color: #BEBEBE;">
 		<div class="footer">
