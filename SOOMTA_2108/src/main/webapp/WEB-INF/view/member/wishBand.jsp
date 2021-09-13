@@ -321,7 +321,13 @@ td a:active {
 			<tr>
 			<td style="background-color: white; border-style: none;"></td>
 				<td>${wish.bandNo}</td>
-				<td>${wish.bandCategoryL}/${wish.bandCategoryS}</td>
+				<td><c:if test="${wish.bandCategoryL == 'STUDY' }">학업</c:if>
+					<c:if test="${wish.bandCategoryL == 'TEST' }">자격증&시험</c:if>
+					<c:if test="${wish.bandCategoryL == 'ENT' }">예체능</c:if>
+					<c:if test="${wish.bandCategoryL == 'ECONOMY' }">재태크</c:if>
+					<c:if test="${wish.bandCategoryL == 'EMP' }">취업</c:if>
+					<c:if test="${wish.bandCategoryL == 'ETC' }">기타</c:if> / 
+				/${wish.bandCategoryS}</td>
 				<td><a href="../band/bandIntro?bandNo=${wish.bandNo }">${wish.bandName}</a></td>
 				<td>${wish.bandTotal}</td>
 				<td>

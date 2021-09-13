@@ -313,6 +313,7 @@ td a:active {
          <th width="15%">기간</th>
          <th width="4%">수강생</th>
          <th width="10%">지역</th>
+       
          <th width="4%" style="background-color: white;"></th>
         
       </tr></thead>
@@ -337,7 +338,7 @@ td a:active {
          <td> <c:if test="${wish.classCity == 'SEOUL'}">서울</c:if>
          	  <c:if test="${wish.classCity == 'GYEONGGIDO'}">경기도</c:if>
          	  /${wish.classArea}</td>
-         
+          
          <td style="background-color: white; border-style: none;"></td>
       </tr>
       </c:forEach>
