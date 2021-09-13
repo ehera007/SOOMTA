@@ -268,6 +268,7 @@ td a:active {
    /*border:1px solid #0F4C81;
    border-radius:4px;*/
 }
+
 </style>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -277,8 +278,7 @@ td a:active {
         	return false;
         } );
     });
-    
-    </script>
+</script>
 
 
 
@@ -300,7 +300,7 @@ td a:active {
 		</div>
 	</div>
 	<div class="myBandWish">
-			<h1>${ID}님의 소모임 찜 목록</h1>
+			<h1>${memPerData.memId }님의 소모임 찜 목록</h1>
 			<p>숨타와 함께 숨은 시간을 채워봐요!</p>
 		</div>
 	<!-- 타이틀 -->
@@ -312,44 +312,25 @@ td a:active {
          <th width="20%">모임명</th>
          <th width="15%">인원수</th>
          <th width="10%">성별</th>
-         <th width="10%">등급</th>
          <th width="10%">개설일</th>
          <th width="5%" style="background-color: white;"></th>
         
       </tr></thead>
       <tbody>
-      <tr>
-      	<td style="background-color: white; border-style: none;"></td>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td><a href="boardInfo" class="boardInfo">모임명</a></td>
-         <td>인원수</td>
-         <td>성별</td>
-         <td>등급</td>
-         <td>개설일</td>
-         <td style="background-color: white; border-style: none;"></td>
-      </tr>
-      <tr>
-      <td style="background-color: white; border-style: none;"></td>
-         <td>No.</td>
-         <td>대분류/소분류</td>
-         <td>모임명</td>
-         <td>인원수</td>
-         <td>성별</td>
-         <td>등급</td>
-         <td>개설일</td>
-         <td style="background-color: white; border-style: none;"></td>
-      </tr>
-     	 <c:forEach items="${lists }" var="dto">
+     	 <c:forEach items="${list }" var="wish">
 			<tr>
 			<td style="background-color: white; border-style: none;"></td>
-				<td>${dto.bandNo}</td>
-				<td>${dto.bandCategoryL}/${dto.bandCategoryS}</td>
-				<td>${dto.bandName}</td>
-				<td>${dto.bandTotal}</td>
-				<td>${dto.bandGender}</td>
-				<td>${dto.memId}</td>
-				<td>${dto.bandRegiDay}</td>
+				<td>${wish.bandNo}</td>
+				<td>${wish.bandCategoryL}/${wish.bandCategoryS}</td>
+				<td><a href="../band/bandIntro?bandNo=${wish.bandNo }">${wish.bandName}</a></td>
+				<td>${wish.bandTotal}</td>
+				<td>
+					<c:if test="${wish.bandGender == 'M'}">남성</c:if>
+					<c:if test="${wish.bandGender == 'F'}">여성</c:if>
+					<c:if test="${wish.bandGender == 'U'}">무관</c:if>
+					</td>
+				<td><fmt:formatDate value="${wish.bandRegiDay}" 
+		             pattern="yy.MM.dd"/></td>
 			<td style="background-color: white; border-style: none;"></td>
 			</tr>
 		</c:forEach></tbody>

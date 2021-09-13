@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import Model.BandDTO;
 import Model.BandJoinDTO;
+import Model.BandWishDTO;
 
 public class BandRepository {
 	@Autowired
@@ -14,11 +15,22 @@ public class BandRepository {
 	String namespace = "mappers.bandMapper";
 	String statement;
 	
-	public void bandWish(BandDTO dto) {
+	public void bandWish(BandWishDTO dto) { //밴드 찜
 		statement = namespace + ".bandWish";
 		sqlSession.insert(statement,dto);
 	}
-	
+	public int wishChk(BandWishDTO dto) {
+		statement = namespace + ".wishChk";
+		return sqlSession.selectOne(statement, dto);
+	}
+	public void wishDel(BandWishDTO dto) {
+		statement = namespace + ".wishDel";
+		sqlSession.delete(statement, dto);
+	}
+	public List<BandWishDTO> wishBand(String memId) { //밴드 찜 목록
+		statement = namespace + ".wishBand";
+		return sqlSession.selectList(statement, memId);
+	}
 	public List<BandDTO> bandList(String memId) {
 		statement = namespace + ".bandList";
 		return sqlSession.selectList(statement,memId);
@@ -44,7 +56,7 @@ public class BandRepository {
 		return sqlSession.selectList(statement, bandCategoryS);
 	}
 	
-	public BandDTO bandIntro(String bandNo) {
+	public BandDTO bandIntro(Long bandNo) {
 		statement = namespace + ".bandIntro";
 		return sqlSession.selectOne(statement, bandNo);
 	}

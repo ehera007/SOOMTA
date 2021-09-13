@@ -7,15 +7,31 @@
 	select num_seq.nextval from dual
 </select>
 
-<insert id="bandWish" parameterType="Model.BandDTO">
-	merge into band_Wishlist bw
-	using (select band_no from Band where band_no=#{bandNo}) b1
-	on (bw.band_no = b1.band_no and bw.mem_Id = #{bandNo})
-	when matched then
-		update
-	when not matched then
-		insert
+<!-- 밴드 위시관련 -->
+<insert id="bandWish" parameterType="Model.BandWishDTO">
+	insert into band_wishlist(band_no, mem_id, mem_id2)
+	values (#{bandNo}, #{memId}, #{memId2}) 
+
 </insert>
+
+<select id="wishChk" parameterType="Model.BandWishDTO" resultType="int">
+	select count(band_no) from band_wishlist
+	where band_no = #{bandNo} AND mem_id = #{memId}
+</select>
+
+<delete id="wishDel" parameterType="Model.BandWishDTO">
+	delete from band_wishlist where band_no = #{bandNo} AND mem_id = #{memId}
+</delete>
+
+<!-- 밴드 찜 목록 보기 -->
+<select id="wishBand" parameterType="string" resultType="Model.BandDTO">
+	select band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
+			band_Category_S bandCategoryS,band_Img bandImg, band_RegiDay bandRegiDay,
+			band_Introduce bandIntroduce, band_Gender bandGender, band_Way bandWay,
+			band_Total bandTotal, band_Public bandPublic, band_Age bandAge, mem_Id memId
+	from band
+	where band_No in (select band_No from BAND_WISHLIST where mem_id = #{memId})
+</select>
 
 <select id="bandList" resultType="Model.BandDTO">
 	select band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
@@ -52,11 +68,11 @@
 	from band
 	where band_Category_S = #{bandCategoryS }
 </select>
-<select id="bandIntro" parameterType="string" resultType="Model.BandDTO">
+<select id="bandIntro" parameterType="long" resultType="Model.BandDTO">
 	select band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
 			band_Category_S bandCategoryS,band_Img bandImg,band_Img2 bandImg2,
 			band_Introduce bandIntroduce, band_Gender bandGender, band_Way bandWay,
-			band_Total bandTotal, band_Public bandPublic, band_Age bandAge
+			band_Total bandTotal, band_Public bandPublic, band_Age bandAge, mem_id memId
 	from band
 	where band_No = #{bandNo}
 </select>

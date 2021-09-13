@@ -25,12 +25,6 @@ public class BandDetailController {
 		return "band/bandDetailHome";
 	}
 
-	@RequestMapping("bandIntro")
-	public String bandIntro() {
-		return "band/bandIntro";
-	}
-
-	
 	
 	@Autowired
 	BandDetailService bandDetailService;

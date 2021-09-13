@@ -18,7 +18,8 @@
 	<bean class="service.band.BandListService" />
 	<bean class="repository.BandRepository"/>
 	<bean class="service.band.BandAllListService"/>
-	
+	<bean class="controller.band.BandIntroController" />
 	<bean class="service.band.BandWishService" />
 	<bean class="service.band.BandIntroService"/>
+	<bean class="service.band.BandWishListService" />
 </beans>

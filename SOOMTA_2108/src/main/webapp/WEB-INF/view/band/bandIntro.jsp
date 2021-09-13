@@ -429,9 +429,48 @@ header a:hover {
 	margin-top: 8px;
 	margin-bottom: 6px;
 }
+.WishButton {
+	display:inline-block;
+	width: 100px;
+	height: 28px;
+	text-align: left;
+	
+	padding-top: 2px;
+	position: relative;
+	bottom: -5px;
+	left: 5px;
+}
 	</style>
+	<script type="text/javascript">
+	function wish1(){		
+			var id ='${logIn.grade}';
+		$.ajax({
+			type : "post",
+			url : "wish",
+			dataType : "html",
+			data : "bandNo=${dto.bandNo}" ,
+			success : function(result){
+				if(id == 'mem'){
+					if(result.trim() == "1"){
+						$("#wish1").attr("src","../images/heart_filled.png");
+					} else{
+						$("#wish1").attr("src","../images/hreat_empty.png");
+					}
+				}else{
+					alert("일반 회원으로 로그인해주세요.");
+					return false;
+				}
+			},
+			error: function(){
+				alert("일반 회원으로 로그인해주세요.");
+				return;
+			}
+		});
+	}
+</script>
 
 	<body>
+	
 		<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
 	<div class="header">
 		<img class="logo" src="../images/soomta_logo.png" alt="SOOMTA"
@@ -649,6 +688,12 @@ header a:hover {
             </div>
             <a href="#"> 문의하기 </a>
             </div>
+            <div class="WishButton">
+						<c:if test="${dto.bandWish == false }">
+						<a href="javascript:wish1();"><img id="wish1" src="../images/hreat_empty.png"/></a></c:if>
+						<c:if test="${dto.bandWish == true }">
+						<a href="javascript:wish1();"><img id="wish1" src="../images/heart_filled.png"/></a></c:if>
+						</div>
             </div>
         </div>
         <div class = "middle-button">

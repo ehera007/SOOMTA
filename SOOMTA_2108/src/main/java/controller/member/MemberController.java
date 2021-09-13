@@ -18,6 +18,7 @@ import command.PurchaseCommand;
 import command.ReviewCommand;
 import service.band.BandListService;
 import service.band.BandNumberService;
+import service.band.BandWishListService;
 import service.band.BandWriteService;
 import service.class1.ClassCartService;
 import service.class1.ClassWishListService;
@@ -41,7 +42,10 @@ import validator.MemberPasswordValidator;
 public class MemberController {
 	@Autowired
 	MemberInfoSuJungService memberInfoSuJungService;
-	
+	@Autowired
+	BandWishListService bandWishListService;
+	@Autowired
+	ClassWishListService classWishListService;
 	@RequestMapping("myPage")//회원 마이페이지
 	public String myPage(HttpSession session,Model model) {
 		memberPerDataService.perData(model, session);
@@ -177,9 +181,6 @@ public class MemberController {
 		memberClassConService.classCon(classNo, model);
 		return "member/classReview";
 	}
-	
-	@Autowired
-	ClassWishListService classWishListService;
 	@RequestMapping("wishClass")//찜한강의
 	public String wishClass(HttpSession session, Model model) {
 		memberPerDataService.perData(model, session);
@@ -187,10 +188,11 @@ public class MemberController {
 		
 		return "member/wishClass";
 	}
+	@RequestMapping("wishBand")//찜한모임
+	public String wishBand(HttpSession session, Model model) {
+		memberPerDataService.perData(model, session);
+		bandWishListService.wishBand(session, model);
 		
-	
-	@RequestMapping("wishBand")
-	public String wishBand() {
 		return "member/wishBand";
 	}
 	

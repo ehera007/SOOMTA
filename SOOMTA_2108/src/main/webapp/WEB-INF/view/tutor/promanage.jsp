@@ -317,49 +317,49 @@ td{
       <form action="perForm"name="frm">
          <table>
          
-         <tr>   
+         <tr style="position: relative; top: 15px;">   
              <th>자격증 </th><td>
              <c:if test = "${tutor.tutorCertification == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorCertification != null}">${tutor.tutorCertification}</c:if>
              </td>
          </tr>
-         <tr>   
+        <tr style="position: relative; top: 15px;">  
              <th>경력 </th><td>
              <c:if test = "${tutor.tutorCareer == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorCareer != null}">${tutor.tutorCareer}</c:if>
              </td>
          </tr>
          
-         <tr>   
+         <tr style="position: relative; top: 15px;">
              <th>최종학력</th><td>
              <c:if test = "${tutor.tutorFinalEdu == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorFinalEdu != null}">${tutor.tutorFinalEdu}</c:if>
              </td>
          </tr>
          
-         <tr>    
+         <tr style="position: relative; top: 15px;">   
              <th>응답가능시간 </th><td>
              <c:if test = "${tutor.tutorRespond == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorRespond != null}">${tutor.tutorRespond}</c:if>
              </td>
          </tr>
-         <tr>    
+         <tr style="position: relative; top: 15px;">  
              <th>선호방식 </th><td>
              <c:if test = "${tutor.tutorLikearea == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorLikearea != null}">${tutor.tutorLikearea}</c:if>
              </td>
          </tr>
-         <tr>     
+         <tr style="position: relative; top: 15px; "> 
              <th>소개 </th><td width=330 style="word-break:break-all">
              <c:if test = "${tutor.tutorIntroduce == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorIntroduce != null}">${tutor.tutorIntroduce}</c:if>
              </td>
          </tr>
-         <tr style="position: relative; top: 15px;">  
+         <tr> 
              <th>이미지 </th><td>
              <c:if test = "${tutor.tutorImage == null}" >미입력</c:if>
              <c:if test = "${tutor.tutorImage != null}">
-             <img src="../tutor/upload/${tutor.tutorImage}" style="max-width: 70px; height: 50px;" />
+             <img src="../tutor/upload/${tutor.tutorImage}" style="max-width: 200px; height: 50%;" />
              </c:if>
              </td>
          </tr>      

@@ -17,7 +17,20 @@ public class BandDTO {
 	String bandAge;
 	String bandImg;
 	String bandImg2;
-	
+	Boolean bandWish;
+	String memId2;
+	public String getMemId2() {
+		return memId2;
+	}
+	public void setMemId2(String memId2) {
+		this.memId2 = memId2;
+	}
+	public Boolean getBandWish() {
+		return bandWish;
+	}
+	public void setBandWish(Boolean bandWish) {
+		this.bandWish = bandWish;
+	}
 	public String getBandImg2() {
 		return bandImg2;
 	}
