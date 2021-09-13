@@ -1,11 +1,18 @@
 package controller.band;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import service.main.BandSearchService;
 
 @Controller
 @RequestMapping("band")
 public class BandCtgrController {
+	@Autowired
+	BandSearchService bandSearchService;
 	@RequestMapping("mainCtgr")
 	public String mainCtgr() {
 		return "band/bandMainCtgr";
@@ -39,7 +46,11 @@ public class BandCtgrController {
 	public String bandsDetailPage() {
 		return "band/bandDetailPage";
 	}
-	
+	@RequestMapping(value="bandSearch", method=RequestMethod.POST)
+	public String bandSearch(Model model) {
+		bandSearchService.bandSearch(model);
+		return "band/bandSearch";
+	}
 	
 	
 	

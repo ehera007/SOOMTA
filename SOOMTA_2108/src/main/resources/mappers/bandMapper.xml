@@ -59,13 +59,30 @@
 		#{bandImg},sysdate,#{bandIntroduce},#{bandGender},#{bandWay},
 		#{bandTotal},#{bandPublic},#{bandAge},#{memId}, #{bandImg2})
 </insert>
-<select id="bandAllList" resultType="Model.BandDTO" parameterType="string">
-	select band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
-			band_Category_S bandCategoryS,band_Img bandImg, band_RegiDay bandRegiDay,
-			band_Introduce bandIntroduce, band_Gender bandGender, band_Way bandWay,
-			band_Total bandTotal, band_Public bandPublic, band_Age bandAge
+<select id="bandAllList" resultType="Model.BandDTO" parameterType="command.BandCtgCommand">
+select * 
+from(	select rownum rn, bandNo, bandName, bandCategoryL, bandCategoryS, bandImg, bandGender, bandWay, bandPublic, bandRegiDay 
+	from(select band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
+			band_Category_S bandCategoryS,band_Img bandImg, 
+			band_Gender bandGender, band_Way bandWay,
+			band_Public bandPublic, band_RegiDay bandRegiDay 
 	from band
 	where band_Category_S = #{bandCategoryS }
+	<if test="bandGender != null">
+				and band_Gender in
+				<foreach collection="bandGender" item="bGender" separator="," index="index" open="(" close=")">
+					#{bGender}
+				</foreach>
+			</if>
+	<if test="bandWay != null">
+				and band_Way in
+				<foreach collection="bandWay" item="bWay" separator="," index="index" open="(" close=")">
+					#{bWay}
+				</foreach>
+	</if>	
+	order by bandRegiDay desc
+	))
+	where rn between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow}
 </select>
 
 <select id="bandIntro" parameterType="long" resultType="Model.BandDTO">
@@ -75,5 +92,10 @@
 			band_Total bandTotal, band_Public bandPublic, band_Age bandAge, mem_id memId
 	from band
 	where band_No = #{bandNo}
+</select>
+<select id="countB" resultType="int" parameterType="string">
+	select count(*) 
+	from band
+	where band_Category_S = #{bandCategoryS} 
 </select>
 </mapper>

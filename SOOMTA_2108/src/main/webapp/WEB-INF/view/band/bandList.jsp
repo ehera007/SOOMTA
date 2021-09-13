@@ -353,7 +353,13 @@ a:hover {
 </style>
 <meta charset="UTF-8">
 <title>SOOMTA</title>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
 
+	function DetailTag(){
+		$("#frm").submit();
+	}
+</script>
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
@@ -361,10 +367,9 @@ a:hover {
 		<img class="logo" src="../../images/soomta_logo.png" alt="SOOMTA"
 			onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="search">
-			<form>
-				<input type="text" name="keyWord" value=""
-					placeholder="검색어를 입력해주세요." class="searchBar" /> <input
-					type="submit" class="btn" value="검색" />
+			<form action="./../bandSearch" name="bandSearch" method="post">
+				<input type = "text" name="keyWord" value="" placeholder="검색어를 입력해주세요." class="searchBar"/>
+				<input type="submit" class="btn" value="검색"/>
 			</form>
 		</div>
 		<!-- 로그인 안된 경우 -->
@@ -558,29 +563,19 @@ a:hover {
 		<br />
 
 		<div style="border: 3px solid #0F4C81; border-radius: 2em;">
-			<table class="DetailTag" width="700px">
+			<form action="${path }" id="frm" metod= "post">
+			<table class="DetailTag">
 				<tr>
-					<td width="130px">강사 성별</td>
-					<td><input type="checkbox" name="ckTag" value="tutorGender"/>남자</td>
-					<td><input type="checkbox" name="ckTag" value="tutorGender"/>여자</td>
-					<td><input type="checkbox" name="ckTag" value="tutorGender"/>무관</td>
+					<td width="130px">밴드 성별</td>
+					<td><input type="checkbox" name="bandGender" value="M"/>남자</td>
+					<td><input type="checkbox" name="bandGender" value="F"/>여자</td>
+					<td><input type="checkbox" name="bandGender" value="U"/>무관</td>
 				</tr>
 				<tr>
-					<td>수강생 성별</td>
-					<td><input type="checkbox" name="ckTag" value="memGender"/>남자</td>
-					<td><input type="checkbox" name="ckTag" value="memGender"/>여자</td>
-					<td><input type="checkbox" name="ckTag" value="memGender"/>무관</td>
-				</tr>
-				<tr>
-					<td>수업방식</td>
-					<td><input type="checkbox" name="ckTag" value="s"/>과외</td>
-					<td><input type="checkbox" name="ckTag" value="g"/>그룹</td>
-					<td><input type="checkbox" name="ckTag" value="n"/>비대면</td>
-				</tr>
-				<tr>
-					<td>지역</td>
-					<td><input type="checkbox" name="classCity" value="SEOUL" onchange="detailChk();"/>서울</td>
-					<td colspan="2"><input type="checkbox" name="classCity" value="GYEONGGIDO" onchange="detailChk();"/>경기도</td>
+					<td>모임방식</td>
+					<td><input type="checkbox" name="bandWay" value="C"/>대면</td>
+					<td><input type="checkbox" name="bandWay" value="N"/>비대면</td>
+					<td><input type="checkbox" name="bandWay" value="U"/>무관</td>
 				</tr>
 				<tr>
 					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">
@@ -588,6 +583,7 @@ a:hover {
 					</td>
 				</tr>
 			</table>
+			</form>
 		</div>
 		<br />
 		<form style="direction: rtl;">
@@ -611,16 +607,8 @@ a:hover {
 				</c:forEach>
 			</tr>
 		</table>
-		<div class="page">
-			<span onclick="alert('이전 페이지가 없습니다.');">이전</span>			
-			<c:set var = "page" value = "${(param.p==null)? 1: param.p}"/>
-			<c:set var ="startNum" value = "${page-(page-1)%5}"/>
-			<span>
-				<c:forEach var = "i" begin= "0" end = "4">
-				<a href="?p=${startNum+i}&t=&q=" >${startNum+i}</a>
-				</c:forEach>
-			</span>		
-			<span onclick="alert('다음 페이지가 없습니다.');">다음</span>	
+				<div class="page">
+			 <%@ include file="../include/page.jsp" %>
 		</div>
 		<!----------------------------------------------------- 하단 고정------------------------------------------------- -->
 		<hr style="color: #BEBEBE;">

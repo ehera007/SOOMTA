@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="include/mainStyle.css" media="all"
+<link rel="stylesheet" href="../include/mainStyle.css" media="all"
 	type="text/css" />
 <style type="text/css">
 @charset "UTF-8";
@@ -106,7 +106,7 @@
 	<!-- 중앙 : 검색바, 선택(마우스오버 시 이미지 변경) -->
 	<div class="main">
 		<div class="search">
-			<form>
+			<form action="bandSearch" name="bandSearch" method="post">
 				<input type = "text" name="keyWord" value="" placeholder="검색어를 입력해주세요." class="searchBar"/>
 				<input type="submit" class="btn" value="검색"/>
 			</form>
@@ -115,8 +115,8 @@
 			<tr style="vertical-align: bottom;">
 			<c:forEach items="${blist }" var="blist" varStatus="cnt" begin="0" end="7">
 				<td width="200" height="230" >
-				<a href="./band/bandIntro?bandNo=${blist.bandNo }"> 
-				<img width="150" height="150" src="./member/upload/${blist.bandImg.split(',')[0] }"/><br/>
+				<a href="./../band/bandIntro?bandNo=${blist.bandNo }"> 
+				<img width="150" height="150" src="./../member/upload/${blist.bandImg.split(',')[0] }"/><br/>
 				<c:if test="${blist.bandGender == 'M' }">남자</c:if>
 				<c:if test="${blist.bandGender == 'F' }">여자</c:if>
 				<c:if test="${blist.bandGender == 'U' }">무관</c:if><br /> 

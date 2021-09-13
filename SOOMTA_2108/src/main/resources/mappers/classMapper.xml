@@ -67,7 +67,7 @@
 <select id="classList" parameterType="command.CtgCommand" resultType="Model.ClassDTO">
 select * 
 from(	select rownum rn, classNo, tutorId, className, classImg, classRegiday, classStart, classEnd, classIntroduce, classCategoryL, classCategoryS, classPrice,
-	        classGender, 0 classWay,   classState,  classTotal,  classCity,  classArea 
+	        classGender, classWay,   classState,  classTotal,  classCity,  classArea 
 	from (select  class_No classNo, c.tutor_Id tutorId, class_Name className, class_Img classImg, class_Regiday classRegiday, class_Start classStart, class_End classEnd, class_Introduce classIntroduce, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Price classPrice, class_Gender classGender, class_Way classWay, class_State classState, class_Total classTotal, class_City classCity, class_Area classArea 
 			from Soomta_Class c , tutor t 
 			where c.tutor_Id = t.tutor_Id and class_Category_S = #{classCategoryS} 

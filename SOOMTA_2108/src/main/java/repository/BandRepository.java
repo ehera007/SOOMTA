@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import Model.BandDTO;
-import Model.BandJoinDTO;
 import Model.BandWishDTO;
+import command.BandCtgCommand;
 
 public class BandRepository {
 	@Autowired
@@ -51,12 +51,16 @@ public class BandRepository {
 		return sqlSession.selectOne(statement);
 	}
 	
-	public List<BandDTO> bandAllList(String bandCategoryS){
+	public List<BandDTO> bandAllList(BandCtgCommand bandCtgCommand){
 		statement = namespace + ".bandAllList";
-		return sqlSession.selectList(statement, bandCategoryS);
+		return sqlSession.selectList(statement, bandCtgCommand);
 	}
 	public BandDTO bandIntro(Long bandNo) {
 		statement = namespace + ".bandIntro";
 		return sqlSession.selectOne(statement, bandNo);
+	}
+	public int countB(String bandCategoryS) {
+		statement = namespace + ".countB";
+		return sqlSession.selectOne(statement, bandCategoryS);
 	}
 }
