@@ -32,5 +32,10 @@ public class BandDetailRepository {
 		statement = namespace + ".countBank";
 		return sqlSession.selectOne(statement, dto);
 	}
+	
+	public BandDTO bandIntro(Long bandNo) {
+		statement = namespace + ".bandIntro";
+		return sqlSession.selectOne(statement, bandNo);
+	}
 }
 

@@ -9,12 +9,15 @@ import org.springframework.ui.Model;
 import Model.BandDTO;
 import Model.BandWishDTO;
 import Model.LogInDTO;
+import Model.LogInDTO;
+import repository.BandDetailRepository;
 import repository.BandRepository;
 
 public class BandIntroService {
 	@Autowired
 	BandRepository bandRepository;
-
+	@Autowired
+BandDetailRepository bandDetailRepository;
 	public void bandIntro(Long bandNo, Model model, HttpSession session) {
 		System.out.println("svuscasvsav");
 		BandDTO dto = bandRepository.bandIntro(bandNo);
@@ -33,7 +36,8 @@ public class BandIntroService {
 		} else {
 			dto.setBandWish(false);
 		}
-
 		model.addAttribute("dto", dto);
+
+
 	}
 }

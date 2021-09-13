@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.bandMapper">
-
 <select id="bandNo" resultType="string">
 	select num_seq.nextval from dual
 </select>
@@ -68,6 +67,7 @@
 	from band
 	where band_Category_S = #{bandCategoryS }
 </select>
+
 <select id="bandIntro" parameterType="long" resultType="Model.BandDTO">
 	select band_No bandNo, band_Name bandName, band_Category_L bandCategoryL, 
 			band_Category_S bandCategoryS,band_Img bandImg,band_Img2 bandImg2,

@@ -10,5 +10,5 @@
 	<bean class="repository.BandDetailRepository"/>
 	<bean class="service.band.BandHomeService" />
 	<bean class="service.band.BandDetailJoinService" />
-	
+	<bean class="service.band.BandIntroService"/>
 </beans>

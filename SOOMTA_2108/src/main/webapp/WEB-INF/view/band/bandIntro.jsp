@@ -18,6 +18,16 @@
         	return false;
         } );
     });
+	function bandHome() {
+		var id ='${logIn.grade}';
+		//alert("삭제하시겠습니까?");
+		if(id == 'mem'){
+			javascript:location.href='bandDetail?bandNo=${dto.bandNo}';
+		}else{
+			alert("일반 회원으로 로그인해주세요.");
+			return false;
+		}
+	}
 	</script>
 	</head>
 	<style type="text/css">
@@ -681,7 +691,7 @@ header a:hover {
             <div class="button-4" >
             <div class="eff-4">
             </div>
-            <a href="bandDetail?bandNo=${dto.bandNo }"> 밴드홈 </a>
+            <a href="#" onclick="bandHome()"> 밴드홈 </a> <!-- 섹셔으로 멤버 아이디 넘기는 법 -->
             </div>
             <div class="button-4" >
             <div class="eff-4">

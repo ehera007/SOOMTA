@@ -14,6 +14,7 @@ import command.MemberCommand;
 import service.band.BandDetailJoinService;
 import service.band.BandDetailService;
 import service.band.BandHomeService;
+import service.band.BandIntroService;
 import service.member.MemberJoinService;
 import service.member.MemberPerDataService;
 
@@ -25,7 +26,6 @@ public class BandDetailController {
 		return "band/bandDetailHome";
 	}
 
-	
 	@Autowired
 	BandDetailService bandDetailService;
 	@RequestMapping("bandDetail")
