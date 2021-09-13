@@ -23,7 +23,15 @@ public class ClassDTO {
 	String classCity;
 	Boolean classWish;
 	String classSatisfy;
+	StartEndPageDTO startEndPageDTO;
 	
+	
+	public StartEndPageDTO getStartEndPageDTO() {
+		return startEndPageDTO;
+	}
+	public void setStartEndPageDTO(StartEndPageDTO startEndPageDTO) {
+		this.startEndPageDTO = startEndPageDTO;
+	}
 	public String getClassImg2() {
 		return classImg2;
 	}

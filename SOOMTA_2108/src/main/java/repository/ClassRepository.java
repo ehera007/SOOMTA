@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import Model.ClassDTO;
 import Model.ReviewDTO;
 import Model.WishDTO;
+import command.CtgCommand;
 
 
 public class ClassRepository {
@@ -49,9 +50,9 @@ public class ClassRepository {
 		statement = namespace + ".classCount";
 		return sqlSession.selectOne(statement, tutorId);
 	}
-	public List<ClassDTO> classList(String classCategoryS ){ //메인 클래스 리스트
+	public List<ClassDTO> classList(CtgCommand ctgCommand ){ //메인 클래스 리스트
 		statement = namespace + ".classList";
-		return sqlSession.selectList(statement, classCategoryS);
+		return sqlSession.selectList(statement, ctgCommand);
 	}
 	public ClassDTO classDetailPage(String classNo) {
 		System.out.println(classNo);
@@ -94,5 +95,9 @@ public class ClassRepository {
 	public double tutorSatisTfyAllCount(String tutorId) {
 		statement = namespace + ".tutorSatisTfyAllCount";
 		return sqlSession.selectOne(statement, tutorId);
+	}
+	public int countC(String classCategoryS) {
+		statement = namespace + ".countC";
+		return sqlSession.selectOne(statement, classCategoryS);
 	}
 }

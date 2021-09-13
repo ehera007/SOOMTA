@@ -1,9 +1,7 @@
 <!-- 클래스/밴드 리스트  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -216,34 +214,45 @@ a:hover {
 	align-items: center;
 }
 
-/*페이징*/
+/*페이지 부분*/
 .page{
-	text-align:center;
-	width:50%;
-	margin: 0 auto;
-	padding-top: 15px;
+margin-top:40px;
 }
-
-.pagination{
-	list-style:none;
+/*페이지 스타일*/
+.page_wrap {
+	text-align:center;
+	font-size:0;
+ }
+.page_nation {
 	display:inline-block;
-	padding:0;
-	margin-top:20px;
 }
-
-.pagination li{
-	display:inline;
-	text-align:center;
-}
-
-.pagination a{
-	float:left;
+.page_nation a {
 	display:block;
-	font-size:14px;
+	margin:0 3px;
+	float:left;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	font-size:15px;
+	color:#42454c;
 	text-decoration:none;
-	padding : 5px 12px;
+}
+.page_nation span {
+	display:block;
+	margin:5px 3px 3px 3px;
+	float:left;
+	width:28px;
+	height:28px;
+	line-height:28px;
+}
+.page_nation a.active {
 	color:#0F4C81;
-	line-height:1.5;
+	font-weight: bold;
+	font-size:16px;
+}
+.page_nation a:hover:not(.active) {
+	background-color: #F4F7F8;
+	color: #0F4C81;
 }
 /*하단 구역 분할*/
 .footer {
@@ -353,24 +362,13 @@ a:hover {
 </style>
 <meta charset="UTF-8">
 <title>SOOMTA</title>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-/*
-	function DetailTag(){
-		var chk = document.getElementsByName("detailChk");
-		var tutorGender = document.getElementsByName("tutorGender");
-		var memGender = document.getElementsByName("memGender");
-		var classMethod = document.getElementsByName("classMethod");
-		var classCity = document.getElementsByName("classCity");
-		var ctg = 0;
-		for(var i = 0; i < chk.length ; i ++){
-			if(chk[i].checked){
-				prodTot += Number(hddchk[i].value);
-				ctg++;
-			}
-		}
-		document.getElementById("totalPrice").innerHTML=prodTot;
-		document.getElementById("prodCnt").innerHTML= cnt ;
+
+	function detailTag(){
+		$("#frm").submit();
 	}
+	/*
 	function DetailTag() {
 		if($(":checkbox[name='ckTag']:checked").length == 0){
 			alert("적어도 하나 이상 체크 해주세요.");
@@ -394,7 +392,7 @@ a:hover {
 	<div class="header">
 		<img class="logo" src="../../images/soomta_logo.png" alt="SOOMTA" onclick="location.href='/SOOMTA_2108/main'" />
 		<div class="search">
-			<form>
+			<form action="./../classSearch" name="classSearch" method="post">
 				<input type = "text" name="keyWord" value="" placeholder="검색어를 입력해주세요." class="searchBar"/>
 				<input type="submit" class="btn" value="검색"/>
 			</form>
@@ -575,36 +573,37 @@ a:hover {
 		<br />
 
 		<div style="border: 2px solid #0F4C81; border-radius: 2em;">
+			<form   action="${path }" id = "frm" metod= "post">
 			<table class="DetailTag">
 				<tr>
 					<td width="130px">강사 성별</td>
-					<td><input type="checkbox" name="ckTag" value="tutorGender"/>남자</td>
-					<td><input type="checkbox" name="ckTag" value="tutorGender"/>여자</td>
-					<td><input type="checkbox" name="ckTag" value="tutorGender"/>무관</td>
+					<td><input type="checkbox" name="tutorGender" value="M"/>남자</td>
+					<td><input type="checkbox" name="tutorGender" value="F"/>여자</td>
 				</tr>
 				<tr>
 					<td>수강생 성별</td>
-					<td><input type="checkbox" name="ckTag" value="memGender"/>남자</td>
-					<td><input type="checkbox" name="ckTag" value="memGender"/>여자</td>
-					<td><input type="checkbox" name="ckTag" value="memGender"/>무관</td>
+					<td><input type="checkbox" name="memGender" value="m"/>남자</td>
+					<td><input type="checkbox" name="memGender" value="w"/>여자</td>
+					<td><input type="checkbox" name="memGender" value="x"/>무관</td>
 				</tr>
 				<tr>
 					<td>수업방식</td>
-					<td><input type="checkbox" name="ckTag" value="s"/>과외</td>
-					<td><input type="checkbox" name="ckTag" value="g"/>그룹</td>
-					<td><input type="checkbox" name="ckTag" value="n"/>비대면</td>
+					<td><input type="checkbox" name="classWay" value="s"/>과외</td>
+					<td><input type="checkbox" name="classWay" value="g"/>그룹</td>
+					<td><input type="checkbox" name="classWay" value="n"/>비대면</td>
 				</tr>
 				<tr>
 					<td>지역</td>
-					<td><input type="checkbox" name="classCity" value="SEOUL" onchange="detailChk();"/>서울</td>
-					<td colspan="2"><input type="checkbox" name="classCity" value="GYEONGGIDO" onchange="detailChk();"/>경기도</td>
+					<td><input type="checkbox" name="classCity" value="SEOUL" />서울</td>
+					<td colspan="2"><input type="checkbox" name="classCity" value="GYEONGGIDO"/>경기도</td>
 				</tr>
 				<tr>
 					<td colspan="4" style="color: #BEBEBE; font-size: 10px; text-align:left;">
-						<input type="button" class="detailtagbtn" onclick="DetailTag();" value=">선택완료"/>
+						<input type="button" class="detailtagbtn" onclick="detailTag();" value=">선택완료"/>
 					</td>
 				</tr>
 			</table>
+			</form>
 		</div>
 		<br />
 		<form style="direction: rtl;">
@@ -631,15 +630,7 @@ a:hover {
 			</tr>
 		</table>
 		<div class="page">
-			<span onclick="alert('이전 페이지가 없습니다.');">이전</span>			
-			<c:set var = "page" value = "${(param.p==null)? 1: param.p}"/>
-			<c:set var ="startNum" value = "${page-(page-1)%5}"/>
-			<span>
-				<c:forEach var = "i" begin= "0" end = "4">
-				<a href="?p=${startNum+i}&t=&q=" >${startNum+i}</a>
-				</c:forEach>
-			</span>		
-			<span onclick="alert('다음 페이지가 없습니다.');">다음</span>	
+			 <%@ include file="../include/page.jsp" %>
 		</div>
 		<!-- 하단 고정 -->
 		<hr style="color: #BEBEBE;">

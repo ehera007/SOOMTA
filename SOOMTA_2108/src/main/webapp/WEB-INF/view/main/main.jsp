@@ -120,7 +120,7 @@ height:100%;
 	<!-- 중앙 : 검색바, 선택(마우스오버 시 이미지 변경) -->
 	<div class="main">
 		<div class="search">
-			<form>
+			<form name="Allsearch" action="Allsearch" method="post">
 				<input type = "text" name="keyWord" value="" placeholder="검색어를 입력해주세요." class="searchBar"/>
 				<input type="submit" class="btn" value="검색"/>
 			</form>

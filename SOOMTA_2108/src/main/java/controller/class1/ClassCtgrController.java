@@ -6,16 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import service.class1.ClassDetailPageService;
 import service.class1.ClassWishService;
+import service.main.ClassSearchService;
 
 @Controller
 @RequestMapping("class")
 public class ClassCtgrController {
 	@Autowired
 	ClassDetailPageService classDetailPageService;
+	@Autowired
+	ClassSearchService classSearchService;
 	//학업
 	@Autowired
 	ClassWishService classWishService;
@@ -52,6 +56,11 @@ public class ClassCtgrController {
 	public String classDetailPage(@RequestParam(value="classNo") String classNo, @RequestParam(value="tutorId")  String tutorId, Model model, HttpSession session) {
 		classDetailPageService.classDetailPage(classNo, tutorId, model, session);
 		return "class/classDetailPage";
+	}
+	@RequestMapping(value="classSearch", method=RequestMethod.POST)
+	public String classSearch(Model model) {
+		classSearchService.classSearch(model);
+		return "class/classSearch";
 	}
 	@RequestMapping("wish")
 	public String wish(@RequestParam(value="classNo")String classNo, @RequestParam(value="tutorId") String tutorId, Model model, HttpSession session) {

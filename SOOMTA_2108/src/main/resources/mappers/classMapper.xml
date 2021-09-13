@@ -64,11 +64,40 @@
 	from Soomta_Class
 	where tutor_Id = #{tutorId}
 </select>
-<select id="classList" parameterType="string" resultType="Model.ClassDTO">
-	select class_No classNo, tutor_Id tutorId, class_Name className, class_Img classImg, class_Regiday classRegiday, class_Start classStart, class_End classEnd, class_Introduce classIntroduce, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Price classPrice, class_Gender classGender, class_Way classWay, class_State classState, class_Total classTotal, class_City classCity, class_Area classArea 
-	from Soomta_Class
-	where class_Category_S = #{classCategoryS} 
-	order by classRegiday desc
+<select id="classList" parameterType="command.CtgCommand" resultType="Model.ClassDTO">
+select * 
+from(	select rownum rn, classNo, tutorId, className, classImg, classRegiday, classStart, classEnd, classIntroduce, classCategoryL, classCategoryS, classPrice,
+	        classGender, 0 classWay,   classState,  classTotal,  classCity,  classArea 
+	from (select  class_No classNo, c.tutor_Id tutorId, class_Name className, class_Img classImg, class_Regiday classRegiday, class_Start classStart, class_End classEnd, class_Introduce classIntroduce, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Price classPrice, class_Gender classGender, class_Way classWay, class_State classState, class_Total classTotal, class_City classCity, class_Area classArea 
+			from Soomta_Class c , tutor t 
+			where c.tutor_Id = t.tutor_Id and class_Category_S = #{classCategoryS} 
+			<if test="tutorGender != null">
+				and tutor_Gender in
+				<foreach collection="tutorGender" item="tGender" separator="," index="index" open="(" close=")">
+					#{tGender}
+				</foreach>
+			</if>	
+			<if test="memGender != null">
+				and class_Gender in
+				<foreach collection="memGender" item="mGender" separator="," index="index" open="(" close=")">
+					#{mGender}
+				</foreach>
+			</if>	
+			<if test="classWay != null">
+				and class_Way in
+				<foreach collection="classWay" item="cWay" separator="," index="index" open="(" close=")">
+					#{cWay}
+				</foreach>
+			</if>
+			<if test="classCity != null">
+				and class_City in
+				<foreach collection="classCity" item="cCity" separator="," index="index" open="(" close=")">
+					#{cCity}
+				</foreach>
+			</if>
+			order by classRegiday desc
+			))
+where rn between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow}
 </select>
 <select id="reviewViewList" parameterType="string" resultType="Model.ReviewDTO">
 	select class_Satisfy classSatisfy, tutor_Satisfy tutorSatisfy, review_RegiDay reviewRegiDay, review_Contents reviewContents, purchase_No purchaseNo, class_No classNo, tutor_Id tutorId
@@ -121,6 +150,11 @@
 	where class_No in (select class_No from CLASS_WISHLIST where mem_id = #{memId})
 </select>
 
+<select id="countC" resultType="int" parameterType="string">
+	select count(*) 
+	from Soomta_Class 
+	where class_Category_S = #{classCategoryS} 
+</select>
 <!--<select id="classDetailPage" parameterType="string" resultType="Model.ClassDTO">
 	select class_No classNo, t.tutor_Id tutorId, class_Name className, class_Category_L classCategoryL, class_Category_S classCategoryS, class_Start classStart, class_End classEnd, 
 	class_Total classTotal, class_Price classPrice, class_Way classWay, class_Gender classGender, class_Introduce classIntroduce, class_Img classImg, t.tutor_Respond tutorRespond

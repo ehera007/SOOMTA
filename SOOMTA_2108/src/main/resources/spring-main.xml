@@ -20,4 +20,7 @@
 	<bean class="service.faq.FaqViewService"/>
 	<bean class="service.faq.HireListService"/>
 	<bean class="service.logIn.FindService"/>
+	<bean class="service.main.ClassSearchService"/>
+	<bean class="repository.SearchRepository"/>
+	<bean class="service.main.BandSearchService"/>
 </beans>

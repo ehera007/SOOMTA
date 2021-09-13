@@ -531,7 +531,7 @@ header a:hover {
 
 .reviewTable{
 	position: relative;
-	left:105px;
+	left:65px;
 	width:770px;
 	height: 220px;
 	margin-top: 20px;
@@ -929,12 +929,21 @@ a:visited {
 	</c:if>
 		
 		<c:if test="${empty list }">
-		<div class="main">
-			<h2><br/>
-				등록된 후기가 없습니다 !<br/>
-				지금 바로 가입해보세요 :)
-			</h2>
-			</div>
+
+			<table class="reviewTable">
+				<tr>
+				<th style="width: 20%; height: 45px;">강의 만족도</th>
+				<th style="width: 20%;">강사 만족도</th>
+				<th style="width: 50%;">후기</th>
+				</tr>
+				<tr>
+					<td colspan="3" style="height: auto;">
+					아직 등록된 후기가 없습니다 :)<br/>
+					지금 바로 클래스에 등록해 후기를 남겨보세요 !
+					</td>
+				</tr>
+			</table>
+
 			</c:if>
 				</div>
 			</div>
