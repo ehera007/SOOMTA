@@ -11,8 +11,8 @@ import repository.SearchRepository;
 public class ClassSearchService {
 	@Autowired
 	SearchRepository searchRepository;
-	public void classSearch(Model model) {
-		List<ClassDTO> clist = searchRepository.classSearch();
+	public void classSearch(Model model, String keyWord) {
+		List<ClassDTO> clist = searchRepository.classSearch(keyWord);
 		model.addAttribute("clist", clist);
 	}
 }

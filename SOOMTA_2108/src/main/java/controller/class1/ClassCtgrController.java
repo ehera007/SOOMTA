@@ -58,8 +58,8 @@ public class ClassCtgrController {
 		return "class/classDetailPage";
 	}
 	@RequestMapping(value="classSearch", method=RequestMethod.POST)
-	public String classSearch(Model model) {
-		classSearchService.classSearch(model);
+	public String classSearch(Model model, @RequestParam(value="keyWord") String keyWord) {
+		classSearchService.classSearch(model, keyWord);
 		return "class/classSearch";
 	}
 	@RequestMapping("wish")

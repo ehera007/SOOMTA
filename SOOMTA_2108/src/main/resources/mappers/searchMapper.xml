@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.searchMapper">
-	<select id="classSearch" resultType="Model.ClassDTO">
+	<select id="classSearch" parameterType="string" resultType="Model.ClassDTO">
 		select class_No classNo, tutor_Id tutorId, class_Name className, class_Img classImg, class_Price classPrice, class_City classCity, class_Area classArea
-		from Soomta_Class
+		from Soomta_Class where class_Name like '%' || #{keyWord} || '%'
 	</select>
 	<select id="bandSearch" resultType="Model.BandDTO">
 		 select band_No bandNo, band_Name bandName, band_Img bandImg, band_Gender bandGender, band_Public bandPublic
-		 from band
+		 from band where band_Name like '%' || #{keyWord} || '%'
 	</select>
 </mapper>

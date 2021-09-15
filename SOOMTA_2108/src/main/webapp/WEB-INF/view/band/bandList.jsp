@@ -598,7 +598,9 @@ a:hover {
 				<c:forEach items="${list }" var="dto" varStatus="cnt">
 					<td width="200" height="250"><a href="../../band/bandIntro?bandNo=${dto.bandNo }">
 					<img width="150" height="150" src="../../member/upload/${dto.bandImg.split(',')[0] }" /><br />
-					${dto.bandName}
+					${dto.bandName}<br/>
+					<c:if test="${dto.bandPublic.trim() == 'O'}">공개</c:if>
+					<c:if test="${dto.bandPublic.trim() == 'P'}">비공개</c:if>
 					</a></td>
 					<c:if test="${cnt.count % 4 == 0 }">
 			</tr>

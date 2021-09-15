@@ -1,14 +1,18 @@
 package service.band;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import Model.BandDTO;
+import Model.BandNoticDTO;
 import Model.BandWishDTO;
 import Model.LogInDTO;
+import Model.ReviewDTO;
 import Model.LogInDTO;
 import repository.BandDetailRepository;
 import repository.BandRepository;
@@ -37,7 +41,8 @@ BandDetailRepository bandDetailRepository;
 			dto.setBandWish(false);
 		}
 		model.addAttribute("dto", dto);
-
-
+		
+		List<BandNoticDTO> list = bandDetailRepository.selectAll(bandNo);
+		model.addAttribute("list", list);
 	}
 }

@@ -110,12 +110,13 @@ h2{
 	<!-- 중앙 : 검색바, 선택(마우스오버 시 이미지 변경) -->
 	<div class="main">
 		<div class="search">
-			<form>
+			<form form name="Allsearch" action="Allsearch" method="post">
 				<input type = "text" name="keyWord" value="" placeholder="검색어를 입력해주세요." class="searchBar"/>
 				<input type="submit" class="btn" value="검색"/>
 			</form>
 		</div>
 		<h2>CLASS 검색결과 입니다 :)</h2>
+		<c:if test="${!empty clist }">
 			<table style="margin: auto; text-align: center;">
 			<tr style="vertical-align: bottom;">
 			<c:forEach items="${clist }" var="clist" varStatus="cnt" begin="0" end="7">
@@ -132,8 +133,12 @@ h2{
 			</c:forEach>
 			</tr>
 		</table>
-		<a href="#">>더보기</a>
+		</c:if>
+		<c:if test="${empty clist }">
+			검색 결과가 없습니다
+		</c:if>
 		<h2>BAND 검색결과 입니다 :)</h2>
+		<c:if test="${!empty blist }">
 			<table style="margin: auto; text-align: center;">
 			<tr style="vertical-align: bottom;">
 			<c:forEach items="${blist }" var="blist" varStatus="cnt" begin="0" end="7">
@@ -153,7 +158,10 @@ h2{
 			</c:forEach>
 			</tr>
 		</table>
-		<a href="#">>더보기</a>
+		</c:if>
+		<c:if test="${empty blist }">
+			검색 결과가 없습니다
+		</c:if>
 		</div>
 	
 	<!-- TOP이동 -->

@@ -11,8 +11,8 @@ import repository.SearchRepository;
 public class BandSearchService {
 	@Autowired
 	SearchRepository searchRepository;
-	public void bandSearch(Model model) {
-		List<BandDTO> blist = searchRepository.bandSearch();
+	public void bandSearch(Model model, String keyWord) {
+		List<BandDTO> blist = searchRepository.bandSearch(keyWord);
 		model.addAttribute("blist", blist);
 	}
 }

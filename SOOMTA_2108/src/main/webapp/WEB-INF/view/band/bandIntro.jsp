@@ -775,31 +775,53 @@ h2 {
 					<div class="banddetail">
 						<img class="imgsize"
 							src="./../member/upload/${dto.bandImg2.split(',')[0] }" />
-					</div> <a name="bandnew">
+					</div> 
+					<a name="bandnew">
 						<hr color="black" />
 						<h2>밴드 최신글</h2>
 						<div class="satisfyreview">
-							<c:if test="${!empty list }">
-								<table class="reviewTable">
-									<tr>
-										<th style="width: 20%;">카테고리</th>
-										<th style="width: 20%;">제목</th>
-										<th style="width: 50%;">내용</th>
-									</tr>
-									<c:forEach items="${list }" var="dto2" begin="0" end="2">
+							<c:if test="${dto.bandPublic.trim() == 'O'}">
+								<c:if test="${!empty list }">
+									<table class="reviewTable">
 										<tr>
-											<td style="text-align: center;">${dto2.noticeCategory }</td>
-											<td style="text-align: center;">${dto2.noticeSub }</td>
-											<td>${dto2.notice_Con }</td>
+											<th style="width: 20%;">글번호</th>
+											<th style="width: 20%;">카테고리</th>
+											<th style="width: 50%;">제목</th>
 										</tr>
-									</c:forEach>
-								</table>
+										<c:forEach items="${list }" var="dto2" begin="0" end="2">
+											<tr>
+												<td style="width: 20%;">${dto2.noticeNo }</td>
+												<td style="text-align: center;">
+												<c:if test="${dto2.noticeCategory == 'NOTICE'}">공지</c:if>
+												 <c:if test="${dto2.noticeCategory == 'NOMAL'}">일반</c:if>
+												 <c:if test="${dto2.noticeCategory == 'QA' }">질문</c:if>
+												 </td>
+												<td style="text-align: center;">${dto2.noticeSub }</td>
+											</tr>
+										</c:forEach>
+									</table>
+								</c:if>
+								<c:if test="${empty list }">
+									<table class="reviewTable">
+										<tr>
+											<th style="width: 20%; height: 45px;">글번호</th>
+											<th style="width: 20%;">제목</th>
+											<th style="width: 50%;">내용</th>
+										</tr>
+										<tr>
+											<td colspan="3" style="height: auto;">
+												아직 등록된 글이 없습니다 :)<br />
+												지금 바로 밴드에 등록해 글을 남겨보세요 !
+											</td>
+										</tr>
+									</table>
+								</c:if>
 							</c:if>
 
-							<c:if test="${empty list }">
+							<c:if test="${dto.bandPublic.trim() == 'P'}">
 								<table class="reviewTable">
 									<tr>
-										<th style="width: 20%; height: 45px;">카테고리</th>
+										<th style="width: 20%; height: 45px;">글번호</th>
 										<th style="width: 20%;">제목</th>
 										<th style="width: 50%;">내용</th>
 									</tr>

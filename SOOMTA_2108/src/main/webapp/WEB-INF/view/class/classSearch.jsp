@@ -111,6 +111,8 @@
 				<input type="submit" class="btn" value="검색"/>
 			</form>
 		</div>
+		<h2>CLASS 검색결과 입니다 :)</h2>
+		<c:if test="${!empty clist }">
 			<table style="margin: auto; text-align: center;">
 			<tr style="vertical-align: bottom;">
 			<c:forEach items="${clist }" var="clist" varStatus="cnt" begin="0" end="7">
@@ -127,7 +129,10 @@
 			</c:forEach>
 			</tr>
 		</table>
-		<a href="#">>더보기</a>
+		</c:if>
+		<c:if test="${empty clist }">
+			검색 결과가 없습니다
+		</c:if>
 		</div>
 	
 	<!-- TOP이동 -->

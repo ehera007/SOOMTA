@@ -111,15 +111,15 @@
 				<input type="submit" class="btn" value="검색"/>
 			</form>
 		</div>
+		<h2>BAND 검색결과 입니다 :)</h2>
+			<c:if test="${!empty blist }">
 			<table style="margin: auto; text-align: center;">
 			<tr style="vertical-align: bottom;">
 			<c:forEach items="${blist }" var="blist" varStatus="cnt" begin="0" end="7">
 				<td width="200" height="230" >
 				<a href="./../band/bandIntro?bandNo=${blist.bandNo }"> 
 				<img width="150" height="150" src="./../member/upload/${blist.bandImg.split(',')[0] }"/><br/>
-				<c:if test="${blist.bandGender == 'M' }">남자</c:if>
-				<c:if test="${blist.bandGender == 'F' }">여자</c:if>
-				<c:if test="${blist.bandGender == 'U' }">무관</c:if><br /> 
+				${blist.bandName}<br/>
 				<c:if test="${blist.bandPublic.trim() == 'O'}">공개</c:if>
 				<c:if test="${blist.bandPublic.trim() == 'P'}">비공개</c:if>
 				</a>
@@ -130,7 +130,10 @@
 			</c:forEach>
 			</tr>
 		</table>
-		<a href="#">>더보기</a>
+		</c:if>
+		<c:if test="${empty blist }">
+			검색 결과가 없습니다
+		</c:if>
 		</div>
 	
 	<!-- TOP이동 -->

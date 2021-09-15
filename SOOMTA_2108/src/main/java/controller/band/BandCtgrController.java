@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import service.main.BandSearchService;
 
@@ -47,8 +48,8 @@ public class BandCtgrController {
 		return "band/bandDetailPage";
 	}
 	@RequestMapping(value="bandSearch", method=RequestMethod.POST)
-	public String bandSearch(Model model) {
-		bandSearchService.bandSearch(model);
+	public String bandSearch(Model model, @RequestParam(value="keyWord") String keyWord) {
+		bandSearchService.bandSearch(model, keyWord);
 		return "band/bandSearch";
 	}
 	

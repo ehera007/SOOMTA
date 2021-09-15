@@ -14,12 +14,12 @@ public class SearchRepository {
 	String namespace = "mappers.searchMapper";
 	String statement;
 	
-	public List<ClassDTO> classSearch(){
+	public List<ClassDTO> classSearch(String keyWord){
 		statement = namespace + ".classSearch";
-		return sqlSession.selectList(statement);
+		return sqlSession.selectList(statement, keyWord);
 	}
-	public List<BandDTO> bandSearch(){
+	public List<BandDTO> bandSearch(String keyWord){
 		statement = namespace + ".bandSearch";
-		return sqlSession.selectList(statement);
+		return sqlSession.selectList(statement, keyWord);
 	}
 }
