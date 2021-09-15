@@ -309,7 +309,7 @@ td{
 			</table> 
 		</form>
 	</div>
-	<a href="bandDetailJoinOk?bandNo=${dto.bandNo}">비공개페이지</a>
+
 <!-- --------------------------------------------------->
 	<hr style="color: #BEBEBE;">
 

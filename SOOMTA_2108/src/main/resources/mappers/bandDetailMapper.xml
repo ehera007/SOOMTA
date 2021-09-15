@@ -3,6 +3,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.bandDetailMapper">
 
+<select id="myselect" parameterType="string"  resultType="Model.BandNoticDTO">
+    select BAND_NO bandNo ,MEM_ID memId ,NOTICE_NO noticeNo,  NOTICE_SUB noticSub, NOTICE_CON noticeCon ,NOTICE_DATE noticeDate,
+     NOTICE_CATEGORY noticeCategory
+	from band_notice
+	where  MEM_ID = #{memId}
+
+</select>
+
+<select id="selectDetail" parameterType="string" resultType="Model.BandNoticDTO">
+	select BAND_NO bandNo ,MEM_ID memId,NOTICE_NO noticeNo,NOTICE_SUB noticSub,NOTICE_CON noticeCon,NOTICE_DATE noticeDate,
+	 NOTICE_CATEGORY noticeCategory
+	from band_notice
+	where NOTICE_NO = #{noticeNo}
+</select>
+
+<insert id = "bandNotice" parameterType="Model.BandNoticDTO">
+	insert into band_notice(BAND_NO ,MEM_ID,NOTICE_NO,NOTICE_SUB,NOTICE_CON,NOTICE_DATE, NOTICE_CATEGORY, NOTICE_FILE)
+	values(#{bandNo},#{memId},(select nvl(max(notice_no), 0) +1 from band_notice),#{noticeSub},#{noticeCon},sysdate,#{noticeCategory},null)
+</insert>
+
+<select id="selectAll" resultType="Model.BandNoticDTO" parameterType="long">
+	select n.BAND_NO bandNo,  n.MEM_ID memId, NOTICE_NO noticeNo, NOTICE_SUB noticeSub, NOTICE_CON noticeCon, NOTICE_DATE noticeDate, 
+	NOTICE_CATEGORY noticeCategory, NOTICE_FILE noticeFile, b.mem_id memId2 
+	from band_notice n, band b
+	where n.BAND_NO = b.BAND_NO and n.BAND_NO = #{bandNo}
+</select>
+
 <!-- 개설자 확인 -->
 <select id="bandDetail"  parameterType="Model.BandDTO" resultType="Model.BandDTO">
 	select BAND_NO bandNo, MEM_ID memId, BAND_NAME bandName, BAND_CATEGORY_L bandCategoryL, BAND_CATEGORY_S bandCategoryS,

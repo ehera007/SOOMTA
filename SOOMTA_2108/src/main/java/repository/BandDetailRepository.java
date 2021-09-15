@@ -1,10 +1,13 @@
 package repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import Model.BandDTO;
 import Model.BandJoinDTO;
+import Model.BandNoticDTO;
 import Model.BandWishDTO;
 
 public class BandDetailRepository {
@@ -12,6 +15,24 @@ public class BandDetailRepository {
 	SqlSession sqlSession;
 	String namespace = "mappers.bandDetailMapper";
 	String statement;
+	
+	public List<BandNoticDTO> myselect(String memId){
+		statement = namespace + ".myselect";
+		return sqlSession.selectList(statement, memId);
+	}
+	public BandNoticDTO selectDetail(String memId) {
+		statement = namespace + ".selectDetail";
+		return sqlSession.selectOne(statement, memId); 
+	}
+	public void bandContent(BandNoticDTO dto) {
+		statement = namespace + ".bandNotice";
+		sqlSession.insert(statement, dto); 
+	}
+	
+	public List<BandNoticDTO> selectAll(Long bandNo){
+		statement = namespace + ".selectAll";
+		return sqlSession.selectList(statement, bandNo); 
+	}
 	public BandDTO bandDetail(BandDTO dto) {
 		statement = namespace + ".bandDetail";
 		return sqlSession.selectOne(statement, dto); 
@@ -37,5 +58,6 @@ public class BandDetailRepository {
 		statement = namespace + ".bandIntro";
 		return sqlSession.selectOne(statement, bandNo);
 	}
+	
 }
 

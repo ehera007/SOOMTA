@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	<%@ include file="../include/tags.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -191,8 +192,6 @@ ul {
 border:1px solid blue;
 }
 /*중앙 하단 테이블 부분*/
-
-
 .bandlistall {
 	border: 2px solid #0F4C81;
 	border-radius: 12px;
@@ -295,8 +294,9 @@ td a:active {
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
 			<div class="bandMenu">
-				<a href="bandDetailHomeMgr">Home</a><a href="bandDetailallMgr">전체 게시글</a><a
-					href="bandDetailmemMgr">멤버</a><a href="bandDetailmyMgr">내가 쓴 게시글</a>
+				<a href="bandDetailHomeMgr">Home</a><a href="bandDetailallMgr">전체
+					게시글</a><a href="bandDetailmemMgr">멤버</a><a href="bandDetailmyMgr">내가
+					쓴 게시글</a>
 			</div>
 		</div>
 		<!-- 중앙 하단부 -->
@@ -307,39 +307,27 @@ td a:active {
 						<tr style="padding: 10px; height: 30px;">
 							<th width="10%">No.</th>
 							<th width="15%">분류</th>
-							<th width="40%">제목</th>
-							<th width="25%">작성일</th>
-							<th width="10%">조회수</th>
+							<th width="55%">제목</th>
+							<th width="15%">작성일</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>No.</td>
-							<td>분류</td>
-							<td><a href="bandDetailContent">제목</a></td>
-							<td>작성일</td>
-							<td>조회수</td>
-						</tr>
-						<tr>
-							<td>No.</td>
-							<td>분류</td>
-							<td><a href="bandDetailContent">제목</a></td>
-							<td>작성일</td>
-							<td>조회수</td>
-						</tr>
-						<tr>
-							<td>No.</td>
-							<td>분류</td>
-							<td><a href="bandDetailContent">제목</a></td>
-							<td>작성일</td>
-							<td>조회수</td>
-						</tr>
-					</tbody>
-				</table>
+					<c:forEach items="${list }" var="dto">
+						<tbody>
+							<tr>
+								<td>${dto.noticeNo}</td>
+								<td>${dto.noticeCategory }</td>
+								<td><a href="bandDetailContent">${dto.noticeSub}</a></td>
+								<td>${dto.noticeDate }</td>
+							</tr>
+						</tbody>
+					</c:forEach>
+					</table>
+					
 			</div>
 		</div>
 		<div>
-			<a style="text-align:right; font-weight:bold" href="bandDetailcontentjoin">게시글 작성하기</a>
+			<a style="text-align: right; font-weight: bold"
+				href="bandDetailcontentjoin">게시글 작성하기</a>
 		</div>
 	</div>
 	<!-- 하단 고정 -->

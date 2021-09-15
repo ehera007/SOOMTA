@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ include file="../include/tags.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -319,26 +320,16 @@ td a:active {
 							<th width="15%">작성일</th>
 						</tr>
 					</thead>
+					<c:forEach items="${list }" var="dto">
 					<tbody>
 						<tr>
-							<td>No.</td>
-							<td>분류</td>
-							<td><a href="bandDetailContent">제목</a></td>
-							<td>작성일</td>
-						</tr>
-						<tr>
-							<td>No.</td>
-							<td>분류</td>
-							<td><a href="bandDetailContent">제목</a></td>
-							<td>작성일</td>
-						</tr>
-						<tr>
-							<td>No.</td>
-							<td>분류</td>
-							<td><a href="bandDetailContent">제목</a></td>
-							<td>작성일</td>
+							<td>${dto.noticNo}</td>
+							<td>${dto.noticCategory }</td>
+							<td><a href="bandDetailContent">${dto.notciSub }</a></td>
+							<td>${dto.noticeDate }</td>
 						</tr>
 					</tbody>
+					</c:forEach>
 				</table>
 			</div>
 		</div>

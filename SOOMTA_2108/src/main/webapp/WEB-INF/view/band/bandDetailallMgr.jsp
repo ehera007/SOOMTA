@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ include file="../include/tags.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -252,8 +253,17 @@ width:150px;
 	height: 40px;
 	width: auto;
 }
+.contentjoin {
+  text-align : right ;
+  margin-top: 50px;
+}
 </style>
-<script> function btn(){ alert('삭제되었습니다.'); } </script>
+<script> 
+function btn(noticeNo){ 
+	alert('삭제되었습니다.'); 
+	location.href="";
+} 
+</script>
 <meta charset="UTF-8">
 <title>Band</title>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -290,99 +300,41 @@ width:150px;
 		<!-- 중앙 하단부 -->
 	<div class="banddetail">
       <div class="bandDetailList">
-		  <form action="perForm"name="frm" >
+        <a class="contentjoin" style="color: #0F4C81; font-weight: bold"
+         href="bandDetailContentjoin?bandNo=${bandNo}"> 게시글 작성하기 </a>
+         <c:forEach items="${list }" var="dto">
 			  <table>
               <tr>    
 		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
+		            <td>${dto.noticeCategory} </td>
 		          </tr>
               <tr>
 		             <th width="70px" height="50px";>제목</th>
-		             <td height="50px">${contentname}</td>
+		             <td height="50px">${dto.noticeSub}</td>
 		         </tr>
 		         <tr>
 		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
+		             <td height="50px">${dto.memId}</td>
 		         </tr>
 		         <tr>
 		             <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
+		             <td>${dto.noticeDate} </td>
 		         </tr>
 		         <tr>    
 		             <th height="300px";>내용</th>
-		             <td >${content} </td>
+		             <td >${dto.noticeCon} </td>
 		         </tr>
+            <c:if test="#{logIn.userId == dto.memId2 }">
              <tr>
                 <td colspan="2" style="text-align:right; padding-right:70px; padding-bottom:20px">
-                <a onclick="javascript:btn()"  style="coloer:#0F4C81">삭제하기</a>
+                <a onclick="javascript:btn(#{dto.noticeNo})"  style="coloer:#0F4C81">삭제하기</a>
               </td>
              </tr>
+           </c:if> 
 
 
 	         </table>
-           <br/>
-           <br/>
-            <table>
-              <tr>    
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-		          </tr>
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td height="50px">${contentname}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-		         </tr>
-		         <tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-             <tr>
-                <td colspan="2" style="text-align:right; padding-right:70px; padding-bottom:20px">
-                <a onclick="javascript:btn()"  style="coloer:#0F4C81">삭제하기</a>
-              </td>
-             </tr>
-
-	         </table>
-                      <br/>
-           <br/>
-            <table>
-              <tr>    
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-		          </tr>
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td height="50px">${contentname}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-		         </tr>
-		         <tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-             <tr>
-                <td colspan="2" style="text-align:right; padding-right:70px; padding-bottom:20px">
-                <a onclick="javascript:btn()"  style="coloer:#0F4C81">삭제하기</a>
-              </td>
-             </tr>
-
-	         </table>
-		</form>
-
-    <a class="contentjoin" href="bandDetailcontentjoin"> 게시글 작성하기 </a>
+	      </c:forEach>
    </div>
 	</div>
 	<!-- 하단 고정 -->

@@ -27,7 +27,7 @@ public class BandDetailService {
 		BandDTO bandDTO = bandDetailRepository.band(bandNo);
 		int count = bandDetailRepository.countBank(dto);
 		model.addAttribute("bandDTO", bandDTO);
-
+		System.out.println("count : " + count);
 		if (dto1 != null ) return "band/bandDetailHomeMgr"; //관리자
 		if (bandWishDTO != null)return "band/bandDetailHome"; //일반회원
 		if (bandWishDTO == null && bandDTO == null) return "band/bandDetail"; //비회원

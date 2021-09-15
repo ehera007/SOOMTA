@@ -292,7 +292,7 @@ width:150px;
       <div class="bandDetailList">
         <div class="contentjoin">
         <a class="contentjoin" style="color: #0F4C81; font-weight: bold"
-         href="bandDetailcontentjoin"> 게시글 작성하기 </a>
+         href="bandDetailContentjoin"> 게시글 작성하기 </a>
         </div>
 		  <form action="perForm"name="frm" >
 			  <table style="padding-top:20px;">
@@ -314,58 +314,6 @@ width:150px;
 		             <th height="300px";>내용</th>
 		             <td >${content} </td>
 		         </tr>
-	         </table>
-           <br/>
-           <br/>
-            <table>
-              <tr>    
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-		          </tr>
-             <tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td height="50px">${contentname}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-		         </tr>
-		         <tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-
-
-	         </table>
-                      <br/>
-           <br/>
-            <table>
-              <tr>    
-		            <th width="70px" height="50px">분류</th>
-		            <td>${kind} </td>
-		          </tr>
-              <tr>
-		             <th width="70px" height="50px";>제목</th>
-		             <td height="50px">${contentname}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px";>아이디</th>
-		             <td height="50px">${memId}</td>
-		         </tr>
-		         <tr>
-		             <th width="70px" height="50px">작성일</th>
-		             <td>${contentday} </td>
-		         </tr>
-		         <tr>    
-		             <th height="300px";>내용</th>
-		             <td >${content} </td>
-		         </tr>
-
-
 	         </table>
 		</form>
    </div>

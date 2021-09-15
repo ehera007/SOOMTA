@@ -28,5 +28,6 @@ public class BandDetailJoinService {
 		}
 		bandDetailRepository.bandJoin(dto);
 		model.addAttribute("memId", bandMemCommand.getMemId());
+		model.addAttribute("bandNo", bandMemCommand.getBandNo());
 	}
 }

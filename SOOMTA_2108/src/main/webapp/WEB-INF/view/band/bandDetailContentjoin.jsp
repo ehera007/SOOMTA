@@ -310,36 +310,41 @@ td {
 			<div class="bandDetailList">
 
         <h2 class="jointitle" style="text-align:center; color:#0F4C81">게시글 등록하기</h2>
-				<form action="perForm" name="frm">
+				
+				<form action="bandDetailmy" method="post" name="bandfrm" >
+					<input type="hidden" name="bandNo" value="${bandNo }" >
 					<table>
 						<tr>
 							<th style="padding-top: 15px; padding-bottom: 10px" width="70px" height="50px">분류</th>
 							<td style="padding-top: 15px; padding-bottom: 10px">
-                <select id="ctgrL" name="bandCategoryL" style="width:100px;" >
-                  <option>공지</option>
-                  <option>일반</option>
-                  <option>질문</option>
+                <select id="ctgrL" name="noticeCategory" style="width:100px;" >
+                  <c:if test="#{logIn.userId == dto.memId2 }">
+                  <option value="NOTICE">공지</option>
+                  </c:if>
+                  <option value="NOMAL">일반</option>
+                  <option value="QA">질문</option>
+                 
                 </select>
               </td>
 						</tr>
 						<tr>
 							<th style="padding-top: 10px; padding-bottom: 20px" width="70px" height="50px";>제목</th>
-							<td style="padding-top: 10px; padding-bottom: 20px" height="50px"><input type="text" name="contentName"style="width:350px;" required
+							<td style="padding-top: 10px; padding-bottom: 20px" height="50px"><input type="text" name="noticeSub"style="width:350px;" required
             	minlength="2" maxlength="35"/></td>
 						</tr>
 						<tr>
 							<th height="300px" style="padding-top: 10px; padding-bottom: 40px";>내용</th>
-							<td style="padding-top: 10px; padding-bottom: 40px"><input type="text" name="content"style="width:350px; height: 300px;" required
+							<td style="padding-top: 10px; padding-bottom: 40px"><input type="text" name="noticeCon"style="width:350px; height: 300px;" required
             	minlength="2" maxlength="35"/></td>
 						</tr>
 						<tr>
 							<th colspan="2" style="padding-right: 45px;">
 								<div class="allbtn">
-									<a href="bandDetailmy"
-										style="text-decoration: none; color:#0F4C81; ">등록하기</a>
-										&emsp;&emsp; 
-									<a href="bandDetailmy"
-										style="text-decoration: none; color:#0F4C81;">취소하기</a>
+									<input type="submit" value="등록하기" 
+						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />								&emsp;&emsp; 
+									<input type="button"  value="취소하기" style="border: none;font-size: 16px;font-weight: bold;
+					 	background: transparent; color: #0F4C81; padding-left: 30px;"
+						onclick="javascript:history.back();" />
 								</div>
 							</th>
 						</tr>

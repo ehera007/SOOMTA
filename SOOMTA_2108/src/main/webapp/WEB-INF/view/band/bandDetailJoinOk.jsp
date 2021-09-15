@@ -285,7 +285,7 @@ ul {
 					<td style="color:#0F4C81; font-size: 20px;"><strong>"${memId}"님  환영합니다</strong></td>
     			</tr>
     			<tr align ="center">
-    				<p><td style="color:#0F4C81; font-size: 17px;"><strong><a href="bandDetail?bandNo=${bandDTO.bandNo}" style="text-decoration: none; color:#0F4C81;" >밴드 HOME으로</a></strong></td></p>
+    				<p><td style="color:#0F4C81; font-size: 17px;"><strong><a href="bandDetail?bandNo=${bandNo}" style="text-decoration: none; color:#0F4C81;" >밴드 HOME으로</a></strong></td></p>
 			</table>
 			</br>
 			</br>

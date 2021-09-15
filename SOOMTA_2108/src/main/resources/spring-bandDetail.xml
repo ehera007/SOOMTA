@@ -11,4 +11,6 @@
 	<bean class="service.band.BandHomeService" />
 	<bean class="service.band.BandDetailJoinService" />
 	<bean class="service.band.BandIntroService"/>
+	<bean class="service.band.BandContentAllService"/>
+	<bean class="service.band.BandContentJoinService"/>
 </beans>
