@@ -21,4 +21,5 @@
 	<bean class="controller.band.BandIntroController" />
 	<bean class="service.band.BandWishService" />
 	<bean class="service.band.BandWishListService" />
+	<bean class="service.band.BandDetailmemMgrService" />
 </beans>

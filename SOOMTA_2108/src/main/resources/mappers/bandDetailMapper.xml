@@ -3,6 +3,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.bandDetailMapper">
 
+<select id ="bandMember" parameterType="string" resultType="Model.MemberDTO">
+	select MEM_ID memId, MEM_PW memPw, MEM_NAME memName, MEM_PHONE memPhone, 
+	      MEM_SINCE memSince, MEM_GENDER memGender, MEM_DOB memDob, 
+	      MEM_EMAIL memEmail, MEM_AREA memArea, MEM_EMAIL_CK memEmailCk
+	from member
+	where MEM_ID in (select mem_id from band_join where band_no = #{bandNo} and mem_allow is not null)
+</select>
+
+ <update id="bandAllow" parameterType="string">
+ 	update band_join
+ 	set MEM_ALLOW = 'Y'
+ 	where MEM_ID = #{memId}
+ </update>
+
+ <delete id="bandAllowDel" parameterType="string">
+ 	delete from band_join
+ 	where MEM_ID = #{memId}
+ </delete>
+
+<select id ="bandAllowMember" parameterType="string" resultType="Model.MemberDTO">
+	select MEM_ID memId, MEM_PW memPw, MEM_NAME memName, MEM_PHONE memPhone, 
+	      MEM_SINCE memSince, MEM_GENDER memGender, MEM_DOB memDob, 
+	      MEM_EMAIL memEmail, MEM_AREA memArea, MEM_EMAIL_CK memEmailCk
+	from member
+	where MEM_ID in (select mem_id from band_join where band_no = #{bandNo} and mem_allow is null)
+</select>
+
 <select id="updateNotice" parameterType="Model.BandNoticDTO" >
 	update band_notice
 	set  NOTICE_SUB = #{noticeSub} , NOTICE_CON = #{noticeCon}

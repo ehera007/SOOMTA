@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
+import Model.BandDTO;
 import Model.BandNoticDTO;
 import Model.LogInDTO;
 import repository.BandDetailRepository;
@@ -16,6 +17,7 @@ public class BandContentAllService {
 	BandDetailRepository bandDetailRepository;
 	public void selectAll(Model model, Long bandNo){
 		List<BandNoticDTO> list = bandDetailRepository.selectAll(bandNo);
+		
 		model.addAttribute("list", list);
 		model.addAttribute("bandNo", bandNo);
 	}

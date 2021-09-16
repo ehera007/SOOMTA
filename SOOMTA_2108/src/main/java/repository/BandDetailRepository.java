@@ -9,12 +9,35 @@ import Model.BandDTO;
 import Model.BandJoinDTO;
 import Model.BandNoticDTO;
 import Model.BandWishDTO;
+import Model.MemberDTO;
 
 public class BandDetailRepository {
 	@Autowired
 	SqlSession sqlSession;
 	String namespace = "mappers.bandDetailMapper";
 	String statement;
+	public BandDTO bandCreate(Long bandNo) {
+		statement = namespace + ".bandCreate";
+		return sqlSession.selectOne(statement, bandNo);
+	}
+	public void bandMemDel(String memId) {
+		statement = namespace + ".bandAllowDel";
+		sqlSession.update(statement, memId);
+	}
+	public void bandAllow(String memId) {
+		statement = namespace + ".bandAllow";
+		sqlSession.update(statement, memId);
+	}
+	public List<MemberDTO> bandMember(String bandNo) {
+		statement = namespace + ".bandMember";
+		return sqlSession.selectList(statement, bandNo);
+	}
+	
+	public List<MemberDTO> bandAllowMember(String bandNo) {
+		statement = namespace + ".bandAllowMember";
+		return sqlSession.selectList(statement, bandNo);
+	}
+	
 	public void noticeDel(String noticeNo) {
 		statement = namespace + ".deleteNotice";
 		sqlSession.delete(statement, noticeNo);

@@ -324,7 +324,7 @@ function btn(noticeNo){
 		             <th height="300px";>내용</th>
 		             <td >${dto.noticeCon} </td>
 		         </tr>
-            <c:if test="#{logIn.userId == dto.memId2 }">
+            <c:if test="${logIn.userId == dto.memId2 }">
              <tr>
                 <td colspan="2" style="text-align:right; padding-right:70px; padding-bottom:20px">
                 <a onclick="javascript:btn(#{dto.noticeNo})"  style="coloer:#0F4C81">삭제하기</a>

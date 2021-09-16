@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import command.BandCommand;
 import command.BandContentCommand;
 import command.BandMemCommand;
 import command.MemberCommand;
@@ -18,6 +17,7 @@ import service.band.BandContentDetailService;
 import service.band.BandContentJoinService;
 import service.band.BandDetailJoinService;
 import service.band.BandDetailService;
+import service.band.BandDetailmemMgrService;
 import service.band.BandHomeService;
 import service.member.MemberJoinService;
 import service.member.MemberPerDataService;
@@ -161,8 +161,13 @@ public class BandDetailController {
 		return "band/bandDetailallMgr";
 	}
 
+	@Autowired
+	BandDetailmemMgrService bandDetailmemMgrService;
 	@RequestMapping("bandDetailmemMgr")
-	public String bandDetailmemMgr() {
+	public String bandDetailmemMgr(
+			@RequestParam(value="bandNo") String bandNo, Model model) {
+		bandDetailmemMgrService.memMgr(bandNo, model);
+		model.addAttribute("bandNo", bandNo);
 		return "band/bandDetailmemMgr";
 	}
 
@@ -171,7 +176,23 @@ public class BandDetailController {
 		bandContentAllService.mySelect(session, model);
 		return "band/bandDetailmyMgr";
 	}
-
+	
+	@RequestMapping("bandAllow")
+	public String bandAllow(
+			@RequestParam(value="memId") String memId,
+			@RequestParam(value="bandNo") String bandNo) {
+		bandDetailmemMgrService.bandAllow(memId);
+		return "redirect:bandDetailmemMgr?bandNo="+bandNo;
+	}
+	
+	@RequestMapping("bandMemDel")
+	public String bandMemDel(
+			@RequestParam(value="memId") String memId,
+			@RequestParam(value="bandNo") String bandNo) {
+		bandDetailmemMgrService.bandMemDel(memId);
+		return "redirect:bandDetailmemMgr?bandNo="+bandNo;
+	}
+	
 	/*
 	 * @RequestMapping("bandDetailjoin") public String bandDetailjoin() { return
 	 * "band/bandDetailjoin"; }
@@ -179,3 +200,4 @@ public class BandDetailController {
 
 
 }
+

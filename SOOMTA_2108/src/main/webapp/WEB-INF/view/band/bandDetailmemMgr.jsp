@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ include file="../include/tags.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -264,54 +265,45 @@ ul {
 						<td width="20%">권한</td>
 						<td width="30%">아이디</td>
 						<td width="30%">생년월일</td>
-						<td colspan="2" width="20%">탈퇴/이임</td>
+						<td colspan="2" width="20%">탈퇴</td>
 
 					</tr>
 					<tbody class="bandlistall-content">
-						<tr>
-							<td style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;">관리자</td>
-							<td style="border: none; font-size: 16px; background: transparent; color: #000000;">memId</td>
-							<td>${memDob}</td>
-							<td colspan="2">x</td>
-						</tr>
+					<c:forEach items="${memList }" var="dto">
 						<tr>
 							<td style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;">일반</td>
-							<td><a href="bandMemIntroduce" style="border: none; font-size: 16px; background: transparent; color: #000000;">memId2</a></td>
-							<td>${memDob}</td>
-							<td><input type="submit" value="탈퇴" 
-						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
+							<td><a href="bandMemIntroduce" style="border: none; font-size: 16px; background: transparent; color: #000000;">${dto.memId }</a></td>
+							<td>${dto.memDob}</td>
+							<td><a href="bandMemDel?memId=${dto.memId }&bandNo=${bandNo}">탈퇴</a> 
 						</td>
-						<td><input type="submit" value="이임" 
+						<td><input type="hidden" value="" 
 						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
 						</td>
 						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 				</form>
         				<br /> <br />
 				<h2 class="listtitle">{bandName}의  가입 신청 LIST</h2>
-				<form action="bandDetailmemMgr?bandNo=${bandDTO.bandNo}" method="post" name="bandfrm" >
 				<table class="bandlistall">
 					<tr class="bandlistall-menu">
 
 						<td width="70%">아이디</td>
-            <td colspan="2" width="30%">승인/거절</td>
+            			<td colspan="2" width="30%">승인/거절</td>
 					</tr>
 					<tbody class="bandlistall-content">
-					<c:for>
+					  <c:forEach items="${allowMember }" var="dto" >
 						<tr>
 							<td>
 							<a href="bandMemIntroduce" style="border: none; font-size: 16px; background: transparent; color: #0F4C81;">
-							{memId}</a></td>
-              <td><input type="submit" value="승인" 
-						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" /></td>
-              <td><input type="submit" value="거절" 
-						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" /></td>
+							${dto.memId}</a></td>
+              <td><a href="bandAllow?memId=${dto.memId }&bandNo=${bandNo}">승인</a></td>
+              <td><a href="bandMemDel?memId=${dto.memId }&bandNo=${bandNo}">거절</a></td>
 						</tr>
-						</c:for>
+						</c:forEach>
 					</tbody>
 				</table>
-				</form>
 			</div>
 		</div>
 		<!-- 하단 고정 -->
