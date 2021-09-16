@@ -64,6 +64,7 @@ public class BandDetailRepository {
 		sqlSession.insert(statement, dto); 
 	}
 	
+	
 	public List<BandNoticDTO> selectAll(Long bandNo){
 		statement = namespace + ".selectAll";
 		return sqlSession.selectList(statement, bandNo); 
