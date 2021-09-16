@@ -4,11 +4,18 @@
 <mapper namespace="mappers.bandDetailMapper">
 
 <select id="myselect" parameterType="string"  resultType="Model.BandNoticDTO">
-    select BAND_NO bandNo ,MEM_ID memId ,NOTICE_NO noticeNo,  NOTICE_SUB noticSub, NOTICE_CON noticeCon ,NOTICE_DATE noticeDate,
+    select BAND_NO bandNo ,MEM_ID memId ,NOTICE_NO noticeNo,  NOTICE_SUB noticeSub, NOTICE_CON noticeCon ,NOTICE_DATE noticeDate,
      NOTICE_CATEGORY noticeCategory
 	from band_notice
 	where  MEM_ID = #{memId}
 
+</select>
+
+<select id="noticeDetail" parameterType="string"  resultType="Model.BandNoticDTO">
+	select BAND_NO bandNo ,MEM_ID memId ,NOTICE_NO noticeNo,  NOTICE_SUB noticeSub, NOTICE_CON noticeCon ,NOTICE_DATE noticeDate,
+     NOTICE_CATEGORY noticeCategory
+	from band_notice
+	where notice_no = #{noticeNo}
 </select>
 
 <select id="selectDetail" parameterType="string" resultType="Model.BandNoticDTO">

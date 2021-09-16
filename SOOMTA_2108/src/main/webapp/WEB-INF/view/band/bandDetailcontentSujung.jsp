@@ -309,7 +309,7 @@ td {
 					<table>
 						<tr>
 							<th width="70px" height="50px">분류</th>
-							<td>${category}
+							<td>${dto.noticeCategory}
 							</td>
 						</tr>
 						<tr>
@@ -319,11 +319,11 @@ td {
 						</tr>
 						<tr>
 							<th width="70px" height="50px";>아이디</th>
-							<td height="50px">${memId}</td>
+							<td height="50px">${dto.memId}</td>
 						</tr>
 						<tr>
 							<th width="70px" height="50px">작성일</th>
-							<td>${contentday}</td>
+							<td>${dto.noticeDate}</td>
 						</tr>
 						<tr>
 							<th height="300px";>내용</th>

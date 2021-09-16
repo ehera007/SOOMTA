@@ -13,4 +13,5 @@
 	<bean class="service.band.BandIntroService"/>
 	<bean class="service.band.BandContentAllService"/>
 	<bean class="service.band.BandContentJoinService"/>
+	<bean class="service.band.BandContentDetailService"/>
 </beans>

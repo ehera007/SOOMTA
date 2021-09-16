@@ -15,7 +15,10 @@ public class BandDetailRepository {
 	SqlSession sqlSession;
 	String namespace = "mappers.bandDetailMapper";
 	String statement;
-	
+	public BandNoticDTO noticeDetail(String noticeNo) {
+		statement = namespace + ".noticeDetail";
+		return sqlSession.selectOne(statement, noticeNo);
+	}
 	public List<BandNoticDTO> myselect(String memId){
 		statement = namespace + ".myselect";
 		return sqlSession.selectList(statement, memId);

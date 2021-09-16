@@ -252,8 +252,8 @@ ul {
 			<h1>BAND NAME</h1>
 			<div class="bandMenu">
 				<div class="bandMenu">
-					<a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a
-						href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
+					<a href="bandDetailHome?bandNo=${bandDTO.bandNo}">Home</a><a href="bandDetailall?bandNo=${bandDTO.bandNo}">전체 게시글</a><a
+						href="bandDetailmem?bandNo=${bandDTO.bandNo}">멤버</a><a href="bandDetailmy?bandNo=${bandDTO.bandNo}">내가 쓴 게시글</a>
 				</div>
 			</div>
 		</div>

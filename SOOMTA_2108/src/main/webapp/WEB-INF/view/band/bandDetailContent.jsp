@@ -296,8 +296,8 @@ td {
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
 			<div class="bandMenu">
-				<a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a
-					href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
+				<a href="bandDetailHome?bandNo=${bandDTO.bandNo}">Home</a><a href="bandDetailall?bandNo=${bandDTO.bandNo}">전체 게시글</a><a
+					href="bandDetailmem?bandNo=${bandDTO.bandNo}">멤버</a><a href="bandDetailmy?bandNo=${bandDTO.bandNo}">내가 쓴 게시글</a>
 			</div>
 		</div>
 		<!-- 중앙 하단부 -->
@@ -307,28 +307,28 @@ td {
 					<table>
 						<tr>
 							<th width="70px" height="50px">분류</th>
-							<td>${kind}</td>
+							<td>${dto.noticeCategory}</td>
 						</tr>
 						<tr>
 							<th width="70px" height="50px";>제목</th>
-							<td height="50px">${contentname}</td>
+							<td height="50px">${dto.noticeSub}</td>
 						</tr>
 						<tr>
 							<th width="70px" height="50px";>아이디</th>
-							<td height="50px">${memId}</td>
+							<td height="50px">${dto.memId}</td>
 						</tr>
 						<tr>
 							<th width="70px" height="50px">작성일</th>
-							<td>${contentday}</td>
+							<td>${dto.noticeDate}</td>
 						</tr>
 						<tr>
 							<th height="300px";>내용</th>
-							<td>${content}</td>
+							<td>${dto.noticeCon}</td>
 						</tr>
 						<tr>
 							<th colspan="2" style="padding-right: 45px;">
 								<div class="allbtn">
-									<a href="bandDetailContentSujung"
+									<a href="bandDetailContentSujung?noticeNo=${dto.noticeNo}"
 										style="text-decoration: none;">수정하기</a>
 										&emsp;&emsp; 
 									<a href="javascript:history.back()"

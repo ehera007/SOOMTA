@@ -13,6 +13,7 @@ import command.BandContentCommand;
 import command.BandMemCommand;
 import command.MemberCommand;
 import service.band.BandContentAllService;
+import service.band.BandContentDetailService;
 import service.band.BandContentJoinService;
 import service.band.BandDetailJoinService;
 import service.band.BandDetailService;
@@ -70,17 +71,21 @@ public class BandDetailController {
 	BandContentJoinService bandContentJoinService;
 	@RequestMapping("bandDetailmy")
 	public String bandDetailmy(BandContentCommand bandContentCommand, HttpSession session, Model model) {
-		String memId = bandContentJoinService.contentJoin(bandContentCommand, session);
-		return "redirect:bandDetailmyMgr?memId="+memId;
+		bandContentJoinService.contentJoin(bandContentCommand, session);
+		return "redirect:bandDetailmyMgr";
 	}
 
 	@RequestMapping("bandDetailall")
 	public String bandDetailmember() {
 		return "band/bandDetailall";
 	}
-
+	
+	@Autowired
+	BandContentDetailService bandContentDetailService;
 	@RequestMapping("bandDetailContent")
-	public String bandDetailContent() {
+	public String bandDetailContent(
+			@RequestParam(value="noticeNo") String noticeNo, Model model) {
+		bandContentDetailService.bandDetail(noticeNo, model);
 		return "band/bandDetailContent";
 	}
 
@@ -122,7 +127,8 @@ public class BandDetailController {
 	}
 
 	@RequestMapping("bandDetailContentSujung")
-	public String bandDetailcontentSujung() {
+	public String bandDetailcontentSujung(@RequestParam(value="noticeNo") String noticeNo, Model model) {
+		bandContentDetailService.bandDetail(noticeNo, model);
 		return "band/bandDetailcontentSujung";
 	}
 	@Autowired
@@ -140,9 +146,9 @@ public class BandDetailController {
 	}
 
 	@RequestMapping("bandDetailmyMgr")
-	public String bandDetailmyMgr(@RequestParam(value="memId")String memId, Model model) {
-		bandContentAllService.mySelect(memId, model);
-		return "band/bandDetailmyMgr";
+	public String bandDetailmyMgr(HttpSession session, Model model) {
+		bandContentAllService.mySelect(session, model);
+		return "band/bandDetailmyMbandDetailContentgr";
 	}
 
 	/*

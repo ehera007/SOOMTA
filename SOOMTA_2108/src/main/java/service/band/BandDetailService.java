@@ -31,7 +31,7 @@ public class BandDetailService {
 		if (dto1 != null ) return "band/bandDetailHomeMgr"; //관리자
 		if (bandWishDTO != null)return "band/bandDetailHome"; //일반회원
 		if (bandWishDTO == null && bandDTO == null) return "band/bandDetail"; //비회원
-		if(count == 1) return "band/bandDetailHome";
+		if(count >= 1) return "band/bandDetailHome";
 		return null;
 	}
 	public void  bandDetail(Long bandNo,Model model) {

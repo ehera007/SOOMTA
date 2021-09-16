@@ -267,7 +267,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 	<!-- 중앙 상단부 -->
 		<div class="bandTitle">
 			<h1>${bandDTO.bandName}</h1>
-			<div class="bandMenu"><a href="bandDetailHomeMgr?bandNo=${bandDTO.bandNo}">Home</a><a href="bandDetailallMgr?bandNo=${bandDTO.bandNo}">전체 게시글</a><a href="bandDetailmemMgr">멤버관리</a><a href="bandDetailmyMgr">내가 쓴 게시글</a>
+			<div class="bandMenu"><a href="bandDetailHomeMgr?bandNo=${bandDTO.bandNo}">Home</a><a href="bandDetailallMgr?bandNo=${bandDTO.bandNo}">전체 게시글</a><a href="bandDetailmemMgr?bandNo=${bandDTO.bandNo}">멤버관리</a><a href="bandDetailmyMgr?bandNo=${bandDTO.bandNo}">내가 쓴 게시글</a>
 		</div></div>
 		<!-- 중앙 하단부 -->
 		<div class="banddetail"> 

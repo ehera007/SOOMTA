@@ -13,7 +13,7 @@ import repository.BandDetailRepository;
 public class BandContentJoinService {
 	@Autowired
 	BandDetailRepository bandDetailRepository;
-	public String contentJoin(BandContentCommand bandContentCommand, HttpSession session) {
+	public void contentJoin(BandContentCommand bandContentCommand, HttpSession session) {
 		LogInDTO login = (LogInDTO)session.getAttribute("logIn");
 		BandNoticDTO dto = new BandNoticDTO();
 		dto.setBandNo(bandContentCommand.getBandNo());
@@ -22,7 +22,6 @@ public class BandContentJoinService {
 		dto.setNoticeSub(bandContentCommand.getNoticeSub());
 		dto.setNoticeCategory(bandContentCommand.getNoticeCategory());
 		bandDetailRepository.bandContent(dto);
-		return login.getUserId();
 	}
 	
 }

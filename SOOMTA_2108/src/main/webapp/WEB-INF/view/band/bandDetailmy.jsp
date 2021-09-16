@@ -301,8 +301,8 @@ td a:active {
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
 			<div class="bandMenu">
-				<a href="bandDetailHome">Home</a><a href="bandDetailall">전체 게시글</a><a
-					href="bandDetailmem">멤버</a><a href="bandDetailmy">내가 쓴 게시글</a>
+				<a href="bandDetailHome?bandNo=${bandDTO.bandNo}">Home</a><a href="bandDetailall?bandNo=${bandDTO.bandNo}">전체 게시글</a><a
+					href="bandDetailmem?bandNo=${bandDTO.bandNo}">멤버</a><a href="bandDetailmy?bandNo=${bandDTO.bandNo}">내가 쓴 게시글</a>
 			</div>
 		</div>
 		<!-- 중앙 하단부 -->
@@ -323,9 +323,9 @@ td a:active {
 					<c:forEach items="${list }" var="dto">
 					<tbody>
 						<tr>
-							<td>${dto.noticNo}</td>
-							<td>${dto.noticCategory }</td>
-							<td><a href="bandDetailContent">${dto.notciSub }</a></td>
+							<td>${dto.noticeNo}</td>
+							<td>${dto.noticeCategory }</td>
+							<td><a href="bandDetailContent">${dto.noticeSub }</a></td>
 							<td>${dto.noticeDate }</td>
 						</tr>
 					</tbody>
