@@ -267,7 +267,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 	<div class="main">
 	<!-- 중앙 상단부 -->
 		<div class="bandTitle">
-			<h1>${bandDTO.bandName}</h1>
+			<h1>BAND NAME</h1>
 			<div class="bandMenu"><a href="bandDetail?bandNo=${bandDTO.bandNo}">Home</a><a onclick="javascript:btn('${bandDTO.bandNo}')">전체 게시글</a><a onclick="javascript:btn()">멤버</a><a onclick="javascript:btn()">내가 쓴 게시글</a>
 		</div></div>
 		<!-- 중앙 하단부 -->

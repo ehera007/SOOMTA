@@ -244,7 +244,7 @@ ul {
 	<div class="main">
 		<!-- 중앙 상단부 -->
 		<div class="bandTitle">
-			<h1>BAND NAME</h1>
+			<h1>${bandName.bandName}</h1>
 			<div class="bandMenu">
 				<div class="bandMenu">
 					<a href="bandDetailHomeMgr?bandNo=${bandDTO.bandNo}">Home</a><a href="bandDetailallMgr?bandNo=${bandDTO.bandNo}">전체 게시글</a><a
@@ -257,7 +257,7 @@ ul {
 			<!-- 중앙 멤버 소개 -->
 			<div class="bandlist" style="width: 700px; margin:auto;">
 				<br /> <br />
-				<h2 class="listtitle">{bandName}의 멤버  LIST</h2>
+				<h2 class="listtitle">${bandName.bandName}의 멤버  LIST</h2>
 				<form action="bandDetailmemMgr?bandNo=${bandDTO.bandNo}" method="post" name="bandfrm" >
 				<table class="bandlistall">
 					<tr class="bandlistall-menu">
@@ -285,7 +285,7 @@ ul {
 				</table>
 				</form>
         				<br /> <br />
-				<h2 class="listtitle">{bandName}의  가입 신청 LIST</h2>
+				<h2 class="listtitle">${bandName.bandName}의  가입 신청 LIST</h2>
 				<table class="bandlistall">
 					<tr class="bandlistall-menu">
 
