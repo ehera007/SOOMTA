@@ -294,8 +294,8 @@ td a:active {
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
 			<div class="bandMenu">
-				<a href="bandDetailHomeMgr?bandNo=${bandDTO.bandNo}">Home</a><a href="bandDetailallMgr?bandNo=${bandDTO.bandNo}">전체
-					게시글</a><a href="bandDetailmemMgr?bandNo=${bandDTO.bandNo}">멤버</a><a href="bandDetailmyMgr?bandNo=${bandDTO.bandNo}">내가
+				<a href="bandDetailHomeMgr?bandNo=${dto.bandNo}">Home</a><a href="bandDetailallMgr?bandNo=${dto.bandNo}">전체
+					게시글</a><a href="bandDetailmemMgr?bandNo=${dto.bandNo}">멤버</a><a href="bandDetailmyMgr?bandNo=${dto.bandNo}">내가
 					쓴 게시글</a>
 			</div>
 		</div>
@@ -303,7 +303,7 @@ td a:active {
 	<div class="banddetail">
 			<div class="table">
         <div class="contentjoin">
-        <a style="color: #0F4C81; font-weight:bold" href="bandDetailcontentjoin">게시글 작성하기</a>
+ 
         </div>
 				<table>
 					<thead>
@@ -327,10 +327,7 @@ td a:active {
 				</table>
 			</div>
 		</div>
-		<div>
-			<a style="text-align: right; font-weight: bold"
-				href="bandDetailcontentjoin">게시글 작성하기</a>
-		</div>
+
 	</div>
 	<!-- 하단 고정 -->
 	<hr style="color: #BEBEBE;">

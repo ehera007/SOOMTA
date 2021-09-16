@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import command.BandCommand;
 import command.BandContentCommand;
 import command.BandMemCommand;
 import command.MemberCommand;
@@ -27,6 +28,11 @@ public class BandDetailController {
 	@RequestMapping("bandDetailHome")
 	public String bandDetailHome() {
 		return "band/bandDetailHome";
+	}
+	
+	@RequestMapping("bandMemIntroduce")
+	public String bandMemIntroduce() {
+		return "band/bandMemIntroduce";
 	}
 
 	@Autowired
@@ -88,7 +94,16 @@ public class BandDetailController {
 		bandContentDetailService.bandDetail(noticeNo, model);
 		return "band/bandDetailContent";
 	}
-
+	
+	@RequestMapping("bandDetailContentDel")
+	public String bandDetailContentDel(
+			@RequestParam(value="noticeNo") String noticeNo,
+			@RequestParam(value="bandNo") String bandNo) {
+		bandContentDetailService.noticeDel(noticeNo);
+		return "redirect:bandDetailmyMgr?bandNo="+ bandNo;
+	}
+	
+	
 	@RequestMapping("bandDetailnotok")
 	public String bandDetailnotok() {
 		return "band/bandDetailnotok";
@@ -119,7 +134,6 @@ public class BandDetailController {
 	// bandDetailHomeMgr
 	@Autowired
 	BandHomeService bandHomeService;
-
 	@RequestMapping("bandDetailHomeMgr")
 	public String bandDetailHomeMgr(@RequestParam(value = "bandNo") Long bandNo, Model model) {
 		bandHomeService.bandHome(bandNo, model);
@@ -131,6 +145,13 @@ public class BandDetailController {
 		bandContentDetailService.bandDetail(noticeNo, model);
 		return "band/bandDetailcontentSujung";
 	}
+	
+	@RequestMapping(value="bandDetailContentSujungOk")
+	public String bandDetailContentSujungOk(BandContentCommand bandContentCommand) {
+		bandContentDetailService.bandNoticeUpdate(bandContentCommand);
+		return "redirect:bandDetailContent?noticeNo=" + bandContentCommand.getNoticeNo();
+	}
+	
 	@Autowired
 	BandContentAllService bandContentAllService;
 	@RequestMapping("bandDetailallMgr")
@@ -148,12 +169,13 @@ public class BandDetailController {
 	@RequestMapping("bandDetailmyMgr")
 	public String bandDetailmyMgr(HttpSession session, Model model) {
 		bandContentAllService.mySelect(session, model);
-		return "band/bandDetailmyMbandDetailContentgr";
+		return "band/bandDetailmyMgr";
 	}
 
 	/*
 	 * @RequestMapping("bandDetailjoin") public String bandDetailjoin() { return
 	 * "band/bandDetailjoin"; }
 	 */
+
 
 }

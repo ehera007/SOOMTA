@@ -3,14 +3,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.bandDetailMapper">
 
+<select id="updateNotice" parameterType="Model.BandNoticDTO" >
+	update band_notice
+	set  NOTICE_SUB = #{noticeSub} , NOTICE_CON = #{noticeCon}
+	where notice_no = #{noticeNo}
+</select>
+
 <select id="myselect" parameterType="string"  resultType="Model.BandNoticDTO">
-    select BAND_NO bandNo ,MEM_ID memId ,NOTICE_NO noticeNo,  NOTICE_SUB noticeSub, NOTICE_CON noticeCon ,NOTICE_DATE noticeDate,
+    select BAND_NO bandNo ,MEM_ID memId ,notice_no noticeNo,  NOTICE_SUB noticeSub, NOTICE_CON noticeCon ,NOTICE_DATE noticeDate,
      NOTICE_CATEGORY noticeCategory
 	from band_notice
 	where  MEM_ID = #{memId}
 
 </select>
-
+<delete id="deleteNotice" parameterType="string">
+	delete from band_notice
+	where notice_no = #{noticeNo}
+</delete>
 <select id="noticeDetail" parameterType="string"  resultType="Model.BandNoticDTO">
 	select BAND_NO bandNo ,MEM_ID memId ,NOTICE_NO noticeNo,  NOTICE_SUB noticeSub, NOTICE_CON noticeCon ,NOTICE_DATE noticeDate,
      NOTICE_CATEGORY noticeCategory

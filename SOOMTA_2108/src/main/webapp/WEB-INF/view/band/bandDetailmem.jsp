@@ -262,39 +262,28 @@ ul {
 			<!-- 중앙 멤버 소개 -->
 			<div class="bandlist" style="width: 700px; margin:auto;">
 				<br /> <br />
-				<p class="listtitle">'${BAND_NAME}'의 멤버 리스트</p>
-				<table class="bandlistall">
+				<p class="listtitle">'{BAND_NAME}'의 멤버 리스트</p>
+								<table class="bandlistall">
 					<tr class="bandlistall-menu">
 
 						<td width="20%">권한</td>
-						<td width="50%">아이디</td>
-						<td width="30%">가입날짜</td>
+						<td width="40%">아이디</td>
+						<td width="40%">생년월일</td>
 
 					</tr>
 					<tbody class="bandlistall-content">
-						<tr style="height: 40px;"> 
-							<td>관리자</td>
-							<td>hisfr11</td>
-							<td>21.08.18</td>
+						<tr>
+							<td style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;">관리자</td>
+							<td style="border: none; font-size: 16px; background: transparent; color: #000000;">memId</td>
+							<td>${memDob}</td>
 						</tr>
-						<tr style="height: 40px;">
-							<td>일반</td>
-
-							<td>hisfr11</td>
-							<td>21.08.08</td>
-						</tr >
-						<tr style="height: 40px;">
-							<td>일반</td>
-
-							<td>geqrf</td>
-							<td>21.08.09</td>
+						<c:for>
+						<tr>
+							<td style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;">일반</td>
+							<td><a href=bandMemIntroduce style="border: none; font-size: 16px; background: transparent; color: #000000;">memId2</a></td>
+							<td>${memDob}</td>
 						</tr>
-						<tr style="height: 40px;">
-							<td>일반</td>
-
-							<td>cdfs</td>
-							<td>21.08.09</td>
-						</tr>
+						</c:for>
 					</tbody>
 				</table>
 			</div>

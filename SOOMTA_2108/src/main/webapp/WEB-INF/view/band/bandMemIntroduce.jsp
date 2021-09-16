@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -165,7 +166,7 @@ ul {
 }
 
 .bandMenu {
-	width: 600px;
+	width: 550px;
 	display: flex;
 	justify-content: space-evenly;
 	padding-top: 10px;
@@ -179,37 +180,78 @@ ul {
 /*중앙 하단 부분*/
 .banddetail {
 	display: flex;
+	margin: 20px 0px;
 	justify-content: space-between;
+	/*
+	
+	align-items: center;
+	*/
+}
+/*
+.banddintro{
+border:1px solid blue;
+}
+/*중앙 하단 좌측 테이블 부분*/
+
+/*중앙 하단 우측 테이블 부분*/
+.perForm a:visited {
+	color: #0F4C81;
 }
 
-.bandList {
-  margin : auto;
+.perForm a:link {
+	color: #0F4C81;
 }
 
-.bandlistall {
-	text-align: center;
+.perForm a:hover {
+	color: #0F4C81;
+}
+.bandDetailList {
+	margin : auto;
+}
+
+table {
 	border: 2px solid #0F4C81;
+	border-radius: 12px;
+	width: 600px;
+	height: 460px;
+	margin : auto;
 	box-shadow: 3px 3px 3px 3px #D5D5D5;
-	border-spacing: 0px;
-  	margin : 50px auto;
-	width: 700px;
+	text-align: center;
+	margin-top: 35px;
+	margin-bottom: 35px;
 }
 
-.bandlistall-menu {
-	text-align: center;
-	height: 50px;
-	background-color: #0F4C81;
-	color: white;
-	font-size: 20px;
-	border-radius: 8px 8px 0px 0px;
+.btn {
+	height: 30px;
+	background-color: red;
+	color: #0F4C81;
+	font-weight: bold;
+	margin: 10px 10px;
+	border: none;
+	/*border:1px solid #0F4C81;
+   border-radius:4px;*/
 }
 
-.bandmemtitle {
-	text-align: center;
+.allbtn {
+	height: 30px;
+	width: 250px;
+	margin: 0 auto;
+	padding-bottom: 0px;
+	padding-right: 35px;
 }
 
-.listtitle {
-	text-align: center;
+th {
+	padding-left: 85px;
+}
+
+td {
+	text-align: left;
+	padding-left: 85px;
+	width: 400px;
+}
+
+.contentjoin {
+	text-align: right;
 }
 
 .empty {
@@ -223,7 +265,17 @@ ul {
 </style>
 <meta charset="UTF-8">
 <title>Band</title>
-
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.Top').click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 400);
+			return false;
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- 상단 고정 : 로고 / 로그인,회원가입 -->
@@ -245,72 +297,36 @@ ul {
 		<div class="bandTitle">
 			<h1>BAND NAME</h1>
 			<div class="bandMenu">
-				<div class="bandMenu">
-					<a href="bandDetailHomeMgr?bandNo=${bandDTO.bandNo}">Home</a><a href="bandDetailallMgr?bandNo=${bandDTO.bandNo}">전체 게시글</a><a
-						href="bandDetailmemMgr?bandNo=${bandDTO.bandNo}">멤버</a><a href="bandDetailmyMgr?bandNo=${bandDTO.bandNo}">내가 쓴 게시글</a>
-				</div>
+				<a href="bandDetailHome?bandNo=${bandNo}">Home</a><a href="bandDetailall?bandNo=${bandNo}">전체 게시글</a><a
+					href="bandDetailmem?bandNo=${bandNo}">멤버</a><a href="bandDetailmy?bandNo=${bandNo}">내가 쓴 게시글</a>
 			</div>
 		</div>
 		<!-- 중앙 하단부 -->
 		<div class="banddetail">
-			<!-- 중앙 멤버 소개 -->
-			<div class="bandlist" style="width: 700px; margin:auto;">
-				<br /> <br />
-				<h2 class="listtitle">{bandName}의 멤버  LIST</h2>
-				<form action="bandDetailmemMgr?bandNo=${bandDTO.bandNo}" method="post" name="bandfrm" >
-				<table class="bandlistall">
-					<tr class="bandlistall-menu">
-
-						<td width="20%">권한</td>
-						<td width="30%">아이디</td>
-						<td width="30%">생년월일</td>
-						<td colspan="2" width="20%">탈퇴/이임</td>
-
-					</tr>
-					<tbody class="bandlistall-content">
+			<div class="bandDetailList">
+				<form action="perForm" name="frm">
+					<table>
 						<tr>
-							<td style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;">관리자</td>
-							<td style="border: none; font-size: 16px; background: transparent; color: #000000;">memId</td>
-							<td>${memDob}</td>
-							<td colspan="2">x</td>
+							<th width="100px" height="50px">이름</th>
+							<td	>memName</td>
 						</tr>
 						<tr>
-							<td style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;">일반</td>
-							<td><a href="bandMemIntroduce" style="border: none; font-size: 16px; background: transparent; color: #000000;">memId2</a></td>
-							<td>${memDob}</td>
-							<td><input type="submit" value="탈퇴" 
-						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						</td>
-						<td><input type="submit" value="이임" 
-						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" />
-						</td>
+							<th width="100px" height="50px";>생년월일</th>
+							<td height="50px"><fmt:formatDate value="memDob" 
+		             pattern="yyyy-MM-dd"/></td>
 						</tr>
-					</tbody>
-				</table>
-				</form>
-        				<br /> <br />
-				<h2 class="listtitle">{bandName}의  가입 신청 LIST</h2>
-				<form action="bandDetailmemMgr?bandNo=${bandDTO.bandNo}" method="post" name="bandfrm" >
-				<table class="bandlistall">
-					<tr class="bandlistall-menu">
-
-						<td width="70%">아이디</td>
-            <td colspan="2" width="30%">승인/거절</td>
-					</tr>
-					<tbody class="bandlistall-content">
-					<c:for>
 						<tr>
-							<td>
-							<a href="bandMemIntroduce" style="border: none; font-size: 16px; background: transparent; color: #0F4C81;">
-							{memId}</a></td>
-              <td><input type="submit" value="승인" 
-						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" /></td>
-              <td><input type="submit" value="거절" 
-						style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;" /></td>
+							<th>성별</th>
+				<td><c:if test="${memPerData.memGender == 'M'}">남성</c:if>
+         			<c:if test="${memPerData.memGender == 'F'}">여성</c:if>
+				</td>
 						</tr>
-						</c:for>
-					</tbody>
-				</table>
+						<tr>
+							<th height="300px";>자기소개</th>
+							<td>bandJoinIntro"</td>
+						</tr>
+
+					</table>
 				</form>
 			</div>
 		</div>

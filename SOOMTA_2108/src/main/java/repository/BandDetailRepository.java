@@ -15,6 +15,15 @@ public class BandDetailRepository {
 	SqlSession sqlSession;
 	String namespace = "mappers.bandDetailMapper";
 	String statement;
+	public void noticeDel(String noticeNo) {
+		statement = namespace + ".deleteNotice";
+		sqlSession.delete(statement, noticeNo);
+	}
+	public void updateNotice(BandNoticDTO dto) {
+		statement = namespace + ".updateNotice";
+		sqlSession.insert(statement, dto);
+	}
+	
 	public BandNoticDTO noticeDetail(String noticeNo) {
 		statement = namespace + ".noticeDetail";
 		return sqlSession.selectOne(statement, noticeNo);
