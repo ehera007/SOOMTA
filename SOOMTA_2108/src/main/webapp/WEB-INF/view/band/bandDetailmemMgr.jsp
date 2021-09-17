@@ -269,11 +269,20 @@ ul {
 
 					</tr>
 					<tbody class="bandlistall-content">
+											<tr>
+							<td style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;">관리자</td>
+							<td><a href="bandMemIntroduce" style="border: none; font-size: 16px; background: transparent; color: #000000;">jenamem</a></td>
+							<td>1995.09.06</td>
+							<td><a href="bandMemDel?memId=${dto.memId }&bandNo=${bandNo}"></a> 
+						</td>
+					
+					
 					<c:forEach items="${memList }" var="dto">
 						<tr>
 							<td style="border: none; font-size: 16px; background: transparent; color: #0F4C81; font-weight: bold;">일반</td>
 							<td><a href="bandMemIntroduce" style="border: none; font-size: 16px; background: transparent; color: #000000;">${dto.memId }</a></td>
-							<td>${dto.memDob}</td>
+							<td><fmt:formatDate value="${dto.memDob}" 
+		             pattern="yyyy-MM-dd"/></td>
 							<td><a href="bandMemDel?memId=${dto.memId }&bandNo=${bandNo}">탈퇴</a> 
 						</td>
 						<td><input type="hidden" value="" 
